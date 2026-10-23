@@ -1,0 +1,25 @@
+import ReactECharts from 'echarts-for-react'
+import type { HistoricalPoint } from '../domain/types'
+
+export function HistoryChart({ points }: { points: HistoricalPoint[] }) {
+  if (points.length === 0) return <Empty message="No validated historical observations are available." />
+  const ordered = [...points].sort((a, b) => a.date.localeCompare(b.date))
+  return (
+    <ReactECharts
+      style={{ height: 360 }}
+      option={{
+        backgroundColor: 'transparent',
+        animation: false,
+        grid: { left: 48, right: 20, top: 24, bottom: 42 },
+        tooltip: { trigger: 'axis', backgroundColor: '#101216', borderColor: '#2a2e36', textStyle: { color: '#f3f4f6' } },
+        xAxis: { type: 'category', data: ordered.map((point) => point.date), axisLine: { lineStyle: { color: '#393e48' } }, axisLabel: { color: '#8f96a3' } },
+        yAxis: { type: 'value', scale: true, splitLine: { lineStyle: { color: '#20242b' } }, axisLabel: { color: '#8f96a3' } },
+        series: [{ type: 'line', data: ordered.map((point) => point.value), showSymbol: false, smooth: 0.18, lineStyle: { width: 2, color: '#e7e9ed' }, areaStyle: { color: 'rgba(255,255,255,.05)' } }],
+      }}
+    />
+  )
+}
+
+export function Empty({ message }: { message: string }) {
+  return <div className="empty">{message}</div>
+}

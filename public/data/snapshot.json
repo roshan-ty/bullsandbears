@@ -1,14 +1,1066 @@
 {
   "schemaVersion": 1,
-  "generatedAt": null,
+  "generatedAt": "2026-10-23T13:40:03Z",
   "currencies": [],
   "pairs": [],
   "events": [],
   "cot": [],
   "history": [],
   "prices": [],
-  "news": [],
+  "news": [
+    {
+      "id": "de5da80ff61cb44ee5e287db",
+      "publishedAt": "2026-10-23T13:37:20Z",
+      "headline": "Seven shot dead by gunmen at church funeral in Jordan, state media say",
+      "summary": "Another 10 people are injured in the southern Karak governorate, and a manhunt is now under way.",
+      "url": "https://bbc.co.uk/news/articles/ck87zlpzny15o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3120849d26d103751f5fc1f6",
+      "publishedAt": "2026-10-23T13:26:48Z",
+      "headline": "Anti-terror police investigate as one person killed in shooting near Paris",
+      "summary": "French Prime Minister Sébastien Lecornu says the suspected gunman has been apprehended.",
+      "url": "https://bbc.co.uk/news/articles/c6ev38dj1g8zo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "9a7414ef2548722e28464fed",
+      "publishedAt": "2026-10-23T13:19:19Z",
+      "headline": "NFL would cancel Paris game if unsafe due to riots, Steelers’ Rodgers says",
+      "summary": "Steelers to face New Orleans Saints in ⁠Saint-Denis on Sunday, about 10km from where Saturday's protests ​are expected.",
+      "url": "https://aljazeera.com/sports/2026/10/23/nfl-would-cancel-paris-game-if-unsafe-due-to-riots-steelers-rodgers-says",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "86be62aeaf7b5fcafa140140",
+      "publishedAt": "2026-10-23T13:17:46Z",
+      "headline": "Trump ordered to testify in $10bn BBC lawsuit discovery: What happens now?",
+      "summary": "Trump could face sanctions, including dismissal of his lawsuit, if he fails to cooperate with questioning.",
+      "url": "https://aljazeera.com/news/2026/10/23/trump-ordered-to-testify-in-10bn-bbc-lawsuit-discovery-what-happens-now",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3be76e6124adb7c114bb2dc9",
+      "publishedAt": "2026-10-23T13:17:18Z",
+      "headline": "Russia drops cluster bombs on Ukraine as Kyiv consolidates front line",
+      "summary": "Russia’s territorial gains this year are effectively nil as it heads into trilateral talks with Ukraine, US.",
+      "url": "https://aljazeera.com/news/2026/10/23/russia-drops-cluster-bombs-on-ukraine-as-kyiv-consolidates-front-line",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "7fccecf8b8f5e9bb7238df26",
+      "publishedAt": "2026-10-23T13:12:36Z",
+      "headline": "El Clasico: All to know about the rivalry between Barcelona and Real Madrid",
+      "summary": "One of world football's biggest rivalries renews on Sunday when Barcelona host Real Madrid in La Liga's El Clasico.",
+      "url": "https://aljazeera.com/sports/2026/10/23/el-clasico-barcelona-real-madrid-rivalry",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "f4b349389c30050445e26fdd",
+      "publishedAt": "2026-10-23T13:00:51Z",
+      "headline": "Dortmund to reward football supporters who don’t use phone during matches",
+      "summary": "Borussia Dortmund's new scheme does not mean a ban on supporters using their phones and system is voluntary for fans.",
+      "url": "https://aljazeera.com/sports/2026/10/23/dortmund-to-reward-football-supporters-who-dont-use-phone-during-matches",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "67c3d5bd0fa81afb05435fd1",
+      "publishedAt": "2026-10-23T13:00:18Z",
+      "headline": "Qatar Moto GP to go ahead despite regional tensions",
+      "summary": "Qatar GP goes ahead despite Saudi Arabia scrapping events in region after deadly strike on Riyadh airport.",
+      "url": "https://aljazeera.com/sports/2026/10/23/qatar-moto-gp-to-go-ahead-despite-regional-tensions",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "7e2b62b00e51acd441b4b7b1",
+      "publishedAt": "2026-10-23T12:55:16Z",
+      "headline": "Greece joins push to ban social media for minors",
+      "summary": "A growing number of countries are tightening rules governing children's online activity amid fears of addiction.",
+      "url": "https://aljazeera.com/news/2026/10/23/greece-joins-push-to-ban-social-media-for-minors",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "b6e2f934f05040dcd900cc29",
+      "publishedAt": "2026-10-23T12:54:44Z",
+      "headline": "Russia-Ukraine talks planned for November in UAE: Kremlin",
+      "summary": "The US-brokered talks are the first planned talks since negotiations stopped earlier this year.",
+      "url": "https://aljazeera.com/news/2026/10/23/russia-ukraine-talks-planned-for-november-in-uae-kremlin",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "d89bdf01ebf3cfe61f28ad0a",
+      "publishedAt": "2026-10-23T12:52:28Z",
+      "headline": "As President Paul Biya returns to Cameroon, can he still rule?",
+      "summary": "Cameroonians are wondering who Biya will appoint as vice president and possible successor.",
+      "url": "https://aljazeera.com/news/2026/10/23/as-president-paul-biya-returns-to-cameroon-can-he-still-rule",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "ffd0acd793144fcad6f2aa3d",
+      "publishedAt": "2026-10-23T12:48:52Z",
+      "headline": "Two Israeli soldiers killed in attack by suspected Palestinian gunmen in West Bank",
+      "summary": "The two attackers were shot dead after a gun battle outside Hebron, four days before Israel's general election.",
+      "url": "https://bbc.co.uk/news/articles/cq4g1p974wxko",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "ba5d0cf608dae984f625e9b0",
+      "publishedAt": "2026-10-23T12:43:09Z",
+      "headline": "The fight to protect India’s 600-year-old mosque in Ujjain",
+      "summary": "The minaret of Shahi mosque collapsed during demolition work to widen a road for a Hindu pilgrimage.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/ujjain-shahi-imosque-demolition-original",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "afca3b8e3fb0a7b406269d73",
+      "publishedAt": "2026-10-23T12:34:10Z",
+      "headline": "CAS clears Japan’s Olympic silver medallist Ikeda of doping, overturns ban",
+      "summary": "Race walker Koki Ikeda returns to competition immediately; Ethiopia’s marathon runner Ruti Aga given 6-year doping ban.",
+      "url": "https://aljazeera.com/sports/2026/10/23/cas-clears-japans-olympic-silver-medallist-ikeda-of-doping-overturns-ban",
+      "instruments": [
+        "XAGUSD"
+      ]
+    },
+    {
+      "id": "fc338e40474450ac8d6dcf06",
+      "publishedAt": "2026-10-23T12:24:17Z",
+      "headline": "What is PHP and why did it spark a global cyber-security scramble?",
+      "summary": "AI uncovered long-hidden programming flaws, triggering a rare global cyber-security response.",
+      "url": "https://bbc.co.uk/news/articles/c3qjnwye0ep5o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "38b4d7ab4b310faaef236380",
+      "publishedAt": "2026-10-23T12:18:01Z",
+      "headline": "Are parents in France and Italy liable for damage caused by student protesters?",
+      "summary": "Parents could face financial penalties if their children participate in vandalism or looting during demonstrations.",
+      "url": "https://aljazeera.com/news/2026/10/23/are-parents-in-france-and-italy-liable-for-damage-caused-by-student-protesters",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "9417db9862331e79a2420a39",
+      "publishedAt": "2026-10-23T12:17:45Z",
+      "headline": "Denmark to ban mink farming in government U-turn",
+      "summary": "Once the world's largest producer of mink pelts, the nation's industry has declined in recent years.",
+      "url": "https://bbc.co.uk/news/articles/c59vzjm118j1o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "b2292ea9dbcfeb476fb5a2a9",
+      "publishedAt": "2026-10-23T12:17:20Z",
+      "headline": "Typhoon Champi unleashes huge waves along Taiwan’s coast",
+      "summary": "Huge waves were seen crashing into Taiwan’s northeastern coast as Typhoon Champi approached with winds reaching 191 km/h",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/typhoon-champi-unleashes-huge-waves-along-taiwans-coast",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "a09fb0d67528d5ee6fcf61f3",
+      "publishedAt": "2026-10-23T12:16:50Z",
+      "headline": "Ukraine plans independent satellite system as Starlink issues persist",
+      "summary": "Ukraine to team up with Finnish firms as Starshield problems, started amid Trump-Zelenskyy jibes, continue.",
+      "url": "https://aljazeera.com/news/2026/10/23/ukraine-plans-independent-satellite-system-as-starlink-issues-persist",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8258d72387e071507bef7351",
+      "publishedAt": "2026-10-23T11:58:19Z",
+      "headline": "Island inflation rate rises to 3%, figures show",
+      "summary": "The rising cost of food and alcohol drives an increase in the inflation rate, figures show.",
+      "url": "https://bbc.co.uk/news/articles/cmz6581p1ee8o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "36a89b29f855947111486d63",
+      "publishedAt": "2026-10-23T11:48:04Z",
+      "headline": "Earnings limit of up to £140K for first-time buyers loan scheme",
+      "summary": "The Your First Home scheme will offer government-backed loans for those buying new-builds in England.",
+      "url": "https://bbc.co.uk/news/articles/c6n8dex0zeg9o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "5020dc9146f2896bd979b102",
+      "publishedAt": "2026-10-23T11:43:53Z",
+      "headline": "US-Iran war, then and now: How the landscape has changed since February",
+      "summary": "The positions of Washington and Tehran have changed dramatically since US-Israeli strikes began the war, analysts say.",
+      "url": "https://aljazeera.com/news/2026/10/23/us-iran-war-then-and-now-how-the-landscape-has-changed-since-february",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "ddcdb8b2fe283aee35d774c8",
+      "publishedAt": "2026-10-23T11:34:59Z",
+      "headline": "Saudi Arabia security puts Asian Cup in doubt: Japan football chief",
+      "summary": "Tsuneyasu Miyamoto says it will be difficult for Saudi Arabia to host next year's tournament as scheduled.",
+      "url": "https://aljazeera.com/sports/2026/10/23/saudi-arabia-security-puts-asian-cup-in-doubt-japan-football-chief",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "96047e55895766c4036828e7",
+      "publishedAt": "2026-10-23T11:30:32Z",
+      "headline": "Doctors tell the BBC about the targeting of Sudanese hospitals by paramilitary fighters",
+      "summary": "A BBC investigation has found evidence that Sudanese paramilitary fighters systematically destroyed el-Fasher's healthcare system.",
+      "url": "https://bbc.co.uk/news/videos/c8x23gegwz34o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3d15545d56eee819f1f0b883",
+      "publishedAt": "2026-10-23T11:27:35Z",
+      "headline": "‘Pink blooms from among the rubble’: Battling breast cancer in Gaza",
+      "summary": "Health workers in Gaza are participating in a breast cancer campaign called ‘pink blooms from among the rubble’.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/pink-blooms-from-among-the-rubble-battling-breast-cancer-in-gaza",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "4f15fb2c991370a6ad5b78b6",
+      "publishedAt": "2026-10-23T11:05:13Z",
+      "headline": "France tightens security in anticipation of weekend protests",
+      "summary": "Gatherings banned and curfews extended as cities lock down in an effort to avert further unrest.",
+      "url": "https://aljazeera.com/news/2026/10/23/france-tightens-security-in-anticipation-of-weekend-protests",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "81af4ad9e76277cf81498332",
+      "publishedAt": "2026-10-23T11:01:08Z",
+      "headline": "Ukraine says Starlink still restricted after Trump says limits lifted",
+      "summary": "Issues remain with the network used by the Ukrainian military, sources say, after repeated denials of a deliberate slowdown.",
+      "url": "https://bbc.co.uk/news/articles/cq74pjpmx0e8o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "f5caf68cff970bdee4985b46",
+      "publishedAt": "2026-10-23T10:36:01Z",
+      "headline": "Malawi opposition demands answers over president's prolonged stay abroad",
+      "summary": "This is President Peter Mutharika's fifth visit to South Africa this year.",
+      "url": "https://bbc.co.uk/news/articles/cmx28en5wkypo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e969bd340a182282c76aec6e",
+      "publishedAt": "2026-10-23T10:23:07Z",
+      "headline": "Hospitals deliberately targeted by Sudan's RSF fighters, BBC finds",
+      "summary": "The UN human rights chief Volker Türk says the multiple attacks may amount to war crimes.",
+      "url": "https://bbc.co.uk/news/articles/c54g1kxw4nvvo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "35e1cf666469c169858bec1f",
+      "publishedAt": "2026-10-23T10:20:31Z",
+      "headline": "South Korea invites North for military talks over border",
+      "summary": "The proposal comes days after Pyongyang says it moved new military units into 'firing positions' along the border.",
+      "url": "https://aljazeera.com/news/2026/10/23/south-korea-invites-north-for-military-talks-over-border",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "137857fb4400f645473ca796",
+      "publishedAt": "2026-10-23T10:14:37Z",
+      "headline": "Cyprus police open investigation into financial affairs of Roman Abramovich",
+      "summary": "Questions about the integrity of some of Abramovich's professional advisers, were raised earlier this month.",
+      "url": "https://bbc.co.uk/news/articles/c875p1yy90ryo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e45f20e7ef53a3dfabd2e701",
+      "publishedAt": "2026-10-23T10:14:33Z",
+      "headline": "Woman with Ebola in Nigeria confirmed as wife of Swiss diplomat",
+      "summary": "Her husband is currently in isolation but has not developed any symptoms, Swiss officials say.",
+      "url": "https://bbc.co.uk/news/articles/cmwy4wlzqz3zo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "03284bc9aa86908c0ad4b37d",
+      "publishedAt": "2026-10-23T09:56:28Z",
+      "headline": "New electronics reach Iran, but prices soar as gov’t fees, US sanctions hit",
+      "summary": "Latest smartphones are finding their way into Iran despite sanctions and trade restrictions, but many can't afford them.",
+      "url": "https://aljazeera.com/features/2026/10/23/new-electronics-reach-iran-but-prices-soar-as-govt-fees-us-sanctions-hit",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "21561eb99228f3bc0fdcceeb",
+      "publishedAt": "2026-10-23T09:52:20Z",
+      "headline": "Serbia’s snap election: What’s at stake and can students unseat Vucic?",
+      "summary": "A snap parliamentary vote on October 25 will determine whether a student-led group can loosen Vucic’s grip on power.",
+      "url": "https://aljazeera.com/news/2026/10/23/serbias-snap-election-whats-at-stake-and-can-students-unseat-vucic",
+      "instruments": [
+        "ETHUSD"
+      ]
+    },
+    {
+      "id": "8492ddf928397189070ddc90",
+      "publishedAt": "2026-10-23T09:40:57Z",
+      "headline": "NBA’s Irving praises Al-Shaair’s ‘selfless act’ after Hind Rajab fine paid",
+      "summary": "Kyrie Irving explains paying fine and praises Azeez Al-Shaair for continuously honouring slain Palestinian children.",
+      "url": "https://aljazeera.com/sports/2026/10/23/nbas-irving-praises-al-shaairs-selfless-act-after-hind-rajab-fine-paid",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "217b0b35285803deb574ae1b",
+      "publishedAt": "2026-10-23T09:32:33Z",
+      "headline": "What role does the military play in Israeli schools?",
+      "summary": "For Israeli teenagers, military life ordinarily kicks off in school.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/what-role-does-the-military-play-in-israeli-schools",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3efd974c2018e68cbdaec746",
+      "publishedAt": "2026-10-23T09:30:05Z",
+      "headline": "Pulaku: The two faces of Nigeria’s vigilantes",
+      "summary": "Allegations of torture and abuse shadow a Fulani-led vigilante group despite its role in clamping down on kidnappers.",
+      "url": "https://aljazeera.com/features/longform/2026/10/23/pulaku-the-two-faces-of-nigerias-vigilantes",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e2ea8d91b1778aa816b64392",
+      "publishedAt": "2026-10-23T09:23:53Z",
+      "headline": "Hispanic voters helped bring Trump to power - in Texas, the tide may be turning",
+      "summary": "Recent polls suggest the president is facing challenging headwinds in the state ahead of the midterms.",
+      "url": "https://bbc.co.uk/news/articles/cmwyqn6ejyd4o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "fa2099d75eccc7da66912c84",
+      "publishedAt": "2026-10-23T09:12:46Z",
+      "headline": "Hamilton calls for Palestine and DR Congo freedom as Rwanda takes F1 spotlight",
+      "summary": "Rwanda's controversial Formula One GP leads Lewis Hamilton to call for freedom for DR Congo, while renewing Palestine plea.",
+      "url": "https://aljazeera.com/sports/2026/10/23/hamilton-calls-for-palestine-sudan-and-congo-freedom-with-f1-in-spotlight",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "d1a8bc6c3135366b368a0c50",
+      "publishedAt": "2026-10-23T08:45:58Z",
+      "headline": "Hundreds of flights cancelled as Typhoon Champi shuts Taiwan",
+      "summary": "One person has died after being swept away by waves in Taiwan's Liuqiu island, authorities say.",
+      "url": "https://bbc.co.uk/news/articles/cw98zn304zg7o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "01214d406cc91a30346c28ab",
+      "publishedAt": "2026-10-23T08:39:42Z",
+      "headline": "Rubio turns to small Indian town as US faces high oil prices",
+      "summary": "US Secretary of State Marco Rubio pushed a business and energy agenda over diplomacy on his second trip to India this year.",
+      "url": "https://bbc.co.uk/news/articles/c3x2wnk8ejq5o",
+      "instruments": [
+        "OIL"
+      ]
+    },
+    {
+      "id": "2bb958fdfdf041a4b0416b3d",
+      "publishedAt": "2026-10-23T08:14:04Z",
+      "headline": "What is the Budget and what could be in it?",
+      "summary": "Chancellor John Healey will set out his plans for UK taxes on 28 October.",
+      "url": "https://bbc.co.uk/news/articles/c6x2zrjl7kjno",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "6ccb792f3d1d17b3389ec92e",
+      "publishedAt": "2026-10-23T08:04:17Z",
+      "headline": "The Indian workers filming their work to train AI",
+      "summary": "Indian workers are being paid to film themselves at work and the footage is used to train AI.",
+      "url": "https://bbc.co.uk/news/articles/ckvgyml6pdm9o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "7560411e011c10a555a94b7f",
+      "publishedAt": "2026-10-23T06:47:10Z",
+      "headline": "Lights will stay on this winter, grid operator says after concerns",
+      "summary": "The assurance from the National Energy System Operator comes amid concern from its engineers about their ability to ensure adequate supply.",
+      "url": "https://bbc.co.uk/news/articles/cmy56q2n1veqo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "239d66c590f6b6ebfeda99f3",
+      "publishedAt": "2026-10-23T06:26:25Z",
+      "headline": "Why a student protest movement is challenging 12 years of Vučić rule in Serbia",
+      "summary": "After two years of student protests, Serbians vote on Sunday in elections that could bring down the ruling party.",
+      "url": "https://bbc.co.uk/news/articles/cmq8n3v94ql3o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "fcd82ed9307ff98cf179cf69",
+      "publishedAt": "2026-10-23T05:45:54Z",
+      "headline": "Renting in London - 'I pay £2,000 for one bedroom'",
+      "summary": "We ask people in the capital how much they pay for their homes.",
+      "url": "https://bbc.co.uk/news/videos/cm5ydzw56vkeo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "1b424900162493e6cf005328",
+      "publishedAt": "2026-10-23T05:35:35Z",
+      "headline": "'I live in the dark': How rising bills are shaping daily life",
+      "summary": "Errol McGuiness says he has changed his daily routine to cope with higher household bills.",
+      "url": "https://bbc.co.uk/news/articles/cwz0vxl21m3jo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "cb8a89b07cc6ff23530a7aee",
+      "publishedAt": "2026-10-23T05:16:37Z",
+      "headline": "Powerful earthquake hits Tibet killing 16 people, reports say",
+      "summary": "The quake hit a mountainous, sparsely-populated area in what China calls the Tibet Autonomous Region.",
+      "url": "https://bbc.co.uk/news/articles/ck5ynd1z6e83o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "6cdc66fdb3ee6fd9e1b660e2",
+      "publishedAt": "2026-10-23T05:05:03Z",
+      "headline": "Blue Planet III: Moment octopus escapes death after hunt gone wrong",
+      "summary": "The sequence is part of the latest Blue Planet series from Sir David Attenborough.",
+      "url": "https://bbc.co.uk/news/videos/ck240lmvqjyjo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3fe6ae94e6574df1fa3b5178",
+      "publishedAt": "2026-10-23T01:38:44Z",
+      "headline": "Trump ordered to answer questions under oath in BBC lawsuit",
+      "summary": "Trump is suing the BBC over an episode of Panorama that edited together two different sections of a speech he gave in 2021.",
+      "url": "https://bbc.co.uk/news/articles/cmy0ryjx7741o",
+      "instruments": [
+        "ETHUSD"
+      ]
+    },
+    {
+      "id": "e2ac7f425ad063b46848f59b",
+      "publishedAt": "2026-10-22T23:55:39Z",
+      "headline": "Attack on actor Tiger Shroff is dark reminder of Bollywood's gangster past",
+      "summary": "The attack on Shroff has revived memories of the 1990s, when gangsters wielded influence over the industry.",
+      "url": "https://bbc.co.uk/news/articles/c6vgjk1lp7njo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "44baa881fa9f4af88a7b4bf0",
+      "publishedAt": "2026-10-22T23:20:38Z",
+      "headline": "'I'm 96 and have 15 million followers': The grannies taking over TikTok",
+      "summary": "Grandma Droniak, Nonna Gracie, Viv Truran and Barbara Costello have all found fame on social media in their later years.",
+      "url": "https://bbc.co.uk/news/articles/c63r5xpezz51o",
+      "instruments": [
+        "AUD"
+      ]
+    },
+    {
+      "id": "09f4e45c581b6381137e916b",
+      "publishedAt": "2026-10-22T23:16:20Z",
+      "headline": "Surveillance and 'constant paranoia': Western diplomats tell BBC of life in war-time Moscow",
+      "summary": "Officials compare working in Russia since its full-scale invasion of Ukraine to the Cold War era.",
+      "url": "https://bbc.co.uk/news/articles/cj75p1xr7p7vo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "a3291c898278d48216a128f3",
+      "publishedAt": "2026-10-22T22:27:53Z",
+      "headline": "L'Oreal says weight loss drugs are impacting beauty and skincare sales",
+      "summary": "The beauty giant's CEO says the use of GLP-1s is \"a very important phenomenon for us\".",
+      "url": "https://bbc.co.uk/news/articles/cvglwgwpgrlpo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "5d1337ff2d4e2099ad44743b",
+      "publishedAt": "2026-10-22T20:48:56Z",
+      "headline": "'It's part of the culture' - New York bans horse-drawn carriages after more than 160 years",
+      "summary": "The BBC's Madeline Halpert spoke to city tourists, residents and horse carriage workers about the industry and their opinion on the ban.",
+      "url": "https://bbc.co.uk/news/videos/ck5yn9dqnqj7o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "0efc84d6b58d4cb58dc34acb",
+      "publishedAt": "2026-10-22T18:26:56Z",
+      "headline": "Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax",
+      "summary": "The Meta boss had said he would exit the state over a wealth tax that has not yet come into force.",
+      "url": "https://bbc.co.uk/news/articles/cky83vwnyglno",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e822ff0d3377830168e0cc0d",
+      "publishedAt": "2026-10-22T17:49:13Z",
+      "headline": "Ukraine hit by strikes after Russia agrees to new peace talks",
+      "summary": "The three waves of Russian missiles were launched at hours after Russia said it was \"ready in principle\" to resume peace talks with the US and Ukraine.",
+      "url": "https://bbc.co.uk/news/videos/c9146p1vx888o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "fa4f7a6f3d64415872527b8e",
+      "publishedAt": "2026-10-22T17:12:51Z",
+      "headline": "Race to update services' computer systems after cyber-security flaw found",
+      "summary": "Websites were taken offline after the developers of programming language PHP said \"critical vulnerabilities\" had been discovered.",
+      "url": "https://bbc.co.uk/news/articles/c9j34zgmkxx1o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "a0aeee3882c1b4da3af5815b",
+      "publishedAt": "2026-10-22T16:15:25Z",
+      "headline": "Crowd of 50 beats foreigner to death in South Africa",
+      "summary": "The attack on the unidentified victim follows a wave of anti-migrants protests in South Africa this year.",
+      "url": "https://bbc.co.uk/news/articles/ck5yn9z3vnego",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "5b6cc4872e4f6dcb2dec13e3",
+      "publishedAt": "2026-10-22T15:56:36Z",
+      "headline": "Newborn twins fight for survival as conflict fuels Yemen's hunger crisis",
+      "summary": "Raghad and Raad's family had to flee their home on foot because of the fighting between pro-government forces and the Houthis.",
+      "url": "https://bbc.co.uk/news/articles/cr5ynl63v0pyo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "4f68f50e91a29da1bb1e6199",
+      "publishedAt": "2026-10-22T15:11:49Z",
+      "headline": "Damaging hail pelts Phoenix in rare storm",
+      "summary": "Videos from the Arizona capital show people sheltering inside a car as hail smashes the windscreen, while intense downpours covered neighbourhoods in ice.",
+      "url": "https://bbc.co.uk/news/videos/cm5ynpz5jj5do",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "28080c6319b6652150089eb9",
+      "publishedAt": "2026-10-22T15:05:47Z",
+      "headline": "'I wasn't thinking straight' says five jobs civil servant",
+      "summary": "Kashim Chowdhury is accused of fraudulently juggling multiple public sector jobs.",
+      "url": "https://bbc.co.uk/news/articles/cmx23dwp3qzro",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "0d6df4cd2b2b9a720b3a07cb",
+      "publishedAt": "2026-10-22T14:28:59Z",
+      "headline": "Barclays cutting 5,000 jobs as it increases reliance on AI",
+      "summary": "The bank says it is using more AI leading to a 5% reduction in its workforce.",
+      "url": "https://bbc.co.uk/news/articles/cm4g1p347qgxo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "c21ea3ff2e56a348bbe0b68b",
+      "publishedAt": "2026-10-22T13:45:19Z",
+      "headline": "Tank barrel production returns to UK after 20 years",
+      "summary": "The defence secretary says the UK is \"back in the business of making weapons\" for its armed forces.",
+      "url": "https://bbc.co.uk/news/articles/cm70pj51zdk4o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "ec6ef683205ac152c54a77ed",
+      "publishedAt": "2026-10-22T13:19:00Z",
+      "headline": "The Briefing Room",
+      "summary": "After mass protests and violence, what will persuade the French to accept economic reform?",
+      "url": "https://bbc.co.uk/sounds/play/m00333cg",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "dc4327ec4cc4b8e1bd555006",
+      "publishedAt": "2026-10-22T09:55:16Z",
+      "headline": "Woman 'scared to turn heating on' due to oil cost",
+      "summary": "Roslynn Garner-Gatley uses a hot water bottle bed socks and earlier bedtimes to stay warm.",
+      "url": "https://bbc.co.uk/news/videos/cmd7qr0ezrq7o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "5b05c794bc5b4dcf02cf3505",
+      "publishedAt": "2026-10-22T06:57:45Z",
+      "headline": "Children in care to get £10 a week savings",
+      "summary": "Eligible people in the care system will be able to access the savings once they turn 18.",
+      "url": "https://bbc.co.uk/news/articles/c6vg0klve484o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8d6ba44b7a19276adbd3677a",
+      "publishedAt": "2026-10-22T05:01:31Z",
+      "headline": "Is an 'AI war' complicating your job search?",
+      "summary": "How fair are AI recruitment tools that help decide our future, and what happens when we click \"apply\"?",
+      "url": "https://bbc.co.uk/news/articles/cm9qzgg5z89no",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "d10cfde2679fb2b15cda6528",
+      "publishedAt": "2026-10-22T04:02:29Z",
+      "headline": "No order, no seat: Starbucks China rolls out new store policy",
+      "summary": "Starbucks says it is improving customers' in-store experience as it competes with homegrown rivals.",
+      "url": "https://bbc.co.uk/news/articles/ckzd6rjmlzvmo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "c3f1d9d9be3e7eb924bb2ec4",
+      "publishedAt": "2026-10-21T23:27:05Z",
+      "headline": "The 'trillion pound' oil fund the government believes Britain could have built",
+      "summary": "For the first time, the Treasury calculates how much the UK could have raised by investing North Sea proceeds.",
+      "url": "https://bbc.co.uk/news/articles/cm4g1zrl2nrqo",
+      "instruments": [
+        "USD",
+        "GBP"
+      ]
+    },
+    {
+      "id": "c62240f302947c31bb2c2562",
+      "publishedAt": "2026-10-21T23:12:06Z",
+      "headline": "The grads ditching the UK for a fresh start abroad",
+      "summary": "With graduate jobs hard to come by, more young adults are reported to be considering emigrating.",
+      "url": "https://bbc.co.uk/news/articles/cmzxj4e8w44vo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3c5fb287e4a1f03874f616b3",
+      "publishedAt": "2026-10-21T23:04:03Z",
+      "headline": "Why is Elon Musk plotting a mega-merger of SpaceX and Tesla?",
+      "summary": "Musk says there's \"a lot to be gained\" by combining the firms in what would be the biggest merger in history.",
+      "url": "https://bbc.co.uk/news/articles/cr93z1e87e0do",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "6d3b49e24843997b5e07488c",
+      "publishedAt": "2026-10-21T22:54:58Z",
+      "headline": "Airbnb hosts can no longer make guests strip beds and wash dishes under new rules",
+      "summary": "The updated policy will apply to all reservations booked on the accommodation site on or after 20 November.",
+      "url": "https://bbc.co.uk/news/articles/c6n049gg75r4o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "269c32d2e2d53c9ae7087b0b",
+      "publishedAt": "2026-10-21T21:49:07Z",
+      "headline": "Meta fined $25bn for 'lies' over user data privacy",
+      "summary": "The fine is the largest to date against Facebook's owner, larger than an $18bn deal with California.",
+      "url": "https://bbc.co.uk/news/articles/cqdr8zxrr3dxo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "0ac6ec4f34e93151f958a7fd",
+      "publishedAt": "2026-10-21T19:54:57Z",
+      "headline": "Websites taken down worldwide as critical cyber-security update issued",
+      "summary": "The vulnerabilities with PHP, a programming language widely used across the internet, have been described as the most significant ever found by AI.",
+      "url": "https://bbc.co.uk/news/articles/cmly0lg3w5x2o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "ad2981b60c08ce0f9bb2e99e",
+      "publishedAt": "2026-10-21T17:06:28Z",
+      "headline": "A warning to anyone with credit card debt...",
+      "summary": "Martin’s leading this week’s podcast with an urgent warning for anyone carrying credit card: now is the time to act.",
+      "url": "https://bbc.co.uk/news/videos/c620reny4e1no",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "86220c80459f9bef3c0f1817",
+      "publishedAt": "2026-10-21T17:06:16Z",
+      "headline": "Burnham proposes plan to cut standing charges from gas bills",
+      "summary": "The prime minister provided little detail, and there are questions over shifting the fees onto unit costs.",
+      "url": "https://bbc.co.uk/news/articles/cw0541p65dyzo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "68257d3deaa22cd7f0b56d85",
+      "publishedAt": "2026-10-21T17:04:13Z",
+      "headline": "Just Eat apologises for AI food mistakes after social media ridicule",
+      "summary": "A spokesperson said it was removing inaccurate AI images and pausing the rollout of the tool.",
+      "url": "https://bbc.co.uk/news/articles/crz981p0klvgo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "c8b39a47b43640aaa8d73f00",
+      "publishedAt": "2026-10-21T15:58:05Z",
+      "headline": "Civil servant admits he 'made mistakes' juggling five government jobs",
+      "summary": "Kashim Chowdhury was contracted for 183 hours a week, more than the number of hours in seven days.",
+      "url": "https://bbc.co.uk/news/articles/cmze4w63ly42o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "78b604ea77af42f498c22c60",
+      "publishedAt": "2026-10-21T10:20:15Z",
+      "headline": "Faisal Islam: Inflation and borrowing figures illustrate chancellor's Budget challenge",
+      "summary": "The economic figures released on Wednesday show the constraints for John Healey as he puts the finishing touches to his Budget.",
+      "url": "https://bbc.co.uk/news/articles/cm3wv9pn22e5o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "12db704faeaf36ca884d414d",
+      "publishedAt": "2026-10-21T10:16:17Z",
+      "headline": "Inflation and government borrowing highest for a year ahead of next week's Budget",
+      "summary": "Inflation accelerated to 3.5% from 3.1% in the year to September, according to the Office for National Statistics (ONS).",
+      "url": "https://bbc.co.uk/news/articles/c6gel2xv4493o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "026feac20afd78e95ff3878f",
+      "publishedAt": "2026-10-21T08:42:49Z",
+      "headline": "Elon Musk confirms he is considering merging Tesla and SpaceX",
+      "summary": "Musk says special committees within both companies have been formed to look at a possible mega-merger.",
+      "url": "https://bbc.co.uk/news/articles/cmlyl09xjke4o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e20bfa1bd5ca283304d1d146",
+      "publishedAt": "2026-10-21T08:35:47Z",
+      "headline": "What is happening to UK prices?",
+      "summary": "UK inflation rose in September, pushed up by higher petrol and diesel prices.",
+      "url": "https://bbc.co.uk/news/articles/c17rgd8e9gjo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8ebca5a8d3fb72b4f1a66d7c",
+      "publishedAt": "2026-10-21T05:00:54Z",
+      "headline": "Watch: 'We don't pay' - lawyer advises how to avoid £45,000 illegal-worker fine",
+      "summary": "Mohammad Alias Yousaf made his claim to an undercover reporter posing as a mini-mart owner.",
+      "url": "https://bbc.co.uk/news/videos/cm93z1j33dkpo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "26abfa633e2143cd1f6e804f",
+      "publishedAt": "2026-10-20T23:13:24Z",
+      "headline": "The tech helping crack decades-old cold cases",
+      "summary": "Investigative genetic genealogy can help hunt down criminals but raises worries over privacy.",
+      "url": "https://bbc.co.uk/news/articles/c370pzdkw77jo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "d1fc54d641b62737202281b3",
+      "publishedAt": "2026-10-20T19:30:05Z",
+      "headline": "Trump sued over Canadian tariffs in latest legal challenge",
+      "summary": "The lawsuit argues the White House exceeded its authority in imposing the latest tariffs on the country and caused \"immediate harm to American businesses\".",
+      "url": "https://bbc.co.uk/news/articles/cqrkyj13m588o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "5e1776484b4292b594bcda27",
+      "publishedAt": "2026-10-20T18:03:19Z",
+      "headline": "Google resolves cloud outage affecting UK banks and websites",
+      "summary": "Revolut was one of the hardest hit, with banking services going down for many customers.",
+      "url": "https://bbc.co.uk/news/articles/cxdd8mm6qy4mo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "163e1a224d09820d07c0f4e3",
+      "publishedAt": "2026-10-15T23:18:21Z",
+      "headline": "Living with a stink? Technology might help",
+      "summary": "Smells from rubbish dumps and industrial facilities are being more carefully monitored.",
+      "url": "https://bbc.co.uk/news/articles/cr6240q1w136o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "9ae63093789651758035a8eb",
+      "publishedAt": "2026-10-14T23:01:28Z",
+      "headline": "As Christmas rush looms, how do China-made toys find their way to the US?",
+      "summary": "With the festive season on the horizon, we trace toys from factories in China to US shelves.",
+      "url": "https://bbc.co.uk/news/articles/c5djvyde0y1jo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "989c32e310f41c9c074a74ff",
+      "publishedAt": "2026-10-13T23:05:29Z",
+      "headline": "How long will humans be needed for translation?",
+      "summary": "AI dominates the translation business, but for high-stakes work, humans are still needed.",
+      "url": "https://bbc.co.uk/news/articles/c1wxdjx27ypo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "cb8e68a0eb68a330d3aa7842",
+      "publishedAt": "2026-10-08T23:09:56Z",
+      "headline": "Why are more roofs not made of solar tiles?",
+      "summary": "Solar tiles were touted as an attractive alternative to solar panels - why have they not taken off?",
+      "url": "https://bbc.co.uk/news/articles/cdr7n610rmzo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8d0f761e677a0390b7ad3c40",
+      "publishedAt": "2026-10-07T23:10:13Z",
+      "headline": "How oil-rich Alberta's economy might fare if it broke away from Canada",
+      "summary": "Albertans vote this month on staying in Canada or moving ahead to a binding independence referendum.",
+      "url": "https://bbc.co.uk/news/articles/cy745jznvxpo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "cfb663bdd287c8df6d6c3f73",
+      "publishedAt": "2026-10-07T07:09:32Z",
+      "headline": "Rainmakers: The drones used to seed clouds",
+      "summary": "Cloud seeding is gaining attention as countries look to boost rainfall - will drones help?",
+      "url": "https://bbc.co.uk/news/articles/c64g71j4lgyjo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3db7257de6371c80f6eb0640",
+      "publishedAt": "2026-09-30T23:02:21Z",
+      "headline": "The AI telling farmers when to harvest",
+      "summary": "Will farmers want AI tools to help judge when to pick fruit, or is their own intuition enough?",
+      "url": "https://bbc.co.uk/news/articles/cgk53dkmyxko",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "cfe3763bee844701004aedf0",
+      "publishedAt": "2026-09-29T23:06:50Z",
+      "headline": "The start-ups hoping to return battery making to the US",
+      "summary": "Batteries based on sodium-ion technology could be made in the US with locally sourced materials.",
+      "url": "https://bbc.co.uk/news/articles/cvgyexx4g8ro",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "542f7e4d58d12ef2bdc33614",
+      "publishedAt": "2026-09-27T23:05:53Z",
+      "headline": "My hometown shows that high streets have to change or die",
+      "summary": "Aberdeen is launching an ambitious bid to revive its struggling centre. Could it offer lessons for other high streets?",
+      "url": "https://bbc.co.uk/news/articles/crd689de186jo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "63c724700e3c0d21ed6e5f34",
+      "publishedAt": "2026-09-25T08:31:56Z",
+      "headline": "Europe's car makers are in crisis. Will the threat of war rescue them?",
+      "summary": "Auto executives across Europe hope rearmament can help them flex their industrial muscles once more.",
+      "url": "https://bbc.co.uk/news/articles/c6vgyq598k9po",
+      "instruments": [
+        "EUR"
+      ]
+    },
+    {
+      "id": "e214acf6922a9979e7fc94ff",
+      "publishedAt": "2026-09-24T23:03:53Z",
+      "headline": "X-planes: Are they needed in the new era of drones?",
+      "summary": "Where do America's X-plane projects fit in an era of cheap drones?",
+      "url": "https://bbc.co.uk/news/articles/c9q92x359xdo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "cf3efd823772969c6b669aed",
+      "publishedAt": "2026-09-23T23:12:22Z",
+      "headline": "How the oil capital of the US welcomed a solar power boom",
+      "summary": "Texas is now the country's biggest producer of solar-farmed electricity.",
+      "url": "https://bbc.co.uk/news/articles/cmx2zxv6936zo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "2a0394ef6dd90f45d50b0575",
+      "publishedAt": "2026-09-22T09:11:48Z",
+      "headline": "Spain battles climate change on several fronts",
+      "summary": "A summer of wildfires and heatwaves underlines the threats to the country's economy.",
+      "url": "https://bbc.co.uk/news/articles/cwg59g3vz564o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e68ea696c6e771070a1a41c3",
+      "publishedAt": "2026-09-17T23:00:47Z",
+      "headline": "The virtual worlds where robots are trained",
+      "summary": "Training systems that allow robots to negotiate the real world are getting more sophisticated.",
+      "url": "https://bbc.co.uk/news/articles/c79g0j3d4q9o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "7b45db601b86466c055eb847",
+      "publishedAt": "2026-09-05T23:20:00Z",
+      "headline": "Aviation faces hotter, stormier skies – and passengers might have to accept more disruption",
+      "summary": "Are people going to have to increasingly accept more delays and diversions as the effects of climate change intensify?",
+      "url": "https://bbc.co.uk/news/articles/cm274p8m88lo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8645e3cfdcfd8067db5023d6",
+      "publishedAt": "2026-07-22T23:51:24Z",
+      "headline": "Why the UK is dithering over what to do about e-scooters",
+      "summary": "Why is it taking so long for the government to regulate them, and what are the consequences of delay?",
+      "url": "https://bbc.co.uk/news/articles/cn4nvn9w00no",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "1d977e6cd82d57f218745d04",
+      "publishedAt": "2026-06-30T23:05:19Z",
+      "headline": "Why Gen Z are planning for life without a state pension",
+      "summary": "Many younger people do not believe the state pension will exist when they are older",
+      "url": "https://bbc.co.uk/news/articles/c8e2yp1gg37o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    }
+  ],
   "analysis": [],
   "setups": [],
-  "feedHealth": []
+  "feedHealth": [
+    {
+      "feed": "news",
+      "status": "healthy",
+      "lastAttemptAt": "2026-10-23T13:40:03Z",
+      "lastSuccessAt": "2026-10-23T13:40:03Z",
+      "staleAfterHours": 1,
+      "itemCount": 104,
+      "message": "Refreshed 104 public news records."
+    }
+  ]
 }

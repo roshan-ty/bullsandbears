@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T21:24:04Z",
+  "generatedAt": "2026-10-23T23:53:32Z",
   "currencies": [
     {
       "symbol": "USD",
@@ -149761,6 +149761,76 @@
   ],
   "news": [
     {
+      "id": "3c02de0ec59b84d75c4af13d",
+      "publishedAt": "2026-10-23T23:50:45Z",
+      "headline": "Before you crank up the thermostat, try these tips to keep your house warmer for longer",
+      "summary": "Make draught excluders from socks, leave your oven door open after cooking and opt for lots of thin layers of clothing to stay warm.",
+      "url": "https://bbc.co.uk/news/articles/cqr7yeed1ed7o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8774fa77bc9e0bd7dd1a63ce",
+      "publishedAt": "2026-10-23T23:25:11Z",
+      "headline": "Macklemore: ‘I say free Palestine’ as he kicks off a new tour",
+      "summary": "Macklemore says ‘being human is not complicated’ as he kicked off his Free Palestine tour on Thursday night.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/macklemore-i-say-free-palestine-as-he-kicks-off-a-new-tour",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "2df8d03a02be5db8ddfad0b5",
+      "publishedAt": "2026-10-23T23:10:54Z",
+      "headline": "Typhoon Champi hits Taiwan, killing one and injuring 350",
+      "summary": "Authorities warn of 'destructive winds' and urge residents to shelter as the storm passes the island's northeast.",
+      "url": "https://aljazeera.com/news/2026/10/23/typhoon-champi-hits-taiwan-killing-one-and-injuring-350",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "d15afeff97723e2e55fa9936",
+      "publishedAt": "2026-10-23T22:54:57Z",
+      "headline": "White House lifts tariffs on some Canadian goods as midterm elections loom",
+      "summary": "From 30 October, tariffs will be eased on some products, including certain machinery, and placed on others, such as carpets.",
+      "url": "https://bbc.co.uk/news/articles/c60qk573yzz8o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "1248b9391197dc363c1c8c3c",
+      "publishedAt": "2026-10-23T22:33:48Z",
+      "headline": "Kenya announces second Ebola death, says ‘no evidence’ of community spread",
+      "summary": "The Ebola outbreak has now spread to four countries across eastern, central ⁠⁠and western Africa.",
+      "url": "https://aljazeera.com/news/2026/10/23/kenya-announces-second-ebola-death-says-no-evidence-of-community-spread",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "bf6ea485633739f28b176fe2",
+      "publishedAt": "2026-10-23T22:01:52Z",
+      "headline": "Why is Israel increasing its presence in the Balkans?",
+      "summary": "In the Balkans, leaders are deepening ties with Israel through defence, surveillance, and political backing. But why?",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/why-is-israel-increasing-its-presence-in-the-balkans",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "8fa2239b96fece616ef32f10",
+      "publishedAt": "2026-10-23T21:27:32Z",
+      "headline": "Masked gunmen kill seven in attack on church funeral in Jordan",
+      "summary": "At least seven people were killed and 34 wounded after two masked gunmen opened fire at a church in Karak, Jordan.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/23/aje-onl-nf_masked-gunmen-kill-seven-in-attack-on-church-jordan-231026",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
       "id": "567bbbb658513d96b0ff9f9d",
       "publishedAt": "2026-10-23T20:59:39Z",
       "headline": "Argentina drops investigation into President Milei over crypto fraud",
@@ -149808,16 +149878,6 @@
       "url": "https://aljazeera.com/video/inside-story/2026/10/23/why-is-the-uk-at-the-forefront-of-ai-driven-job-cuts",
       "instruments": [
         "EUR"
-      ]
-    },
-    {
-      "id": "d15afeff97723e2e55fa9936",
-      "publishedAt": "2026-10-23T20:39:39Z",
-      "headline": "White House says the US is lifting tariffs on some Canadian goods",
-      "summary": "Susan Collins, a Republican in a tight race to keep her senate seat in next month's elections, said she had been working with the White House on tariff relief.",
-      "url": "https://bbc.co.uk/news/articles/c60qk573yzz8o",
-      "instruments": [
-        "GLOBAL"
       ]
     },
     {
@@ -150093,7 +150153,7 @@
     {
       "id": "634d28582c564129ffa1f8b8",
       "publishedAt": "2026-10-23T15:59:36Z",
-      "headline": "Watch: CCTV footage appears to show gunmen near church in Jordan",
+      "headline": "Watch: CCTV footage shows gunmen near church in Jordan",
       "summary": "Dozens of people had been inside the church for a funeral when the shooting began, local media report.",
       "url": "https://bbc.co.uk/news/videos/c39wz712q0kzo",
       "instruments": [
@@ -153071,11 +153131,11 @@
     {
       "feed": "news",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-23T21:19:20Z",
-      "lastSuccessAt": "2026-10-23T21:19:20Z",
+      "lastAttemptAt": "2026-10-23T23:53:32Z",
+      "lastSuccessAt": "2026-10-23T23:53:32Z",
       "staleAfterHours": 1,
-      "itemCount": 246,
-      "message": "Refreshed 195 public news records."
+      "itemCount": 252,
+      "message": "Refreshed 100 public news records."
     },
     {
       "feed": "calendar",

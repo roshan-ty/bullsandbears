@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Empty } from './components/Chart'
 import { HistoryExplorer, PositionChart, StrengthChart } from './components/ResearchPanels'
 import { AnalystBriefing, MacroMap, PositionMetrics, Scorecard, ScoreJournal } from './components/ResearchTools'
@@ -10,6 +10,23 @@ import { formatTime, readTheme, saveTheme } from './lib/presentation'
 
 const tabs = ['Home', 'Data', 'Bias', 'Macro Map', 'CFTC', 'Historical Data', 'Crypto', 'Analysis', 'Top Setups', 'Economic Calendar', 'News'] as const
 type Tab = (typeof tabs)[number]
+
+function NavIcon({ name }: { name: Tab }) {
+  const paths: Record<Tab, string> = {
+    Home: 'M3 10 12 3l9 7M5 9v12h5v-7h4v7h5V9',
+    Data: 'M4 4h16v16H4zM4 10h16M10 4v16',
+    Bias: 'M4 18V9m5 9V4m6 14v-7m5 7V6',
+    'Macro Map': 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
+    CFTC: 'M4 20V10h4v10m4 0V4h4v16m4 0v-7M2 20h20',
+    'Historical Data': 'M3 12a9 9 0 1 0 3-6M3 3v6h6m3-3v6l4 2',
+    Crypto: 'M12 3 4 8v8l8 5 8-5V8zM4 8l8 5 8-5m-8 5v8',
+    Analysis: 'M4 4h12v16H4zM8 8h4m-4 4h5m-5 4h3m6-2 5 5m-2-7a3 3 0 1 0-6 0 3 3 0 0 0 6 0',
+    'Top Setups': 'm3 17 6-6 4 3 8-9m-6 0h6v6',
+    'Economic Calendar': 'M4 5h16v16H4zM8 3v4m8-4v4M4 10h16M8 14h2m4 0h2m-8 4h2',
+    News: 'M4 4h13v16H4zM17 8h4v12h-4M7 8h7m-7 4h7m-7 4h4',
+  }
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>
+}
 
 const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value !== 0 && Math.abs(value) < 0.005 ? value.toPrecision(2) : value.toFixed(2)}`
 const formatNumber = (value: number) => new Intl.NumberFormat(undefined, { maximumFractionDigits: value < 10 ? 4 : 2 }).format(value)
@@ -51,6 +68,9 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [archiveError, setArchiveError] = useState<string | null>(null)
   const [archiveRetry, setArchiveRetry] = useState(0)
+  const workspace = useRef<HTMLElement>(null)
+
+  useEffect(() => { workspace.current?.scrollIntoView?.({ block: 'start' }) }, [tab])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -96,21 +116,23 @@ function App() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#workspace">Skip to research</a>
       <header className="topbar">
-        <div>
-          <div className="brand">Bulls &amp; Bears Fundamentals</div>
-          <div className="status-line">Data {formatTime(snapshot?.coreUpdatedAt ?? snapshot?.generatedAt ?? null)} · News {formatTime(snapshot?.newsUpdatedAt ?? null)}</div>
-        </div>
+        <div className="brand-lockup"><span className="brand-monogram" aria-hidden="true">B<span>/</span>B</span><div><div className="brand">Bulls &amp; Bears</div><span className="brand-subtitle">FUNDAMENTAL RESEARCH</span></div></div>
+        <div className="status-line"><span>Fundamentals <strong>{formatTime(snapshot?.coreUpdatedAt ?? snapshot?.generatedAt ?? null)}</strong></span><span>News <strong>{formatTime(snapshot?.newsUpdatedAt ?? null)}</strong></span></div>
         <button className="theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} aria-label="Toggle color theme">
           {theme === 'dark' ? 'Light mode' : 'Dark mode'}
         </button>
       </header>
 
       <nav className="tabs" aria-label="Primary navigation">
-        {tabs.map((item) => <button key={item} aria-current={tab === item ? 'page' : undefined} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}>{item}</button>)}
+        <span className="nav-caption">WORKSPACE</span>
+        {tabs.map((item) => <button key={item} aria-current={tab === item ? 'page' : undefined} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}><NavIcon name={item} /><span>{item}</span></button>)}
+        <div className="nav-note">Independent evidence.<br />Conditional conviction.</div>
       </nav>
+      <div className="mobile-navigation"><label htmlFor="mobile-workspace">WORKSPACE</label><select id="mobile-workspace" aria-label="Workspace view" value={tab} onChange={(event) => setTab(event.target.value as Tab)}>{tabs.map((item) => <option key={item}>{item}</option>)}</select></div>
 
-      <main>
+      <main id="workspace" ref={workspace} tabIndex={-1}>
         {snapshot?.coreUpdatedAt && Date.now() - Date.parse(snapshot.coreUpdatedAt) > 12 * 3600000 && <div className="error-banner" role="status">The core snapshot is more than 12 hours old. These readings may no longer reflect current evidence.</div>}
         {error && <div className="error-banner">{error}</div>}
         {needsArchive && archiveError && <div className="error-banner">{archiveError} <button onClick={() => setArchiveRetry((value) => value + 1)}>Retry research data</button></div>}
@@ -133,10 +155,10 @@ function App() {
       </main>
       <footer className="partner-footer" aria-label="Partnered prop firm">
         <a className="partner-banner" href="https://shop.tradersyard.com/ref/1486" target="_blank" rel="sponsored noopener noreferrer">
-          <div><p className="eyebrow">PARTNERED PROP FIRM</p><h2>TradersYard</h2><p>Check the maximum discount available with code <strong>RSHN</strong> at checkout.</p></div>
-          <div className="partner-offer"><span className="partner-code">DISCOUNT CODE <strong>RSHN</strong></span><span className="partner-cta">Explore accounts ↗</span></div>
+          <div className="partner-identity"><span>PARTNER OFFER</span><strong>TradersYard</strong></div>
+          <span className="partner-message">Explore your next trading account.</span>
+          <div className="partner-offer"><span className="partner-code"><span>DISCOUNT CODE</span><strong>RSHN</strong></span><span className="partner-cta">View accounts <span aria-hidden="true">↗</span></span></div>
         </a>
-        <p className="partner-disclosure">Affiliate link · We may earn a commission. Offer availability and final discount are confirmed at checkout. This promotion does not influence market analysis or scores.</p>
       </footer>
     </div>
   )
@@ -146,7 +168,7 @@ function Home({ snapshot, onInspect }: { snapshot: DashboardSnapshot; onInspect:
   const covered = snapshot.pairs.filter((row) => row.shortTerm.coverage >= .5).length
   const divergent = snapshot.pairs.filter((row) => row.shortTerm.score * row.longTerm.score < -.0064).length
   return <div className="stack">
-    <section className="page-head"><div><p className="eyebrow">RESEARCH TERMINAL / OVERVIEW</p><h1>Follow the evidence.</h1><p className="muted">Macro conditions, positioning and network fundamentals in one workspace.</p></div><span className="live-label">{snapshot.pairs.length} markets tracked</span></section>
+    <section className="page-head"><div><p className="eyebrow">MARKET INTELLIGENCE / OVERVIEW</p><h1>Markets, in perspective.</h1><p className="muted">Read the macro picture. Compare conviction. Understand the risks.</p></div><span className="live-label">{snapshot.pairs.length} markets covered</span></section>
     <section className="summary-strip"><div><span>Broader evidence</span><strong>{covered}<small> / {snapshot.pairs.length} markets</small></strong></div><div><span>Horizon divergence</span><strong>{divergent}</strong></div><div><span>Historical observations</span><strong>{((snapshot.archiveCounts?.history ?? snapshot.history.length) + (snapshot.archiveCounts?.cryptoHistory ?? snapshot.cryptoHistory?.length ?? 0)).toLocaleString()}</strong></div><div><span>Crypto coverage</span><strong>{snapshot.cryptoFundamentals?.filter((row) => row.shortTerm.available).length ?? 0}<small> assets with direct data</small></strong></div></section>
     <BiasView snapshot={snapshot} onInspect={onInspect} compact />
     <section className="two-column"><div className="panel"><p className="eyebrow">CURRENCY FACTORS</p><h2>Relative strength</h2><StrengthChart snapshot={snapshot} /></div><div className="panel"><p className="eyebrow">RESEARCH STATUS</p><h2>Know the limits of each reading</h2><p className="muted">Scores measure directional alignment, not the probability of a profitable trade. Short and long horizons use different decay and weighting; price, execution and event risk still matter.</p><CoverageDetails snapshot={snapshot} /><details><summary>Collection status</summary><FeedHealth snapshot={snapshot} /></details><h2>Latest headlines</h2><NewsList snapshot={snapshot} limit={5} /></div></section>

@@ -142,6 +142,7 @@ export interface DashboardSnapshot {
   pairs: PairBias[]
   events: ScoredEvent[]
   cot: CotPosition[]
+  cotHistory?: CotPosition[]
   history: HistoricalPoint[]
   prices: MarketPrice[]
   news: NewsItem[]

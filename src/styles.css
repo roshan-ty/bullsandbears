@@ -1,6 +1,16 @@
 :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #f4f5f7; background: #050505; font-synthesis: none; --bg:#050505; --panel:#0b0c0e; --panel-2:#111318; --line:#23262d; --text:#f4f5f7; --muted:#8e949f; --soft:#c9cdd4; --positive:#3ddc97; --negative:#ff626e; --neutral:#a8afb9; }
 :root[data-theme="light"] { color:#111318; background:#f2f3f5; --bg:#f2f3f5; --panel:#fff; --panel-2:#f7f8f9; --line:#d9dde3; --text:#111318; --muted:#626a76; --soft:#343a43; --positive:#087d4e; --negative:#c42b38; --neutral:#626a76; }
 * { box-sizing:border-box; }
+button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid #5ea7ff;outline-offset:4px}
+.bias-card:has(.pill.bullish){border-top:3px solid var(--positive);background:linear-gradient(145deg,color-mix(in srgb,var(--positive) 9%,var(--panel)),var(--panel))}
+.bias-card:has(.pill.bearish){border-top:3px solid var(--negative);background:linear-gradient(145deg,color-mix(in srgb,var(--negative) 9%,var(--panel)),var(--panel))}
+.horizon:has(.pill.bullish) strong{color:var(--positive)}
+.horizon:has(.pill.bearish) strong{color:var(--negative)}
+tr:has(.pill.bullish) td:first-child{border-left:3px solid var(--positive)}
+tr:has(.pill.bearish) td:first-child{border-left:3px solid var(--negative)}
+tbody tr:hover{background:var(--panel-2)}
+summary{cursor:pointer;color:var(--soft);padding:12px 0}
+.filter-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0}.filter-bar input{font:inherit;color:var(--text);background:var(--panel-2);border:1px solid var(--line);padding:11px 14px;border-radius:6px;min-width:230px}.filter-bar span{color:var(--muted);font-size:12px}
 body { margin:0; min-width:320px; min-height:100vh; background:var(--bg); color:var(--text); }
 button, select { font:inherit; }
 button { color:inherit; }

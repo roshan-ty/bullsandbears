@@ -19,11 +19,13 @@ try:
     from scripts.indicator_registry import normalize_calendar_event
     from scripts.market_data import fetch_market_prices
     from scripts.public_feeds import fetch_public_calendar, fetch_public_news
+    from scripts.quality import calendar_health, archive_positions
 except ModuleNotFoundError:
     from analysis_engine import build_analysis, build_setups
     from indicator_registry import normalize_calendar_event
     from market_data import fetch_market_prices
     from public_feeds import fetch_public_calendar, fetch_public_news
+    from quality import calendar_health, archive_positions
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_SNAPSHOT = ROOT / "public" / "data" / "snapshot.json"
@@ -371,7 +373,7 @@ def run_core() -> None:
             print(f"Supplemental calendar ingestion failed; continuing with the public calendar: {error}", file=sys.stderr)
             configured_calendar = []
         calendar = merge_calendar([*configured_calendar, *public_calendar], previous.get("events", []), now)
-        health["calendar"] = {"feed": "calendar", "status": "healthy", "lastAttemptAt": generated_at, "lastSuccessAt": generated_at, "staleAfterHours": 12, "itemCount": len(public_calendar) + len(configured_calendar), "message": "Public weekly calendar refreshed."}
+        health["calendar"] = calendar_health(calendar, generated_at)
     except Exception as error:
         print(f"Calendar ingestion failed; retaining last valid data: {error}", file=sys.stderr)
         calendar = previous.get("events", [])
@@ -386,7 +388,8 @@ def run_core() -> None:
         prices = previous.get("prices", [])
     analyses = [analysis for pair in pairs if (analysis := build_analysis(pair, scored, cot, generated_at)) is not None]
     setups = build_setups(pairs, analyses, generated_at)
-    atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
+    cot_history = archive_positions(cot, previous.get('cotHistory', []), now)
+    atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
 
 
 def run_news() -> None:

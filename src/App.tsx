@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { HistoryChart, Empty } from './components/Chart'
+import { Empty } from './components/Chart'
+import { HistoryExplorer, PositionChart, StrengthChart } from './components/ResearchPanels'
 import { instruments } from './domain/instruments'
 import type { BiasLabel, DashboardSnapshot } from './domain/types'
 import { loadSnapshot } from './lib/data'
 import { formatTime, readTheme, saveTheme } from './lib/presentation'
 
-const tabs = ['Home', 'Data', 'Bias', 'CFTC', 'Historical Data', 'Analysis', 'Top Setups', 'Economic Calendar'] as const
+const tabs = ['Home', 'Data', 'Bias', 'CFTC', 'Historical Data', 'Analysis', 'Top Setups', 'Economic Calendar', 'News'] as const
 type Tab = (typeof tabs)[number]
 
 const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value.toFixed(2)}`
@@ -25,7 +26,7 @@ function HorizonCells({ item }: { item: DashboardSnapshot['pairs'][number] | Das
 }
 
 function FeedHealth({ snapshot }: { snapshot: DashboardSnapshot }) {
-  return snapshot.feedHealth.length ? <div className="health-row">{snapshot.feedHealth.map((feed) => <span className={`health-badge ${feed.displayStatus ?? feed.status}`} key={feed.feed} title={`${feed.message} Last success: ${formatTime(feed.lastSuccessAt ?? null)}`}>{feed.feed}: {feed.displayStatus ?? feed.status} · {feed.itemCount}</span>)}</div> : null
+  return snapshot.feedHealth.length ? <div className="health-row">{snapshot.feedHealth.filter((feed) => !feed.feed.startsWith('http')).map((feed) => <span className={`health-badge ${feed.displayStatus ?? feed.status}`} key={feed.feed} title={`Last successful refresh: ${formatTime(feed.lastSuccessAt ?? null)}`}>{feed.feed === 'cftc' ? 'Positioning' : feed.feed}: {feed.displayStatus ?? feed.status} · {feed.itemCount}</span>)}</div> : null
 }
 
 function App() {
@@ -42,11 +43,13 @@ function App() {
 
   useEffect(() => {
     const controller = new AbortController()
-    loadSnapshot(controller.signal).then(setSnapshot).catch((reason: unknown) => {
+    const refresh = () => loadSnapshot(controller.signal).then((data) => { setSnapshot(data); setError(null) }).catch((reason: unknown) => {
       if (reason instanceof DOMException && reason.name === 'AbortError') return
       setError(reason instanceof Error ? reason.message : 'Unable to load published data.')
     })
-    return () => controller.abort()
+    void refresh()
+    const timer = window.setInterval(() => void refresh(), 300_000)
+    return () => { controller.abort(); window.clearInterval(timer) }
   }, [])
 
   const selectedCurrency = selected.length === 3 ? selected : selected.slice(0, 3)
@@ -60,7 +63,6 @@ function App() {
         : [selectedCurrency]
     return snapshot.events.filter((event) => currencies.includes(event.currency))
   }, [snapshot, selected, selectedCurrency])
-  const selectedHistory = useMemo(() => snapshot?.history.filter((point) => point.instrument === selected || point.instrument === selectedCurrency) ?? [], [snapshot, selected, selectedCurrency])
 
   return (
     <div className="app-shell">
@@ -85,11 +87,12 @@ function App() {
             {tab === 'Home' && <Home snapshot={snapshot} />}
             {tab === 'Data' && <DataView snapshot={snapshot} selected={selected} setSelected={setSelected} events={selectedEvents} />}
             {tab === 'Bias' && <BiasView snapshot={snapshot} />}
-            {tab === 'CFTC' && <CftcView snapshot={snapshot} />}
-            {tab === 'Historical Data' && <HistoricalView selected={selected} setSelected={setSelected} points={selectedHistory} />}
+            {tab === 'CFTC' && <div className="stack"><section className="panel"><PositionChart rows={snapshot.cot} /></section><CftcView snapshot={snapshot} /></div>}
+            {tab === 'Historical Data' && <HistoryExplorer points={snapshot.history} />}
             {tab === 'Analysis' && <AnalysisView snapshot={snapshot} selected={selected} setSelected={setSelected} />}
             {tab === 'Top Setups' && <SetupsView snapshot={snapshot} />}
             {tab === 'Economic Calendar' && <CalendarView snapshot={snapshot} />}
+            {tab === 'News' && <NewsView snapshot={snapshot} />}
           </>
         )}
       </main>
@@ -106,6 +109,8 @@ function Home({ snapshot }: { snapshot: DashboardSnapshot }) {
     </section>
     <section className="panel"><div className="panel-head"><div><p className="eyebrow">MARKET PRICES</p><h2>Latest available close</h2></div></div><PriceBoard snapshot={snapshot} /></section>
     <section className="panel"><div className="panel-head"><div><p className="eyebrow">CURRENCY BIAS</p><h2>Current strength</h2></div></div>
+      {!snapshot.events.some((event) => event.actual !== null) && <div className="error-banner" role="status">Calendar actual values are missing. Available scores use positioning only; economic-release coverage is incomplete.</div>}
+      <StrengthChart snapshot={snapshot} />
       <FeedHealth snapshot={snapshot} />
       {snapshot.currencies.length ? <div className="bias-grid">{snapshot.currencies.map((item) => <article className="bias-card" key={item.symbol}><div><strong>{item.symbol}</strong><BiasPill label={item.shortTerm.label} /></div><HorizonCells item={item} /></article>)}</div> : <Empty message="No validated currency scores have been published yet." />}
     </section>
@@ -138,10 +143,6 @@ function CftcView({ snapshot }: { snapshot: DashboardSnapshot }) {
   return <section className="panel"><p className="eyebrow">POSITIONING</p><h1>Commitments and weekly change</h1>{snapshot.cot.length ? <div className="table-wrap"><table><thead><tr><th>Market</th><th>Category</th><th>Long</th><th>Short</th><th>Net</th><th>Weekly Δ</th><th>Report date</th></tr></thead><tbody>{snapshot.cot.map((row) => <tr key={`${row.marketId}-${row.category}`}><td className="symbol">{row.instrument}</td><td>{row.category}</td><td>{row.long.toLocaleString()}</td><td>{row.short.toLocaleString()}</td><td>{row.net.toLocaleString()}</td><td>{row.weeklyNetChange?.toLocaleString() ?? '—'}</td><td>{row.reportDate}</td></tr>)}</tbody></table></div> : <Empty message="No validated positioning report has been published yet." />}</section>
 }
 
-function HistoricalView({ selected, setSelected, points }: { selected: string; setSelected: (value: string) => void; points: DashboardSnapshot['history'] }) {
-  return <div className="stack"><section className="page-head"><div><p className="eyebrow">HISTORICAL DATA</p><h1>{selected}</h1></div><InstrumentSelect value={selected} onChange={setSelected} /></section><section className="panel"><HistoryChart points={points} /></section></div>
-}
-
 function AnalysisView({ snapshot, selected, setSelected }: { snapshot: DashboardSnapshot; selected: string; setSelected: (value: string) => void }) {
   const analysis = snapshot.analysis.find((item) => item.instrument === selected)
   return <div className="stack"><section className="page-head"><div><p className="eyebrow">FUNDAMENTAL ANALYSIS</p><h1>{selected}</h1></div><InstrumentSelect value={selected} onChange={setSelected} /></section>{analysis ? <section className="analysis-grid"><aside className="panel"><span>{analysis.horizon === 'shortTerm' ? 'Short-term' : 'Long-term'} score</span><div className="giant-score">{formatScore(analysis.score)}</div><BiasPill label={analysis.bias} /></aside><div className="panel prose">{analysis.sections.map((section) => <section key={section.title}><h2>{section.title}</h2><p>{section.body}</p></section>)}</div></section> : <Empty message="Analysis is withheld until enough validated economic and positioning data is available." />}</div>
@@ -152,15 +153,33 @@ function SetupsView({ snapshot }: { snapshot: DashboardSnapshot }) {
 }
 
 function CalendarView({ snapshot }: { snapshot: DashboardSnapshot }) {
-  return <section className="panel"><p className="eyebrow">ECONOMIC CALENDAR</p><h1>Past, current and scheduled releases</h1><EventTable events={snapshot.events} /></section>
+  const [currency, setCurrency] = useState('all')
+  const [status, setStatus] = useState('all')
+  const [query, setQuery] = useState('')
+  const events = snapshot.events.filter((event) => (currency === 'all' || event.currency === currency)
+    && event.name.toLowerCase().includes(query.toLowerCase())
+    && (status === 'all' || (status === 'released' ? event.actual !== null : event.actual === null)))
+    .sort((a, b) => b.occurredAt.localeCompare(a.occurredAt))
+  return <section className="panel"><p className="eyebrow">ECONOMIC CALENDAR</p><h1>Past, current and scheduled releases</h1><div className="filter-bar">
+    <input aria-label="Search events" placeholder="Search economic events" value={query} onChange={(event) => setQuery(event.target.value)} />
+    <select aria-label="Calendar currency" value={currency} onChange={(event) => setCurrency(event.target.value)}><option value="all">All currencies</option>{[...new Set(snapshot.events.map((event) => event.currency))].sort().map((symbol) => <option key={symbol}>{symbol}</option>)}</select>
+    <select aria-label="Release status" value={status} onChange={(event) => setStatus(event.target.value)}><option value="all">All events</option><option value="released">Actual available</option><option value="missing">Actual unavailable / upcoming</option></select>
+    <span>{events.length} events</span></div><EventTable events={events} /></section>
+}
+
+function NewsView({ snapshot }: { snapshot: DashboardSnapshot }) {
+  const [query, setQuery] = useState('')
+  const [instrument, setInstrument] = useState('all')
+  const news = snapshot.news.filter((item) => item.headline.toLowerCase().includes(query.toLowerCase()) && (instrument === 'all' || item.instruments.includes(instrument)))
+  return <section className="panel"><p className="eyebrow">FINANCIAL AND GEOPOLITICAL NEWS</p><h1>News</h1><div className="filter-bar"><input aria-label="Search news" placeholder="Search headlines" value={query} onChange={(event) => setQuery(event.target.value)} /><select aria-label="News instrument" value={instrument} onChange={(event) => setInstrument(event.target.value)}><option value="all">All instruments</option>{[...new Set(snapshot.news.flatMap((item) => item.instruments))].sort().map((symbol) => <option key={symbol}>{symbol}</option>)}</select><span>{news.length} headlines</span></div><NewsList snapshot={{ ...snapshot, news }} limit={100} /></section>
 }
 
 function EventTable({ events }: { events: DashboardSnapshot['events'] }) {
   return events.length ? <div className="table-wrap"><table><thead><tr><th>Time</th><th>Currency</th><th>Event</th><th>Impact</th><th>Previous</th><th>Forecast</th><th>Actual</th><th>Bias</th><th>Contribution</th></tr></thead><tbody>{events.map((event) => <tr key={event.id}><td>{formatTime(event.occurredAt)}</td><td className="symbol">{event.currency}</td><td>{event.name}</td><td>{event.impact}</td><td>{event.previous ?? '—'}</td><td>{event.forecast ?? '—'}</td><td>{event.actual ?? '—'}</td><td><BiasPill label={event.bias} /></td><td>{formatScore(event.contribution)}</td></tr>)}</tbody></table></div> : <Empty message="No validated economic releases are available." />
 }
 
-function NewsList({ snapshot }: { snapshot: DashboardSnapshot }) {
-  return snapshot.news.length ? <div className="news-list">{snapshot.news.slice(0, 12).map((item) => <a key={item.id} href={item.url} target="_blank" rel="noreferrer"><time>{formatTime(item.publishedAt)}</time><strong>{item.headline}</strong>{item.summary && <p>{item.summary}</p>}</a>)}</div> : <Empty message="No public news metadata is available." />
+function NewsList({ snapshot, limit = 12 }: { snapshot: DashboardSnapshot; limit?: number }) {
+  return snapshot.news.length ? <div className="news-list">{snapshot.news.slice(0, limit).map((item) => <a key={item.id} href={item.url} target="_blank" rel="noreferrer"><time>{formatTime(item.publishedAt)}</time><strong>{item.headline}</strong>{item.summary && <p>{item.summary}</p>}</a>)}</div> : <Empty message="No public news metadata is available." />
 }
 
 function PriceBoard({ snapshot }: { snapshot: DashboardSnapshot }) {

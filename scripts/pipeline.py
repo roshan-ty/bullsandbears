@@ -355,7 +355,7 @@ def merge_calendar(current: list[dict[str, Any]], previous: list[dict[str, Any]]
         # same release. Preserve one observation and its last non-null actual.
         key = (str(item['currency']).upper(), str(item['name']).strip(), item.get('occurredAt')) if item.get('currency') and item.get('name') else item['id']
         prior = merged.get(key, {})
-        merged[key] = {**prior, **{field: value for field, value in item.items() if value is not None}}
+        merged[key] = {**item, **prior, **{field: value for field, value in item.items() if value is not None}}
     cutoff = now.timestamp() - 180 * 86400
     return [item for item in merged.values() if (occurred := parse_event_time(item.get("occurredAt"))) is not None and occurred.timestamp() >= cutoff]
 

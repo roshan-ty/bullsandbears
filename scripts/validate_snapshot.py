@@ -65,6 +65,7 @@ def validate(payload: dict[str, Any]) -> None:
         require(event.get("bias") in LABELS, f"Invalid event bias for {event.get('id')}.")
         require(valid_time(event.get("occurredAt")), f"Invalid occurredAt for {event.get('id')}.")
         for key in ('actual', 'previous', 'forecast'):
+            require(key in event, f'Missing nullable event field {key}.')
             require(event.get(key) is None or finite(event[key]), f'Invalid event {key}.')
         require(event.get('signal') in (None, -1, 0, 1), 'Invalid event signal.')
         require(finite(event.get('contribution')), 'Invalid contribution.')

@@ -2854,7 +2854,10 @@
       "comparison": 50.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "19ba378c23466ccb6d6cbf25",
@@ -2874,7 +2877,10 @@
       "comparison": 50.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "133effac2fb7543b5cecb255",
@@ -2889,7 +2895,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1714a61f9a7f36f844840721",
@@ -2904,7 +2917,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "59da50ed0f36f61018b2cb3e",
@@ -2924,7 +2944,10 @@
       "comparison": 58.8,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "029b4871fa77359935f0b8f6",
@@ -2945,7 +2968,10 @@
       "comparison": 0.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "b399e08b240950c4dcdd8d82",
@@ -2966,7 +2992,10 @@
       "comparison": 0.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "06d4aa8010bf8c078f873de2",
@@ -2987,7 +3016,10 @@
       "comparison": 0.7,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ed665faca33f49b06e68c7d7",
@@ -3008,7 +3040,10 @@
       "comparison": 0.6,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "cd9caf797b7be13247db106f",
@@ -3029,7 +3064,10 @@
       "comparison": 6.4,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "82253a0c0b44dca2145f9117",
@@ -3050,7 +3088,10 @@
       "comparison": 0.3,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "a1ebfd10cea2a26864ea115b",
@@ -3071,7 +3112,10 @@
       "comparison": 0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "997be47a1a65e11f4af0ba50",
@@ -3091,7 +3135,10 @@
       "comparison": 12000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "cbc130fd04327a79beda50fa",
@@ -3111,7 +3158,10 @@
       "comparison": 109.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6fe5d12c463bb1f44f920e40",
@@ -3132,7 +3182,10 @@
       "comparison": 4.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "55098598c033147cc7464c60",
@@ -3153,7 +3206,10 @@
       "comparison": 0.7,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "dd878dc69e40734a215d0d9b",
@@ -3174,7 +3230,10 @@
       "comparison": -0.3,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "dc9db23079d0d4ef96d81fb6",
@@ -3195,7 +3254,10 @@
       "comparison": -0.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6ade9ec512866e426cf65ce1",
@@ -3216,7 +3278,10 @@
       "comparison": 1.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "09cbc31a91d477e7e45078cf",
@@ -3237,7 +3302,10 @@
       "comparison": -0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "eda19755f414845aa7cb1190",
@@ -3258,7 +3326,10 @@
       "comparison": -0.5,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "8cdd6935342270f3ecad9b01",
@@ -3279,7 +3350,10 @@
       "comparison": 0.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f85bf4d606ed732a39bc0683",
@@ -3300,7 +3374,10 @@
       "comparison": 0.6,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "47fd9a399059e0278f8c61ed",
@@ -3315,7 +3392,14 @@
         "JPY"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "905993db8f293628342c9d87",
@@ -3336,7 +3420,10 @@
       "comparison": 6.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "5808700649d2104cd11e9f35",
@@ -3351,7 +3438,14 @@
         "JPY"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "932069bacdee91087fefa4ac",
@@ -3367,7 +3461,14 @@
         "JPY"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d4cf69d707319986321f3ca3",
@@ -3382,7 +3483,14 @@
         "JPY"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "226279235c4af8d8f5d610f7",
@@ -3403,7 +3511,10 @@
       "comparison": 1.3,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "2dcecdd68b3214e0d676e8bd",
@@ -3424,7 +3535,10 @@
       "comparison": 0.6,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "12883a8298a40617aa2340a1",
@@ -3445,7 +3559,10 @@
       "comparison": -2.4,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "58610b1421078edf31330789",
@@ -3466,7 +3583,10 @@
       "comparison": 2.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "18d2bdfeece6ad540ef6e189",
@@ -3487,7 +3607,10 @@
       "comparison": 2.7,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "241940ad22b6cad42701166d",
@@ -3508,7 +3631,10 @@
       "comparison": 2.5,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1efa087482f145b744f5b69b",
@@ -3523,7 +3649,14 @@
         "CHF"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1d577e8412acdc08c08b5472",
@@ -3538,7 +3671,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "54db65f938441c381532c6ee",
@@ -3557,7 +3697,11 @@
       "comparison": 77000000000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "0d66ef87fdf604a4074061d5",
@@ -3572,7 +3716,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "3099a1596ae8938855cc0bdc",
@@ -3593,7 +3744,10 @@
       "comparison": 2.65,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ba3693dd654d4e4dd5ac90db",
@@ -3608,7 +3762,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "3e9e51ad8265f0b05b14de15",
@@ -3629,7 +3790,10 @@
       "comparison": 2.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ddf91bad4c473f83cb99044e",
@@ -3650,7 +3814,10 @@
       "comparison": 0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "03b7cb8dae0698f3aed41776",
@@ -3671,7 +3838,10 @@
       "comparison": 6.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "dcb52d4aa92b197b3d17d20e",
@@ -3691,7 +3861,10 @@
       "comparison": 194000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "49cf993d38beadb3010d7a74",
@@ -3712,7 +3885,10 @@
       "comparison": 0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "196660cc12d2551971c0c26b",
@@ -3733,7 +3909,10 @@
       "comparison": 0.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "fd978dc5c9a240d4b414f48d",
@@ -3748,7 +3927,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "2048aafb39f1d0e39a6bbc45",
@@ -3769,7 +3955,10 @@
       "comparison": 0.4,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "8d15bfb654a0323d9d497a69",
@@ -3789,7 +3978,10 @@
       "comparison": 55000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "91bde3b664d2dd04f8af8773",
@@ -3809,7 +4001,10 @@
       "comparison": 6900000000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6efcd475da47c8193a6c5e32",
@@ -3830,7 +4025,10 @@
       "comparison": 6.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "2f7b5d43c6bd85d8709a3a07",
@@ -3850,7 +4048,10 @@
       "comparison": 35.4,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "61320c9d4968dd2c4bbb4014",
@@ -3871,7 +4072,10 @@
       "comparison": 5.7,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "18b60325544a60ea6baed2f7",
@@ -3890,7 +4094,11 @@
       "comparison": 51.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "fd7f042fe0bd67241f593e16",
@@ -3905,7 +4113,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "76ea59aa0a07c6bebab736ef",
@@ -3926,7 +4141,10 @@
       "comparison": 4.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "83b253b180091c8af8b9110d",
@@ -3941,7 +4159,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "a0bb00642662ff4617cf7c2d",
@@ -3956,7 +4181,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "162ed6ee4f5a69091eb71dd5",
@@ -3978,7 +4210,10 @@
       "comparison": -3100000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "59f36a58701472dff514a994",
@@ -3993,7 +4228,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "8c4e16a0572eeb7f78f49a55",
@@ -4008,7 +4250,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "101b2a061bb391fed36b2b15",
@@ -4029,7 +4278,10 @@
       "comparison": 2.25,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "41adec615138b673399ca5a4",
@@ -4049,7 +4301,11 @@
       "comparison": -0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "7ff6ca8df30ff8d24f840a5f",
@@ -4064,7 +4320,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "10fff03160e980ced444f0e7",
@@ -4079,7 +4342,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1ecda4c2d55552a51f99fa6c",
@@ -4099,7 +4369,10 @@
       "comparison": -132100000000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ea7cd0223590da2486e21939",
@@ -4120,7 +4393,10 @@
       "comparison": 0.5,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "fa769ba37a30d256fe4970e5",
@@ -4135,7 +4411,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "07099b3fe16f2ee8607e166c",
@@ -4154,7 +4437,11 @@
       "comparison": 2.6,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "eea3ac7b35a6057fbfd6cdd7",
@@ -4174,7 +4461,10 @@
       "comparison": -30.6,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "8121f50ab97a686827f02e0c",
@@ -4189,7 +4479,14 @@
         "NZD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "71aba9ce8f64d5856f331ad0",
@@ -4210,7 +4507,10 @@
       "comparison": 2.75,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "76814d5550d9160124ccee12",
@@ -4225,7 +4525,14 @@
         "NZD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "9a3a576ee0721d122122d829",
@@ -4246,7 +4553,10 @@
       "comparison": 0.4,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "b3cea02eb3e60e8aa95b2f40",
@@ -4267,7 +4577,10 @@
       "comparison": 4.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "3435b99a8c252716d09f1d91",
@@ -4288,7 +4601,10 @@
       "comparison": 0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "24502e5d5f36f33fd3304ed9",
@@ -4303,7 +4619,14 @@
         "AUD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "af0649a60731d1c5c59fd530",
@@ -4318,7 +4641,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "b78257d368d38ca1c4688cf8",
@@ -4338,7 +4668,10 @@
       "comparison": 81.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "61f95223fb339b56e8dc8cb4",
@@ -4358,7 +4691,10 @@
       "comparison": 684000.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "db9f2e0927b2d5461e42fe7d",
@@ -4378,7 +4714,10 @@
       "comparison": -2.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "9e8db42d0eb54555fa652d09",
@@ -4399,7 +4738,10 @@
       "comparison": 0.3,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "8a662d188e5428e8182396c0",
@@ -4420,7 +4762,10 @@
       "comparison": 2.5,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d7bc8080d2b2f264074afa19",
@@ -4441,7 +4786,10 @@
       "comparison": 0.2,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "4b7bfbe0caf8e75beee5ff05",
@@ -4462,7 +4810,10 @@
       "comparison": -0.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1e720d1717b9c03ec3400374",
@@ -4481,7 +4832,11 @@
       "comparison": 18500.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "5c3c3067a7e50fccb3fa1036",
@@ -4502,7 +4857,10 @@
       "comparison": 3.5,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "3dbd4a5f00ceaa0c53eaf763",
@@ -4523,7 +4881,10 @@
       "comparison": 3.1,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f129a2b7c1da1cd6b68884b3",
@@ -4543,7 +4904,11 @@
       "comparison": 9.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "27e3f74cc4ee42079492bfed",
@@ -4564,7 +4929,10 @@
       "comparison": 1.8,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "be28af50bac4c5f71413dc4d",
@@ -4585,7 +4953,10 @@
       "comparison": 1.4,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "42b641dc1e23321af263c3f4",
@@ -4606,7 +4977,10 @@
       "comparison": 3.7,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6dd8961ee9184deedef1de81",
@@ -4626,7 +5000,10 @@
       "comparison": -55.0,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "23e18ce3f821edcf311fc5b4",
@@ -4646,7 +5023,10 @@
       "comparison": 89.9,
       "comparisonKind": "previous",
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "c7c4286b741445808db71c51",
@@ -4661,7 +5041,14 @@
         "AUD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ee4149632922035a0d1b63e6",
@@ -4676,7 +5063,14 @@
         "NZD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f26208a9d18d968d78b0c02f",
@@ -4691,7 +5085,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "CHF"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "459a1b7eebbcb35ab01462cd",
@@ -4706,7 +5107,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "EUR"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "5b573ec1d6e06d9d1a220c6a",
@@ -4721,7 +5129,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "GBP"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1887cbf4c41e58199d96c725",
@@ -4766,7 +5181,9 @@
       "affectedCurrencies": [
         "USD"
       ],
-      "originalPrevious": 4.7
+      "originalPrevious": 4.7,
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "c4907e3a3923d2fb6b6a5191",
@@ -4834,7 +5251,8 @@
       "affectedCurrencies": [
         "EUR"
       ],
-      "originalPrevious": -12.1
+      "originalPrevious": -12.1,
+      "signal": null
     },
     {
       "id": "ac67a45401f37a36b68677c1",
@@ -5182,7 +5600,8 @@
       "affectedCurrencies": [
         "AUD"
       ],
-      "originalPrevious": 49.3
+      "originalPrevious": 49.3,
+      "forecast": null
     },
     {
       "id": "5269a91ed1db8c9482faed40",
@@ -5204,7 +5623,8 @@
       "affectedCurrencies": [
         "AUD"
       ],
-      "originalPrevious": 51.4
+      "originalPrevious": 51.4,
+      "forecast": null
     },
     {
       "id": "32601370bd824cc05d695f72",
@@ -5226,7 +5646,8 @@
       "affectedCurrencies": [
         "USD"
       ],
-      "originalPrevious": 67000000000.0
+      "originalPrevious": 67000000000.0,
+      "signal": null
     },
     {
       "id": "09e8e5a64ce66531c9ded3f4",
@@ -5272,7 +5693,8 @@
       "affectedCurrencies": [
         "USD"
       ],
-      "originalPrevious": -0.1
+      "originalPrevious": -0.1,
+      "signal": null
     },
     {
       "id": "f5ad0995231b9e383b3dd911",
@@ -5295,7 +5717,8 @@
       "affectedCurrencies": [
         "CAD"
       ],
-      "originalPrevious": -0.1
+      "originalPrevious": -0.1,
+      "signal": null
     },
     {
       "id": "0f1100a8e58453f6d032c949",
@@ -5342,7 +5765,8 @@
       "affectedCurrencies": [
         "CAD"
       ],
-      "originalPrevious": 3.1
+      "originalPrevious": 3.1,
+      "signal": null
     },
     {
       "id": "1206b45c37276e060a079c4c",
@@ -5387,7 +5811,8 @@
       "affectedCurrencies": [
         "GBP"
       ],
-      "originalPrevious": -9.0
+      "originalPrevious": -9.0,
+      "signal": null
     },
     {
       "id": "0ffb42594ecaf177d8ff6f36",
@@ -5409,7 +5834,9 @@
       "affectedCurrencies": [
         "CNY"
       ],
-      "originalPrevious": -5.3
+      "originalPrevious": -5.3,
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "eac556231a233b51a233d81c",
@@ -5424,7 +5851,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "CHF"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f79902542cf3540c77480c70",
@@ -5488,7 +5922,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "GBP"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "9e2bb3173901f08a95d6843a",
@@ -5503,7 +5944,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "EUR"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "292d6a8fb239c98a2a11122c",
@@ -5526,7 +5974,8 @@
       "affectedCurrencies": [
         "GBP"
       ],
-      "originalPrevious": 1.4
+      "originalPrevious": 1.4,
+      "signal": null
     },
     {
       "id": "83613d3a59d56dab2b37d3f4",
@@ -5541,7 +5990,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "EUR"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6770e8190beb634b29b3f1d8",
@@ -5659,7 +6115,8 @@
       "affectedCurrencies": [
         "GBP"
       ],
-      "originalPrevious": 18300000000.0
+      "originalPrevious": 18300000000.0,
+      "signal": null
     },
     {
       "id": "9b12e78a1143962c576fff9f",
@@ -5682,7 +6139,8 @@
       "affectedCurrencies": [
         "GBP"
       ],
-      "originalPrevious": 3.4
+      "originalPrevious": 3.4,
+      "signal": null
     },
     {
       "id": "d6564513accd73e1379c9c15",
@@ -5704,7 +6162,9 @@
       "affectedCurrencies": [
         "NZD"
       ],
-      "originalPrevious": 3.5
+      "originalPrevious": 3.5,
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "4012bee0edf7c5bda67b54ee",
@@ -5742,7 +6202,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "AUD"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "087cce52753f7f9d96644ffb",
@@ -5757,7 +6224,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "USD"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ef40ed984fe49fce875dbc33",
@@ -5772,7 +6246,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "GBP"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1fec1d62838474ac8110d9fc",
@@ -5795,7 +6276,8 @@
       "affectedCurrencies": [
         "NZD"
       ],
-      "originalPrevious": 1.2
+      "originalPrevious": 1.2,
+      "forecast": null
     },
     {
       "id": "7fd68639c9bf1cbe1ef50db1",
@@ -5818,7 +6300,8 @@
       "affectedCurrencies": [
         "USD"
       ],
-      "originalPrevious": 0.3
+      "originalPrevious": 0.3,
+      "signal": null
     },
     {
       "id": "f39b114eb78088e537a3d436",
@@ -5886,7 +6369,8 @@
       "affectedCurrencies": [
         "USD"
       ],
-      "originalPrevious": 24800.0
+      "originalPrevious": 24800.0,
+      "forecast": null
     },
     {
       "id": "375852a26d2784f02ecc946c",
@@ -5901,7 +6385,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "GBP"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f5c770171ca533beb963ed72",
@@ -5969,7 +6460,8 @@
       "affectedCurrencies": [
         "EUR"
       ],
-      "originalPrevious": 27600000000.0
+      "originalPrevious": 27600000000.0,
+      "signal": null
     },
     {
       "id": "22d57aec3f08883862b37ef5",
@@ -6127,7 +6619,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "CAD"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "fe2d65eef2332502a7068aaf",
@@ -6149,7 +6648,8 @@
       "affectedCurrencies": [
         "USD"
       ],
-      "originalPrevious": 32.0
+      "originalPrevious": 32.0,
+      "signal": null
     },
     {
       "id": "56e19362f05f90ce0aff025b",
@@ -6268,7 +6768,8 @@
       "affectedCurrencies": [
         "CAD"
       ],
-      "originalPrevious": 0.1
+      "originalPrevious": 0.1,
+      "forecast": null
     },
     {
       "id": "0c4c622fdde7cf796a6e92eb",
@@ -6291,7 +6792,8 @@
       "affectedCurrencies": [
         "JPY"
       ],
-      "originalPrevious": 0.4
+      "originalPrevious": 0.4,
+      "signal": null
     },
     {
       "id": "6565dbfe379ff0c02c3c7a53",
@@ -6314,7 +6816,8 @@
       "affectedCurrencies": [
         "CNY"
       ],
-      "originalPrevious": -7.2
+      "originalPrevious": -7.2,
+      "signal": null
     },
     {
       "id": "bb33f78a0c1632c57b72b9bd",
@@ -6381,7 +6884,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "CNY"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ce1a412d0c534fee6e15ebc2",
@@ -6451,7 +6961,9 @@
       "affectedCurrencies": [
         "CNY"
       ],
-      "originalPrevious": -0.17
+      "originalPrevious": -0.17,
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "699f9e877f6236351fb5c9ce",
@@ -6466,7 +6978,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "AUD"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ccb6fdd5553e767c510e4e75",
@@ -6488,7 +7007,9 @@
       "affectedCurrencies": [
         "GBP"
       ],
-      "originalPrevious": 0.7
+      "originalPrevious": 0.7,
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "ff248947c25e0613208dbe76",
@@ -6532,7 +7053,9 @@
       "affectedCurrencies": [
         "NZD"
       ],
-      "originalPrevious": 51.2
+      "originalPrevious": 51.2,
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "b30ae13c1dded36a81972b45",
@@ -6547,7 +7070,14 @@
       "bias": "unavailable",
       "affectedCurrencies": [
         "ALL"
-      ]
+      ],
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "4a4d334181d38ccda0657d95",
@@ -6562,7 +7092,14 @@
         "AUD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "2656b212d9553748cc34c0b7",
@@ -6577,7 +7114,14 @@
         "ALL"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "e14a8fabd3d52cd969376e02",
@@ -6592,7 +7136,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "fd8dad2b1c569af13e040e3e",
@@ -6607,7 +7158,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "19673a546a613f3ff0286147",
@@ -6629,7 +7187,8 @@
       "comparisonKind": "previous",
       "surprise": 307100000000.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "11d4cea4dcd81353b5e424b8",
@@ -6651,7 +7210,8 @@
       "comparisonKind": "previous",
       "surprise": 139900000000.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "1365cea768d11493f1609599",
@@ -6666,7 +7226,14 @@
         "ALL"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6cbb44f579ed0a95b25bd35e",
@@ -6689,7 +7256,8 @@
       "comparisonKind": "previous",
       "surprise": 0.5,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "9153dbc96ca69ec068c81077",
@@ -6735,7 +7303,8 @@
       "comparisonKind": "previous",
       "surprise": -37940000000.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "92ed2d205f1f79ca6d005c49",
@@ -6758,7 +7327,8 @@
       "comparisonKind": "previous",
       "surprise": 0.6000000000000001,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "5be3cf564e9474f0c4a81837",
@@ -6796,7 +7366,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "afe6ff99b733d8ff623c60dc",
@@ -6905,7 +7482,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "0d5f72b28117ac7c216489c7",
@@ -6920,7 +7504,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ab80bbe52a86989ca997a2cc",
@@ -6935,7 +7526,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "2337c4e5fed17e9bbc1895e3",
@@ -6950,7 +7548,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "2d0ee4434ef0fe39631fa266",
@@ -6972,7 +7577,9 @@
       "comparisonKind": "previous",
       "surprise": -0.3,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "8048ad69c1b4dd3a2d728f47",
@@ -6994,7 +7601,8 @@
       "surprise": 3.200000000000003,
       "signal": 1,
       "contribution": 0.5,
-      "bias": "bullish"
+      "bias": "bullish",
+      "forecast": null
     },
     {
       "id": "98fbc5589e39ba863e000d7b",
@@ -7009,7 +7617,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "bded884b85cc5af68c40249c",
@@ -7056,7 +7671,8 @@
       "comparisonKind": "previous",
       "surprise": -18000000000.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "e924bcfc2447ba04098d4da5",
@@ -7071,7 +7687,14 @@
         "ALL"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "3dd6aa55f68c74c30455062a",
@@ -7094,7 +7717,8 @@
       "comparisonKind": "previous",
       "surprise": -0.5,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "21af7bb5d38fdf805d32ba85",
@@ -7117,7 +7741,8 @@
       "comparisonKind": "previous",
       "surprise": 1.8,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "fcc3e465b5b64600ce0f465b",
@@ -7140,7 +7765,8 @@
       "comparisonKind": "previous",
       "surprise": -2.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "fe888b0a91bcce2c2ccebe30",
@@ -7320,7 +7946,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d0639b1b51b0518603cbc3f5",
@@ -7335,7 +7968,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "b45caa38bbdd211bf9253824",
@@ -7374,7 +8014,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "24760aced1670f568f5eac16",
@@ -7389,7 +8036,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "69fbfb305a81957b93a6b5fd",
@@ -7428,7 +8082,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "eed79ad40ee8d89793e0e84e",
@@ -7499,7 +8160,8 @@
       "comparisonKind": "previous",
       "surprise": 0.3,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "bf93b304de36b8ecc43a34eb",
@@ -7545,7 +8207,8 @@
       "comparisonKind": "previous",
       "surprise": 0.20000000000000007,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "ee936f51daf70603565c1de7",
@@ -7592,7 +8255,8 @@
       "comparisonKind": "previous",
       "surprise": 0.19999999999999996,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "87b576835b987040396417b3",
@@ -7607,7 +8271,14 @@
         "AUD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "a90110cbbd9849be51b4e71d",
@@ -7622,7 +8293,14 @@
         "CHF"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1c49df62ddccaeac43c816c1",
@@ -7661,7 +8339,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "4274bc7c9216d949901ca786",
@@ -7676,7 +8361,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d0fb3f351ef7c9fe5fe4117c",
@@ -7746,7 +8438,8 @@
       "comparisonKind": "previous",
       "surprise": 8.9,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "e0e7c77e0b33d5adf57ab797",
@@ -7761,7 +8454,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "b46a174ff8988bf5747ce825",
@@ -7776,7 +8476,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "5fb509fdf5ac328fbba48a37",
@@ -7791,7 +8498,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "ed14b8455a10142d3edd2eb0",
@@ -7806,7 +8520,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "9f6ed17c377b8177601381a6",
@@ -7821,7 +8542,14 @@
         "ALL"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "401c265de2bafc5514ac8cc8",
@@ -7843,7 +8571,9 @@
       "comparisonKind": "previous",
       "surprise": 0.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "4d22073a9b61c3c598e7a6f6",
@@ -7978,7 +8708,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "e861c34e9e4a91462c0c0379",
@@ -7993,7 +8730,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6a450f84a31a57cd04acdf45",
@@ -8008,7 +8752,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "cc8ca54276ccfb17f8968b47",
@@ -8030,7 +8781,8 @@
       "comparisonKind": "previous",
       "surprise": 1020000000000.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "f216bf83004ad8c382db0a7e",
@@ -8053,7 +8805,8 @@
       "comparisonKind": "previous",
       "surprise": -0.2999999999999998,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "cdb63b1d678e0d88327fa761",
@@ -8068,7 +8821,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "e261f3f09d546fc23f06a076",
@@ -8083,7 +8843,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "1ac34c0e54b379b74b06c15a",
@@ -8106,7 +8873,8 @@
       "comparisonKind": "previous",
       "surprise": 0.9999999999999999,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "ecda4442701253c2196b4f97",
@@ -8121,7 +8889,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d617b12207b76999b13acc92",
@@ -8136,7 +8911,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "6792a17852b60e744c90eed3",
@@ -8151,7 +8933,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d80a412ed75ab764305d36de",
@@ -8212,7 +9001,14 @@
         "EUR"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "aac289b591b0441c0779a6aa",
@@ -8287,7 +9083,8 @@
       "comparisonKind": "previous",
       "surprise": 0.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "824b800d57af6d24f25ddc46",
@@ -8309,7 +9106,9 @@
       "comparisonKind": "previous",
       "surprise": -0.1,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "f3a93c78be13ddd1993c2775",
@@ -8331,7 +9130,9 @@
       "comparisonKind": "previous",
       "surprise": 2.0999999999999996,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "a05059938cd418fa93190ce8",
@@ -8346,7 +9147,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "7df01fbd0768afbf3ee0ed24",
@@ -8361,7 +9169,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f92727f91755072849b42719",
@@ -8383,7 +9198,9 @@
       "comparisonKind": "previous",
       "surprise": -0.8,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "8148d43fc0ba4a68001ed8ae",
@@ -8398,7 +9215,14 @@
         "ALL"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d2073451680bdb74d905fc6b",
@@ -8420,7 +9244,8 @@
       "comparisonKind": "previous",
       "surprise": 60000.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "58f39b15f5ad444d6e62648e",
@@ -8442,7 +9267,8 @@
       "surprise": -500.0,
       "signal": -1,
       "contribution": -0.675,
-      "bias": "bearish"
+      "bias": "bearish",
+      "forecast": null
     },
     {
       "id": "31f0e4b63895132178ba1e93",
@@ -8464,7 +9290,8 @@
       "comparisonKind": "previous",
       "surprise": -0.7999999999999972,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "a274a2aaa3582843d1d60deb",
@@ -8479,7 +9306,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "d70f4bba91478022ff77ee9a",
@@ -8518,7 +9352,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "03b6518053f40413ebbb73e5",
@@ -8533,7 +9374,14 @@
         "AUD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "81995378736924a92ec848cd",
@@ -8554,7 +9402,9 @@
       "comparisonKind": "previous",
       "surprise": -4.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "forecast": null,
+      "signal": null
     },
     {
       "id": "1cbf855ab094dfea9f24271a",
@@ -8577,7 +9427,8 @@
       "comparisonKind": "previous",
       "surprise": 0.0,
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "signal": null
     },
     {
       "id": "4adc42b4a6d4e202038c3036",
@@ -8640,7 +9491,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f60e53a87a61e1e151465641",
@@ -8655,7 +9513,14 @@
         "ALL"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "5a6d1ebf5d5b5d0ecdce8fa4",
@@ -8670,7 +9535,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "04dff9ec683226f227e3b7e7",
@@ -8685,7 +9557,14 @@
         "CAD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "5152d879abfe8225eae3a361",
@@ -8700,7 +9579,14 @@
         "USD"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "f4c3b3c547a85b377af2e72d",
@@ -8715,7 +9601,14 @@
         "GBP"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     },
     {
       "id": "7c43fc6ef8edfbfae79fca9d",
@@ -8730,7 +9623,14 @@
         "JPY"
       ],
       "contribution": 0,
-      "bias": "unavailable"
+      "bias": "unavailable",
+      "actual": null,
+      "forecast": null,
+      "previous": null,
+      "comparison": null,
+      "comparisonKind": null,
+      "surprise": null,
+      "signal": null
     }
   ],
   "cot": [

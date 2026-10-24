@@ -59,6 +59,13 @@ class PipelineTests(unittest.TestCase):
         new = {**old, 'id': 'b', 'currency': 'ALL'}
         self.assertEqual(len(merge_calendar([new], [old], datetime(2026, 10, 24, tzinfo=timezone.utc))), 1)
 
+    def test_merge_keeps_explicit_null_for_upcoming_actual(self):
+        from datetime import datetime, timezone
+        event = {'id': 'a', 'currency': 'USD', 'name': 'CPI', 'occurredAt': '2026-10-25T00:00:00Z', 'actual': None}
+        merged = merge_calendar([], [event], datetime(2026, 10, 24, tzinfo=timezone.utc))
+        self.assertIn('actual', merged[0])
+        self.assertIsNone(merged[0]['actual'])
+
     def test_previous_wins_when_forecast_disagrees(self):
         scored = score_event({'name': 'CPI', 'currency': 'USD', 'actual': 3, 'previous': 4, 'forecast': 2})
         self.assertEqual(scored['bias'], 'bearish')

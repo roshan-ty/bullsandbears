@@ -6,8 +6,7 @@ from typing import Any
 
 
 TICKERS = {
-    "BRENT": "BZ=F", "COPPER": "HG=F", "OIL": "CL=F", "XAGUSD": "SI=F", "XAUUSD": "GC=F",
-    "XPDUSD": "PA=F", "XPTUSD": "PL=F", "AVAXUSD": "AVAX-USD", "BTCUSD": "BTC-USD",
+    "AVAXUSD": "AVAX-USD", "BTCUSD": "BTC-USD",
     "ETHUSD": "ETH-USD", "LTCUSD": "LTC-USD", "SOLUSD": "SOL-USD", "SUIUSD": "SUI20947-USD",
     "XLMUSD": "XLM-USD", "XRPUSD": "XRP-USD", "AUS200": "^AXJO", "CH20": "^SSMI",
     "ES35": "^IBEX", "EU50": "^STOXX50E", "FR40": "^FCHI", "GB100": "^FTSE", "GE40": "^GDAXI",

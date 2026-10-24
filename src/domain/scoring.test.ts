@@ -39,11 +39,21 @@ describe('scoreEvent', () => {
 describe('calculatePairBias', () => {
   it('subtracts quote strength from base strength', () => {
     const biases: CurrencyBias[] = [
-      { symbol: 'EUR', score: 0.3, label: 'bullish', eventScore: 0.3, cotScore: 0, eventCount: 3, updatedAt: null },
-      { symbol: 'USD', score: 0.7, label: 'bullish', eventScore: 0.7, cotScore: 0, eventCount: 5, updatedAt: null },
+      {
+        symbol: 'EUR', score: 0.3, label: 'bullish', eventScore: 0.3, cotScore: 0, eventCount: 3, updatedAt: null,
+        shortTerm: { score: 0.3, label: 'bullish', coverage: 1, eventCount: 3, updatedAt: null },
+        longTerm: { score: 0.1, label: 'neutral', coverage: 1, eventCount: 8, updatedAt: null },
+      },
+      {
+        symbol: 'USD', score: 0.7, label: 'bullish', eventScore: 0.7, cotScore: 0, eventCount: 5, updatedAt: null,
+        shortTerm: { score: 0.7, label: 'bullish', coverage: 1, eventCount: 5, updatedAt: null },
+        longTerm: { score: -0.3, label: 'bearish', coverage: 1, eventCount: 12, updatedAt: null },
+      },
     ]
     const result = calculatePairBias('EURUSD', biases)
     expect(result?.score).toBeCloseTo(-0.2)
     expect(result?.label).toBe('bearish')
+    expect(result?.shortTerm.score).toBeCloseTo(-0.2)
+    expect(result?.longTerm.score).toBeCloseTo(0.2)
   })
 })

@@ -4,6 +4,8 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import math
+import logging
 import re
 import urllib.parse
 import urllib.request
@@ -20,6 +22,15 @@ DEFAULT_RSS_FEEDS = (
     "https://www.aljazeera.com/xml/rss/all.xml",
     "https://feeds.bbci.co.uk/news/business/rss.xml",
     "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "https://www.federalreserve.gov/feeds/press_all.xml",
+    "https://www.federalreserve.gov/feeds/speeches.xml",
+    "https://www.ecb.europa.eu/rss/press.html",
+    "https://www.ecb.europa.eu/rss/blog.html",
+    "https://www.bankofengland.co.uk/rss/news",
+    "https://www.bankofcanada.ca/feed/",
+    "https://www.rba.gov.au/rss/rss-cb-media-releases.xml",
+    "https://www.bls.gov/feed/bls_latest.rss",
+    "https://www.bea.gov/news/rss.xml",
 )
 
 TAG_RULES = {
@@ -38,9 +49,17 @@ TAG_RULES = {
 
 
 def request_bytes(url: str, accept: str) -> bytes:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept})
-    with urllib.request.urlopen(request, timeout=35) as response:
-        return response.read()
+    from scrapling.fetchers import Fetcher
+
+    response = Fetcher.get(url, headers={"User-Agent": USER_AGENT, "Accept": accept},
+                           stealthy_headers=False, timeout=25, retries=1,
+                           impersonate=None)
+    if response.status != 200:
+        raise ValueError(f"Source HTTP status {response.status}")
+    body = response.body
+    if len(body) > 8_000_000:
+        raise ValueError("Source response exceeds 8 MB limit")
+    return body
 
 
 def number(value: Any) -> float | None:
@@ -54,7 +73,8 @@ def number(value: Any) -> float | None:
         multiplier = {"K": 1e3, "M": 1e6, "B": 1e9, "T": 1e12}[cleaned[-1].upper()]
         cleaned = cleaned[:-1]
     try:
-        return float(cleaned) * multiplier
+        result = float(cleaned) * multiplier
+        return result if math.isfinite(result) else None
     except ValueError:
         return None
 
@@ -67,7 +87,9 @@ def canonical_url(value: str) -> str:
     parsed = urllib.parse.urlsplit(value.strip())
     host = parsed.netloc.lower().removeprefix("www.")
     path = re.sub(r"/+$", "", parsed.path) or "/"
-    return urllib.parse.urlunsplit((parsed.scheme.lower(), host, path, "", ""))
+    query = urllib.parse.urlencode([(key, value) for key, value in urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)
+                                   if not key.lower().startswith('utm_') and key.lower() not in {'fbclid', 'gclid'}])
+    return urllib.parse.urlunsplit((parsed.scheme.lower(), host, path, query, ""))
 
 
 def fetch_public_calendar() -> list[dict[str, Any]]:
@@ -154,17 +176,27 @@ def fetch_rss(url: str) -> list[dict[str, Any]]:
     return output
 
 
-def fetch_public_news(extra_feeds: tuple[str, ...] = ()) -> list[dict[str, Any]]:
+def fetch_public_news(extra_feeds: tuple[str, ...] = (), health: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     collected: list[dict[str, Any]] = []
-    try:
-        collected.extend(fetch_gdelt_news())
-    except Exception:
-        pass
-    for url in (*DEFAULT_RSS_FEEDS, *extra_feeds):
+    for url in (GDELT_URL, *DEFAULT_RSS_FEEDS, *extra_feeds):
+        attempted = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+        rows: list[dict[str, Any]] = []
+        message = 'No valid dated metadata returned.'
         try:
-            collected.extend(fetch_rss(url))
-        except Exception:
-            continue
+            rows = fetch_gdelt_news() if url == GDELT_URL else fetch_rss(url)
+            for row in rows:
+                row['sourceUrl'] = url
+                row['retrievedAt'] = attempted
+            collected.extend(rows)
+            if rows:
+                message = f'Retrieved {len(rows)} metadata records; publication dates are preserved.'
+        except Exception as error:
+            message = f'Collection failed: {type(error).__name__}'
+            logging.warning('%s: %s', url, message)
+        if health is not None:
+            health.append({'feed': url, 'status': 'healthy' if rows else 'degraded',
+                           'lastAttemptAt': attempted, 'lastSuccessAt': attempted if rows else None,
+                           'staleAfterHours': 24, 'itemCount': len(rows), 'message': message})
     deduplicated: dict[str, dict[str, Any]] = {}
     seen_titles: set[str] = set()
     for item in sorted(collected, key=lambda row: row["publishedAt"], reverse=True):

@@ -16,10 +16,10 @@ const emptySnapshot: DashboardSnapshot = {
 }
 
 const legacyHorizon = (item: Record<string, unknown>): HorizonBias => ({
-  score: typeof item.score === 'number' ? item.score : 0,
-  label: (['bullish', 'bearish', 'neutral', 'unavailable'].includes(String(item.label)) ? item.label : 'unavailable') as BiasLabel,
+  score: 0,
+  label: 'unavailable' as BiasLabel,
   coverage: 0,
-  eventCount: typeof item.eventCount === 'number' ? item.eventCount : 0,
+  eventCount: 0,
   updatedAt: typeof item.updatedAt === 'string' ? item.updatedAt : null,
 })
 

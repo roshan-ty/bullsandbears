@@ -3,13 +3,13 @@ import { HistoryChart, Empty } from './components/Chart'
 import { instruments } from './domain/instruments'
 import type { BiasLabel, DashboardSnapshot } from './domain/types'
 import { loadSnapshot } from './lib/data'
+import { formatTime, readTheme, saveTheme } from './lib/presentation'
 
 const tabs = ['Home', 'Data', 'Bias', 'CFTC', 'Historical Data', 'Analysis', 'Top Setups', 'Economic Calendar'] as const
 type Tab = (typeof tabs)[number]
 
 const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value.toFixed(2)}`
 const formatNumber = (value: number) => new Intl.NumberFormat(undefined, { maximumFractionDigits: value < 10 ? 4 : 2 }).format(value)
-const formatTime = (value: string | null) => value ? new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)) : 'Not yet published'
 
 function BiasPill({ label }: { label: BiasLabel }) {
   return <span className={`pill ${label}`}>{label}</span>
@@ -18,7 +18,7 @@ function BiasPill({ label }: { label: BiasLabel }) {
 function HorizonCells({ item }: { item: DashboardSnapshot['pairs'][number] | DashboardSnapshot['currencies'][number] }) {
   return <div className="horizon-grid">
     {([['Short term', item.shortTerm], ['Long term', item.longTerm]] as const).map(([name, horizon]) => <div className="horizon" key={name}>
-      <span>{name}</span><strong>{formatScore(horizon.score)}</strong><BiasPill label={horizon.label} />
+      <span>{name}</span><strong>{horizon.label === 'unavailable' ? '—' : formatScore(horizon.score)}</strong><BiasPill label={horizon.label} />
       <div className="coverage">{Math.round(horizon.coverage * 100)}% coverage · {horizon.eventCount} releases</div>
     </div>)}
   </div>
@@ -30,14 +30,14 @@ function FeedHealth({ snapshot }: { snapshot: DashboardSnapshot }) {
 
 function App() {
   const [tab, setTab] = useState<Tab>('Home')
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => localStorage.getItem('theme') === 'light' ? 'light' : 'dark')
+  const [theme, setTheme] = useState<'dark' | 'light'>(readTheme)
   const [selected, setSelected] = useState<string>('EURUSD')
   const [snapshot, setSnapshot] = useState<DashboardSnapshot | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    localStorage.setItem('theme', theme)
+    saveTheme(theme)
   }, [theme])
 
   useEffect(() => {

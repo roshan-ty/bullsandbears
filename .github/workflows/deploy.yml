@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: [Refresh news, Refresh core fundamentals]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -16,24 +20,67 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
         with:
           node-version: 24
-      - uses: actions/setup-python@v6
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - run: npm ci
-      - run: python scripts/validate_snapshot.py
-      - run: npm run lint
-      - run: npm test
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate published data
+        run: python scripts/validate_snapshot.py
+
+      - name: Test data pipeline
+        run: python -m unittest discover -s tests -v
+
+      - name: Lint application
+        run: npm run lint
+
+      - name: Test application
+        run: npm test
+
+      - name: Build production application
+        run: npm run build
+
+      - name: Disable Jekyll processing
+        run: touch dist/.nojekyll
+
+      - name: Add Pages fallback
+        run: cp dist/index.html dist/404.html
+
+      - name: Verify Pages artifact
+        run: |
+          test -f dist/index.html
+          test -f dist/404.html
+          test -f dist/.nojekyll
+          test -f dist/data/snapshot.json
+          grep -q '/bullsandbears/assets/' dist/index.html
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
+
   deploy:
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

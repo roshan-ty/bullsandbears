@@ -1,4 +1,4 @@
-import type { BiasLabel, CotPosition, CurrencyBias, EconomicEvent, PairBias, ScoredEvent } from './types'
+import type { BiasLabel, CotPosition, CurrencyBias, EconomicEvent, HorizonBias, PairBias, ScoredEvent } from './types'
 import { splitForexPair } from './instruments'
 
 const impactMultiplier = { low: 0.5, medium: 1, high: 1.75 } as const
@@ -59,15 +59,38 @@ export function aggregateCurrencyBias(
   const hasEvents = eligibleEvents.length > 0
   const hasCot = cotValues.length > 0
   const score = hasEvents && hasCot ? eventScore * 0.8 + cotScore * 0.2 : hasEvents ? eventScore : hasCot ? cotScore : 0
+  const horizon: HorizonBias = {
+    score,
+    label: hasEvents || hasCot ? labelForScore(score) : 'unavailable',
+    coverage: hasEvents || hasCot ? 1 : 0,
+    eventCount: eligibleEvents.length,
+    updatedAt,
+    eventScore,
+    cotScore,
+  }
 
   return {
     symbol,
     score,
-    label: hasEvents || hasCot ? labelForScore(score) : 'unavailable',
+    label: horizon.label,
     eventScore,
     cotScore,
     eventCount: eligibleEvents.length,
     updatedAt,
+    shortTerm: horizon,
+    longTerm: { score: 0, label: 'unavailable', coverage: 0, eventCount: 0, updatedAt: null },
+  }
+}
+
+function pairHorizon(base: HorizonBias, quote: HorizonBias): HorizonBias {
+  const available = base.label !== 'unavailable' && quote.label !== 'unavailable'
+  const score = available ? (base.score - quote.score) / 2 : 0
+  return {
+    score,
+    label: available ? labelForScore(score) : 'unavailable',
+    coverage: Math.min(base.coverage, quote.coverage),
+    eventCount: base.eventCount + quote.eventCount,
+    updatedAt: [base.updatedAt, quote.updatedAt].filter(Boolean).sort().at(-1) ?? null,
   }
 }
 
@@ -76,7 +99,8 @@ export function calculatePairBias(symbol: string, currencies: CurrencyBias[]): P
   if (!pair) return null
   const base = currencies.find((item) => item.symbol === pair.base)
   const quote = currencies.find((item) => item.symbol === pair.quote)
-  if (!base || !quote || base.label === 'unavailable' || quote.label === 'unavailable') {
+  if (!base || !quote) {
+    const unavailable: HorizonBias = { score: 0, label: 'unavailable', coverage: 0, eventCount: 0, updatedAt: null }
     return {
       symbol,
       ...pair,
@@ -84,19 +108,24 @@ export function calculatePairBias(symbol: string, currencies: CurrencyBias[]): P
       label: 'unavailable',
       updatedAt: null,
       rationale: ['Required currency bias data is not yet available.'],
+      shortTerm: unavailable,
+      longTerm: { ...unavailable },
     }
   }
-  const score = (base.score - quote.score) / 2
+  const shortTerm = pairHorizon(base.shortTerm, quote.shortTerm)
+  const longTerm = pairHorizon(base.longTerm, quote.longTerm)
   return {
     symbol,
     ...pair,
-    score,
-    label: labelForScore(score),
-    updatedAt: [base.updatedAt, quote.updatedAt].filter(Boolean).sort().at(-1) ?? null,
+    score: shortTerm.score,
+    label: shortTerm.label,
+    updatedAt: shortTerm.updatedAt,
     rationale: [
-      `${pair.base} ${base.label} (${base.score.toFixed(2)})`,
-      `${pair.quote} ${quote.label} (${quote.score.toFixed(2)})`,
+      `${pair.base} ${base.shortTerm.label} (${base.shortTerm.score.toFixed(2)})`,
+      `${pair.quote} ${quote.shortTerm.label} (${quote.shortTerm.score.toFixed(2)})`,
       `Pair score equals normalized base strength minus quote strength.`,
     ],
+    shortTerm,
+    longTerm,
   }
 }

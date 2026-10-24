@@ -1,158 +1,31 @@
-# Bulls & Bears Fundamentals
+# Bulls & Bears Screener
 
-A static, data-dense fundamentals dashboard for GitHub Pages. GitHub Actions collect authorized/public data, normalize it into a bounded JSON snapshot, calculate deterministic bias, and deploy the client application. API credentials are never sent to the browser.
+Bulls & Bears is an educational market-research dashboard for exploring economic releases, currency strength, market positioning, historical trends, and fundamental analysis.
 
-## Implemented foundation
+## Using the dashboard
 
-- React, TypeScript, Vite, ECharts, ESLint, and Vitest.
-- Home, Data, Bias, CFTC, Historical Data, Analysis, Top Setups, and Economic Calendar views.
-- Pitch-black/light themes, responsive tables, historical curves, stale/error/empty states.
-- Forecast-first scoring with previous-value fallback.
-- `higher_is_bullish`, `lower_is_bullish`, and validated policy-text direction rules.
-- Impact multipliers and configurable indicator weights.
-- Relative forex scoring: normalized base strength minus quote strength.
-- Public macro-history, positioning, and research-price ingestion boundaries.
-- Separate ten-minute public-news and six-hour core-data workflows.
-- Distinct short-term (30-day lookback, 10-day half-life) and long-term (180-day lookback, 60-day half-life) bias models.
-- Public weekly economic-calendar ingestion plus GDELT and accessible RSS/Atom news metadata ingestion.
-- Canonical URL/title news deduplication, instrument tagging, retained validated data, and feed-health/staleness badges.
-- No simulated market values.
+1. Start with **Home** for an overview of available market information and news.
+2. Open **Data** and select an instrument to explore its economic context.
+3. Use **Bias** to compare short-term and long-term model assessments.
+4. Visit **CFTC** to review available trader-positioning reports.
+5. Open **Historical Data** to explore observations over time.
+6. Use **Analysis** to read the available fundamental assessment for your selected instrument.
+7. Review **Top Setups** for instruments meeting the model's coverage and alignment criteria.
+8. Check **Economic Calendar** for release times, previous values, forecasts, and reported actuals.
 
-Market-price snapshots use `yfinance` only as an optional research adapter. Its own documentation states that the underlying service is intended for personal use. Replace this adapter with a licensed feed before commercial or unrestricted public redistribution.
+Use the instrument selector where available, switch between light and dark themes, and scroll wide tables horizontally on smaller screens. Click a news headline to read the linked article.
 
-## Architecture
+## Understanding the information
 
-```text
-Authorized/public endpoints
-        |
-        v
-GitHub Actions ingestion (Python)
-        |
-        +--> normalize and validate
-        +--> score economic events
-        +--> score positioning
-        +--> aggregate currency/pair bias
-        |
-        v
-public/data/snapshot.json
-        |
-        v
-Static GitHub Pages application
-```
+- **Bullish, bearish, and neutral** describe model assessments, not guaranteed outcomes.
+- **Short term and long term** represent different research horizons and can disagree.
+- **Coverage** indicates the available model inputs; it is not a probability of profit.
+- **Unavailable** means there is insufficient information to display a result.
+- **Stale or degraded** warnings mean information may be outdated or a refresh was incomplete.
+- A dash indicates a missing value, not zero. Scheduled releases may not yet have actual values.
 
-GitHub Pages does not execute server-side code. Collection and scoring therefore run on GitHub-hosted Actions runners. Scheduled Actions are best-effort rather than guaranteed real-time execution; the UI displays the snapshot timestamp.
+Always check timestamps and availability warnings. Prices are snapshots, not a live trading feed. Empty sections should not be interpreted as neutral market conditions.
 
-## Security
+## Educational use
 
-The FRED credential posted in chat must be considered compromised. Rotate it before deployment and never place the replacement in source files, workflow YAML, issues, or commit history.
-
-Create these repository secrets under **Settings → Secrets and variables → Actions**:
-
-| Secret | Purpose |
-| --- | --- |
-| `FRED_API_KEY` | Macro and yield history |
-| `CALENDAR_API_URL` | Optional supplemental normalized calendar endpoint |
-| `CALENDAR_API_KEY` | Optional bearer credential for that endpoint |
-| `NEWS_API_URL` | Optional supplemental normalized headline endpoint |
-| `NEWS_API_KEY` | Optional bearer credential for that endpoint |
-
-`.env.example` documents local names only. Real `.env*` files are ignored.
-
-## Public and supplemental adapter contracts
-
-The default collectors use ordinary public HTTP access to the Fair Economy weekly calendar JSON, GDELT DOC metadata, and accessible RSS/Atom feeds. The project does not bypass paywalls, CAPTCHAs, bot controls, logins, access restrictions, or publisher terms. Supplemental endpoints must permit automated retrieval and display. Do not republish full copyrighted articles; the news contract is a permitted headline, short summary, timestamp, instrument tags, and canonical URL.
-
-### Calendar record
-
-```json
-{
-  "id": "stable-provider-event-id",
-  "occurredAt": "2026-10-23T12:30:00Z",
-  "currency": "USD",
-  "indicatorId": "core-cpi-mm",
-  "name": "Core CPI m/m",
-  "impact": "high",
-  "actual": 0.3,
-  "forecast": 0.2,
-  "previous": 0.2,
-  "unit": "%",
-  "direction": "higher_is_bullish",
-  "weight": 1.25
-}
-```
-
-Future events may have `actual: null` and remain unscored. If `forecast` is null, `previous` is used. If both are null, the result is unavailable. Policy statements use `direction: "text_policy"` and require a validated `policySignal` of `-1`, `0`, or `1`.
-
-### News record
-
-```json
-{
-  "id": "stable-headline-id",
-  "publishedAt": "2026-10-23T12:34:00Z",
-  "headline": "Headline text licensed for display",
-  "summary": "Optional short licensed summary.",
-  "url": "https://canonical-article-url.example",
-  "instruments": ["USD", "XAUUSD"]
-}
-```
-
-## Bias rules
-
-1. An event is eligible only after an actual value exists.
-2. Compare actual with forecast; when forecast is absent, compare with previous.
-3. Equal values are neutral.
-4. Direction is indicator-specific. Lower unemployment and claims are bullish; higher growth, inflation, employment, spending, and PMI surprises are normally bullish for the associated currency.
-5. Contribution is `signal × indicator weight × impact multiplier`.
-6. Currency event scores are normalized by maximum possible weighted contribution.
-7. Short term uses a 30-day cutoff, 10-day half-life, and an 85% event / 15% positioning blend when both inputs exist.
-8. Long term uses a 180-day cutoff, 60-day half-life, and a 65% event / 35% positioning blend when both inputs exist.
-9. Scoreable positioning categories are normalized by open interest and blended only when available.
-10. Forex pair score is `(base score - quote score) / 2` for each horizon.
-11. Explicit non-FX mappings cover precious metals, oil, copper, crypto, and domestic equity indices.
-12. News, yields, and market prices are confirmation/display inputs and never enter the official bias calculation.
-
-Weights are model configuration rather than objective truth. They require walk-forward evaluation, release-window sensitivity testing, revision handling, and periodic review. Output is research information, not a guarantee or personalized financial advice.
-
-## Local requirements and commands
-
-- Git
-- Node.js 24 LTS with npm
-- Python 3.13
-
-REA is not required to build this source project. It is appropriate only for lawful inspection of software or behavior you own or are authorized to examine.
-
-```powershell
-npm ci
-npm run lint
-npm test
-npm run build
-npm run dev
-python -m unittest discover -s tests -v
-python scripts/pipeline.py core
-python scripts/validate_snapshot.py
-```
-
-## Deployment
-
-1. Create a GitHub repository with `main` as the default branch.
-2. Push this project.
-3. Configure the repository secrets above.
-4. Under **Settings → Pages**, select **GitHub Actions** as the source.
-5. Manually run **Refresh core fundamentals** once.
-6. Manually run **Validate and deploy Pages** once.
-
-Scheduled workflows must exist on the default branch. GitHub may delay scheduled jobs during high load, and scheduled workflows in inactive public repositories can be disabled. Minute offsets avoid the busiest top-of-hour period.
-
-## Remaining production phases
-
-This is a deployable public-data foundation, not a claim that every external source is suitable for unrestricted commercial redistribution. Remaining work includes:
-
-1. Replace the optional `yfinance` research adapter with a licensed market-price feed before commercial or unrestricted public redistribution.
-2. Expand and empirically review country-specific indicator direction/weight configuration.
-3. Add richer release-revision history and provider-specific event reconciliation where stable provider IDs are available.
-4. Add CFTC percentiles and concentration metrics beyond the implemented weekly deltas and open-interest normalization.
-5. Partition long historical datasets to prevent unbounded repository growth.
-6. Backtest each horizon and component without look-ahead bias.
-7. Add external alerting for workflow failures and schema anomalies.
-
-Unavailable or stale sections intentionally remain explicit rather than showing fabricated values. Failed refreshes retain the last validated records with timestamps and degraded/stale feed status.
+Bulls & Bears is for learning and independent research. Scores, analysis, and setups are not investment advice or promises of performance. Verify important information before making financial decisions.

@@ -3,6 +3,11 @@ import type { HistoricalPoint } from '../domain/types'
 
 export function HistoryChart({ points }: { points: HistoricalPoint[] }) {
   if (points.length === 0) return <Empty message="No validated historical observations are available." />
+  const seriesIds = [...new Set(points.map((point) => point.seriesId))]
+  if (seriesIds.length > 1) return <div className="stack">{seriesIds.map((id) => <section key={id}>
+    <h2>{points.find((point) => point.seriesId === id)?.name}</h2>
+    <HistoryChart points={points.filter((point) => point.seriesId === id)} />
+  </section>)}</div>
   const ordered = [...points].sort((a, b) => a.date.localeCompare(b.date))
   return (
     <ReactECharts

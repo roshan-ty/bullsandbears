@@ -10,6 +10,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from math import exp, log
+from math import isfinite
 from pathlib import Path
 from typing import Any
 
@@ -103,7 +104,8 @@ def as_number(value: Any) -> float | None:
     if value in (None, "", ".", "N/A"):
         return None
     try:
-        return float(str(value).replace(",", "").replace("%", "").strip())
+        result = float(str(value).replace(",", "").replace("%", "").strip())
+        return result if isfinite(result) else None
     except ValueError:
         return None
 
@@ -262,7 +264,9 @@ def recency_factor(event: dict[str, Any], now: datetime, half_life_days: float =
     occurred_at = parse_event_time(event.get("occurredAt"))
     if occurred_at is None:
         return 0.0
-    age_days = max(0.0, (now - occurred_at).total_seconds() / 86400)
+    age_days = (now - occurred_at).total_seconds() / 86400
+    if age_days < 0:
+        return 0.0
     return 0.0 if age_days > max_age_days else exp(-log(2) * age_days / half_life_days)
 
 
@@ -390,7 +394,17 @@ def run_news() -> None:
     generated_at = utc_now()
     health = {item.get("feed"): item for item in previous.get("feedHealth", []) if isinstance(item, dict) and item.get("feed")}
     try:
-        fresh_news = [*fetch_authorized_json("NEWS_API_URL", "NEWS_API_KEY", "news"), *fetch_public_news()]
+        source_health: list[dict[str, Any]] = []
+        fresh_news = fetch_public_news(health=source_health)
+        for source in source_health:
+            prior = health.get(source['feed'], {})
+            if source['lastSuccessAt'] is None:
+                source['lastSuccessAt'] = prior.get('lastSuccessAt')
+            health[source['feed']] = source
+        try:
+            fresh_news.extend(fetch_authorized_json("NEWS_API_URL", "NEWS_API_KEY", "news"))
+        except Exception:
+            print('Supplemental news failed; continuing with public sources.', file=sys.stderr)
     except Exception as error:
         prior = health.get("news", {})
         health["news"] = {**prior, "feed": "news", "status": "degraded", "lastAttemptAt": generated_at, "lastSuccessAt": prior.get("lastSuccessAt"), "staleAfterHours": 1, "itemCount": len(previous.get("news", [])), "message": str(error)[:240]}

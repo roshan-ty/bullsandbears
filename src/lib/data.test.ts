@@ -14,7 +14,7 @@ describe('loadSnapshot', () => {
     vi.unstubAllGlobals()
   })
 
-  it('normalizes legacy bias rows into both horizons', async () => {
+  it('does not invent horizon scores from legacy bias rows', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
@@ -24,8 +24,8 @@ describe('loadSnapshot', () => {
       }),
     }))
     const snapshot = await loadSnapshot()
-    expect(snapshot.currencies[0].shortTerm.score).toBe(0.2)
-    expect(snapshot.currencies[0].longTerm.score).toBe(0.2)
+    expect(snapshot.currencies[0].shortTerm.label).toBe('unavailable')
+    expect(snapshot.currencies[0].longTerm.label).toBe('unavailable')
     vi.unstubAllGlobals()
   })
 

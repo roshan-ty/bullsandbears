@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T04:35:21Z",
+  "generatedAt": "2026-10-24T07:09:10Z",
   "currencies": [
     {
       "symbol": "USD",
@@ -36,7 +36,7 @@
       "eventScore": 0.0,
       "cotScore": 0.06924220333963596,
       "eventCount": 0,
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
@@ -44,7 +44,7 @@
         "cotScore": 0.06924220333963596,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
@@ -53,7 +53,7 @@
         "cotScore": 0.06924220333963596,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       }
     },
     {
@@ -63,7 +63,7 @@
       "eventScore": 0.0,
       "cotScore": -0.024077382579601694,
       "eventCount": 0,
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.024077382579601694,
         "label": "neutral",
@@ -71,7 +71,7 @@
         "cotScore": -0.024077382579601694,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.024077382579601694,
@@ -80,7 +80,7 @@
         "cotScore": -0.024077382579601694,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       }
     },
     {
@@ -90,7 +90,7 @@
       "eventScore": 0.0,
       "cotScore": -0.11447403981862407,
       "eventCount": 0,
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.11447403981862407,
         "label": "neutral",
@@ -98,7 +98,7 @@
         "cotScore": -0.11447403981862407,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.11447403981862407,
@@ -107,7 +107,7 @@
         "cotScore": -0.11447403981862407,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       }
     },
     {
@@ -144,7 +144,7 @@
       "eventScore": 0.0,
       "cotScore": -0.12578622909797071,
       "eventCount": 0,
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.12578622909797071,
         "label": "neutral",
@@ -152,7 +152,7 @@
         "cotScore": -0.12578622909797071,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.12578622909797071,
@@ -161,7 +161,7 @@
         "cotScore": -0.12578622909797071,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       }
     },
     {
@@ -171,7 +171,7 @@
       "eventScore": 0.0,
       "cotScore": -0.014905571349639254,
       "eventCount": 0,
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.014905571349639254,
         "label": "neutral",
@@ -179,7 +179,7 @@
         "cotScore": -0.014905571349639254,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.014905571349639254,
@@ -188,7 +188,7 @@
         "cotScore": -0.014905571349639254,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       }
     },
     {
@@ -198,7 +198,7 @@
       "eventScore": 0.0,
       "cotScore": -0.14342877663043876,
       "eventCount": 0,
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.14342877663043876,
         "label": "neutral",
@@ -206,7 +206,7 @@
         "cotScore": -0.14342877663043876,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.14342877663043876,
@@ -215,7 +215,7 @@
         "cotScore": -0.14342877663043876,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       }
     },
     {
@@ -577,20 +577,20 @@
       "quote": "CAD",
       "score": 0.005656094639673322,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.005656094639673322,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.005656094639673322,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: AUD neutral (-0.11) vs CAD neutral (-0.13).",
@@ -603,20 +603,20 @@
       "quote": "CHF",
       "score": 0.014477368405907347,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.014477368405907347,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.014477368405907347,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: AUD neutral (-0.11) vs CHF neutral (-0.14).",
@@ -629,20 +629,20 @@
       "quote": "JPY",
       "score": -0.04978423423449241,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.04978423423449241,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.04978423423449241,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: AUD neutral (-0.11) vs JPY neutral (-0.01).",
@@ -705,20 +705,20 @@
       "quote": "CHF",
       "score": 0.008821273766234025,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.008821273766234025,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.008821273766234025,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: CAD neutral (-0.13) vs CHF neutral (-0.14).",
@@ -731,20 +731,20 @@
       "quote": "JPY",
       "score": -0.05544032887416573,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.05544032887416573,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.05544032887416573,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: CAD neutral (-0.13) vs JPY neutral (-0.01).",
@@ -757,20 +757,20 @@
       "quote": "JPY",
       "score": -0.06426160264039976,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.06426160264039976,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.06426160264039976,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: CHF neutral (-0.14) vs JPY neutral (-0.01).",
@@ -783,20 +783,20 @@
       "quote": "AUD",
       "score": 0.09185812157913001,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.09185812157913001,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.09185812157913001,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs AUD neutral (-0.11).",
@@ -809,20 +809,20 @@
       "quote": "CAD",
       "score": 0.09751421621880334,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.09751421621880334,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.09751421621880334,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs CAD neutral (-0.13).",
@@ -835,20 +835,20 @@
       "quote": "CHF",
       "score": 0.10633548998503736,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.10633548998503736,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.10633548998503736,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs CHF neutral (-0.14).",
@@ -861,20 +861,20 @@
       "quote": "GBP",
       "score": 0.04665979295961883,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.04665979295961883,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.04665979295961883,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs GBP neutral (-0.02).",
@@ -937,20 +937,20 @@
       "quote": "JPY",
       "score": 0.04207388734463761,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.04207388734463761,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.04207388734463761,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs JPY neutral (-0.01).",
@@ -1163,20 +1163,20 @@
       "quote": "AUD",
       "score": 0.04519832861951119,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.04519832861951119,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.04519832861951119,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs AUD neutral (-0.11).",
@@ -1189,20 +1189,20 @@
       "quote": "CAD",
       "score": 0.05085442325918451,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.05085442325918451,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.05085442325918451,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs CAD neutral (-0.13).",
@@ -1215,20 +1215,20 @@
       "quote": "CHF",
       "score": 0.059675697025418535,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.059675697025418535,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.059675697025418535,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs CHF neutral (-0.14).",
@@ -1291,20 +1291,20 @@
       "quote": "JPY",
       "score": -0.00458590561498122,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.00458590561498122,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.00458590561498122,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs JPY neutral (-0.01).",
@@ -1942,20 +1942,20 @@
       "quote": "USD",
       "score": 0.018876710745485956,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.018876710745485956,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.018876710745485956,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score +0.02."
@@ -1970,20 +1970,20 @@
       "quote": "USD",
       "score": -0.07217246231646587,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.07217246231646587,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.07217246231646587,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score -0.07."
@@ -2082,20 +2082,20 @@
       "quote": "USD",
       "score": -0.13558431866280188,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.13558431866280188,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.13558431866280188,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score -0.14."
@@ -2110,20 +2110,20 @@
       "quote": "USD",
       "score": -0.20327340733073632,
       "label": "bearish",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.20327340733073632,
         "label": "bearish",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.20327340733073632,
         "label": "bearish",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score -0.20."
@@ -2278,20 +2278,20 @@
       "quote": "USD",
       "score": 0.006174873099747283,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.006174873099747283,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.006174873099747283,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score +0.01."
@@ -2306,20 +2306,20 @@
       "quote": "USD",
       "score": -0.0020807450948189315,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.0020807450948189315,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.0020807450948189315,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score -0.00."
@@ -2334,20 +2334,20 @@
       "quote": "USD",
       "score": 0.14578792427220674,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.14578792427220674,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.14578792427220674,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score +0.15."
@@ -2363,20 +2363,20 @@
       "quote": "USD",
       "score": -0.11447403981862407,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.11447403981862407,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.11447403981862407,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: AUD -0.11 with sensitivity +1.00.",
@@ -2392,20 +2392,20 @@
       "quote": "USD",
       "score": -0.14342877663043876,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.14342877663043876,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.14342877663043876,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: CHF -0.14 with sensitivity +1.00.",
@@ -2421,20 +2421,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2450,20 +2450,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2479,20 +2479,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2508,20 +2508,20 @@
       "quote": "USD",
       "score": -0.024077382579601694,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.024077382579601694,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.024077382579601694,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: GBP -0.02 with sensitivity +1.00.",
@@ -2537,20 +2537,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2594,20 +2594,20 @@
       "quote": "USD",
       "score": -0.014905571349639254,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.014905571349639254,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.014905571349639254,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "shortTerm: JPY -0.01 with sensitivity +1.00.",
@@ -2623,20 +2623,20 @@
       "quote": "USD",
       "score": -0.08056191861936707,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": -0.08056191861936707,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": -0.08056191861936707,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score -0.08."
@@ -2651,20 +2651,20 @@
       "quote": "USD",
       "score": 0.3278479780693928,
       "label": "bullish",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.3278479780693928,
         "label": "bullish",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.3278479780693928,
         "label": "bullish",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score +0.33."
@@ -2679,20 +2679,20 @@
       "quote": "USD",
       "score": 0.10993646282479695,
       "label": "neutral",
-      "updatedAt": "2026-10-24T04:35:21Z",
+      "updatedAt": "2026-10-24T07:09:10Z",
       "shortTerm": {
         "score": 0.10993646282479695,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "longTerm": {
         "score": 0.10993646282479695,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-24T04:35:21Z"
+        "updatedAt": "2026-10-24T07:09:10Z"
       },
       "rationale": [
         "Mapped positioning score +0.11."
@@ -149085,28 +149085,19 @@
     },
     {
       "instrument": "AVAXUSD",
-      "price": 9.043000221252441,
-      "previousClose": 9.116144180297852,
-      "change": -0.07314395904541016,
-      "changePercent": -0.8023563208169918,
+      "price": 9.027999877929688,
+      "previousClose": 9.047340393066406,
+      "change": -0.01934051513671875,
+      "changePercent": -0.21377017218828978,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
-      "instrument": "BRENT",
-      "price": 116.72000122070312,
-      "previousClose": 113.16999816894531,
-      "change": 3.5500030517578125,
-      "changePercent": 3.1368764771544897,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
       "instrument": "BTCUSD",
-      "price": 80773.7109375,
-      "previousClose": 81311.890625,
-      "change": -538.1796875,
-      "changePercent": -0.6618708326215358,
+      "price": 80729.203125,
+      "previousClose": 81074.1875,
+      "change": -344.984375,
+      "changePercent": -0.4255169069686946,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
@@ -149147,15 +149138,6 @@
       "currency": null
     },
     {
-      "instrument": "COPPER",
-      "price": 6.47599983215332,
-      "previousClose": 6.362500190734863,
-      "change": 0.11349964141845703,
-      "changePercent": 1.783884291017175,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
       "instrument": "ES35",
       "price": 18989.80078125,
       "previousClose": 18913.5,
@@ -149166,10 +149148,10 @@
     },
     {
       "instrument": "ETHUSD",
-      "price": 2378.090087890625,
-      "previousClose": 2386.189208984375,
-      "change": -8.09912109375,
-      "changePercent": -0.33941655017362177,
+      "price": 2376.85009765625,
+      "previousClose": 2384.077392578125,
+      "change": -7.227294921875,
+      "changePercent": -0.3031485028285702,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
@@ -149481,10 +149463,10 @@
     },
     {
       "instrument": "LTCUSD",
-      "price": 57.13800048828125,
-      "previousClose": 58.75648498535156,
-      "change": -1.6184844970703125,
-      "changePercent": -2.7545631728545588,
+      "price": 56.85599899291992,
+      "previousClose": 57.17401123046875,
+      "change": -0.3180122375488281,
+      "changePercent": -0.5562181674938269,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
@@ -149534,29 +149516,20 @@
       "currency": null
     },
     {
-      "instrument": "OIL",
-      "price": 103.2699966430664,
-      "previousClose": 99.47000122070312,
-      "change": 3.7999954223632812,
-      "changePercent": 3.820242661837197,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
       "instrument": "SOLUSD",
-      "price": 102.56999969482422,
-      "previousClose": 103.54232025146484,
-      "change": -0.972320556640625,
-      "changePercent": -0.9390561794242478,
+      "price": 102.13999938964844,
+      "previousClose": 102.77986145019531,
+      "change": -0.639862060546875,
+      "changePercent": -0.6225558699132291,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "SUIUSD",
-      "price": 0.9613000154495239,
-      "previousClose": 0.9727209806442261,
-      "change": -0.011420965194702148,
-      "changePercent": -1.1741255120392413,
+      "price": 0.9570000171661377,
+      "previousClose": 0.9598349928855896,
+      "change": -0.0028349757194519043,
+      "changePercent": -0.295360738091972,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
@@ -149705,56 +149678,20 @@
       "currency": null
     },
     {
-      "instrument": "XAGUSD",
-      "price": 53.71099853515625,
-      "previousClose": 54.763999938964844,
-      "change": -1.0530014038085938,
-      "changePercent": -1.9227985628920037,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
-      "instrument": "XAUUSD",
-      "price": 4007.89990234375,
-      "previousClose": 4060.39990234375,
-      "change": -52.5,
-      "changePercent": -1.2929760925690073,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
       "instrument": "XLMUSD",
-      "price": 0.1730400025844574,
-      "previousClose": 0.17520900070667267,
-      "change": -0.002168998122215271,
-      "changePercent": -1.2379490285698929,
+      "price": 0.17207999527454376,
+      "previousClose": 0.17316900193691254,
+      "change": -0.0010890066623687744,
+      "changePercent": -0.6288692838718977,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
-      "instrument": "XPDUSD",
-      "price": 1046.5999755859375,
-      "previousClose": 1051.5999755859375,
-      "change": -5.0,
-      "changePercent": -0.47546596767597554,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
-      "instrument": "XPTUSD",
-      "price": 1554.199951171875,
-      "previousClose": 1567.5,
-      "change": -13.300048828125,
-      "changePercent": -0.8484879635167465,
-      "asOf": "2026-10-23T00:00:00Z",
-      "currency": null
-    },
-    {
       "instrument": "XRPUSD",
-      "price": 1.2898000478744507,
-      "previousClose": 1.3076560497283936,
-      "change": -0.01785600185394287,
-      "changePercent": -1.3654968259927103,
+      "price": 1.2878999710083008,
+      "previousClose": 1.2939430475234985,
+      "change": -0.006043076515197754,
+      "changePercent": -0.4670280138498916,
       "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     }
@@ -152405,7 +152342,7 @@
   "analysis": [
     {
       "instrument": "AUDCAD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.005656094639673322,
       "horizon": "shortTerm",
@@ -152430,7 +152367,7 @@
     },
     {
       "instrument": "AUDCHF",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.014477368405907347,
       "horizon": "shortTerm",
@@ -152455,7 +152392,7 @@
     },
     {
       "instrument": "AUDJPY",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.04978423423449241,
       "horizon": "shortTerm",
@@ -152480,7 +152417,7 @@
     },
     {
       "instrument": "CADCHF",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.008821273766234025,
       "horizon": "shortTerm",
@@ -152505,7 +152442,7 @@
     },
     {
       "instrument": "CADJPY",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.05544032887416573,
       "horizon": "shortTerm",
@@ -152530,7 +152467,7 @@
     },
     {
       "instrument": "CHFJPY",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.06426160264039976,
       "horizon": "shortTerm",
@@ -152555,7 +152492,7 @@
     },
     {
       "instrument": "EURAUD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.09185812157913001,
       "horizon": "shortTerm",
@@ -152580,7 +152517,7 @@
     },
     {
       "instrument": "EURCAD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.09751421621880334,
       "horizon": "shortTerm",
@@ -152605,7 +152542,7 @@
     },
     {
       "instrument": "EURCHF",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.10633548998503736,
       "horizon": "shortTerm",
@@ -152630,7 +152567,7 @@
     },
     {
       "instrument": "EURGBP",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.04665979295961883,
       "horizon": "shortTerm",
@@ -152655,7 +152592,7 @@
     },
     {
       "instrument": "EURJPY",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.04207388734463761,
       "horizon": "shortTerm",
@@ -152680,7 +152617,7 @@
     },
     {
       "instrument": "GBPAUD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.04519832861951119,
       "horizon": "shortTerm",
@@ -152705,7 +152642,7 @@
     },
     {
       "instrument": "GBPCAD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.05085442325918451,
       "horizon": "shortTerm",
@@ -152730,7 +152667,7 @@
     },
     {
       "instrument": "GBPCHF",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.059675697025418535,
       "horizon": "shortTerm",
@@ -152755,7 +152692,7 @@
     },
     {
       "instrument": "GBPJPY",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.00458590561498122,
       "horizon": "shortTerm",
@@ -152780,7 +152717,7 @@
     },
     {
       "instrument": "XAGUSD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.018876710745485956,
       "horizon": "shortTerm",
@@ -152805,7 +152742,7 @@
     },
     {
       "instrument": "XAUUSD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.07217246231646587,
       "horizon": "shortTerm",
@@ -152830,7 +152767,7 @@
     },
     {
       "instrument": "BTCUSD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.13558431866280188,
       "horizon": "shortTerm",
@@ -152855,7 +152792,7 @@
     },
     {
       "instrument": "ETHUSD",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "bearish",
       "score": -0.20327340733073632,
       "horizon": "shortTerm",
@@ -152880,7 +152817,7 @@
     },
     {
       "instrument": "BRENT",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.006174873099747283,
       "horizon": "shortTerm",
@@ -152905,7 +152842,7 @@
     },
     {
       "instrument": "OIL",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.0020807450948189315,
       "horizon": "shortTerm",
@@ -152930,7 +152867,7 @@
     },
     {
       "instrument": "COPPER",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.14578792427220674,
       "horizon": "shortTerm",
@@ -152955,7 +152892,7 @@
     },
     {
       "instrument": "AUS200",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.11447403981862407,
       "horizon": "shortTerm",
@@ -152980,7 +152917,7 @@
     },
     {
       "instrument": "CH20",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.14342877663043876,
       "horizon": "shortTerm",
@@ -153005,7 +152942,7 @@
     },
     {
       "instrument": "ES35",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153030,7 +152967,7 @@
     },
     {
       "instrument": "EU50",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153055,7 +152992,7 @@
     },
     {
       "instrument": "FR40",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153080,7 +153017,7 @@
     },
     {
       "instrument": "GB100",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.024077382579601694,
       "horizon": "shortTerm",
@@ -153105,7 +153042,7 @@
     },
     {
       "instrument": "GE40",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153130,7 +153067,7 @@
     },
     {
       "instrument": "JP225",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.014905571349639254,
       "horizon": "shortTerm",
@@ -153155,7 +153092,7 @@
     },
     {
       "instrument": "US100",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": -0.08056191861936707,
       "horizon": "shortTerm",
@@ -153180,7 +153117,7 @@
     },
     {
       "instrument": "US30",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "bullish",
       "score": 0.3278479780693928,
       "horizon": "shortTerm",
@@ -153205,7 +153142,7 @@
     },
     {
       "instrument": "US500",
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "bias": "neutral",
       "score": 0.10993646282479695,
       "horizon": "shortTerm",
@@ -153235,7 +153172,7 @@
       "horizon": "shortTerm",
       "direction": "long",
       "conviction": 0.3278479780693928,
-      "generatedAt": "2026-10-24T04:35:21Z",
+      "generatedAt": "2026-10-24T07:09:10Z",
       "reasons": [
         "Mapped positioning score +0.33."
       ],
@@ -153259,12 +153196,1678 @@
     },
     {
       "feed": "calendar",
-      "status": "healthy",
-      "lastAttemptAt": "2026-10-24T04:35:21Z",
-      "lastSuccessAt": "2026-10-24T04:35:21Z",
+      "status": "degraded",
+      "lastAttemptAt": "2026-10-24T07:09:10Z",
+      "lastSuccessAt": "2026-10-24T07:09:10Z",
       "staleAfterHours": 12,
       "itemCount": 86,
-      "message": "Public weekly calendar refreshed."
+      "message": "86 events; 0 have reported actuals."
+    }
+  ],
+  "cotHistory": [
+    {
+      "marketId": "232741",
+      "instrument": "AUD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 125601.0,
+      "short": 65327.0,
+      "spread": 205.0,
+      "openInterest": 333010.0,
+      "net": 60274.0,
+      "weeklyNetChange": 11373.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "232741",
+      "instrument": "AUD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 80700.0,
+      "short": 209439.0,
+      "spread": 2073.0,
+      "openInterest": 333010.0,
+      "net": -128739.0,
+      "weeklyNetChange": -12819.0,
+      "normalizedScore": -0.3865919942344074
+    },
+    {
+      "marketId": "232741",
+      "instrument": "AUD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 88761.0,
+      "short": 36264.0,
+      "spread": 204.0,
+      "openInterest": 333010.0,
+      "net": 52497.0,
+      "weeklyNetChange": 1906.0,
+      "normalizedScore": 0.15764391459715923
+    },
+    {
+      "marketId": "232741",
+      "instrument": "AUD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 31365.0,
+      "short": 18998.0,
+      "spread": null,
+      "openInterest": 333010.0,
+      "net": 12367.0,
+      "weeklyNetChange": 1438.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "209747",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 54296.0,
+      "short": 12488.0,
+      "spread": 28.0,
+      "openInterest": 134202.0,
+      "net": 41808.0,
+      "weeklyNetChange": 558.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "209747",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 10247.0,
+      "short": 479.0,
+      "spread": 39.0,
+      "openInterest": 134202.0,
+      "net": 9768.0,
+      "weeklyNetChange": -1022.0,
+      "normalizedScore": 0.07278580050967944
+    },
+    {
+      "marketId": "209747",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 8979.0,
+      "short": 95360.0,
+      "spread": 277.0,
+      "openInterest": 134202.0,
+      "net": -86381.0,
+      "weeklyNetChange": 16597.0,
+      "normalizedScore": -0.643664028852029
+    },
+    {
+      "marketId": "209747",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 58729.0,
+      "short": 24099.0,
+      "spread": null,
+      "openInterest": 134202.0,
+      "net": 34630.0,
+      "weeklyNetChange": -16637.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "20974+",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 39302.0,
+      "short": 129243.0,
+      "spread": 8154.0,
+      "openInterest": 285882.0,
+      "net": -89941.0,
+      "weeklyNetChange": -16134.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "20974+",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 110983.0,
+      "short": 32216.0,
+      "spread": 4977.0,
+      "openInterest": 285882.0,
+      "net": 78767.0,
+      "weeklyNetChange": 2365.0,
+      "normalizedScore": 0.2755227681351047
+    },
+    {
+      "marketId": "20974+",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 48053.0,
+      "short": 55741.0,
+      "spread": 13764.0,
+      "openInterest": 285882.0,
+      "net": -7688.0,
+      "weeklyNetChange": 14203.0,
+      "normalizedScore": -0.02689221427022338
+    },
+    {
+      "marketId": "20974+",
+      "instrument": "US100",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 47477.0,
+      "short": 31164.0,
+      "spread": null,
+      "openInterest": 285882.0,
+      "net": 16313.0,
+      "weeklyNetChange": -118.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133LM5",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 2562.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133LM5",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 2562.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "133LM5",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 313.0,
+      "short": 1971.0,
+      "spread": 0.0,
+      "openInterest": 2562.0,
+      "net": -1658.0,
+      "weeklyNetChange": 183.0,
+      "normalizedScore": -0.6471506635441062
+    },
+    {
+      "marketId": "133LM5",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 362.0,
+      "short": 94.0,
+      "spread": null,
+      "openInterest": 2562.0,
+      "net": 268.0,
+      "weeklyNetChange": 13.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "180LM9",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 1645.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "180LM9",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 1645.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "180LM9",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 381.0,
+      "short": 1282.0,
+      "spread": 0.0,
+      "openInterest": 1645.0,
+      "net": -901.0,
+      "weeklyNetChange": -205.0,
+      "normalizedScore": -0.5477203647416413
+    },
+    {
+      "marketId": "180LM9",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 660.0,
+      "short": 120.0,
+      "spread": null,
+      "openInterest": 1645.0,
+      "net": 540.0,
+      "weeklyNetChange": 40.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146LM3",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 237998.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146LM3",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 237998.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "146LM3",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 7399.0,
+      "short": 124648.0,
+      "spread": 0.0,
+      "openInterest": 237998.0,
+      "net": -117249.0,
+      "weeklyNetChange": 17455.0,
+      "normalizedScore": -0.4926469970335885
+    },
+    {
+      "marketId": "146LM3",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 11726.0,
+      "short": 50184.0,
+      "spread": null,
+      "openInterest": 237998.0,
+      "net": -38458.0,
+      "weeklyNetChange": -14571.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146LM1",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 59574.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146LM1",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 59574.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "146LM1",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 19277.0,
+      "short": 53133.0,
+      "spread": 428.0,
+      "openInterest": 59574.0,
+      "net": -33856.0,
+      "weeklyNetChange": 639.0,
+      "normalizedScore": -0.5683016080840635
+    },
+    {
+      "marketId": "146LM1",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 873.0,
+      "short": 230.0,
+      "spread": null,
+      "openInterest": 59574.0,
+      "net": 643.0,
+      "weeklyNetChange": -6.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146022",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 7900.0,
+      "short": 45.0,
+      "spread": 0.0,
+      "openInterest": 77350.0,
+      "net": 7855.0,
+      "weeklyNetChange": -1408.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146022",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 1126.0,
+      "short": 1935.0,
+      "spread": 0.0,
+      "openInterest": 77350.0,
+      "net": -809.0,
+      "weeklyNetChange": 165.0,
+      "normalizedScore": -0.010458952811893988
+    },
+    {
+      "marketId": "146022",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 28525.0,
+      "short": 53879.0,
+      "spread": 16324.0,
+      "openInterest": 77350.0,
+      "net": -25354.0,
+      "weeklyNetChange": 301.0,
+      "normalizedScore": -0.32778280542986427
+    },
+    {
+      "marketId": "146022",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 2002.0,
+      "short": 502.0,
+      "spread": null,
+      "openInterest": 77350.0,
+      "net": 1500.0,
+      "weeklyNetChange": 164.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146021",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 17127.0,
+      "short": 9577.0,
+      "spread": 328.0,
+      "openInterest": 28344.0,
+      "net": 7550.0,
+      "weeklyNetChange": -750.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "146021",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 1575.0,
+      "short": 2881.0,
+      "spread": 437.0,
+      "openInterest": 28344.0,
+      "net": -1306.0,
+      "weeklyNetChange": -635.0,
+      "normalizedScore": -0.046076771097939596
+    },
+    {
+      "marketId": "146021",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 3323.0,
+      "short": 8451.0,
+      "spread": 4557.0,
+      "openInterest": 28344.0,
+      "net": -5128.0,
+      "weeklyNetChange": 1155.0,
+      "normalizedScore": -0.18092012418854078
+    },
+    {
+      "marketId": "146021",
+      "instrument": "ETHUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 787.0,
+      "short": 507.0,
+      "spread": null,
+      "openInterest": 28344.0,
+      "net": 280.0,
+      "weeklyNetChange": 73.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "43874Q",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 4899.0,
+      "short": 11841.0,
+      "spread": 2672.0,
+      "openInterest": 35923.0,
+      "net": -6942.0,
+      "weeklyNetChange": -77.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "43874Q",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 300.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 35923.0,
+      "net": 300.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.008351195612838572
+    },
+    {
+      "marketId": "43874Q",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 27515.0,
+      "short": 20868.0,
+      "spread": 529.0,
+      "openInterest": 35923.0,
+      "net": 6647.0,
+      "weeklyNetChange": 76.0,
+      "normalizedScore": 0.1850346574617933
+    },
+    {
+      "marketId": "43874Q",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 8.0,
+      "short": 13.0,
+      "spread": null,
+      "openInterest": 35923.0,
+      "net": -5.0,
+      "weeklyNetChange": 1.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "43874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 46803.0,
+      "short": 338108.0,
+      "spread": 23194.0,
+      "openInterest": 414185.0,
+      "net": -291305.0,
+      "weeklyNetChange": -3458.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "43874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 107336.0,
+      "short": 7240.0,
+      "spread": 821.0,
+      "openInterest": 414185.0,
+      "net": 100096.0,
+      "weeklyNetChange": -7486.0,
+      "normalizedScore": 0.24166978524089477
+    },
+    {
+      "marketId": "43874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 215045.0,
+      "short": 25563.0,
+      "spread": 17645.0,
+      "openInterest": 414185.0,
+      "net": 189482.0,
+      "weeklyNetChange": 10782.0,
+      "normalizedScore": 0.4574815601723867
+    },
+    {
+      "marketId": "43874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 3141.0,
+      "short": 1614.0,
+      "spread": null,
+      "openInterest": 414185.0,
+      "net": 1527.0,
+      "weeklyNetChange": 162.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874W",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 375640.0,
+      "short": 200985.0,
+      "spread": 281765.0,
+      "openInterest": 993334.0,
+      "net": 174655.0,
+      "weeklyNetChange": 7981.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874W",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 211972.0,
+      "spread": 6477.0,
+      "openInterest": 993334.0,
+      "net": -211972.0,
+      "weeklyNetChange": -5668.0,
+      "normalizedScore": -0.21339448765470628
+    },
+    {
+      "marketId": "13874W",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 150587.0,
+      "short": 108542.0,
+      "spread": 161703.0,
+      "openInterest": 993334.0,
+      "net": 42045.0,
+      "weeklyNetChange": -3714.0,
+      "normalizedScore": 0.04232715280056859
+    },
+    {
+      "marketId": "13874W",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 17162.0,
+      "short": 21890.0,
+      "spread": null,
+      "openInterest": 993334.0,
+      "net": -4728.0,
+      "weeklyNetChange": 1401.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874U",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 6862.0,
+      "short": 15454.0,
+      "spread": 0.0,
+      "openInterest": 194990.0,
+      "net": -8592.0,
+      "weeklyNetChange": -529.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874U",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 26616.0,
+      "short": 196.0,
+      "spread": 20.0,
+      "openInterest": 194990.0,
+      "net": 26420.0,
+      "weeklyNetChange": 3795.0,
+      "normalizedScore": 0.13549412790399507
+    },
+    {
+      "marketId": "13874U",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 76560.0,
+      "short": 92807.0,
+      "spread": 2319.0,
+      "openInterest": 194990.0,
+      "net": -16247.0,
+      "weeklyNetChange": 1671.0,
+      "normalizedScore": -0.08332222165239243
+    },
+    {
+      "marketId": "13874U",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 82613.0,
+      "short": 84194.0,
+      "spread": null,
+      "openInterest": 194990.0,
+      "net": -1581.0,
+      "weeklyNetChange": -6027.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 184740.0,
+      "short": 821671.0,
+      "spread": 51346.0,
+      "openInterest": 1935470.0,
+      "net": -636931.0,
+      "weeklyNetChange": -34573.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 1101642.0,
+      "short": 200265.0,
+      "spread": 103536.0,
+      "openInterest": 1935470.0,
+      "net": 901377.0,
+      "weeklyNetChange": -14458.0,
+      "normalizedScore": 0.4657147876226446
+    },
+    {
+      "marketId": "13874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 135034.0,
+      "short": 506279.0,
+      "spread": 54877.0,
+      "openInterest": 1935470.0,
+      "net": -371245.0,
+      "weeklyNetChange": 37481.0,
+      "normalizedScore": -0.19181129131425442
+    },
+    {
+      "marketId": "13874A",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 245017.0,
+      "short": 136268.0,
+      "spread": null,
+      "openInterest": 1935470.0,
+      "net": 108749.0,
+      "weeklyNetChange": 2421.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874+",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 185426.0,
+      "short": 823216.0,
+      "spread": 51346.0,
+      "openInterest": 1954969.0,
+      "net": -637790.0,
+      "weeklyNetChange": -34626.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "13874+",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 1104304.0,
+      "short": 200285.0,
+      "spread": 103538.0,
+      "openInterest": 1954969.0,
+      "net": 904019.0,
+      "weeklyNetChange": -14078.0,
+      "normalizedScore": 0.46242114325086486
+    },
+    {
+      "marketId": "13874+",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 134552.0,
+      "short": 507421.0,
+      "spread": 63247.0,
+      "openInterest": 1954969.0,
+      "net": -372869.0,
+      "weeklyNetChange": 37649.0,
+      "normalizedScore": -0.19072885554707006
+    },
+    {
+      "marketId": "13874+",
+      "instrument": "US500",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 253278.0,
+      "short": 144687.0,
+      "spread": null,
+      "openInterest": 1954969.0,
+      "net": 108591.0,
+      "weeklyNetChange": 1819.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133LM4",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 1800.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 169854.0,
+      "net": 1800.0,
+      "weeklyNetChange": 1800.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133LM4",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 169854.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "133LM4",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 5746.0,
+      "short": 46290.0,
+      "spread": 0.0,
+      "openInterest": 169854.0,
+      "net": -40544.0,
+      "weeklyNetChange": 19049.0,
+      "normalizedScore": -0.23869911806610383
+    },
+    {
+      "marketId": "133LM4",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 16422.0,
+      "short": 39687.0,
+      "spread": null,
+      "openInterest": 169854.0,
+      "net": -23265.0,
+      "weeklyNetChange": -22593.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133LM1",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 120238.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133LM1",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 0.0,
+      "short": 8000.0,
+      "spread": 0.0,
+      "openInterest": 120238.0,
+      "net": -8000.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": -0.0665347061661039
+    },
+    {
+      "marketId": "133LM1",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 101372.0,
+      "short": 100250.0,
+      "spread": 176.0,
+      "openInterest": 120238.0,
+      "net": 1122.0,
+      "weeklyNetChange": -8626.0,
+      "normalizedScore": 0.009331492539796071
+    },
+    {
+      "marketId": "133LM1",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 1394.0,
+      "short": 8660.0,
+      "spread": null,
+      "openInterest": 120238.0,
+      "net": -7266.0,
+      "weeklyNetChange": 190.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133742",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 4813.0,
+      "short": 458.0,
+      "spread": 0.0,
+      "openInterest": 37623.0,
+      "net": 4355.0,
+      "weeklyNetChange": 452.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133742",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 1922.0,
+      "short": 532.0,
+      "spread": 0.0,
+      "openInterest": 37623.0,
+      "net": 1390.0,
+      "weeklyNetChange": -908.0,
+      "normalizedScore": 0.036945485474310924
+    },
+    {
+      "marketId": "133742",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 12693.0,
+      "short": 26139.0,
+      "spread": 6223.0,
+      "openInterest": 37623.0,
+      "net": -13446.0,
+      "weeklyNetChange": 461.0,
+      "normalizedScore": -0.35738776812056455
+    },
+    {
+      "marketId": "133742",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 6244.0,
+      "short": 1751.0,
+      "spread": null,
+      "openInterest": 37623.0,
+      "net": 4493.0,
+      "weeklyNetChange": -123.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133741",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 6438.0,
+      "short": 5046.0,
+      "spread": 417.0,
+      "openInterest": 21040.0,
+      "net": 1392.0,
+      "weeklyNetChange": -449.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "133741",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 4851.0,
+      "short": 1852.0,
+      "spread": 209.0,
+      "openInterest": 21040.0,
+      "net": 2999.0,
+      "weeklyNetChange": -643.0,
+      "normalizedScore": 0.14253802281368821
+    },
+    {
+      "marketId": "133741",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 5466.0,
+      "short": 10408.0,
+      "spread": 2361.0,
+      "openInterest": 21040.0,
+      "net": -4942.0,
+      "weeklyNetChange": 902.0,
+      "normalizedScore": -0.23488593155893536
+    },
+    {
+      "marketId": "133741",
+      "instrument": "BTCUSD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 1031.0,
+      "short": 724.0,
+      "spread": null,
+      "openInterest": 21040.0,
+      "net": 307.0,
+      "weeklyNetChange": 106.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "124606",
+      "instrument": "US30",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 4019.0,
+      "short": 45556.0,
+      "spread": 135.0,
+      "openInterest": 61649.0,
+      "net": -41537.0,
+      "weeklyNetChange": 6220.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "124606",
+      "instrument": "US30",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 48265.0,
+      "short": 5852.0,
+      "spread": 633.0,
+      "openInterest": 61649.0,
+      "net": 42413.0,
+      "weeklyNetChange": -4304.0,
+      "normalizedScore": 0.6879754740547291
+    },
+    {
+      "marketId": "124606",
+      "instrument": "US30",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 5792.0,
+      "short": 7782.0,
+      "spread": 0.0,
+      "openInterest": 61649.0,
+      "net": -1990.0,
+      "weeklyNetChange": -1862.0,
+      "normalizedScore": -0.03227951791594349
+    },
+    {
+      "marketId": "124606",
+      "instrument": "US30",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 2805.0,
+      "short": 1691.0,
+      "spread": null,
+      "openInterest": 61649.0,
+      "net": 1114.0,
+      "weeklyNetChange": -54.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "399741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 2631.0,
+      "short": 1717.0,
+      "spread": 81.0,
+      "openInterest": 19857.0,
+      "net": 914.0,
+      "weeklyNetChange": 64.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "399741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 6208.0,
+      "short": 12360.0,
+      "spread": 843.0,
+      "openInterest": 19857.0,
+      "net": -6152.0,
+      "weeklyNetChange": -100.0,
+      "normalizedScore": -0.30981517852646423
+    },
+    {
+      "marketId": "399741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 2024.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 19857.0,
+      "net": 2024.0,
+      "weeklyNetChange": 363.0,
+      "normalizedScore": 0.10192879085461047
+    },
+    {
+      "marketId": "399741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 8070.0,
+      "short": 4856.0,
+      "spread": null,
+      "openInterest": 19857.0,
+      "net": 3214.0,
+      "weeklyNetChange": -327.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "299741",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 2645.0,
+      "short": 24614.0,
+      "spread": 0.0,
+      "openInterest": 44273.0,
+      "net": -21969.0,
+      "weeklyNetChange": 1612.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "299741",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 21875.0,
+      "short": 8028.0,
+      "spread": 1089.0,
+      "openInterest": 44273.0,
+      "net": 13847.0,
+      "weeklyNetChange": -1394.0,
+      "normalizedScore": 0.31276398708016173
+    },
+    {
+      "marketId": "299741",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 5199.0,
+      "short": 4051.0,
+      "spread": 0.0,
+      "openInterest": 44273.0,
+      "net": 1148.0,
+      "weeklyNetChange": -641.0,
+      "normalizedScore": 0.025930025071714137
+    },
+    {
+      "marketId": "299741",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 13465.0,
+      "short": 6491.0,
+      "spread": null,
+      "openInterest": 44273.0,
+      "net": 6974.0,
+      "weeklyNetChange": 423.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "099741",
+      "instrument": "EUR",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 57445.0,
+      "short": 213163.0,
+      "spread": 8280.0,
+      "openInterest": 877940.0,
+      "net": -155718.0,
+      "weeklyNetChange": 9045.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "099741",
+      "instrument": "EUR",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 499827.0,
+      "short": 309406.0,
+      "spread": 44704.0,
+      "openInterest": 877940.0,
+      "net": 190421.0,
+      "weeklyNetChange": -9497.0,
+      "normalizedScore": 0.21689523202041142
+    },
+    {
+      "marketId": "099741",
+      "instrument": "EUR",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 124951.0,
+      "short": 193791.0,
+      "spread": 26650.0,
+      "openInterest": 877940.0,
+      "net": -68840.0,
+      "weeklyNetChange": -839.0,
+      "normalizedScore": -0.07841082534113948
+    },
+    {
+      "marketId": "099741",
+      "instrument": "EUR",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 85764.0,
+      "short": 56135.0,
+      "spread": null,
+      "openInterest": 877940.0,
+      "net": 29629.0,
+      "weeklyNetChange": 3281.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "097741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 52370.0,
+      "short": 151660.0,
+      "spread": 3162.0,
+      "openInterest": 379141.0,
+      "net": -99290.0,
+      "weeklyNetChange": -25479.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "097741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 151477.0,
+      "short": 72374.0,
+      "spread": 8209.0,
+      "openInterest": 379141.0,
+      "net": 79103.0,
+      "weeklyNetChange": 13284.0,
+      "normalizedScore": 0.20863741985171744
+    },
+    {
+      "marketId": "097741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 69351.0,
+      "short": 92241.0,
+      "spread": 13271.0,
+      "openInterest": 379141.0,
+      "net": -22890.0,
+      "weeklyNetChange": 10783.0,
+      "normalizedScore": -0.060373317578420696
+    },
+    {
+      "marketId": "097741",
+      "instrument": "JPY",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 34655.0,
+      "short": 33446.0,
+      "spread": null,
+      "openInterest": 379141.0,
+      "net": 1209.0,
+      "weeklyNetChange": 2829.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "096742",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 135751.0,
+      "short": 10631.0,
+      "spread": 7097.0,
+      "openInterest": 254060.0,
+      "net": 125120.0,
+      "weeklyNetChange": -25676.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "096742",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 21818.0,
+      "short": 156439.0,
+      "spread": 5242.0,
+      "openInterest": 254060.0,
+      "net": -134621.0,
+      "weeklyNetChange": 11114.0,
+      "normalizedScore": -0.5298787687947729
+    },
+    {
+      "marketId": "096742",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 59534.0,
+      "short": 35430.0,
+      "spread": 1199.0,
+      "openInterest": 254060.0,
+      "net": 24104.0,
+      "weeklyNetChange": 13791.0,
+      "normalizedScore": 0.09487522632449027
+    },
+    {
+      "marketId": "096742",
+      "instrument": "GBP",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 22934.0,
+      "short": 38022.0,
+      "spread": null,
+      "openInterest": 254060.0,
+      "net": -15088.0,
+      "weeklyNetChange": -608.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "092741",
+      "instrument": "CHF",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 78398.0,
+      "short": 23755.0,
+      "spread": 2.0,
+      "openInterest": 136451.0,
+      "net": 54643.0,
+      "weeklyNetChange": -4871.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "092741",
+      "instrument": "CHF",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 26680.0,
+      "short": 52215.0,
+      "spread": 7591.0,
+      "openInterest": 136451.0,
+      "net": -25535.0,
+      "weeklyNetChange": 5921.0,
+      "normalizedScore": -0.1871367743732182
+    },
+    {
+      "marketId": "092741",
+      "instrument": "CHF",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 10101.0,
+      "short": 23708.0,
+      "spread": 9.0,
+      "openInterest": 136451.0,
+      "net": -13607.0,
+      "weeklyNetChange": 1334.0,
+      "normalizedScore": -0.0997207788876593
+    },
+    {
+      "marketId": "092741",
+      "instrument": "CHF",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 8431.0,
+      "short": 24298.0,
+      "spread": null,
+      "openInterest": 136451.0,
+      "net": -15867.0,
+      "weeklyNetChange": -1673.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "090741",
+      "instrument": "CAD",
+      "reportDate": "2026-10-20",
+      "category": "Dealer",
+      "long": 186965.0,
+      "short": 86167.0,
+      "spread": 1441.0,
+      "openInterest": 383635.0,
+      "net": 100798.0,
+      "weeklyNetChange": -20183.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "090741",
+      "instrument": "CAD",
+      "reportDate": "2026-10-20",
+      "category": "Asset Manager",
+      "long": 115723.0,
+      "short": 121122.0,
+      "spread": 4735.0,
+      "openInterest": 383635.0,
+      "net": -5399.0,
+      "weeklyNetChange": 25405.0,
+      "normalizedScore": -0.014073272772296584
+    },
+    {
+      "marketId": "090741",
+      "instrument": "CAD",
+      "reportDate": "2026-10-20",
+      "category": "Leveraged Money",
+      "long": 28341.0,
+      "short": 119454.0,
+      "spread": 4273.0,
+      "openInterest": 383635.0,
+      "net": -91113.0,
+      "weeklyNetChange": -3001.0,
+      "normalizedScore": -0.23749918542364487
+    },
+    {
+      "marketId": "090741",
+      "instrument": "CAD",
+      "reportDate": "2026-10-20",
+      "category": "Non-reportable",
+      "long": 26159.0,
+      "short": 38298.0,
+      "spread": null,
+      "openInterest": 383635.0,
+      "net": -12139.0,
+      "weeklyNetChange": -1291.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "088695",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 245.0,
+      "short": 0.0,
+      "spread": null,
+      "openInterest": 116156.0,
+      "net": 245.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "088695",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 902.0,
+      "short": 903.0,
+      "spread": 0.0,
+      "openInterest": 116156.0,
+      "net": -1.0,
+      "weeklyNetChange": 878.0,
+      "normalizedScore": -8.609111884018045e-06
+    },
+    {
+      "marketId": "088691",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 19715.0,
+      "short": 34498.0,
+      "spread": null,
+      "openInterest": 402279.0,
+      "net": -14783.0,
+      "weeklyNetChange": 3654.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "088691",
+      "instrument": "XAUUSD",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 120970.0,
+      "short": 16764.0,
+      "spread": 38634.0,
+      "openInterest": 402279.0,
+      "net": 104206.0,
+      "weeklyNetChange": -2883.0,
+      "normalizedScore": 0.2590391245876618
+    },
+    {
+      "marketId": "085692",
+      "instrument": "COPPER",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 52941.0,
+      "short": 130347.0,
+      "spread": null,
+      "openInterest": 327119.0,
+      "net": -77406.0,
+      "weeklyNetChange": 13060.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "085692",
+      "instrument": "COPPER",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 67225.0,
+      "short": 19535.0,
+      "spread": 53320.0,
+      "openInterest": 327119.0,
+      "net": 47690.0,
+      "weeklyNetChange": -13368.0,
+      "normalizedScore": 0.14578792427220674
+    },
+    {
+      "marketId": "084694",
+      "instrument": "XAGUSD",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": null,
+      "openInterest": 22125.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "084694",
+      "instrument": "XAGUSD",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 155.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 22125.0,
+      "net": 155.0,
+      "weeklyNetChange": -10.0,
+      "normalizedScore": 0.007005649717514125
+    },
+    {
+      "marketId": "084691",
+      "instrument": "XAGUSD",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 5046.0,
+      "short": 20075.0,
+      "spread": null,
+      "openInterest": 113992.0,
+      "net": -15029.0,
+      "weeklyNetChange": 772.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "084691",
+      "instrument": "XAGUSD",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 16180.0,
+      "short": 12675.0,
+      "spread": 10767.0,
+      "openInterest": 113992.0,
+      "net": 3505.0,
+      "weeklyNetChange": -2114.0,
+      "normalizedScore": 0.030747771773457788
+    },
+    {
+      "marketId": "06765T",
+      "instrument": "BRENT",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 12480.0,
+      "short": 53700.0,
+      "spread": null,
+      "openInterest": 230693.0,
+      "net": -41220.0,
+      "weeklyNetChange": -5114.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "06765T",
+      "instrument": "BRENT",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 4307.0,
+      "short": 1458.0,
+      "spread": 2703.0,
+      "openInterest": 230693.0,
+      "net": 2849.0,
+      "weeklyNetChange": 146.0,
+      "normalizedScore": 0.012349746199494567
+    },
+    {
+      "marketId": "06741Q",
+      "instrument": "OIL",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 16032.0,
+      "short": 2939.0,
+      "spread": null,
+      "openInterest": 23899.0,
+      "net": 13093.0,
+      "weeklyNetChange": 1455.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "06741Q",
+      "instrument": "OIL",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 23899.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "067411",
+      "instrument": "OIL",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 457854.0,
+      "short": 344385.0,
+      "spread": null,
+      "openInterest": 755018.0,
+      "net": 113469.0,
+      "weeklyNetChange": 10926.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "067411",
+      "instrument": "OIL",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 16334.0,
+      "short": 21047.0,
+      "spread": 26687.0,
+      "openInterest": 755018.0,
+      "net": -4713.0,
+      "weeklyNetChange": 353.0,
+      "normalizedScore": -0.0062422352844567945
+    },
+    {
+      "marketId": "06765A",
+      "instrument": "OIL",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 30183.0,
+      "short": 59542.0,
+      "spread": null,
+      "openInterest": 210374.0,
+      "net": -29359.0,
+      "weeklyNetChange": -651.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "06765A",
+      "instrument": "OIL",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 210374.0,
+      "net": 0.0,
+      "weeklyNetChange": 0.0,
+      "normalizedScore": 0.0
+    },
+    {
+      "marketId": "02141R",
+      "instrument": "BRENT",
+      "reportDate": "2026-10-20",
+      "category": "Producer/Merchant",
+      "long": 10160.0,
+      "short": 5071.0,
+      "spread": null,
+      "openInterest": 12131.0,
+      "net": 5089.0,
+      "weeklyNetChange": -422.0,
+      "normalizedScore": null
+    },
+    {
+      "marketId": "02141R",
+      "instrument": "BRENT",
+      "reportDate": "2026-10-20",
+      "category": "Managed Money",
+      "long": 0.0,
+      "short": 0.0,
+      "spread": 0.0,
+      "openInterest": 12131.0,
+      "net": 0.0,
+      "weeklyNetChange": 50.0,
+      "normalizedScore": 0.0
     }
   ]
 }

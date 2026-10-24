@@ -17,6 +17,8 @@ Open **Crypto** for direct network, supply and chain-liquidity evidence with sep
 
 **Macro Map** compares independent economic themes and shows forecast surprises separately. In **Bias**, save instruments with Watch and filter My watchlist. **Analysis** includes a reconciled scorecard, conditional economic rulebook, completed-day moving averages and volatility, and a model-versioned daily score journal. The journal starts with real published observations; it does not invent earlier scores or demonstrate predictive accuracy. Price context never changes the fundamental bias. CFTC adds exact four-week changes and 13-week percentile context within the selected report and contract.
 
+The **Analyst Briefing** summarizes the working thesis, opposing evidence, horizon disagreement, freshness and reassessment triggers. News cards open the original article in a new tab. A disclosed TradersYard affiliate banner appears at the bottom of every view with code **RSHN**; availability and the final discount are determined at checkout. Promotions do not affect scores or rankings.
+
 ## Understanding the information
 
 - **Bullish, bearish, and neutral** describe model assessments, not guaranteed outcomes.

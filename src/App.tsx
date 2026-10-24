@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Empty } from './components/Chart'
 import { HistoryExplorer, PositionChart, StrengthChart } from './components/ResearchPanels'
-import { MacroMap, PositionMetrics, Scorecard, ScoreJournal } from './components/ResearchTools'
+import { AnalystBriefing, MacroMap, PositionMetrics, Scorecard, ScoreJournal } from './components/ResearchTools'
 import { reportFamilies } from './domain/reportFamilies'
 import { assetClass, splitForexPair, normalizeInstrument } from './domain/instruments'
 import type { BiasLabel, DashboardSnapshot } from './domain/types'
@@ -131,6 +131,13 @@ function App() {
           </>
         )}
       </main>
+      <footer className="partner-footer" aria-label="Partnered prop firm">
+        <a className="partner-banner" href="https://shop.tradersyard.com/ref/1486" target="_blank" rel="sponsored noopener noreferrer">
+          <div><p className="eyebrow">PARTNERED PROP FIRM</p><h2>TradersYard</h2><p>Check the maximum discount available with code <strong>RSHN</strong> at checkout.</p></div>
+          <div className="partner-offer"><span className="partner-code">DISCOUNT CODE <strong>RSHN</strong></span><span className="partner-cta">Explore accounts ↗</span></div>
+        </a>
+        <p className="partner-disclosure">Affiliate link · We may earn a commission. Offer availability and final discount are confirmed at checkout. This promotion does not influence market analysis or scores.</p>
+      </footer>
     </div>
   )
 }
@@ -243,7 +250,7 @@ function AnalysisView({ snapshot, selected, setSelected }: { snapshot: Dashboard
   const upcoming = snapshot.events.filter((event) => event.impact === 'high' && relevant.includes(event.currency) && Date.parse(event.occurredAt) > Date.now() && Date.parse(event.occurredAt) - Date.now() <= 48 * 3600000).sort((a,b) => a.occurredAt.localeCompare(b.occurredAt))
   return <div className="stack"><section className="page-head"><div><p className="eyebrow">FUNDAMENTAL ANALYSIS</p><h1>{active ?? 'No analysis available'}</h1></div><HorizonToggle value={horizon} onChange={setHorizon} /><InstrumentSelect value={active ?? ''} onChange={setSelected} options={options} /></section>
     {upcoming.length > 0 && <div className="warning-note"><strong>Next high-impact release:</strong> {upcoming[0].currency} · {upcoming[0].name} · {formatTime(upcoming[0].occurredAt)}. This can change the current reading.</div>}
-    {pair && bias && <Scorecard pair={pair} reading={bias} snapshot={snapshot} />}
+    {pair && bias && <><AnalystBriefing pair={pair} horizon={horizon} /><Scorecard pair={pair} reading={bias} snapshot={snapshot} /></>}
     {analysis ? <section className="analysis-grid"><aside className="panel"><span>{horizon === 'shortTerm' ? 'Short-term' : 'Long-term'} score</span><div className="giant-score">{formatScore(analysis.score)}</div><BiasPill label={analysis.bias} /><p className="muted">{Math.round((bias?.coverage ?? 0) * 100)}% evidence breadth · {bias?.evidenceQuality ?? 'limited'}</p>{bias?.componentConflict && <p className="warning-note">Macro, positioning or direct fundamentals disagree.</p>}<div className="factor-list">{bias?.factors?.map((factor) => <div key={factor.name}><span>{factor.name}</span><strong className={factor.score < 0 ? 'negative-text' : 'positive-text'}>{formatScore(factor.score)}</strong></div>)}</div><p className="footnote">Heuristic alignment, not a calibrated forecast. Long term describes slower fundamental evidence, not a promised holding period.</p></aside><div className="panel prose">{analysis.sections.map((section) => <section key={`${section.title}-${section.body}`}><h2>{section.title}</h2><p>{section.body}</p></section>)}</div></section> : <Empty message="Analysis is unavailable for this horizon until validated evidence is present." />}
     {active && <ScoreJournal snapshot={snapshot} instrument={active} horizon={horizon} />}
   </div>
@@ -295,7 +302,7 @@ function EventTable({ events }: { events: DashboardSnapshot['events'] }) {
 }
 
 function NewsList({ snapshot, limit = 12 }: { snapshot: DashboardSnapshot; limit?: number }) {
-  return snapshot.news.length ? <div className="news-list">{snapshot.news.slice(0, limit).map((item) => <a key={item.id} href={item.url} target="_blank" rel="noreferrer"><time>{formatTime(item.publishedAt)}</time><strong>{item.headline}</strong>{item.summary && <p>{item.summary}</p>}</a>)}</div> : <Empty message="No public news metadata is available." />
+  return snapshot.news.length ? <div className="news-list">{snapshot.news.slice(0, limit).map((item) => <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"><time>{formatTime(item.publishedAt)}</time><strong>{item.headline}</strong>{item.summary && <p>{item.summary}</p>}<span className="news-open">Read original article ↗</span></a>)}</div> : <Empty message="No public news metadata is available." />
 }
 
 function PriceBoard({ snapshot }: { snapshot: DashboardSnapshot }) {

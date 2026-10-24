@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T04:25:05Z",
+  "generatedAt": "2026-10-24T04:35:21Z",
   "currencies": [
     {
       "symbol": "USD",
@@ -36,7 +36,7 @@
       "eventScore": 0.0,
       "cotScore": 0.06924220333963596,
       "eventCount": 0,
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
@@ -44,7 +44,7 @@
         "cotScore": 0.06924220333963596,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
@@ -53,7 +53,7 @@
         "cotScore": 0.06924220333963596,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       }
     },
     {
@@ -63,7 +63,7 @@
       "eventScore": 0.0,
       "cotScore": -0.024077382579601694,
       "eventCount": 0,
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.024077382579601694,
         "label": "neutral",
@@ -71,7 +71,7 @@
         "cotScore": -0.024077382579601694,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.024077382579601694,
@@ -80,7 +80,7 @@
         "cotScore": -0.024077382579601694,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       }
     },
     {
@@ -90,7 +90,7 @@
       "eventScore": 0.0,
       "cotScore": -0.11447403981862407,
       "eventCount": 0,
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.11447403981862407,
         "label": "neutral",
@@ -98,7 +98,7 @@
         "cotScore": -0.11447403981862407,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.11447403981862407,
@@ -107,7 +107,7 @@
         "cotScore": -0.11447403981862407,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       }
     },
     {
@@ -144,7 +144,7 @@
       "eventScore": 0.0,
       "cotScore": -0.12578622909797071,
       "eventCount": 0,
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.12578622909797071,
         "label": "neutral",
@@ -152,7 +152,7 @@
         "cotScore": -0.12578622909797071,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.12578622909797071,
@@ -161,7 +161,7 @@
         "cotScore": -0.12578622909797071,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       }
     },
     {
@@ -171,7 +171,7 @@
       "eventScore": 0.0,
       "cotScore": -0.014905571349639254,
       "eventCount": 0,
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.014905571349639254,
         "label": "neutral",
@@ -179,7 +179,7 @@
         "cotScore": -0.014905571349639254,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.014905571349639254,
@@ -188,7 +188,7 @@
         "cotScore": -0.014905571349639254,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       }
     },
     {
@@ -198,7 +198,7 @@
       "eventScore": 0.0,
       "cotScore": -0.14342877663043876,
       "eventCount": 0,
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.14342877663043876,
         "label": "neutral",
@@ -206,7 +206,7 @@
         "cotScore": -0.14342877663043876,
         "eventCount": 0,
         "coverage": 0.15,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.14342877663043876,
@@ -215,7 +215,7 @@
         "cotScore": -0.14342877663043876,
         "eventCount": 0,
         "coverage": 0.35,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       }
     },
     {
@@ -577,20 +577,20 @@
       "quote": "CAD",
       "score": 0.005656094639673322,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.005656094639673322,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.005656094639673322,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: AUD neutral (-0.11) vs CAD neutral (-0.13).",
@@ -603,20 +603,20 @@
       "quote": "CHF",
       "score": 0.014477368405907347,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.014477368405907347,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.014477368405907347,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: AUD neutral (-0.11) vs CHF neutral (-0.14).",
@@ -629,20 +629,20 @@
       "quote": "JPY",
       "score": -0.04978423423449241,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.04978423423449241,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.04978423423449241,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: AUD neutral (-0.11) vs JPY neutral (-0.01).",
@@ -705,20 +705,20 @@
       "quote": "CHF",
       "score": 0.008821273766234025,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.008821273766234025,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.008821273766234025,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: CAD neutral (-0.13) vs CHF neutral (-0.14).",
@@ -731,20 +731,20 @@
       "quote": "JPY",
       "score": -0.05544032887416573,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.05544032887416573,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.05544032887416573,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: CAD neutral (-0.13) vs JPY neutral (-0.01).",
@@ -757,20 +757,20 @@
       "quote": "JPY",
       "score": -0.06426160264039976,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.06426160264039976,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.06426160264039976,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: CHF neutral (-0.14) vs JPY neutral (-0.01).",
@@ -783,20 +783,20 @@
       "quote": "AUD",
       "score": 0.09185812157913001,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.09185812157913001,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.09185812157913001,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs AUD neutral (-0.11).",
@@ -809,20 +809,20 @@
       "quote": "CAD",
       "score": 0.09751421621880334,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.09751421621880334,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.09751421621880334,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs CAD neutral (-0.13).",
@@ -835,20 +835,20 @@
       "quote": "CHF",
       "score": 0.10633548998503736,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.10633548998503736,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.10633548998503736,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs CHF neutral (-0.14).",
@@ -861,20 +861,20 @@
       "quote": "GBP",
       "score": 0.04665979295961883,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.04665979295961883,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.04665979295961883,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs GBP neutral (-0.02).",
@@ -937,20 +937,20 @@
       "quote": "JPY",
       "score": 0.04207388734463761,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.04207388734463761,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.04207388734463761,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: EUR neutral (0.07) vs JPY neutral (-0.01).",
@@ -1163,20 +1163,20 @@
       "quote": "AUD",
       "score": 0.04519832861951119,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.04519832861951119,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.04519832861951119,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs AUD neutral (-0.11).",
@@ -1189,20 +1189,20 @@
       "quote": "CAD",
       "score": 0.05085442325918451,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.05085442325918451,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.05085442325918451,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs CAD neutral (-0.13).",
@@ -1215,20 +1215,20 @@
       "quote": "CHF",
       "score": 0.059675697025418535,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.059675697025418535,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.059675697025418535,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs CHF neutral (-0.14).",
@@ -1291,20 +1291,20 @@
       "quote": "JPY",
       "score": -0.00458590561498122,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.00458590561498122,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.00458590561498122,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Short term: GBP neutral (-0.02) vs JPY neutral (-0.01).",
@@ -1942,20 +1942,20 @@
       "quote": "USD",
       "score": 0.018876710745485956,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.018876710745485956,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.018876710745485956,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score +0.02."
@@ -1970,20 +1970,20 @@
       "quote": "USD",
       "score": -0.07217246231646587,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.07217246231646587,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.07217246231646587,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score -0.07."
@@ -2082,20 +2082,20 @@
       "quote": "USD",
       "score": -0.13558431866280188,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.13558431866280188,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.13558431866280188,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score -0.14."
@@ -2110,20 +2110,20 @@
       "quote": "USD",
       "score": -0.20327340733073632,
       "label": "bearish",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.20327340733073632,
         "label": "bearish",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.20327340733073632,
         "label": "bearish",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score -0.20."
@@ -2278,20 +2278,20 @@
       "quote": "USD",
       "score": 0.006174873099747283,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.006174873099747283,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.006174873099747283,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score +0.01."
@@ -2306,20 +2306,20 @@
       "quote": "USD",
       "score": -0.0020807450948189315,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.0020807450948189315,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.0020807450948189315,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score -0.00."
@@ -2334,20 +2334,20 @@
       "quote": "USD",
       "score": 0.14578792427220674,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.14578792427220674,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.14578792427220674,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score +0.15."
@@ -2363,20 +2363,20 @@
       "quote": "USD",
       "score": -0.11447403981862407,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.11447403981862407,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.11447403981862407,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: AUD -0.11 with sensitivity +1.00.",
@@ -2392,20 +2392,20 @@
       "quote": "USD",
       "score": -0.14342877663043876,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.14342877663043876,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.14342877663043876,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: CHF -0.14 with sensitivity +1.00.",
@@ -2421,20 +2421,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2450,20 +2450,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2479,20 +2479,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2508,20 +2508,20 @@
       "quote": "USD",
       "score": -0.024077382579601694,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.024077382579601694,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.024077382579601694,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: GBP -0.02 with sensitivity +1.00.",
@@ -2537,20 +2537,20 @@
       "quote": "USD",
       "score": 0.06924220333963596,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.06924220333963596,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: EUR +0.07 with sensitivity +1.00.",
@@ -2594,20 +2594,20 @@
       "quote": "USD",
       "score": -0.014905571349639254,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.014905571349639254,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.014905571349639254,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "shortTerm: JPY -0.01 with sensitivity +1.00.",
@@ -2623,20 +2623,20 @@
       "quote": "USD",
       "score": -0.08056191861936707,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": -0.08056191861936707,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": -0.08056191861936707,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score -0.08."
@@ -2651,20 +2651,20 @@
       "quote": "USD",
       "score": 0.3278479780693928,
       "label": "bullish",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.3278479780693928,
         "label": "bullish",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.3278479780693928,
         "label": "bullish",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score +0.33."
@@ -2679,20 +2679,20 @@
       "quote": "USD",
       "score": 0.10993646282479695,
       "label": "neutral",
-      "updatedAt": "2026-10-23T21:24:04Z",
+      "updatedAt": "2026-10-24T04:35:21Z",
       "shortTerm": {
         "score": 0.10993646282479695,
         "label": "neutral",
         "coverage": 0.15,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "longTerm": {
         "score": 0.10993646282479695,
         "label": "neutral",
         "coverage": 0.35,
         "eventCount": 0,
-        "updatedAt": "2026-10-23T21:24:04Z"
+        "updatedAt": "2026-10-24T04:35:21Z"
       },
       "rationale": [
         "Mapped positioning score +0.11."
@@ -149032,19 +149032,19 @@
     {
       "instrument": "AUDCAD",
       "price": 0.9842900037765503,
-      "previousClose": 0.9868599772453308,
-      "change": -0.0025699734687805176,
-      "changePercent": -0.2604192619052408,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.9828400015830994,
+      "change": 0.0014500021934509277,
+      "changePercent": 0.14753186593090958,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "AUDCHF",
       "price": 0.5796800255775452,
-      "previousClose": 0.5792499780654907,
-      "change": 0.00043004751205444336,
-      "changePercent": 0.07424212832785324,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.574999988079071,
+      "change": 0.004680037498474121,
+      "changePercent": 0.8139195818262428,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149059,19 +149059,19 @@
     {
       "instrument": "AUDNZD",
       "price": 1.2339099645614624,
-      "previousClose": 1.2321699857711792,
-      "change": 0.0017399787902832031,
-      "changePercent": 0.1412125607972995,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.2339999675750732,
+      "change": -9.000301361083984e-05,
+      "changePercent": -0.007293599349739391,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "AUDUSD",
       "price": 0.7037792801856995,
-      "previousClose": 0.7029299139976501,
-      "change": 0.0008493661880493164,
-      "changePercent": 0.1208322723411876,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.7019800543785095,
+      "change": 0.0017992258071899414,
+      "changePercent": 0.2563072548810331,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149085,38 +149085,38 @@
     },
     {
       "instrument": "AVAXUSD",
-      "price": 9.135000228881836,
+      "price": 9.043000221252441,
       "previousClose": 9.116144180297852,
-      "change": 0.018856048583984375,
-      "changePercent": 0.20684236900000733,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -0.07314395904541016,
+      "changePercent": -0.8023563208169918,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "BRENT",
-      "price": 111.66000366210938,
+      "price": 116.72000122070312,
       "previousClose": 113.16999816894531,
-      "change": -1.5099945068359375,
-      "changePercent": -1.3342710358462224,
+      "change": 3.5500030517578125,
+      "changePercent": 3.1368764771544897,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "BTCUSD",
-      "price": 81349.8828125,
+      "price": 80773.7109375,
       "previousClose": 81311.890625,
-      "change": 37.9921875,
-      "changePercent": 0.04672402425767603,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -538.1796875,
+      "changePercent": -0.6618708326215358,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "CADCHF",
       "price": 0.5883499979972839,
-      "previousClose": 0.586430013179779,
-      "change": 0.0019199848175048828,
-      "changePercent": 0.3274022090196605,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.5852000117301941,
+      "change": 0.0031499862670898438,
+      "changePercent": 0.538275154468408,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149148,10 +149148,10 @@
     },
     {
       "instrument": "COPPER",
-      "price": 6.497499942779541,
+      "price": 6.47599983215332,
       "previousClose": 6.362500190734863,
-      "change": 0.13499975204467773,
-      "changePercent": 2.1218035048747934,
+      "change": 0.11349964141845703,
+      "changePercent": 1.783884291017175,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
@@ -149166,11 +149166,11 @@
     },
     {
       "instrument": "ETHUSD",
-      "price": 2400.35009765625,
+      "price": 2378.090087890625,
       "previousClose": 2386.189208984375,
-      "change": 14.160888671875,
-      "changePercent": 0.5934520455694395,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -8.09912109375,
+      "changePercent": -0.33941655017362177,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149185,46 +149185,46 @@
     {
       "instrument": "EURAUD",
       "price": 1.5917799472808838,
-      "previousClose": 1.5981700420379639,
-      "change": -0.006390094757080078,
-      "changePercent": -0.3998382267841487,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.5984300374984741,
+      "change": -0.006650090217590332,
+      "changePercent": -0.4160388669871127,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURCAD",
       "price": 1.5683499574661255,
-      "previousClose": 1.577299952507019,
-      "change": -0.008949995040893555,
-      "changePercent": -0.5674250497927233,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.5711100101470947,
+      "change": -0.0027600526809692383,
+      "changePercent": -0.17567532910765613,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURCHF",
       "price": 0.9237099885940552,
-      "previousClose": 0.925790011882782,
-      "change": -0.0020800232887268066,
-      "changePercent": -0.22467549466175996,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.919950008392334,
+      "change": 0.0037599802017211914,
+      "changePercent": 0.4087157092690259,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURGBP",
       "price": 0.8376399874687195,
-      "previousClose": 0.8386099934577942,
-      "change": -0.000970005989074707,
-      "changePercent": -0.11566830787159298,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.8371000289916992,
+      "change": 0.0005399584770202637,
+      "changePercent": 0.06450345936203736,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURHKD",
-      "price": 8.784299850463867,
-      "previousClose": 8.814929962158203,
-      "change": -0.030630111694335938,
-      "changePercent": -0.3474799212906805,
-      "asOf": "2026-10-23T00:00:00Z",
+      "price": 8.784199714660645,
+      "previousClose": 8.793169975280762,
+      "change": -0.008970260620117188,
+      "changePercent": -0.10201395680208913,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149238,64 +149238,64 @@
     },
     {
       "instrument": "EURJPY",
-      "price": 175.72300720214844,
-      "previousClose": 177.65699768066406,
-      "change": -1.933990478515625,
-      "changePercent": -1.088609232264493,
-      "asOf": "2026-10-23T00:00:00Z",
+      "price": 175.5,
+      "previousClose": 175.5970001220703,
+      "change": -0.0970001220703125,
+      "changePercent": -0.05524019317122766,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURNOK",
       "price": 10.442319869995117,
-      "previousClose": 10.517820358276367,
-      "change": -0.07550048828125,
-      "changePercent": -0.7178339780431734,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 10.46461009979248,
+      "change": -0.02229022979736328,
+      "changePercent": -0.2130058318924401,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURNZD",
       "price": 1.965019941329956,
-      "previousClose": 1.969349980354309,
-      "change": -0.004330039024353027,
-      "changePercent": -0.2198714838676873,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.9738099575042725,
+      "change": -0.008790016174316406,
+      "changePercent": -0.44533244656596477,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURPLN",
-      "price": 4.4054999351501465,
+      "price": 4.399199962615967,
       "previousClose": 4.354869842529297,
-      "change": 0.05063009262084961,
-      "changePercent": 1.1626086301455059,
+      "change": 0.04433012008666992,
+      "changePercent": 1.0179436283892036,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURSEK",
       "price": 11.121919631958008,
-      "previousClose": 11.10984992980957,
-      "change": 0.0120697021484375,
-      "changePercent": 0.1086396506225749,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 11.115099906921387,
+      "change": 0.006819725036621094,
+      "changePercent": 0.06135549921934973,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURSGD",
       "price": 1.43149995803833,
-      "previousClose": 1.4346799850463867,
-      "change": -0.0031800270080566406,
-      "changePercent": -0.22165409995273772,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.4323999881744385,
+      "change": -0.0009000301361083984,
+      "changePercent": -0.06283371568967035,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "EURTRY",
-      "price": 55.67100143432617,
+      "price": 55.66600036621094,
       "previousClose": 55.74665069580078,
-      "change": -0.07564926147460938,
-      "changePercent": -0.13570189514597653,
+      "change": -0.08065032958984375,
+      "changePercent": -0.14467295986971085,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
@@ -149311,10 +149311,10 @@
     {
       "instrument": "EURZAR",
       "price": 18.581899642944336,
-      "previousClose": 18.39055061340332,
-      "change": 0.19134902954101562,
-      "changePercent": 1.0404747174973514,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 18.49090003967285,
+      "change": 0.09099960327148438,
+      "changePercent": 0.4921318220110522,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149328,38 +149328,38 @@
     },
     {
       "instrument": "GB100",
-      "price": 10690.3603515625,
+      "price": 10690.400390625,
       "previousClose": 10725.0,
-      "change": -34.6396484375,
-      "changePercent": -0.322980405011655,
+      "change": -34.599609375,
+      "changePercent": -0.3226070804195804,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPAUD",
       "price": 1.9008100032806396,
-      "previousClose": 1.9053000211715698,
-      "change": -0.004490017890930176,
-      "changePercent": -0.2356593628844481,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.9092899560928345,
+      "change": -0.008479952812194824,
+      "changePercent": -0.44414169702899264,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPCAD",
       "price": 1.8726400136947632,
-      "previousClose": 1.8804899454116821,
-      "change": -0.007849931716918945,
-      "changePercent": -0.41744077047965367,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.8766299486160278,
+      "change": -0.0039899349212646484,
+      "changePercent": -0.21261170451889758,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPCHF",
       "price": 1.102810025215149,
-      "previousClose": 1.1037299633026123,
-      "change": -0.0009199380874633789,
-      "changePercent": -0.08334811213339845,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.098770022392273,
+      "change": 0.0040400028228759766,
+      "changePercent": 0.3676841141042389,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149392,45 +149392,45 @@
     {
       "instrument": "GBPNOK",
       "price": 12.467700004577637,
-      "previousClose": 12.536499977111816,
-      "change": -0.06879997253417969,
-      "changePercent": -0.5487972931822233,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 12.496600151062012,
+      "change": -0.028900146484375,
+      "changePercent": -0.23126407290801368,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPNZD",
       "price": 2.3459300994873047,
-      "previousClose": 2.347949981689453,
-      "change": -0.0020198822021484375,
-      "changePercent": -0.086027480052835,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 2.3576900959014893,
+      "change": -0.01175999641418457,
+      "changePercent": -0.498793138022154,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPPLN",
-      "price": 5.259500026702881,
+      "price": 5.251999855041504,
       "previousClose": 5.192269802093506,
-      "change": 0.067230224609375,
-      "changePercent": 1.2948137745513146,
+      "change": 0.05973005294799805,
+      "changePercent": 1.1503649699388712,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPSEK",
       "price": 13.275300025939941,
-      "previousClose": 13.242010116577148,
-      "change": 0.03328990936279297,
-      "changePercent": 0.25139619340056724,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 13.274860382080078,
+      "change": 0.00043964385986328125,
+      "changePercent": 0.003311852985337328,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "GBPTRY",
-      "price": 66.46009826660156,
+      "price": 66.4541015625,
       "previousClose": 66.46784973144531,
-      "change": -0.00775146484375,
-      "changePercent": -0.011661976241248638,
+      "change": -0.0137481689453125,
+      "changePercent": -0.020683938175915403,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
@@ -149446,10 +149446,10 @@
     {
       "instrument": "GBPZAR",
       "price": 22.151500701904297,
-      "previousClose": 21.927349090576172,
-      "change": 0.224151611328125,
-      "changePercent": 1.0222467403707263,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 22.095659255981445,
+      "change": 0.05584144592285156,
+      "changePercent": 0.2527258647317115,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149463,47 +149463,47 @@
     },
     {
       "instrument": "HK50",
-      "price": 22934.6796875,
-      "previousClose": 23651.869140625,
-      "change": -717.189453125,
-      "changePercent": -3.032273892861764,
-      "asOf": "2026-10-22T00:00:00Z",
+      "price": 23093.369140625,
+      "previousClose": 22934.6796875,
+      "change": 158.689453125,
+      "changePercent": 0.6919192039620675,
+      "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "JP225",
-      "price": 62907.83984375,
-      "previousClose": 64621.23828125,
-      "change": -1713.3984375,
-      "changePercent": -2.651447856883836,
-      "asOf": "2026-10-22T00:00:00Z",
+      "price": 62693.16015625,
+      "previousClose": 62907.83984375,
+      "change": -214.6796875,
+      "changePercent": -0.3412606251195713,
+      "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "LTCUSD",
-      "price": 58.03799819946289,
+      "price": 57.13800048828125,
       "previousClose": 58.75648498535156,
-      "change": -0.7184867858886719,
-      "changePercent": -1.222821252952412,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -1.6184844970703125,
+      "changePercent": -2.7545631728545588,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "NZDCAD",
       "price": 0.7979400157928467,
-      "previousClose": 0.8007299900054932,
-      "change": -0.0027899742126464844,
-      "changePercent": -0.3484288396176275,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.7958300113677979,
+      "change": 0.002110004425048828,
+      "changePercent": 0.2651325527950813,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "NZDCHF",
       "price": 0.4699600040912628,
-      "previousClose": 0.46994999051094055,
-      "change": 1.0013580322265625e-05,
-      "changePercent": 0.0021307757260253645,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.46592000126838684,
+      "change": 0.0040400028228759766,
+      "changePercent": 0.8671022518625011,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149518,54 +149518,54 @@
     {
       "instrument": "NZDSGD",
       "price": 0.7275999784469604,
-      "previousClose": 0.7279000282287598,
-      "change": -0.0003000497817993164,
-      "changePercent": -0.04122129003476542,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.7254300117492676,
+      "change": 0.002169966697692871,
+      "changePercent": 0.29912833251278315,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "NZDUSD",
       "price": 0.5701254606246948,
-      "previousClose": 0.5704994797706604,
-      "change": -0.00037401914596557617,
-      "changePercent": -0.06555994514069163,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.5684999823570251,
+      "change": 0.0016254782676696777,
+      "changePercent": 0.28592406651102703,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "OIL",
-      "price": 103.44000244140625,
+      "price": 103.2699966430664,
       "previousClose": 99.47000122070312,
-      "change": 3.970001220703125,
-      "changePercent": 3.9911542897184877,
+      "change": 3.7999954223632812,
+      "changePercent": 3.820242661837197,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "SOLUSD",
-      "price": 103.87000274658203,
+      "price": 102.56999969482422,
       "previousClose": 103.54232025146484,
-      "change": 0.3276824951171875,
-      "changePercent": 0.3164720418871932,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -0.972320556640625,
+      "changePercent": -0.9390561794242478,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "SUIUSD",
-      "price": 0.9779999852180481,
+      "price": 0.9613000154495239,
       "previousClose": 0.9727209806442261,
-      "change": 0.0052790045738220215,
-      "changePercent": 0.5427049152703353,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -0.011420965194702148,
+      "changePercent": -1.1741255120392413,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "US100",
-      "price": 28957.52734375,
+      "price": 28957.529296875,
       "previousClose": 28958.689453125,
-      "change": -1.162109375,
-      "changePercent": -0.0040129902179485335,
+      "change": -1.16015625,
+      "changePercent": -0.00400624569657383,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
@@ -149589,38 +149589,38 @@
     },
     {
       "instrument": "USDBRL",
-      "price": 4.96619987487793,
+      "price": 4.965199947357178,
       "previousClose": 5.02039098739624,
-      "change": -0.05419111251831055,
-      "changePercent": -1.0794201617833765,
+      "change": -0.0551910400390625,
+      "changePercent": -1.0993374854193698,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDCAD",
       "price": 1.4004000425338745,
-      "previousClose": 1.4041999578475952,
-      "change": -0.003799915313720703,
-      "changePercent": -0.2706106984610184,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.4002599716186523,
+      "change": 0.00014007091522216797,
+      "changePercent": 0.010003207837202602,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDCHF",
       "price": 0.8241000175476074,
-      "previousClose": 0.8240000009536743,
-      "change": 0.00010001659393310547,
-      "changePercent": 0.01213793614288217,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 0.8198099732398987,
+      "change": 0.00429004430770874,
+      "changePercent": 0.5232974040013729,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDCNY",
-      "price": 6.660600185394287,
+      "price": 6.670199871063232,
       "previousClose": 6.6778998374938965,
-      "change": -0.017299652099609375,
-      "changePercent": -0.25905827461619496,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -0.0076999664306640625,
+      "changePercent": -0.11530520999179482,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149635,10 +149635,10 @@
     {
       "instrument": "USDDKK",
       "price": 6.67140007019043,
-      "previousClose": 6.652910232543945,
-      "change": 0.018489837646484375,
-      "changePercent": 0.27792104507945864,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 6.660830020904541,
+      "change": 0.010570049285888672,
+      "changePercent": 0.1586896715982141,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
@@ -149662,100 +149662,100 @@
     {
       "instrument": "USDMXN",
       "price": 18.648000717163086,
-      "previousClose": 18.720779418945312,
-      "change": -0.07277870178222656,
-      "changePercent": -0.3887589301360763,
-      "asOf": "2026-10-24T00:00:00Z",
+      "previousClose": 18.678699493408203,
+      "change": -0.030698776245117188,
+      "changePercent": -0.16435178613988047,
+      "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDNOK",
       "price": 9.316200256347656,
-      "previousClose": 9.361729621887207,
-      "change": -0.04552936553955078,
-      "changePercent": -0.48633497631789785,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 9.325400352478027,
+      "change": -0.009200096130371094,
+      "changePercent": -0.09865631267966274,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDPLN",
-      "price": 3.9321999549865723,
-      "previousClose": 3.897160053253174,
-      "change": 0.03503990173339844,
-      "changePercent": 0.8991137457685041,
-      "asOf": "2026-10-24T00:00:00Z",
+      "price": 3.926100015640259,
+      "previousClose": 3.8740999698638916,
+      "change": 0.05200004577636719,
+      "changePercent": 1.3422484236562977,
+      "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDSEK",
       "price": 9.923299789428711,
-      "previousClose": 9.888930320739746,
-      "change": 0.034369468688964844,
-      "changePercent": 0.34755496878042336,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 9.90565013885498,
+      "change": 0.01764965057373047,
+      "changePercent": 0.17817760900417423,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "USDSGD",
       "price": 1.277899980545044,
-      "previousClose": 1.2770700454711914,
-      "change": 0.0008299350738525391,
-      "changePercent": 0.0649874356379821,
-      "asOf": "2026-10-23T00:00:00Z",
+      "previousClose": 1.2767000198364258,
+      "change": 0.001199960708618164,
+      "changePercent": 0.09398924492629884,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "XAGUSD",
-      "price": 53.959999084472656,
+      "price": 53.71099853515625,
       "previousClose": 54.763999938964844,
-      "change": -0.8040008544921875,
-      "changePercent": -1.4681193035356372,
+      "change": -1.0530014038085938,
+      "changePercent": -1.9227985628920037,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "XAUUSD",
-      "price": 4010.0,
+      "price": 4007.89990234375,
       "previousClose": 4060.39990234375,
-      "change": -50.39990234375,
-      "changePercent": -1.241254643776789,
+      "change": -52.5,
+      "changePercent": -1.2929760925690073,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "XLMUSD",
-      "price": 0.17500600218772888,
+      "price": 0.1730400025844574,
       "previousClose": 0.17520900070667267,
-      "change": -0.00020299851894378662,
-      "changePercent": -0.11586078233711176,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -0.002168998122215271,
+      "changePercent": -1.2379490285698929,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "XPDUSD",
-      "price": 1046.5,
+      "price": 1046.5999755859375,
       "previousClose": 1051.5999755859375,
-      "change": -5.0999755859375,
-      "changePercent": -0.48497296541832474,
+      "change": -5.0,
+      "changePercent": -0.47546596767597554,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "XPTUSD",
-      "price": 1555.800048828125,
+      "price": 1554.199951171875,
       "previousClose": 1567.5,
-      "change": -11.699951171875,
-      "changePercent": -0.7464083682216907,
+      "change": -13.300048828125,
+      "changePercent": -0.8484879635167465,
       "asOf": "2026-10-23T00:00:00Z",
       "currency": null
     },
     {
       "instrument": "XRPUSD",
-      "price": 1.3066999912261963,
+      "price": 1.2898000478744507,
       "previousClose": 1.3076560497283936,
-      "change": -0.0009560585021972656,
-      "changePercent": -0.07311238321390733,
-      "asOf": "2026-10-23T00:00:00Z",
+      "change": -0.01785600185394287,
+      "changePercent": -1.3654968259927103,
+      "asOf": "2026-10-24T00:00:00Z",
       "currency": null
     }
   ],
@@ -152405,7 +152405,7 @@
   "analysis": [
     {
       "instrument": "AUDCAD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.005656094639673322,
       "horizon": "shortTerm",
@@ -152430,7 +152430,7 @@
     },
     {
       "instrument": "AUDCHF",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.014477368405907347,
       "horizon": "shortTerm",
@@ -152455,7 +152455,7 @@
     },
     {
       "instrument": "AUDJPY",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.04978423423449241,
       "horizon": "shortTerm",
@@ -152480,7 +152480,7 @@
     },
     {
       "instrument": "CADCHF",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.008821273766234025,
       "horizon": "shortTerm",
@@ -152505,7 +152505,7 @@
     },
     {
       "instrument": "CADJPY",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.05544032887416573,
       "horizon": "shortTerm",
@@ -152530,7 +152530,7 @@
     },
     {
       "instrument": "CHFJPY",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.06426160264039976,
       "horizon": "shortTerm",
@@ -152555,7 +152555,7 @@
     },
     {
       "instrument": "EURAUD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.09185812157913001,
       "horizon": "shortTerm",
@@ -152580,7 +152580,7 @@
     },
     {
       "instrument": "EURCAD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.09751421621880334,
       "horizon": "shortTerm",
@@ -152605,7 +152605,7 @@
     },
     {
       "instrument": "EURCHF",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.10633548998503736,
       "horizon": "shortTerm",
@@ -152630,7 +152630,7 @@
     },
     {
       "instrument": "EURGBP",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.04665979295961883,
       "horizon": "shortTerm",
@@ -152655,7 +152655,7 @@
     },
     {
       "instrument": "EURJPY",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.04207388734463761,
       "horizon": "shortTerm",
@@ -152680,7 +152680,7 @@
     },
     {
       "instrument": "GBPAUD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.04519832861951119,
       "horizon": "shortTerm",
@@ -152705,7 +152705,7 @@
     },
     {
       "instrument": "GBPCAD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.05085442325918451,
       "horizon": "shortTerm",
@@ -152730,7 +152730,7 @@
     },
     {
       "instrument": "GBPCHF",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.059675697025418535,
       "horizon": "shortTerm",
@@ -152755,7 +152755,7 @@
     },
     {
       "instrument": "GBPJPY",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.00458590561498122,
       "horizon": "shortTerm",
@@ -152780,7 +152780,7 @@
     },
     {
       "instrument": "XAGUSD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.018876710745485956,
       "horizon": "shortTerm",
@@ -152805,7 +152805,7 @@
     },
     {
       "instrument": "XAUUSD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.07217246231646587,
       "horizon": "shortTerm",
@@ -152830,7 +152830,7 @@
     },
     {
       "instrument": "BTCUSD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.13558431866280188,
       "horizon": "shortTerm",
@@ -152855,7 +152855,7 @@
     },
     {
       "instrument": "ETHUSD",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "bearish",
       "score": -0.20327340733073632,
       "horizon": "shortTerm",
@@ -152880,7 +152880,7 @@
     },
     {
       "instrument": "BRENT",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.006174873099747283,
       "horizon": "shortTerm",
@@ -152905,7 +152905,7 @@
     },
     {
       "instrument": "OIL",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.0020807450948189315,
       "horizon": "shortTerm",
@@ -152930,7 +152930,7 @@
     },
     {
       "instrument": "COPPER",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.14578792427220674,
       "horizon": "shortTerm",
@@ -152955,7 +152955,7 @@
     },
     {
       "instrument": "AUS200",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.11447403981862407,
       "horizon": "shortTerm",
@@ -152980,7 +152980,7 @@
     },
     {
       "instrument": "CH20",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.14342877663043876,
       "horizon": "shortTerm",
@@ -153005,7 +153005,7 @@
     },
     {
       "instrument": "ES35",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153030,7 +153030,7 @@
     },
     {
       "instrument": "EU50",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153055,7 +153055,7 @@
     },
     {
       "instrument": "FR40",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153080,7 +153080,7 @@
     },
     {
       "instrument": "GB100",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.024077382579601694,
       "horizon": "shortTerm",
@@ -153105,7 +153105,7 @@
     },
     {
       "instrument": "GE40",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.06924220333963596,
       "horizon": "shortTerm",
@@ -153130,7 +153130,7 @@
     },
     {
       "instrument": "JP225",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.014905571349639254,
       "horizon": "shortTerm",
@@ -153155,7 +153155,7 @@
     },
     {
       "instrument": "US100",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": -0.08056191861936707,
       "horizon": "shortTerm",
@@ -153180,7 +153180,7 @@
     },
     {
       "instrument": "US30",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "bullish",
       "score": 0.3278479780693928,
       "horizon": "shortTerm",
@@ -153205,7 +153205,7 @@
     },
     {
       "instrument": "US500",
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "bias": "neutral",
       "score": 0.10993646282479695,
       "horizon": "shortTerm",
@@ -153235,7 +153235,7 @@
       "horizon": "shortTerm",
       "direction": "long",
       "conviction": 0.3278479780693928,
-      "generatedAt": "2026-10-23T21:24:04Z",
+      "generatedAt": "2026-10-24T04:35:21Z",
       "reasons": [
         "Mapped positioning score +0.33."
       ],
@@ -153260,8 +153260,8 @@
     {
       "feed": "calendar",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-23T21:24:04Z",
-      "lastSuccessAt": "2026-10-23T21:24:04Z",
+      "lastAttemptAt": "2026-10-24T04:35:21Z",
+      "lastSuccessAt": "2026-10-24T04:35:21Z",
       "staleAfterHours": 12,
       "itemCount": 86,
       "message": "Public weekly calendar refreshed."

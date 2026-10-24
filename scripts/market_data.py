@@ -24,7 +24,7 @@ def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
     mapping = {**TICKERS, **{symbol: forex_ticker(symbol) for symbol in forex_pairs}}
     frame = yf.download(
         list(mapping.values()), period="5d", interval="1d", auto_adjust=False,
-        progress=False, threads=False, group_by="column", timeout=30,
+        progress=False, threads=4, group_by="column", timeout=15,
     )
     if frame.empty:
         return []

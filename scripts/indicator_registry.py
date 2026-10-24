@@ -48,16 +48,32 @@ def classify_indicator(name: str) -> IndicatorRule:
     matches = [rule for rule in COMMON_RULES if any(keyword in normalized for keyword in rule.keywords)]
     if matches:
         return max(matches, key=lambda rule: max(len(keyword) for keyword in rule.keywords if keyword in normalized))
-    return IndicatorRule(slugify(name) or "unknown-event", (), "higher_is_bullish", 0.50, "low")
+    return IndicatorRule(slugify(name) or "unknown-event", (), "custom", 0.50, "low")
 
 
 def normalize_calendar_event(event: dict) -> dict:
     name = str(event.get("name") or event.get("title") or event.get("event") or "Unknown event").strip()
     rule = classify_indicator(name)
     normalized = dict(event)
+    normalized['currency'] = str(event.get('currency', '')).upper()
     normalized["name"] = name
-    normalized["indicatorId"] = str(event.get("indicatorId") or rule.indicator_id)
-    normalized["direction"] = str(event.get("direction") or rule.direction)
-    normalized["weight"] = float(event.get("weight") or rule.weight)
+    # Derived fields may come from an older published snapshot. Reclassify on
+    # every run so obsolete defaults cannot survive a registry correction.
+    normalized["indicatorId"] = rule.indicator_id
+    normalized["direction"] = rule.direction
+    normalized["weight"] = rule.weight
     normalized["impact"] = str(event.get("impact") or rule.impact).lower()
+    if normalized["impact"] not in {"low", "medium", "high"}:
+        normalized["direction"] = "custom"
+        normalized["impact"] = "low"
+    # Inventories are not evidence of USD strength. Their direct effects are on
+    # energy and CAD; retain the release currency for calendar display.
+    normalized["affectedCurrencies"] = (
+        ["CAD", "OIL", "BRENT"] if rule.indicator_id == "oil-inventories" else
+        ["CNY", "AUD", "NZD"] if event.get("currency") == "CNY" and rule.indicator_id in
+        {"manufacturing-pmi", "inflation", "industrial-production", "gdp", "imports"} else
+        [str(event.get("currency", ""))]
+    )
+    if rule.indicator_id == "foreign-reserves" and event.get("currency") == "CHF":
+        normalized["direction"] = "lower_is_bullish"
     return normalized

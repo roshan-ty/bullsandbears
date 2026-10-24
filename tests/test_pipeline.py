@@ -2,7 +2,7 @@ import unittest
 
 from scripts.analysis_engine import build_analysis, build_setups
 from scripts.indicator_registry import classify_indicator, normalize_calendar_event
-from scripts.pipeline import calculate_biases, merge_calendar, score_event
+from scripts.pipeline import calculate_biases, merge_calendar, score_event, mean_cot_score
 
 
 class IndicatorRegistryTests(unittest.TestCase):
@@ -28,7 +28,8 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(scored["bias"], "bullish")
 
     def test_analysis_and_setup_require_real_bias(self):
-        pair = {"symbol": "EURUSD", "base": "EUR", "quote": "USD", "score": 0.5, "label": "bullish", "rationale": ["EUR stronger"]}
+        horizon = {'score': 0.5, 'label': 'bullish', 'coverage': 0.8, 'eventCount': 4}
+        pair = {"symbol": "EURUSD", "base": "EUR", "quote": "USD", "score": 0.5, "label": "bullish", "rationale": ["EUR stronger"], 'shortTerm': horizon, 'longTerm': horizon}
         analysis = build_analysis(pair, [], [], "2026-10-23T00:00:00Z")
         self.assertIsNotNone(analysis)
         setups = build_setups([pair], [analysis], "2026-10-23T00:00:00Z")
@@ -47,6 +48,39 @@ class PipelineTests(unittest.TestCase):
         merged = merge_calendar(current, previous, __import__('datetime').datetime(2026, 10, 23, tzinfo=__import__('datetime').timezone.utc))
         self.assertEqual(merged[0]["actual"], 4.0)
         self.assertEqual(merged[0]["forecast"], 4.1)
+
+    def test_previous_wins_when_forecast_disagrees(self):
+        scored = score_event({'name': 'CPI', 'currency': 'USD', 'actual': 3, 'previous': 4, 'forecast': 2})
+        self.assertEqual(scored['bias'], 'bearish')
+        self.assertEqual(scored['comparisonKind'], 'previous')
+        self.assertEqual(score_event({'name': 'CPI', 'actual': 3, 'previous': 3, 'forecast': 2})['bias'], 'neutral')
+        self.assertEqual(score_event({'name': 'CPI', 'actual': 3, 'forecast': 2})['bias'], 'unavailable')
+
+    def test_unknown_and_text_events_are_not_guessed(self):
+        for name in ('Mystery index', 'FOMC Statement'):
+            self.assertEqual(score_event({'name': name, 'actual': 2, 'previous': 1, 'policySignal': 1})['bias'], 'unavailable')
+
+    def test_five_bullish_points_outweigh_three(self):
+        events = [score_event({'id': f'{currency}-{i}', 'name': f'CPI measure {i}', 'currency': currency,
+                  'occurredAt': '2026-10-22T00:00:00Z', 'actual': 3, 'previous': 2})
+                  for currency, count in [('EUR', 3), ('USD', 5)] for i in range(count)]
+        _, pairs = calculate_biases(events, [], '2026-10-23T00:00:00Z')
+        self.assertEqual(next(row for row in pairs if row['symbol'] == 'EURUSD')['label'], 'bearish')
+
+    def test_stale_cot_is_not_current_bias(self):
+        from datetime import datetime, timezone
+        row = {'instrument': 'USD', 'normalizedScore': 0.8, 'reportDate': '2026-01-01'}
+        self.assertIsNone(mean_cot_score([row], 'USD', datetime(2026, 10, 23, tzinfo=timezone.utc)))
+
+    def test_inventory_does_not_score_usd(self):
+        event = score_event({'name': 'Crude Oil Inventories', 'currency': 'USD', 'actual': -2, 'previous': 1})
+        self.assertNotIn('USD', event['affectedCurrencies'])
+        self.assertIn('CAD', event['affectedCurrencies'])
+
+    def test_setup_requires_coverage_and_agreement(self):
+        pair = {'symbol': 'EURUSD', 'base': 'EUR', 'quote': 'USD', 'shortTerm': {'score': 0.9, 'label': 'bullish', 'coverage': 0.1, 'eventCount': 1}}
+        analysis = build_analysis(pair, [], [], '2026-10-23T00:00:00Z')
+        self.assertEqual(build_setups([pair], [analysis], '2026-10-23T00:00:00Z'), [])
 
 
 if __name__ == "__main__":

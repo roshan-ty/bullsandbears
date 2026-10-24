@@ -2,17 +2,28 @@
 from __future__ import annotations
 
 from typing import Any
+from datetime import datetime, timezone
 
 
-def strongest_events(events: list[dict[str, Any]], currencies: set[str], limit: int = 5) -> list[dict[str, Any]]:
-    eligible = [event for event in events if event.get("currency") in currencies and event.get("signal") is not None]
+def strongest_events(events: list[dict[str, Any]], currencies: set[str], limit: int = 12, generated_at: str | None = None, horizon: str = 'shortTerm') -> list[dict[str, Any]]:
+    now = datetime.fromisoformat(generated_at.replace('Z', '+00:00')) if generated_at else datetime.now(timezone.utc)
+    latest = {}
+    for event in sorted(events, key=lambda row: str(row.get('occurredAt', ''))):
+        try:
+            date = datetime.fromisoformat(event['occurredAt'].replace('Z', '+00:00'))
+            age = (now - date).total_seconds() / 86400
+        except (KeyError, ValueError, TypeError):
+            continue
+        if currencies.intersection(event.get('affectedCurrencies', [event.get('currency')])) and event.get('signal') is not None and 0 <= age <= (30 if horizon == 'shortTerm' else 180):
+            latest[(event.get('currency'), event.get('name'))] = event
+    eligible = list(latest.values())
     return sorted(eligible, key=lambda event: abs(float(event.get("contribution", 0))), reverse=True)[:limit]
 
 
 def event_sentence(event: dict[str, Any]) -> str:
     comparison = event.get("comparisonKind") or "comparison"
     return (
-        f"{event.get('currency')} {event.get('name')} was {event.get('bias')} versus the {comparison}; "
+        f"{event.get('currency')} {event.get('name')}: actual {event.get('actual')} versus {comparison} {event.get('comparison')}, {event.get('bias')}; "
         f"its weighted contribution is {float(event.get('contribution', 0)):+.2f}."
     )
 
@@ -25,15 +36,23 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
     horizon, active = max(available, key=lambda item: abs(float(item[1].get("score", 0))))
     base, quote = str(pair.get("base", "")), str(pair.get("quote", ""))
     macro_currencies = set(pair.get("macroCurrencies") or (base, quote))
-    drivers = strongest_events(events, macro_currencies)
-    positioning = [item for item in cot if item.get("instrument") in {base, quote, pair.get("symbol")} and item.get("normalizedScore") is not None]
+    drivers = strongest_events(events, macro_currencies | {pair['symbol']}, generated_at=generated_at, horizon=horizon)
+    now = datetime.fromisoformat(generated_at.replace('Z', '+00:00'))
+    positioning = []
+    for item in cot:
+        try:
+            age = (now - datetime.fromisoformat(item['reportDate']).replace(tzinfo=timezone.utc)).days
+            if item.get('instrument') in {base, quote, pair.get('symbol')} and item.get('normalizedScore') is not None and 0 <= age <= 21:
+                positioning.append(item)
+        except (KeyError, ValueError, TypeError):
+            continue
     driver_body = " ".join(event_sentence(event) for event in drivers) or "No released event currently meets the scoring requirements."
     position_body = " ".join(
         f"{item['instrument']} {item['category']} net positioning is {float(item['net']):,.0f} contracts."
         for item in positioning[:4]
     ) or "No scoreable positioning record is currently mapped to this instrument."
     score = float(active.get("score", 0))
-    is_forex = len(base) == 3 and len(quote) == 3
+    is_forex = len(base) == 3 and len(quote) == 3 and 'macroCurrencies' not in pair
     relative = (
         f"{base} is stronger than {quote}." if is_forex and score > 0 else
         f"{quote} is stronger than {base}." if is_forex and score < 0 else
@@ -41,11 +60,21 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
         f"{pair['symbol']} has negative mapped fundamental alignment." if score < 0 else
         f"{pair['symbol']} is broadly balanced."
     )
+    driver_sections = []
+    for event in drivers:
+        effect = float(event.get('contribution', 0))
+        if is_forex and quote in event.get('affectedCurrencies', [event.get('currency')]):
+            effect *= -1
+        elif not is_forex:
+            effect *= float(pair.get('macroWeights', {}).get(event.get('currency'), 1))
+        direction = 'supports' if effect > 0 else 'weighs on' if effect < 0 else 'is neutral for'
+        driver_sections.append({'title': event['name'], 'body': event_sentence(event) + f" This {direction} {pair['symbol']}."})
     return {
         "instrument": pair["symbol"], "generatedAt": generated_at, "bias": active["label"], "score": score, "horizon": horizon,
         "sections": [
             {"title": "Relative fundamental balance", "body": f"{relative} Active {horizon} score is {score:+.2f}. Short-term and long-term readings are calculated independently."},
             {"title": "Primary economic drivers", "body": driver_body},
+            *driver_sections,
             {"title": "Positioning", "body": position_body},
             {"title": "Interpretation", "body": "The directional reading uses released calendar surprises and mapped positioning only. Market prices, yields and headlines are displayed as confirmation and are excluded from the official bias score."},
         ],
@@ -54,7 +83,16 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
 
 def build_setups(pairs: list[dict[str, Any]], analyses: list[dict[str, Any]], generated_at: str) -> list[dict[str, Any]]:
     analysed = {item["instrument"]: item for item in analyses}
-    candidates = [(pair, analysed[pair["symbol"]]) for pair in pairs if pair.get("symbol") in analysed and abs(float(analysed[pair["symbol"]].get("score", 0))) >= 0.30]
+    candidates = []
+    for pair in pairs:
+        analysis = analysed.get(pair.get('symbol'))
+        if not analysis:
+            continue
+        active = pair.get(analysis['horizon'], {})
+        short, long = pair.get('shortTerm', {}), pair.get('longTerm', {})
+        conflict = short.get('label') in {'bullish', 'bearish'} and long.get('label') in {'bullish', 'bearish'} and short['label'] != long['label']
+        if abs(float(analysis.get('score', 0))) >= 0.30 and active.get('coverage', 0) >= 0.60 and active.get('eventCount', 0) >= 3 and not conflict:
+            candidates.append((pair, analysis))
     candidates.sort(key=lambda item: abs(float(item[1]["score"])), reverse=True)
     return [
         {

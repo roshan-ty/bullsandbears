@@ -4,8 +4,8 @@ import json
 import subprocess
 from pathlib import Path
 
-NEWS_FIELDS = {'news'}
-CORE_FIELDS = {'currencies', 'pairs', 'events', 'cot', 'cotHistory', 'history', 'prices', 'analysis', 'setups'}
+NEWS_FIELDS = {'news', 'newsUpdatedAt'}
+CORE_FIELDS = {'currencies', 'pairs', 'events', 'cot', 'cotHistory', 'history', 'prices', 'analysis', 'setups', 'coreUpdatedAt'}
 
 
 def merge_snapshot(latest, collected, mode):

@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import math
+from urllib.parse import urlparse
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -34,6 +36,10 @@ def unique(records: list[dict[str, Any]], key: str, name: str) -> None:
     require(len(values) == len(set(values)), f"{name} contains duplicate {key} values.")
 
 
+def finite(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
 def validate(payload: dict[str, Any]) -> None:
     require(payload.get("schemaVersion") == 1, "Unsupported schemaVersion.")
     require(valid_time(payload.get("generatedAt"), optional=True), "generatedAt is invalid.")
@@ -58,6 +64,22 @@ def validate(payload: dict[str, Any]) -> None:
     for event in payload["events"]:
         require(event.get("bias") in LABELS, f"Invalid event bias for {event.get('id')}.")
         require(valid_time(event.get("occurredAt")), f"Invalid occurredAt for {event.get('id')}.")
+        for key in ('actual', 'previous', 'forecast'):
+            require(event.get(key) is None or finite(event[key]), f'Invalid event {key}.')
+        require(event.get('signal') in (None, -1, 0, 1), 'Invalid event signal.')
+        require(finite(event.get('contribution')), 'Invalid contribution.')
+    for row in payload['cot'] + payload.get('cotHistory', []):
+        require(valid_time(row.get('reportDate')), 'Invalid positioning date.')
+        for key in ('long', 'short', 'net'):
+            require(finite(row.get(key)), f'Invalid positioning {key}.')
+        require(row['long'] >= 0 and row['short'] >= 0, 'Negative contract count.')
+        require(abs(row['long'] - row['short'] - row['net']) < 0.001, 'Positioning net does not reconcile.')
+    for row in payload['history']:
+        require(finite(row.get('value')) and valid_time(row.get('date')), 'Invalid historical observation.')
+    for row in payload['news']:
+        url = urlparse(str(row.get('url', '')))
+        require(url.scheme in {'http', 'https'} and bool(url.netloc), 'Invalid news link.')
+        require(valid_time(row.get('publishedAt')), 'Invalid news timestamp.')
     for price in payload["prices"]:
         require(isinstance(price.get("price"), (int, float)) and price["price"] > 0, f"Invalid price for {price.get('instrument')}.")
         require(valid_time(price.get("asOf")), f"Invalid price timestamp for {price.get('instrument')}.")

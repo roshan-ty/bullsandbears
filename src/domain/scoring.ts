@@ -3,15 +3,15 @@ import { splitForexPair } from './instruments'
 
 const impactMultiplier = { low: 0.5, medium: 1, high: 1.75 } as const
 
-export function labelForScore(score: number, threshold = 0.15): BiasLabel {
+export function labelForScore(score: number, threshold = 1e-9): BiasLabel {
   if (score > threshold) return 'bullish'
   if (score < -threshold) return 'bearish'
   return 'neutral'
 }
 
 export function scoreEvent(event: EconomicEvent): ScoredEvent {
-  const comparisonKind = event.forecast !== null ? 'forecast' : event.previous !== null ? 'previous' : null
-  const comparison = comparisonKind === 'forecast' ? event.forecast : comparisonKind === 'previous' ? event.previous : null
+  const comparisonKind = event.previous !== null ? 'previous' : null
+  const comparison = event.previous
 
   if (event.actual === null || (event.direction !== 'text_policy' && comparison === null)) {
     return { ...event, comparison, comparisonKind, surprise: null, signal: null, contribution: 0, bias: 'unavailable' }
@@ -20,8 +20,8 @@ export function scoreEvent(event: EconomicEvent): ScoredEvent {
   let signal: -1 | 0 | 1 | null = null
   let surprise: number | null = comparison === null ? null : event.actual - comparison
 
-  if (event.direction === 'text_policy') {
-    signal = event.policySignal ?? null
+  if (event.direction === 'text_policy' || event.direction === 'custom') {
+    signal = null
     surprise = null
   } else if (surprise === 0) {
     signal = 0

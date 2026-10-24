@@ -1,4 +1,4 @@
-# Bulls & Bears Screener
+# Bulls & Bears Fundamentals
 
 Bulls & Bears is an educational market-research dashboard for exploring economic releases, currency strength, market positioning, historical trends, and fundamental analysis.
 
@@ -25,6 +25,53 @@ Use the instrument selector where available, switch between light and dark theme
 - A dash indicates a missing value, not zero. Scheduled releases may not yet have actual values.
 
 Always check timestamps and availability warnings. Prices are snapshots, not a live trading feed. Empty sections should not be interpreted as neutral market conditions.
+
+## Run locally
+
+Node 24 and Python 3.13+ are supported. On Windows, use `npm.cmd` if PowerShell blocks npm.ps1.
+
+```powershell
+npm.cmd ci
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+npm.cmd run dev
+```
+
+Copy `.env.example` to `.env` and set `FRED_API_KEY`. The environment file, downloads, raw archives, research evidence and virtual environment are ignored by Git. Never use a `VITE_` variable for secrets.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/pipeline.py core
+.\.venv\Scripts\python.exe scripts/pipeline.py news
+python -m unittest discover -s tests
+npm.cmd test
+npm.cmd run build
+```
+
+## GitHub operations
+
+Pages uses the `Validate and deploy Pages` workflow. The two collection schedules are `Refresh news` at minutes 3/13/23/33/43/53 and `Refresh core fundamentals` at minute 17 every six hours (UTC). A separate deployment workflow publishes their output. They run on GitHub-hosted runners with the PC off. Scheduled execution can be delayed or dropped; public repository schedules can be disabled after 60 days without repository activity. These are scheduled snapshots, not a guaranteed real-time service.
+
+The encrypted `FRED_API_KEY` repository Actions secret supplies the historical collector. Optional authorized calendar/news adapters accept JSON through the URL/key secrets shown in `.env.example`. They are not required for the default public collectors. Failed inputs retain their last validated observations. Check Actions failures and dataset timestamps; a successful build alone does not prove every feed is available.
+
+## Scoring contract
+
+The final request's **actual versus previous** rule is authoritative. Forecast remains visible but does not affect scoring. Revised previous values are used when explicitly published; the original is retained. Missing values, unknown indicator directions, speeches and policy text are unavailable, not neutral. No textual policy inference is fabricated.
+
+Known indicator directions and impact weights are in `scripts/indicator_registry.py`. Currency contributions use the most recent released observation of each named indicator within each horizon, with time decay. A fixed scale and tanh keep scores bounded while preserving differences in the number of weighted bullish/bearish points. Pair strength is base minus quote, divided by two. Horizons use 30/180-day maximum ages and 10/60-day half lives. Positioning records older than 21 days cannot score. Selected reportable trader categories contribute net contracts divided by open interest; non-reportable is not a retail classification.
+
+Setup alignment is a model magnitude, **not a probability of success**. Candidates require at least 60% input coverage, three scored releases, magnitude >= 0.30 and no opposing directional horizons. News, prices and yield history are excluded from both score calculation and driver selection. Their pipeline does not recalculate bias.
+
+## Coverage limits
+
+The watchlist contains all 81 requested markets and supports the supplied aliases. Available data does not cover every market equally. The default calendar covers the previous, current and next week, retaining observations for 180 days as they accumulate. Exotic currency rows with no validated inputs remain unavailable. Historical charts include 17 fetched macro/yield series plus collected calendar observations; this is not a complete global historical archive.
+
+The current COT collector covers TFF futures-only and disaggregated futures-only records, with a bounded annual ZIP/CSV fallback and archived position curves. It does not claim to parse every CFTC report, PDF, DOC or RAR format. Those need format-specific verified adapters. Precious metals/energy use configured USD sensitivities and positioning; crypto/index sensitivities remain heuristic and have not been statistically validated. No trade entry, stop-loss or profit target is invented.
+
+Public feed access varies. Some publishers block requests or require licensed feeds; the application does not bypass those restrictions or claim complete Bloomberg/Reuters coverage. News displays dated metadata with article links. Redistribution rights for a commercial launch need to be checked with the respective providers.
+
+Source names are omitted from dashboard labels. **A public GitHub repository exposes its collector code and endpoints, and a static site's data can be downloaded.** `.gitignore` protects untracked credentials, not source-code confidentiality. Keeping collector implementation private requires a private repository/runner arrangement and suitable Pages plan; it cannot be achieved by hiding labels in HTML.
+
+Research and verification notes: [docs/research.md](docs/research.md).
 
 ## Educational use
 

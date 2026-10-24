@@ -16,6 +16,7 @@ export interface EconomicEvent {
   direction: DirectionRule
   weight: number
   policySignal?: -1 | 0 | 1 | null
+  affectedCurrencies?: string[]
 }
 
 export interface ScoredEvent extends EconomicEvent {
@@ -72,6 +73,7 @@ export interface PairBias {
   updatedAt: string | null
   rationale: string[]
   macroCurrencies?: string[]
+  macroWeights?: Record<string, number>
   shortTerm: HorizonBias
   longTerm: HorizonBias
 }
@@ -138,6 +140,8 @@ export interface FeedHealth {
 export interface DashboardSnapshot {
   schemaVersion: number
   generatedAt: string | null
+  coreUpdatedAt?: string | null
+  newsUpdatedAt?: string | null
   currencies: CurrencyBias[]
   pairs: PairBias[]
   events: ScoredEvent[]

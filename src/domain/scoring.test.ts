@@ -9,9 +9,9 @@ const event = (overrides: Partial<EconomicEvent> = {}): EconomicEvent => ({
 })
 
 describe('scoreEvent', () => {
-  it('uses forecast before previous and scores a positive surprise bullish', () => {
+  it('compares actual to previous even when forecast exists', () => {
     const result = scoreEvent(event())
-    expect(result.comparisonKind).toBe('forecast')
+    expect(result.comparisonKind).toBe('previous')
     expect(result.signal).toBe(1)
     expect(result.bias).toBe('bullish')
   })
@@ -23,12 +23,12 @@ describe('scoreEvent', () => {
   })
 
   it('reverses lower-is-bullish indicators', () => {
-    const result = scoreEvent(event({ actual: 3.9, forecast: 4.1, direction: 'lower_is_bullish' }))
+    const result = scoreEvent(event({ actual: 3.9, forecast: 3.8, previous: 4.1, direction: 'lower_is_bullish' }))
     expect(result.bias).toBe('bullish')
   })
 
   it('is neutral when actual equals the comparison value', () => {
-    expect(scoreEvent(event({ actual: 180 })).bias).toBe('neutral')
+    expect(scoreEvent(event({ actual: 170 })).bias).toBe('neutral')
   })
 
   it('does not infer text policy without a validated signal', () => {

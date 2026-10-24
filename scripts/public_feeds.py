@@ -49,14 +49,9 @@ TAG_RULES = {
 
 
 def request_bytes(url: str, accept: str) -> bytes:
-    from scrapling.fetchers import Fetcher
-
-    response = Fetcher.get(url, headers={"User-Agent": USER_AGENT, "Accept": accept},
-                           stealthy_headers=False, timeout=25, retries=1,
-                           impersonate=None)
-    if response.status != 200:
-        raise ValueError(f"Source HTTP status {response.status}")
-    body = response.body
+    request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT, 'Accept': accept})
+    with urllib.request.urlopen(request, timeout=25) as response:
+        body = response.read(8_000_001)
     if len(body) > 8_000_000:
         raise ValueError("Source response exceeds 8 MB limit")
     return body
@@ -92,7 +87,7 @@ def canonical_url(value: str) -> str:
     return urllib.parse.urlunsplit((parsed.scheme.lower(), host, path, query, ""))
 
 
-def fetch_public_calendar() -> list[dict[str, Any]]:
+def fetch_calendar_schedule() -> list[dict[str, Any]]:
     payload = json.loads(request_bytes(FOREX_CALENDAR_URL, "application/json").decode("utf-8"))
     output: list[dict[str, Any]] = []
     for row in payload if isinstance(payload, list) else []:
@@ -112,6 +107,50 @@ def fetch_public_calendar() -> list[dict[str, Any]]:
             "previous": number(row.get("previous")), "unit": "%" if "%" in "".join(str(row.get(key) or "") for key in ("actual", "forecast", "previous")) else None,
         })
     return output
+
+
+def parse_calendar_page(document: str) -> list[dict[str, Any]]:
+    """Read the page's JSON event array without evaluating JavaScript."""
+    marker = document.find('window.calendarComponentStates[')
+    if marker < 0:
+        raise ValueError('Calendar event state is unavailable')
+    tail = document[marker:]
+    match = re.search(r'\bdays:\s*', tail)
+    if not match:
+        raise ValueError('Calendar event array is unavailable')
+    days, _ = json.JSONDecoder().raw_decode(tail[match.end():])
+    output = []
+    for day in days:
+        for row in day.get('events', []):
+            currency, title = str(row.get('currency', '')).upper(), clean_text(row.get('name'))
+            if len(currency) != 3 or not title or not row.get('dateline'):
+                continue
+            occurred = datetime.fromtimestamp(int(row['dateline']), timezone.utc).isoformat().replace('+00:00', 'Z')
+            previous = row.get('revision') or row.get('previous')
+            output.append({
+                'id': stable_id(currency, title, occurred), 'occurredAt': occurred,
+                'currency': currency, 'name': title, 'impact': row.get('impactName', 'low'),
+                'actual': number(row.get('actual')), 'forecast': number(row.get('forecast')),
+                'previous': number(previous), 'originalPrevious': number(row.get('previous')),
+                'unit': '%' if '%' in ''.join(str(row.get(key) or '') for key in ('actual', 'forecast', 'previous')) else None,
+            })
+    return output
+
+
+def fetch_public_calendar() -> list[dict[str, Any]]:
+    collected = []
+    # One normal request per week window. Never bypass a denied/challenged page.
+    for week in ('last', 'this', 'next'):
+        try:
+            page = request_bytes(f'https://www.forexfactory.com/calendar?week={week}', 'text/html').decode('utf-8')
+            collected.extend(parse_calendar_page(page))
+        except Exception as error:
+            logging.warning('Calendar %s window: %s', week, type(error).__name__)
+    if not collected:
+        collected = fetch_calendar_schedule()
+    if not collected:
+        raise ValueError('No calendar records returned')
+    return list({row['id']: row for row in collected}.values())
 
 
 def clean_text(value: Any) -> str:

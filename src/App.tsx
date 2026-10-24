@@ -9,7 +9,7 @@ import { formatTime, readTheme, saveTheme } from './lib/presentation'
 const tabs = ['Home', 'Data', 'Bias', 'CFTC', 'Historical Data', 'Analysis', 'Top Setups', 'Economic Calendar', 'News'] as const
 type Tab = (typeof tabs)[number]
 
-const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value.toFixed(2)}`
+const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value !== 0 && Math.abs(value) < 0.005 ? value.toPrecision(2) : value.toFixed(2)}`
 const formatNumber = (value: number) => new Intl.NumberFormat(undefined, { maximumFractionDigits: value < 10 ? 4 : 2 }).format(value)
 const eventValue = (value: number | null, unit: string | null) => value === null ? '—' : `${new Intl.NumberFormat('en', { notation: Math.abs(value) >= 10_000 ? 'compact' : 'standard', maximumFractionDigits: 3 }).format(value)}${unit === '%' ? '%' : ''}`
 

@@ -347,10 +347,15 @@ def pair_horizon(base: dict[str, Any], quote: dict[str, Any], generated_at: str)
 
 
 def merge_calendar(current: list[dict[str, Any]], previous: list[dict[str, Any]], now: datetime) -> list[dict[str, Any]]:
-    merged = {str(item.get("id")): item for item in previous if item.get("id")}
-    for item in current:
-        prior = merged.get(str(item.get("id")), {})
-        merged[str(item["id"])] = {**prior, **{key: value for key, value in item.items() if value is not None}}
+    merged = {}
+    for item in [*previous, *current]:
+        if not item.get('id'):
+            continue
+        # Different feeds and currency casing can assign different IDs to the
+        # same release. Preserve one observation and its last non-null actual.
+        key = (str(item['currency']).upper(), str(item['name']).strip(), item.get('occurredAt')) if item.get('currency') and item.get('name') else item['id']
+        prior = merged.get(key, {})
+        merged[key] = {**prior, **{field: value for field, value in item.items() if value is not None}}
     cutoff = now.timestamp() - 180 * 86400
     return [item for item in merged.values() if (occurred := parse_event_time(item.get("occurredAt"))) is not None and occurred.timestamp() >= cutoff]
 

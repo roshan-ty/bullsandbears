@@ -53,6 +53,12 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(merged[0]["actual"], 4.0)
         self.assertEqual(merged[0]["forecast"], 4.1)
 
+    def test_calendar_identity_deduplicates_casing_and_provider_ids(self):
+        from datetime import datetime, timezone
+        old = {'id': 'a', 'currency': 'All', 'name': 'IMF Meetings', 'occurredAt': '2026-10-20T00:00:00Z'}
+        new = {**old, 'id': 'b', 'currency': 'ALL'}
+        self.assertEqual(len(merge_calendar([new], [old], datetime(2026, 10, 24, tzinfo=timezone.utc))), 1)
+
     def test_previous_wins_when_forecast_disagrees(self):
         scored = score_event({'name': 'CPI', 'currency': 'USD', 'actual': 3, 'previous': 4, 'forecast': 2})
         self.assertEqual(scored['bias'], 'bearish')

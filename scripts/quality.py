@@ -17,7 +17,7 @@ def archive_positions(current, previous, now):
         try:
             date = datetime.fromisoformat(row['reportDate']).replace(tzinfo=timezone.utc)
             if cutoff <= date.timestamp() <= now.timestamp():
-                archive[(row['marketId'], row['category'], row['reportDate'])] = row
+                archive[(row.get('reportFamily', 'unknown'), row['marketId'], row['category'], row['reportDate'])] = row
         except (KeyError, ValueError, TypeError):
             continue
     return sorted(archive.values(), key=lambda row: row['reportDate'], reverse=True)

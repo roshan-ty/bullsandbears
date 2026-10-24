@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import ReactECharts from 'echarts-for-react'
+import ReactECharts from './ChartRenderer'
 import type { DashboardSnapshot } from '../domain/types'
 import { Empty, HistoryChart } from './Chart'
+
+import { reportFamilies } from '../domain/reportFamilies'
 
 export function HistoryExplorer({ points }: { points: DashboardSnapshot['history'] }) {
   const series = [...new Map(points.map((point) => [point.seriesId, point])).values()]
@@ -36,15 +38,20 @@ export function StrengthChart({ snapshot }: { snapshot: DashboardSnapshot }) {
 }
 
 export function PositionChart({ rows, history = [] }: { rows: DashboardSnapshot['cot']; history?: DashboardSnapshot['cot'] }) {
-  const symbols = [...new Set(rows.map((row) => row.instrument))].sort()
+  const families = [...new Set(rows.map((row) => row.reportFamily ?? 'tff'))]
+  const [chosenFamily, setChosenFamily] = useState('tff')
+  const family = families.includes(chosenFamily) ? chosenFamily : families[0]
+  const familyRows = rows.filter((row) => (row.reportFamily ?? 'tff') === family)
+  const symbols = [...new Set(familyRows.map((row) => row.instrument))].sort()
   const [selected, setSelected] = useState('')
   const active = symbols.includes(selected) ? selected : symbols[0]
   if (!active) return <Empty message="No positioning observations are available." />
-  const filtered = rows.filter((row) => row.instrument === active)
-  const historical = history.filter((row) => row.instrument === active)
+  const filtered = familyRows.filter((row) => row.instrument === active)
+  const historical = history.filter((row) => row.instrument === active && (row.reportFamily ?? 'tff') === family)
+  const netByDate = new Map(historical.map((row) => [`${row.marketId} · ${row.category}|${row.reportDate}`, row.net]))
   const dates = [...new Set(historical.map((row) => row.reportDate))].sort()
   const categories = [...new Set(historical.map((row) => `${row.marketId} · ${row.category}`))]
-  return <section className="stack"><div className="page-head"><h2>Long and short exposure</h2><select aria-label="Positioning instrument" value={active} onChange={(event) => setSelected(event.target.value)}>{symbols.map((symbol) => <option key={symbol}>{symbol}</option>)}</select></div>
+  return <section className="stack"><div className="page-head"><h2>Long and short exposure</h2>{families.length > 1 && <select aria-label="Chart report family" value={family} onChange={(event) => setChosenFamily(event.target.value)}>{families.map((key) => <option key={key} value={key}>{reportFamilies[key] ?? key}</option>)}</select>}<select aria-label="Positioning instrument" value={active} onChange={(event) => setSelected(event.target.value)}>{symbols.map((symbol) => <option key={symbol}>{symbol}</option>)}</select></div>
     <p className="muted">Contracts by reported category. Non-reportable positions are not a direct measure of retail traders.</p>
     <ReactECharts style={{ height: 360 }} option={{ tooltip: { trigger: 'axis' }, legend: { textStyle: { color: '#8993a3' } }, grid: { left: 70, right: 30, bottom: 100 },
       xAxis: { type: 'category', data: filtered.map((row) => `${row.category} · ${row.marketId}`), axisLabel: { color: '#8993a3', rotate: 25 } },
@@ -61,7 +68,7 @@ export function PositionChart({ rows, history = [] }: { rows: DashboardSnapshot[
       yAxis: { type: 'value', axisLabel: { color: '#8993a3' } },
       dataZoom: [{ type: 'inside' }, { type: 'slider', bottom: 0 }],
       series: categories.map((category) => ({ name: category, type: 'line', connectNulls: false,
-        data: dates.map((date) => historical.find((row) => `${row.marketId} · ${row.category}` === category && row.reportDate === date)?.net ?? null),
+        data: dates.map((date) => netByDate.get(`${category}|${date}`) ?? null),
       })),
     }} />}
   </section>

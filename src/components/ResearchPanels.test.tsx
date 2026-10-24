@@ -3,7 +3,7 @@ import { afterEach, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { HistoryExplorer, PositionChart } from './ResearchPanels'
 
-vi.mock('echarts-for-react', () => ({ default: () => <div data-testid="chart">Chart</div> }))
+vi.mock('./ChartRenderer', () => ({ default: () => <div data-testid="chart">Chart</div> }))
 afterEach(cleanup)
 
 it('makes available history discoverable without a matching currency selection', () => {

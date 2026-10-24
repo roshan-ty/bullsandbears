@@ -14,20 +14,21 @@ class IndicatorRule:
 
 
 COMMON_RULES = (
+    IndicatorRule('inflation-expectations', ('inflation expectations',), 'custom', 0.5, 'low'),
     IndicatorRule("policy-rate", ("interest rate", "bank rate", "cash rate", "policy rate", "overnight rate", "refinancing rate", "loan prime rate", "federal funds rate", "official cash rate"), "higher_is_bullish", 1.50, "high"),
     IndicatorRule("policy-communication", ("rate statement", "monetary policy statement", "policy assessment", "press conference", "fomc statement"), "text_policy", 1.45, "high"),
     IndicatorRule("employment-change", ("employment change", "non-farm employment", "nonfarm employment", "adp non-farm"), "higher_is_bullish", 1.35, "high"),
-    IndicatorRule("unemployment-rate", ("unemployment rate",), "lower_is_bullish", 1.30, "high"),
+    IndicatorRule("unemployment-rate", ("unemployment rate", "unemployment (mom)", "jobless rate"), "lower_is_bullish", 1.30, "high"),
     IndicatorRule("jobless-claims", ("unemployment claims", "jobless claims", "claimant count change"), "lower_is_bullish", 1.05, "medium"),
-    IndicatorRule("wages", ("average hourly earnings", "average earnings", "average cash earnings", "wage price index"), "higher_is_bullish", 1.15, "high"),
-    IndicatorRule("core-inflation", ("core cpi", "core pce", "trimmed mean cpi", "median cpi", "core ppi"), "higher_is_bullish", 1.30, "high"),
-    IndicatorRule("inflation", ("cpi", "consumer price index", "ppi", "producer price index", "pce price"), "higher_is_bullish", 1.20, "high"),
+    IndicatorRule("wages", ("average hourly earnings", "average earnings", "average cash earnings", "wage price index", "corporate sector wages"), "higher_is_bullish", 1.15, "high"),
+    IndicatorRule("core-inflation", ("core cpi", "core pce", "trimmed mean cpi", "median cpi", "core ppi", "core inflation"), "higher_is_bullish", 1.30, "high"),
+    IndicatorRule("inflation", ("cpi", "consumer price index", "ppi", "producer price index", "pce price", "inflation", "personal consumption expenditures - price"), "higher_is_bullish", 1.20, "high"),
     IndicatorRule("gdp", ("gdp", "gross domestic product"), "higher_is_bullish", 1.25, "high"),
     IndicatorRule("manufacturing-pmi", ("manufacturing pmi", "manufacturing index", "tankan large manufacturers"), "higher_is_bullish", 1.00, "medium"),
     IndicatorRule("services-pmi", ("services pmi", "non-manufacturing pmi"), "higher_is_bullish", 1.00, "medium"),
-    IndicatorRule("business-sentiment", ("ifo business climate", "zew economic sentiment", "kof economic barometer", "consumer confidence", "consumer sentiment"), "higher_is_bullish", 0.80, "medium"),
+    IndicatorRule("business-sentiment", ("ifo business climate", "zew economic sentiment", "kof economic barometer", "consumer confidence", "consumer sentiment", "business confidence", "industrial outlook", "manufacturing confidence"), "higher_is_bullish", 0.80, "medium"),
     IndicatorRule("retail-sales", ("retail sales",), "higher_is_bullish", 0.95, "medium"),
-    IndicatorRule("industrial-production", ("industrial production",), "higher_is_bullish", 0.85, "medium"),
+    IndicatorRule("industrial-production", ("industrial production", "industrial output"), "higher_is_bullish", 0.85, "medium"),
     IndicatorRule("housing", ("building permits", "housing starts"), "higher_is_bullish", 0.65, "medium"),
     IndicatorRule("trade-balance", ("trade balance",), "higher_is_bullish", 0.75, "medium"),
     IndicatorRule("exports", ("exports",), "higher_is_bullish", 0.65, "medium"),
@@ -70,10 +71,10 @@ def normalize_calendar_event(event: dict) -> dict:
     # energy and CAD; retain the release currency for calendar display.
     normalized["affectedCurrencies"] = (
         ["CAD", "OIL", "BRENT"] if rule.indicator_id == "oil-inventories" else
-        ["CNY", "AUD", "NZD"] if event.get("currency") == "CNY" and rule.indicator_id in
+        ["CNY", "AUD", "NZD"] if normalized["currency"] == "CNY" and rule.indicator_id in
         {"manufacturing-pmi", "inflation", "industrial-production", "gdp", "imports"} else
-        [str(event.get("currency", ""))]
+        [normalized["currency"]]
     )
-    if rule.indicator_id == "foreign-reserves" and event.get("currency") == "CHF":
+    if rule.indicator_id == "foreign-reserves" and normalized["currency"] == "CHF":
         normalized["direction"] = "lower_is_bullish"
     return normalized

@@ -3,6 +3,10 @@ from __future__ import annotations
 
 from typing import Any
 from datetime import datetime, timezone
+try:
+    from .asset_models import asset_events, model_note
+except ImportError:
+    from asset_models import asset_events, model_note
 
 
 def strongest_events(events: list[dict[str, Any]], currencies: set[str], limit: int = 12, generated_at: str | None = None, horizon: str = 'shortTerm') -> list[dict[str, Any]]:
@@ -15,7 +19,7 @@ def strongest_events(events: list[dict[str, Any]], currencies: set[str], limit: 
         except (KeyError, ValueError, TypeError):
             continue
         if currencies.intersection(event.get('affectedCurrencies', [event.get('currency')])) and event.get('signal') is not None and 0 <= age <= (30 if horizon == 'shortTerm' else 180):
-            latest[(event.get('currency'), event.get('name'))] = event
+            latest[(event.get('currency'), event.get('seriesKey') or event.get('name'))] = event
     eligible = list(latest.values())
     return sorted(eligible, key=lambda event: abs(float(event.get("contribution", 0))), reverse=True)[:limit]
 
@@ -36,13 +40,15 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
     horizon, active = max(available, key=lambda item: abs(float(item[1].get("score", 0))))
     base, quote = str(pair.get("base", "")), str(pair.get("quote", ""))
     macro_currencies = set(pair.get("macroCurrencies") or (base, quote))
-    drivers = strongest_events(events, macro_currencies | {pair['symbol']}, generated_at=generated_at, horizon=horizon)
+    model_events = asset_events(pair['symbol'], events, pair.get('macroWeights', {})) if pair.get('modelVersion') else events
+    drivers = strongest_events(model_events, macro_currencies | {pair['symbol']}, generated_at=generated_at, horizon=horizon)
     now = datetime.fromisoformat(generated_at.replace('Z', '+00:00'))
     positioning = []
+    position_symbols = {pair['symbol']} if pair.get('modelVersion') else {base, quote, pair.get('symbol')}
     for item in cot:
         try:
             age = (now - datetime.fromisoformat(item['reportDate']).replace(tzinfo=timezone.utc)).days
-            if item.get('instrument') in {base, quote, pair.get('symbol')} and item.get('normalizedScore') is not None and 0 <= age <= 21:
+            if item.get('instrument') in position_symbols and item.get('normalizedScore') is not None and 0 <= age <= 21:
                 positioning.append(item)
         except (KeyError, ValueError, TypeError):
             continue
@@ -65,18 +71,19 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
         effect = float(event.get('contribution', 0))
         if is_forex and quote in event.get('affectedCurrencies', [event.get('currency')]):
             effect *= -1
-        elif not is_forex:
+        elif not is_forex and not pair.get('modelVersion'):
             effect *= float(pair.get('macroWeights', {}).get(event.get('currency'), 1))
         direction = 'supports' if effect > 0 else 'weighs on' if effect < 0 else 'is neutral for'
         driver_sections.append({'title': event['name'], 'body': event_sentence(event) + f" This {direction} {pair['symbol']}."})
     return {
         "instrument": pair["symbol"], "generatedAt": generated_at, "bias": active["label"], "score": score, "horizon": horizon,
         "sections": [
+            *([{'title': 'Model scope', 'body': model_note(pair['symbol'], bool(positioning))}] if pair.get('modelVersion') else []),
             {"title": "Relative fundamental balance", "body": f"{relative} Active {horizon} score is {score:+.2f}. Short-term and long-term readings are calculated independently."},
             {"title": "Primary economic drivers", "body": driver_body},
             *driver_sections,
             {"title": "Positioning", "body": position_body},
-            {"title": "Interpretation", "body": "The directional reading uses released calendar surprises and mapped positioning only. Market prices, yields and headlines are displayed as confirmation and are excluded from the official bias score."},
+            {"title": "Interpretation", "body": "The directional reading uses released actual-versus-previous changes and mapped positioning only. Market prices, yields and headlines are displayed as confirmation and are excluded from the official bias score."},
         ],
     }
 

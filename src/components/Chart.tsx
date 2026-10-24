@@ -1,4 +1,4 @@
-import ReactECharts from 'echarts-for-react'
+import ReactECharts from './ChartRenderer'
 import type { HistoricalPoint } from '../domain/types'
 
 export function HistoryChart({ points }: { points: HistoricalPoint[] }) {

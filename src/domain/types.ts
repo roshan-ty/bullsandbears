@@ -15,6 +15,7 @@ export interface EconomicEvent {
   unit: string | null
   direction: DirectionRule
   weight: number
+  seriesKey?: string
   policySignal?: -1 | 0 | 1 | null
   affectedCurrencies?: string[]
 }
@@ -29,6 +30,8 @@ export interface ScoredEvent extends EconomicEvent {
 }
 
 export interface CotPosition {
+  reportFamily?: string
+  marketName?: string
   marketId: string
   instrument: string
   reportDate: string
@@ -72,6 +75,8 @@ export interface PairBias {
   label: BiasLabel
   updatedAt: string | null
   rationale: string[]
+  modelScope?: string
+  modelVersion?: string
   macroCurrencies?: string[]
   macroWeights?: Record<string, number>
   shortTerm: HorizonBias
@@ -97,6 +102,8 @@ export interface HistoricalPoint {
 }
 
 export interface MarketPrice {
+  priceKind?: string
+  priceUnit?: string | null
   instrument: string
   price: number
   previousClose: number | null

@@ -17,6 +17,8 @@ from typing import Any
 
 try:
     from scripts.report_archives import fetch_annual_report
+    from scripts.global_calendar import fetch_global_calendar
+    from scripts.asset_models import asset_events, macro_weights as asset_macro_weights, model_note, CRYPTO
     from scripts.runtime import load_env, safe_error
     from scripts.analysis_engine import build_analysis, build_setups
     from scripts.indicator_registry import normalize_calendar_event
@@ -25,6 +27,8 @@ try:
     from scripts.quality import calendar_health, archive_positions, observation_health
 except ModuleNotFoundError:
     from report_archives import fetch_annual_report
+    from global_calendar import fetch_global_calendar
+    from asset_models import asset_events, macro_weights as asset_macro_weights, model_note, CRYPTO
     from runtime import load_env, safe_error
     from analysis_engine import build_analysis, build_setups
     from indicator_registry import normalize_calendar_event
@@ -87,6 +91,8 @@ FRED_SERIES = {
 CFTC_DATASETS = {
     "tff": "gpe5-46if",
     "disaggregated": "72hh-3qpy",
+    "tff-combined": "yw9f-hn96", "disaggregated-combined": "kh3c-gbw2",
+    "legacy": "6dca-aqww", "legacy-combined": "jun7-fc8e", "supplemental": "4zgm-a668",
 }
 
 CFTC_MARKETS = {
@@ -96,6 +102,7 @@ CFTC_MARKETS = {
     "CRUDE OIL": "OIL", "BRENT": "BRENT", "BITCOIN": "BTCUSD", "ETHER": "ETHUSD",
     "S&P 500": "US500", "NASDAQ-100": "US100", "DOW JONES": "US30",
     "PLATINUM": "XPTUSD", "PALLADIUM": "XPDUSD",
+    "SOLANA": "SOLUSD", "XRP": "XRPUSD", "SWEDISH KRONA": "SEK", "NORWEGIAN KRONE": "NOK", "SOUTH AFRICAN RAND": "ZAR",
     "USD INDEX": "USD", "NZ DOLLAR": "NZD", "MEXICAN PESO": "MXN", "BRAZILIAN REAL": "BRL", "DJIA": "US30",
 }
 
@@ -178,8 +185,20 @@ def market_symbol(name: str) -> str | None:
 
 
 def fetch_cftc_dataset(dataset_id: str) -> list[dict[str, Any]]:
-    query = urllib.parse.urlencode({"$limit": "5000", "$order": "report_date_as_yyyy_mm_dd DESC"})
-    return request_json(f"https://publicreporting.cftc.gov/resource/{dataset_id}.json?{query}")
+    from datetime import timedelta
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=100)).date().isoformat()
+    collected = []
+    for offset in range(0, 30000, 5000):
+        query = urllib.parse.urlencode({"$limit": "5000", "$offset": offset,
+            "$where": f"report_date_as_yyyy_mm_dd >= '{cutoff}T00:00:00'",
+            "$order": "report_date_as_yyyy_mm_dd DESC, cftc_contract_market_code ASC"})
+        rows = request_json(f"https://publicreporting.cftc.gov/resource/{dataset_id}.json?{query}")
+        if not isinstance(rows, list):
+            raise ValueError('Invalid positioning response')
+        collected.extend({key.lower(): value for key, value in row.items()} for row in rows)
+        if len(rows) < 5000:
+            return collected
+    raise ValueError('Positioning pagination exceeded bounded record limit')
 
 
 def append_position(output: list[dict[str, Any]], row: dict[str, Any], instrument: str, category: str, long_keys: tuple[str, ...], short_keys: tuple[str, ...], spread_keys: tuple[str, ...] = ()) -> None:
@@ -188,6 +207,7 @@ def append_position(output: list[dict[str, Any]], row: dict[str, Any], instrumen
         return
     spread = first_number(row, *spread_keys) if spread_keys else None
     output.append({
+        "reportFamily": row.get("_family", "tff"),
         "marketId": str(row.get("cftc_contract_market_code") or row.get("id") or instrument),
         "marketName": str(row.get('market_and_exchange_names') or row.get('contract_market_name') or instrument),
         "instrument": instrument,
@@ -205,44 +225,106 @@ def append_position(output: list[dict[str, Any]], row: dict[str, Any], instrumen
 
 def fetch_cftc() -> list[dict[str, Any]]:
     historical_positions: list[dict[str, Any]] = []
-    for family, dataset_id in CFTC_DATASETS.items():
+    old = existing_snapshot().get('cot', [])
+    # Migrate the original two-family snapshot before partial-failure retention.
+    commodity_instruments = {'XAUUSD', 'XAGUSD', 'XPTUSD', 'XPDUSD', 'OIL', 'BRENT', 'COPPER'}
+    for row in old:
+        row.setdefault('reportFamily', 'disaggregated' if row.get('instrument') in commodity_instruments else 'tff')
+    retained = []
+    family_health = []
+    attempted = utc_now()
+    from concurrent.futures import ThreadPoolExecutor
+    def collect_family(family):
         try:
-            rows = fetch_cftc_dataset(dataset_id)
+            return fetch_cftc_dataset(CFTC_DATASETS[family])
         except Exception:
-            rows = fetch_annual_report(family)
+            return fetch_annual_report(family)
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        futures = {family: pool.submit(collect_family, family) for family in CFTC_DATASETS}
+    for family, future in futures.items():
+        try:
+            rows = future.result()
+            if not rows:
+                raise ValueError('Empty positioning report')
+            latest_date = max(str(row.get('report_date_as_yyyy_mm_dd', ''))[:10] for row in rows)
+            recent = parse_event_time(latest_date)
+            fresh = recent is not None and 0 <= (datetime.now(timezone.utc) - recent).total_seconds() <= 21 * 86400
+            family_health.append({'feed': 'positioning-' + family, 'status': 'healthy' if fresh else 'degraded',
+                'lastAttemptAt': attempted, 'lastSuccessAt': attempted,
+                'staleAfterHours': 24, 'itemCount': len(rows), 'message': 'Latest report date: ' + latest_date})
+        except Exception as error:
+            retained.extend(row for row in old if row.get('reportFamily') == family)
+            family_health.append({'feed': 'positioning-' + family, 'status': 'degraded',
+                'lastAttemptAt': attempted, 'lastSuccessAt': None,
+                'staleAfterHours': 24, 'itemCount': 0, 'message': safe_error(error)})
+            continue
         for row in rows:
+            row["_family"] = family
             instrument = market_symbol(str(row.get("market_and_exchange_names") or row.get("contract_market_name") or ""))
+            if not instrument and family == 'supplemental':
+                instrument = str(row.get('contract_market_name') or row.get('market_and_exchange_names'))
             if not instrument:
                 continue
-            if family == "tff":
+            if family.startswith("tff"):
                 append_position(historical_positions, row, instrument, "Dealer", ("dealer_positions_long", "dealer_positions_long_all"), ("dealer_positions_short", "dealer_positions_short_all"), ("dealer_positions_spread", "dealer_positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Asset Manager", ("asset_mgr_positions_long", "asset_mgr_positions_long_all"), ("asset_mgr_positions_short", "asset_mgr_positions_short_all"), ("asset_mgr_positions_spread", "asset_mgr_positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Leveraged Money", ("lev_money_positions_long", "lev_money_positions_long_all"), ("lev_money_positions_short", "lev_money_positions_short_all"), ("lev_money_positions_spread", "lev_money_positions_spread_all"))
-                append_position(historical_positions, row, instrument, "Other Reportable", ("other_rept_positions_long", "other_rept_positions_long_all"), ("other_rept_positions_short", "other_rept_positions_short_all"))
+                append_position(historical_positions, row, instrument, "Other Reportable", ("other_rept_positions_long", "other_rept_positions_long_all"), ("other_rept_positions_short", "other_rept_positions_short_all"), ("other_rept_positions_spread", "other_rept_positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Non-reportable", ("nonrept_positions_long", "nonrept_positions_long_all"), ("nonrept_positions_short", "nonrept_positions_short_all"))
-            else:
+            elif family.startswith("disaggregated"):
                 append_position(historical_positions, row, instrument, "Producer/Merchant", ("prod_merc_positions_long", "prod_merc_positions_long_all"), ("prod_merc_positions_short", "prod_merc_positions_short_all"))
                 append_position(historical_positions, row, instrument, "Swap Dealer", ("swap_positions_long", "swap_positions_long_all"), ("swap_positions_short", "swap_positions_short_all", "swap__positions_short_all"), ("swap_positions_spread", "swap_positions_spread_all", "swap__positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Managed Money", ("m_money_positions_long", "m_money_positions_long_all"), ("m_money_positions_short", "m_money_positions_short_all"), ("m_money_positions_spread", "m_money_positions_spread_all"))
-                append_position(historical_positions, row, instrument, "Other Reportable", ("other_rept_positions_long", "other_rept_positions_long_all"), ("other_rept_positions_short", "other_rept_positions_short_all"))
+                append_position(historical_positions, row, instrument, "Other Reportable", ("other_rept_positions_long", "other_rept_positions_long_all"), ("other_rept_positions_short", "other_rept_positions_short_all"), ("other_rept_positions_spread", "other_rept_positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Non-reportable", ("nonrept_positions_long", "nonrept_positions_long_all"), ("nonrept_positions_short", "nonrept_positions_short_all"))
+            elif family.startswith('legacy'):
+                append_position(historical_positions, row, instrument, 'Non-commercial', ('noncomm_positions_long_all',), ('noncomm_positions_short_all',), ('noncomm_postions_spread_all', 'noncomm_positions_spread_all'))
+                append_position(historical_positions, row, instrument, 'Commercial', ('comm_positions_long_all',), ('comm_positions_short_all',))
+                append_position(historical_positions, row, instrument, 'Non-reportable', ('nonrept_positions_long_all',), ('nonrept_positions_short_all',))
+            elif family == 'supplemental':
+                append_position(historical_positions, row, instrument, 'Non-commercial ex CIT', ('ncomm_postions_long_all_nocit', 'noncommercial_positions_long_all_nocit'), ('ncomm_postions_short_all_nocit', 'noncommercial_positions_short_all_nocit'), ('ncomm_postions_spread_all_nocit',))
+                append_position(historical_positions, row, instrument, 'Commercial ex CIT', ('comm_positions_long_all_nocit',), ('comm_positions_short_all_nocit',))
+                append_position(historical_positions, row, instrument, 'Index Traders', ('cit_positions_long_all',), ('cit_positions_short_all',))
+                append_position(historical_positions, row, instrument, 'Non-reportable', ('nonrept_positions_long_all',), ('nonrept_positions_short_all',))
     grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
     for position in historical_positions:
-        grouped.setdefault((position["marketId"], position["category"]), []).append(position)
+        grouped.setdefault((position["reportFamily"], position["marketId"], position["category"]), []).append(position)
     positions: list[dict[str, Any]] = []
     for records in grouped.values():
         ordered = sorted(records, key=lambda item: item["reportDate"], reverse=True)
         latest = ordered[0]
-        latest["weeklyNetChange"] = latest["net"] - ordered[1]["net"] if len(ordered) > 1 else None
+        # A gap is not a one-week change.
+        weekly = len(ordered) > 1 and (datetime.fromisoformat(latest['reportDate']) - datetime.fromisoformat(ordered[1]['reportDate'])).days == 7
+        latest["weeklyNetChange"] = latest["net"] - ordered[1]["net"] if weekly else None
         positions.append(latest)
-    scoreable_categories = {"Asset Manager", "Leveraged Money", "Managed Money"}
-    for position in positions:
-        open_interest = position.get("openInterest")
-        if position["category"] in scoreable_categories and open_interest and open_interest > 0:
-            position["normalizedScore"] = max(-1.0, min(1.0, position["net"] / open_interest))
+    positions.extend(retained)
+    assign_position_scores(positions)
+    atomic_json(STAGING / 'cot-health.json', family_health)
     atomic_json(STAGING / "cftc.json", positions)
     atomic_json(STAGING / 'cot-history.json', historical_positions)
     return positions
+
+
+def assign_position_scores(positions):
+    """One family and liquid contract per instrument; overlapping reports are display-only."""
+    priority = {'tff': 0, 'disaggregated': 0, 'legacy': 1}
+    selected = {}
+    now = datetime.now(timezone.utc)
+    for row in positions:
+        row['normalizedScore'] = None
+        family = row.get('reportFamily')
+        date = parse_event_time(row.get('reportDate'))
+        if family not in priority or not row.get('openInterest') or date is None or not 0 <= (now - date).total_seconds() <= 21 * 86400:
+            continue
+        candidate = (priority[family], -float(row['openInterest']), row['marketId'])
+        if row['instrument'] not in selected or candidate < selected[row['instrument']][0]:
+            selected[row['instrument']] = (candidate, family, row['marketId'])
+    categories = {'tff': {'Asset Manager', 'Leveraged Money'},
+                  'disaggregated': {'Managed Money'}, 'legacy': {'Non-commercial'}}
+    for row in positions:
+        choice = selected.get(row['instrument'])
+        if choice and (row.get('reportFamily'), row['marketId']) == choice[1:] and row['category'] in categories[choice[1]]:
+            row['normalizedScore'] = max(-1.0, min(1.0, row['net'] / row['openInterest']))
 
 
 def fetch_authorized_json(url_env: str, key_env: str, output_name: str) -> list[dict[str, Any]]:
@@ -320,7 +402,7 @@ def horizon_bias(events: list[dict[str, Any]], cot_value: float | None, now: dat
     latest = {}
     for item in sorted(events, key=lambda row: str(row.get('occurredAt', ''))):
         if item.get('signal') is not None and recency_factor(item, now, config['halfLifeDays'], config['maxAgeDays']) > 0:
-            latest[(item.get('currency'), item.get('name'))] = item
+            latest[(item.get('currency'), item.get('seriesKey') or item.get('name'))] = item
     eligible = [(item, recency_factor(item, now, config["halfLifeDays"], config["maxAgeDays"])) for item in latest.values()]
     eligible = [(item, decay) for item, decay in eligible if decay > 0]
     # A fixed scale preserves the difference between three and five bullish
@@ -376,30 +458,26 @@ def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], ge
         short = pair_horizon(base["shortTerm"], quote["shortTerm"], generated_at)
         long = pair_horizon(base["longTerm"], quote["longTerm"], generated_at)
         pairs.append({"symbol": symbol, "base": base["symbol"], "quote": quote["symbol"], "score": short["score"], "label": short["label"], "updatedAt": short["updatedAt"], "shortTerm": short, "longTerm": long, "rationale": [f"Short term: {base['symbol']} {base['shortTerm']['label']} ({base['shortTerm']['score']:.2f}) vs {quote['symbol']} {quote['shortTerm']['label']} ({quote['shortTerm']['score']:.2f}).", f"Long term: {base['symbol']} {base['longTerm']['label']} ({base['longTerm']['score']:.2f}) vs {quote['symbol']} {quote['longTerm']['label']} ({quote['longTerm']['score']:.2f})."] if short["label"] != "unavailable" or long["label"] != "unavailable" else ["Required currency bias data is not yet available."]})
-    for instrument, macro_weights in NON_FX_MODELS.items():
+    for instrument, defaults in NON_FX_MODELS.items():
+        weights = asset_macro_weights(instrument, defaults)
         cot_value = mean_cot_score(cot, instrument, now)
-        horizons: dict[str, dict[str, Any]] = {}
-        rationale: list[str] = []
-        for horizon_name, config in HORIZONS.items():
-            available_macro = [(symbol, weight, by_symbol[symbol][horizon_name]) for symbol, weight in macro_weights.items() if by_symbol[symbol][horizon_name]["label"] != "unavailable"]
-            denominator = sum(abs(weight) for weight in macro_weights.values())
-            macro_score = sum(float(row["score"]) * weight for _, weight, row in available_macro) / denominator if denominator else 0.0
-            direct_events = [event for event in events if instrument in event.get('affectedCurrencies', [])]
-            direct = horizon_bias(direct_events, None, now, config)
-            if direct['eventCount']:
-                macro_score = (macro_score + direct['score']) / 2 if available_macro else direct['score']
-            if (available_macro or direct['eventCount']) and cot_value is not None:
-                score = macro_score * config["eventWeight"] + float(cot_value) * config["cotWeight"]
-            else:
-                score = macro_score if available_macro or direct['eventCount'] else float(cot_value or 0.0)
-            available = bool(available_macro) or bool(direct['eventCount']) or cot_value is not None
-            coverage = (sum(float(row["coverage"]) * abs(weight) for _, weight, row in available_macro) / denominator if denominator else 0.0)
-            horizons[horizon_name] = {"score": score, "label": label(score) if available else "unavailable", "coverage": min(1.0, max(coverage, direct['coverage']) + (config["cotWeight"] if cot_value is not None else 0.0)), "eventCount": sum(int(row["eventCount"]) for _, _, row in available_macro) + direct['eventCount'], "updatedAt": generated_at if available else None}
-            rationale.extend(f"{horizon_name}: {symbol} {row['score']:+.2f} with sensitivity {weight:+.2f}." for symbol, weight, row in available_macro)
-        short, long = horizons["shortTerm"], horizons["longTerm"]
+        relevant = asset_events(instrument, events, weights)
+        horizons = {key: horizon_bias(relevant, cot_value, now, config) for key, config in HORIZONS.items()}
+        scope = 'macro-and-positioning' if cot_value is not None else 'macro-only'
+        # Shared macro evidence does not establish token-specific conviction.
+        if instrument in CRYPTO:
+            for horizon in horizons.values():
+                horizon['coverage'] = min(horizon['coverage'], 0.75 if cot_value is not None else 0.35)
+        short, long = horizons['shortTerm'], horizons['longTerm']
+        note = model_note(instrument, cot_value is not None)
+        rationale = [note, f"Short term: {short['eventCount']} eligible releases; long term: {long['eventCount']}."]
         if cot_value is not None:
-            rationale.append(f"Mapped positioning score {cot_value:+.2f}.")
-        pairs.append({"symbol": instrument, "base": instrument, "quote": "USD", "score": short["score"], "label": short["label"], "updatedAt": short["updatedAt"], "shortTerm": short, "longTerm": long, "rationale": rationale or ["Required macro or positioning data is not yet available."], "macroCurrencies": list(macro_weights), 'macroWeights': macro_weights})
+            rationale.append(f"Direct positioning score {cot_value:+.2f}; overlapping report families excluded.")
+        pairs.append({'symbol': instrument, 'base': instrument, 'quote': 'USD',
+            'score': short['score'], 'label': short['label'], 'updatedAt': short['updatedAt'],
+            'shortTerm': short, 'longTerm': long, 'rationale': rationale,
+            'macroCurrencies': list(weights), 'macroWeights': weights,
+            'modelScope': scope, 'modelVersion': 'calendar-sensitivity-v2'})
     return currency_rows, pairs
 
 
@@ -421,7 +499,17 @@ def run_core() -> None:
     now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
     health = {item.get("feed"): item for item in previous.get("feedHealth", []) if isinstance(item, dict) and item.get("feed")}
     try:
-        public_calendar = fetch_public_calendar()
+        public_calendar = []
+        for feed, collector in [('calendar-major', fetch_public_calendar),
+                                ('calendar-global', lambda: fetch_global_calendar(previous.get('events', []), now))]:
+            try:
+                fresh = collector()
+                public_calendar.extend(fresh)
+                health[feed] = {**calendar_health(fresh, generated_at), 'feed': feed}
+            except Exception as error:
+                prior = health.get(feed, {})
+                health[feed] = {**prior, 'feed': feed, 'status': 'degraded', 'lastAttemptAt': generated_at,
+                    'lastSuccessAt': prior.get('lastSuccessAt'), 'staleAfterHours': 12, 'itemCount': 0, 'message': safe_error(error)}
         try:
             configured_calendar = fetch_authorized_json("CALENDAR_API_URL", "CALENDAR_API_KEY", "calendar")
         except Exception as error:
@@ -434,10 +522,18 @@ def run_core() -> None:
         calendar = previous.get("events", [])
         prior = health.get("calendar", {})
         health["calendar"] = {**prior, "feed": "calendar", "status": "degraded", "lastAttemptAt": generated_at, "lastSuccessAt": prior.get("lastSuccessAt"), "staleAfterHours": 12, "itemCount": len(calendar), "message": safe_error(error)}
+    health_file = STAGING / 'cot-health.json'
+    if health_file.exists():
+        for item in json.loads(health_file.read_text(encoding='utf-8')):
+            if item['lastSuccessAt'] is None:
+                item['lastSuccessAt'] = health.get(item['feed'], {}).get('lastSuccessAt')
+            health[item['feed']] = item
     scored = sorted((score_event(item) for item in calendar), key=lambda item: str(item.get("occurredAt", "")), reverse=True)
     currencies, pairs = calculate_biases(scored, cot, generated_at)
     try:
-        prices = fetch_market_prices(PAIRS) or previous.get("prices", [])
+        fresh_prices = fetch_market_prices(PAIRS)
+        updated_prices = {row['instrument'] for row in fresh_prices}
+        prices = fresh_prices + [row for row in previous.get('prices', []) if row['instrument'] not in updated_prices]
     except Exception as error:
         print(f"Market-price ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
         prices = previous.get("prices", [])
@@ -448,7 +544,7 @@ def run_core() -> None:
     archive_file = STAGING / 'cot-history.json'
     downloaded_history = json.loads(archive_file.read_text(encoding='utf-8')) if archive_file.exists() else []
     verified_archive = [row for row in previous.get('cotHistory', [])
-                        if row.get('marketName') and market_symbol(row['marketName']) == row.get('instrument')]
+                        if row.get('reportFamily') and row.get('marketName') and (market_symbol(row['marketName']) == row.get('instrument') or row['reportFamily'] == 'supplemental')]
     cot_history = archive_positions([*downloaded_history, *cot], verified_archive, now)
     atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "coreUpdatedAt": generated_at, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
 

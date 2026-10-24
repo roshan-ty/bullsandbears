@@ -49,6 +49,8 @@ def validate(payload: dict[str, Any]) -> None:
     unique(payload["prices"], "instrument", "prices")
     unique(payload["analysis"], "instrument", "analysis")
     unique(payload["setups"], "instrument", "setups")
+    unique(payload['currencies'], 'symbol', 'currencies')
+    unique(payload['pairs'], 'symbol', 'pairs')
     for row in payload["currencies"] + payload["pairs"]:
         require(row.get("label") in LABELS, f"Invalid bias label for {row.get('symbol')}.")
         score = row.get("score")
@@ -69,12 +71,31 @@ def validate(payload: dict[str, Any]) -> None:
             require(event.get(key) is None or finite(event[key]), f'Invalid event {key}.')
         require(event.get('signal') in (None, -1, 0, 1), 'Invalid event signal.')
         require(finite(event.get('contribution')), 'Invalid contribution.')
+    for key in ('cot', 'cotHistory'):
+        identities = [(row.get('reportFamily', 'unknown'), row['marketId'], row['category'], row['reportDate']) for row in payload.get(key, [])]
+        require(len(identities) == len(set(identities)), f'Duplicate report identity in {key}.')
+    score_inputs = {}
+    category_sets = {}
+    for row in payload['cot']:
+        if row.get('reportFamily'):
+            category_sets.setdefault((row['reportFamily'], row['marketId']), set()).add(row['category'])
+        if row.get('normalizedScore') is not None and row.get('reportFamily'):
+            require(row['reportFamily'] in {'tff', 'disaggregated', 'legacy'}, 'Overlapping report family used in bias.')
+            score_inputs.setdefault(row['instrument'], set()).add((row['reportFamily'], row['marketId']))
+    require(all(len(inputs) == 1 for inputs in score_inputs.values()), 'Overlapping contracts used in positioning bias.')
+    expected_categories = {'tff': 5, 'tff-combined': 5, 'disaggregated': 5, 'disaggregated-combined': 5,
+                           'legacy': 3, 'legacy-combined': 3, 'supplemental': 4}
+    for (family, market), categories in category_sets.items():
+        require(len(categories) == expected_categories.get(family), f'Incomplete categories for {family}/{market}.')
     for row in payload['cot'] + payload.get('cotHistory', []):
         require(valid_time(row.get('reportDate')), 'Invalid positioning date.')
         for key in ('long', 'short', 'net'):
             require(finite(row.get(key)), f'Invalid positioning {key}.')
         require(row['long'] >= 0 and row['short'] >= 0, 'Negative contract count.')
         require(abs(row['long'] - row['short'] - row['net']) < 0.001, 'Positioning net does not reconcile.')
+        for key in ('openInterest', 'spread'):
+            require(row.get(key) is None or (finite(row[key]) and row[key] >= 0), f'Invalid positioning {key}.')
+        require(row.get('normalizedScore') is None or (finite(row['normalizedScore']) and -1 <= row['normalizedScore'] <= 1), 'Invalid normalized positioning score.')
     for row in payload['history']:
         require(finite(row.get('value')) and valid_time(row.get('date')), 'Invalid historical observation.')
     for row in payload['news']:
@@ -82,7 +103,7 @@ def validate(payload: dict[str, Any]) -> None:
         require(url.scheme in {'http', 'https'} and bool(url.netloc), 'Invalid news link.')
         require(valid_time(row.get('publishedAt')), 'Invalid news timestamp.')
     for price in payload["prices"]:
-        require(isinstance(price.get("price"), (int, float)) and price["price"] > 0, f"Invalid price for {price.get('instrument')}.")
+        require(finite(price.get("price")) and price["price"] > 0, f"Invalid price for {price.get('instrument')}.")
         require(valid_time(price.get("asOf")), f"Invalid price timestamp for {price.get('instrument')}.")
     analysis_symbols = {row["instrument"] for row in payload["analysis"]}
     for analysis in payload["analysis"]:

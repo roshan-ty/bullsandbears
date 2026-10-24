@@ -36,7 +36,7 @@ def read_zip_rows(body: bytes) -> list[dict]:
 
 
 def fetch_annual_report(family: str) -> list[dict]:
-    prefix = {'tff': 'fut_fin_txt_', 'disaggregated': 'fut_disagg_txt_'}[family]
+    prefix = {'tff': 'fut_fin_txt_', 'disaggregated': 'fut_disagg_txt_', 'tff-combined': 'com_fin_txt_', 'disaggregated-combined': 'com_disagg_txt_', 'legacy': 'deacot', 'legacy-combined': 'deahistfo', 'supplemental': 'dea_cit_txt_'}[family]
     year = datetime.now(timezone.utc).year
     url = f'https://www.cftc.gov/files/dea/history/{prefix}{year}.zip'
     request = urllib.request.Request(url, headers={'User-Agent': 'Bulls-Bears-Fundamentals/1.0'})

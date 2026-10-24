@@ -9,3 +9,11 @@ This developer document is not bundled into the website.
 - [GitHub schedule limitations](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule) prevent an exact 10-minute or real-time uptime guarantee.
 
 The implementation uses deterministic release comparisons and mapped positioning, not a trained forecast model. No backtest or claimed predictive accuracy has been fabricated. Feed health, actual publication times and missing-data states are preserved.
+
+
+## Coverage expansion
+
+- The [official CFTC reporting portal](https://publicreporting.cftc.gov/stories/s/r4w3-av2u) and its `/api/views/{id}.json` metadata were checked for the seven datasets: `gpe5-46if`, `yw9f-hn96`, `72hh-3qpy`, `kh3c-gbw2`, `6dca-aqww`, `jun7-fc8e`, `4zgm-a668`. Live supplemental rows mix field-name casing despite metadata casing; the adapter normalizes keys before category mapping. Report overlap is excluded from the score.
+- [FX Blue's public calendar](https://www.fxblue.com/calendar) exposes dated releases and linked history pages for the twelve supplemental currencies. The collector decodes server-rendered JSON strings, follows only validated release identities on the same host, and never runs embedded JavaScript. It scales K/M/B/T values explicitly, retains zero revisions and series identity, and retrieves previous values from the release's own page. It never shifts historical actuals to invent previous values.
+- The public Nasdaq calendar was probed and compared with [OpenBB's provider implementation](https://github.com/OpenBB-finance/OpenBB/blob/develop/openbb_platform/providers/nasdaq/openbb_nasdaq/models/economic_calendar.py). Some duplicate entries omit periodicity, so it was not adopted for bias scoring. A direct FXStreet endpoint required authentication; no access control was bypassed.
+- The asset sensitivity model is transparent code in `scripts/asset_models.py`. Higher growth and tighter monetary conditions are separate channels. Correlations and expected returns have not been estimated; a macro backdrop must not be represented as token-specific evidence.

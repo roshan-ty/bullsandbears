@@ -6,6 +6,8 @@ from typing import Any
 
 
 TICKERS = {
+    'XAUUSD': 'GC=F', 'XAGUSD': 'SI=F', 'XPTUSD': 'PL=F', 'XPDUSD': 'PA=F',
+    'OIL': 'CL=F', 'BRENT': 'BZ=F', 'COPPER': 'HG=F',
     "AVAXUSD": "AVAX-USD", "BTCUSD": "BTC-USD",
     "ETHUSD": "ETH-USD", "LTCUSD": "LTC-USD", "SOLUSD": "SOL-USD", "SUIUSD": "SUI20947-USD",
     "XLMUSD": "XLM-USD", "XRPUSD": "XRP-USD", "AUS200": "^AXJO", "CH20": "^SSMI",
@@ -47,7 +49,9 @@ def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
             output.append({
                 "instrument": instrument, "price": price, "previousClose": previous,
                 "change": change, "changePercent": change_percent,
-                "asOf": timestamp.isoformat().replace("+00:00", "Z"), "currency": None,
+                "asOf": timestamp.isoformat().replace("+00:00", "Z"), "currency": 'USD' if ticker.endswith('=F') else None,
+                'priceKind': 'Futures benchmark' if ticker.endswith('=F') else 'Market close',
+                'priceUnit': 'USD / lb' if instrument == 'COPPER' else 'USD / barrel' if instrument in {'OIL', 'BRENT'} else 'USD / troy oz' if ticker.endswith('=F') else None,
             })
         except (KeyError, TypeError, ValueError, IndexError):
             continue

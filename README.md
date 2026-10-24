@@ -19,6 +19,8 @@ Open **Crypto** for direct network, supply and chain-liquidity evidence with sep
 
 The **Analyst Briefing** summarizes the working thesis, opposing evidence, horizon disagreement, freshness and reassessment triggers. News cards open the original article in a new tab. A compact, fixed TradersYard partner strip stays visible across views with code **RSHN**. Promotions do not affect scores or rankings.
 
+**Fundamental analysis, explained** adds expandable lessons for every eligible latest release in the selected horizon, including unchanged readings. Each lesson follows the definition, actual/previous values, economic mechanism, instrument transmission, indicator/impact weights, time decay, theme balancing, forecast context, counterarguments and reassessment conditions. Forex lessons distinguish base, quote and shared exposures; asset lessons use the collector’s actual sensitivity mapping. Separate CFTC and crypto lessons explain net/open-interest, holdings versus changes, activity versus adoption, issuance pressure and chain liquidity. Excluded observations and missing evidence are explicitly identified. Institutional links provide educational background, not fabricated original-release provenance. Existing scores are unchanged.
+
 The responsive workspace uses self-hosted Inter typography, graphite and ivory themes, theme-aware chart labels, keyboard focus indicators and a skip link. Phones use a horizontally scrollable tab bar; larger screens use a persistent sidebar. Tables scroll within their panels, and bottom padding keeps the final content reachable above the partner strip, including device safe areas.
 
 ## Understanding the information

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 from datetime import datetime, timezone
+from math import exp, log
 try:
     from .fundamental_rules import RULES, GROUPS
     from .asset_models import asset_events, model_note
@@ -11,7 +12,7 @@ except ImportError:
     from asset_models import asset_events, model_note
 
 
-def strongest_events(events: list[dict[str, Any]], currencies: set[str], limit: int = 12, generated_at: str | None = None, horizon: str = 'shortTerm') -> list[dict[str, Any]]:
+def strongest_events(events: list[dict[str, Any]], currencies: set[str], limit: int | None = 12, generated_at: str | None = None, horizon: str = 'shortTerm') -> list[dict[str, Any]]:
     now = datetime.fromisoformat(generated_at.replace('Z', '+00:00')) if generated_at else datetime.now(timezone.utc)
     latest = {}
     for event in sorted(events, key=lambda row: str(row.get('occurredAt', ''))):
@@ -61,6 +62,21 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
     ) or "No scoreable positioning record is currently mapped to this instrument."
     score = float(active.get("score", 0))
     is_forex = len(base) == 3 and len(quote) == 3 and 'macroCurrencies' not in pair
+    # Keep every eligible latest release for the teaching report, not just the
+    # largest drivers. Values reference the snapshot rather than duplicating it.
+    evidence = []
+    originals = {event['id']: event for event in events}
+    for event in strongest_events(model_events, macro_currencies | {pair['symbol']}, limit=None, generated_at=generated_at, horizon=horizon):
+        original = originals[event['id']]
+        age = (now - datetime.fromisoformat(event['occurredAt'].replace('Z', '+00:00'))).total_seconds() / 86400
+        direct = pair['symbol'] in original.get('affectedCurrencies', [])
+        evidence.append({'eventId': event['id'], 'ageDays': age,
+                         'decay': exp(-log(2) * age / (10 if horizon == 'shortTerm' else 60)),
+                         'mappedContribution': event['contribution'] or 0.0,
+                         'assetSensitivity': event.get('assetEffect'),
+                         'regionWeight': (1.0 if direct else pair.get('macroWeights', {}).get(event.get('currency'))) if not is_forex else None,
+                         'affectedLegs': [leg for leg in (base, quote) if leg in original.get('affectedCurrencies', [original.get('currency')])] if is_forex else [],
+                         'factor': GROUPS.get(original.get('indicatorId'), 'growth')})
     relative = (
         f"{pair['symbol']} is within the neutral score band." if active["label"] == "neutral" else
         f"{base} is stronger than {quote}." if is_forex and score > 0 else
@@ -72,6 +88,10 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
     driver_sections = []
     for event in drivers:
         effect = float(event.get('contribution', 0))
+        affected = event.get('affectedCurrencies', [event.get('currency')])
+        if is_forex and base in affected and quote in affected:
+            driver_sections.append({'title': event['name'], 'body': event_sentence(event) + f" This enters both {base} and {quote} theme calculations; its isolated effect on {pair['symbol']} cannot be read from the release sign alone."})
+            continue
         if is_forex and quote in event.get('affectedCurrencies', [event.get('currency')]):
             effect *= -1
         elif not is_forex and not pair.get('modelVersion'):
@@ -84,6 +104,7 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
     direct_sections = [{'title': metric['name'], 'body': f"{metric['windowDays']}-day window comparison: {metric['change']:+.2f} {metric['changeUnit']}. Data through {metric['asOf']}; directional component {metric['score']:+.2f}."} for metric in direct.get('metrics', [])]
     result = {
         "instrument": pair["symbol"], "generatedAt": generated_at, "bias": active["label"], "score": score, "horizon": horizon,
+        "lessonEvidence": evidence,
         "sections": [
             *([{'title': 'Model scope', 'body': pair.get('rationale', [model_note(pair['symbol'], bool(positioning))])[0]}] if pair.get('modelVersion') else []),
             {"title": "Relative fundamental balance", "body": f"{relative} Active {horizon} score is {score:+.2f}. Short-term and long-term readings are calculated independently."},

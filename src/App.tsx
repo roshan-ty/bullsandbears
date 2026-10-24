@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { FundamentalReport } from './components/FundamentalReport'
 import { Empty } from './components/Chart'
 import { HistoryExplorer, PositionChart, StrengthChart } from './components/ResearchPanels'
 import { AnalystBriefing, MacroMap, PositionMetrics, Scorecard, ScoreJournal } from './components/ResearchTools'
@@ -10,23 +11,6 @@ import { formatTime, readTheme, saveTheme } from './lib/presentation'
 
 const tabs = ['Home', 'Data', 'Bias', 'Macro Map', 'CFTC', 'Historical Data', 'Crypto', 'Analysis', 'Top Setups', 'Economic Calendar', 'News'] as const
 type Tab = (typeof tabs)[number]
-
-function NavIcon({ name }: { name: Tab }) {
-  const paths: Record<Tab, string> = {
-    Home: 'M3 10 12 3l9 7M5 9v12h5v-7h4v7h5V9',
-    Data: 'M4 4h16v16H4zM4 10h16M10 4v16',
-    Bias: 'M4 18V9m5 9V4m6 14v-7m5 7V6',
-    'Macro Map': 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
-    CFTC: 'M4 20V10h4v10m4 0V4h4v16m4 0v-7M2 20h20',
-    'Historical Data': 'M3 12a9 9 0 1 0 3-6M3 3v6h6m3-3v6l4 2',
-    Crypto: 'M12 3 4 8v8l8 5 8-5V8zM4 8l8 5 8-5m-8 5v8',
-    Analysis: 'M4 4h12v16H4zM8 8h4m-4 4h5m-5 4h3m6-2 5 5m-2-7a3 3 0 1 0-6 0 3 3 0 0 0 6 0',
-    'Top Setups': 'm3 17 6-6 4 3 8-9m-6 0h6v6',
-    'Economic Calendar': 'M4 5h16v16H4zM8 3v4m8-4v4M4 10h16M8 14h2m4 0h2m-8 4h2',
-    News: 'M4 4h13v16H4zM17 8h4v12h-4M7 8h7m-7 4h7m-7 4h4',
-  }
-  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>
-}
 
 const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value !== 0 && Math.abs(value) < 0.005 ? value.toPrecision(2) : value.toFixed(2)}`
 const formatNumber = (value: number) => new Intl.NumberFormat(undefined, { maximumFractionDigits: value < 10 ? 4 : 2 }).format(value)
@@ -127,7 +111,7 @@ function App() {
 
       <nav className="tabs" aria-label="Primary navigation">
         <span className="nav-caption">WORKSPACE</span>
-        {tabs.map((item) => <button key={item} aria-current={tab === item ? 'page' : undefined} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}><NavIcon name={item} /><span>{item}</span></button>)}
+        {tabs.map((item) => <button key={item} aria-current={tab === item ? 'page' : undefined} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}><span>{item}</span></button>)}
         <div className="nav-note">Independent evidence.<br />Conditional conviction.</div>
       </nav>
 
@@ -156,7 +140,7 @@ function App() {
         <a className="partner-banner" href="https://shop.tradersyard.com/ref/1486" target="_blank" rel="sponsored noopener noreferrer">
           <div className="partner-identity"><span>PARTNER OFFER</span><strong>TradersYard</strong></div>
           <span className="partner-message"><strong>Ready for your next trading challenge?</strong> Explore TradersYard accounts. Use code RSHN at checkout for available savings.</span>
-          <div className="partner-offer"><span className="partner-code"><span>DISCOUNT CODE</span><strong>RSHN</strong></span><span className="partner-cta">Explore accounts <span aria-hidden="true">↗</span></span></div>
+          <div className="partner-offer"><span className="partner-code"><span>DISCOUNT CODE</span><strong>RSHN</strong></span><span className="partner-cta">Explore accounts</span></div>
         </a>
       </footer>
     </div>
@@ -226,7 +210,7 @@ function BiasView({ snapshot, onInspect, compact = false }: { snapshot: Dashboar
   const visible = compact ? pairs.slice(0, 12) : pairs
   return <section className="panel"><div className="panel-head"><div><p className="eyebrow">FUNDAMENTAL SCREENER</p><h2>Find alignment. Inspect the evidence.</h2></div><HorizonToggle value={horizon} onChange={setHorizon} /></div>
     <div className="filter-bar"><input aria-label="Search pairs" placeholder="Search market or alias…" value={query} onChange={(event) => setQuery(event.target.value)} /><select aria-label="Asset class" value={group} onChange={(event) => setGroup(event.target.value)}><option value="all">All asset classes</option>{['Forex', 'Commodities', 'Indices', 'Crypto'].map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Bias direction" value={direction} onChange={(event) => setDirection(event.target.value)}>{['all', 'bullish', 'bearish', 'neutral', 'unavailable'].map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Evidence filter" value={quality} onChange={(event) => setQuality(event.target.value)}><option value="all">All evidence levels</option><option value="covered">Moderate / broad evidence</option><option value="divergent">Horizon divergence</option><option value="watchlist">My watchlist</option></select><select aria-label="Sort pairs" value={order} onChange={(event) => setOrder(event.target.value)}><option value="strength">Strongest alignment</option><option value="coverage">Most evidence</option><option value="symbol">Instrument A–Z</option></select><span>{compact ? `${visible.length} of ` : ''}{pairs.length} instruments</span></div>
-    {visible.length ? <div className="table-wrap"><table><thead><tr><th>Instrument / model</th><th>Short term</th><th>Long term</th><th>Selected score</th><th>Evidence breadth</th><th>Reading</th><th>Explore</th></tr></thead><tbody>{visible.map((pair) => <tr key={pair.symbol}><td className="symbol">{pair.symbol}<small className="model-scope">{assetClass(pair.symbol)} · {pair.modelScope === 'network-and-macro' ? 'Network + macro' : pair.modelScope === 'macro-only' ? 'Macro only' : 'Macro + positioning'}</small></td><td><BiasPill label={pair.shortTerm.label} /><small className="cell-note">{formatScore(pair.shortTerm.score)}</small></td><td><BiasPill label={pair.longTerm.label} /><small className="cell-note">{formatScore(pair.longTerm.score)}</small></td><td><div className="score-meter"><i style={{ width: `${Math.abs(pair[horizon].score) * 100}%`, background: pair[horizon].score >= 0 ? 'var(--positive)' : 'var(--negative)' }} /></div>{formatScore(pair[horizon].score)}</td><td><meter min="0" max="1" value={pair[horizon].coverage} aria-label={`${pair.symbol} evidence coverage`} /><small className="cell-note">{Math.round(pair[horizon].coverage * 100)}% · {pair[horizon].evidenceQuality ?? 'limited'}</small></td><td>{pair[horizon].componentConflict ? 'Conflicting inputs' : pair.shortTerm.score * pair.longTerm.score < -.0064 ? 'Horizons diverge' : pair[horizon].label === 'unavailable' ? 'Insufficient data' : 'Directional model'}</td><td><button className="text-button" onClick={() => onInspect(pair.symbol)}>Analyze →</button> <button className="text-button" aria-label={`${watchlist.includes(pair.symbol) ? 'Remove' : 'Add'} ${pair.symbol} ${watchlist.includes(pair.symbol) ? 'from' : 'to'} watchlist`} aria-pressed={watchlist.includes(pair.symbol)} onClick={() => toggleWatch(pair.symbol)}>{watchlist.includes(pair.symbol) ? 'Watching' : 'Watch'}</button></td></tr>)}</tbody></table></div> : <Empty message="No instruments match these filters." />}
+    {visible.length ? <div className="table-wrap"><table><thead><tr><th>Instrument / model</th><th>Short term</th><th>Long term</th><th>Selected score</th><th>Evidence breadth</th><th>Reading</th><th>Explore</th></tr></thead><tbody>{visible.map((pair) => <tr key={pair.symbol}><td className="symbol">{pair.symbol}<small className="model-scope">{assetClass(pair.symbol)} · {pair.modelScope === 'network-and-macro' ? 'Network + macro' : pair.modelScope === 'macro-only' ? 'Macro only' : 'Macro + positioning'}</small></td><td><BiasPill label={pair.shortTerm.label} /><small className="cell-note">{formatScore(pair.shortTerm.score)}</small></td><td><BiasPill label={pair.longTerm.label} /><small className="cell-note">{formatScore(pair.longTerm.score)}</small></td><td><div className="score-meter"><i style={{ width: `${Math.abs(pair[horizon].score) * 100}%`, background: pair[horizon].score >= 0 ? 'var(--positive)' : 'var(--negative)' }} /></div>{formatScore(pair[horizon].score)}</td><td><meter min="0" max="1" value={pair[horizon].coverage} aria-label={`${pair.symbol} evidence coverage`} /><small className="cell-note">{Math.round(pair[horizon].coverage * 100)}% · {pair[horizon].evidenceQuality ?? 'limited'}</small></td><td>{pair[horizon].componentConflict ? 'Conflicting inputs' : pair.shortTerm.score * pair.longTerm.score < -.0064 ? 'Horizons diverge' : pair[horizon].label === 'unavailable' ? 'Insufficient data' : 'Directional model'}</td><td><button className="text-button" onClick={() => onInspect(pair.symbol)}>Analyze</button> <button className="text-button" aria-label={`${watchlist.includes(pair.symbol) ? 'Remove' : 'Add'} ${pair.symbol} ${watchlist.includes(pair.symbol) ? 'from' : 'to'} watchlist`} aria-pressed={watchlist.includes(pair.symbol)} onClick={() => toggleWatch(pair.symbol)}>{watchlist.includes(pair.symbol) ? 'Watching' : 'Watch'}</button></td></tr>)}</tbody></table></div> : <Empty message="No instruments match these filters." />}
     <p className="footnote">Coverage is input breadth, not accuracy. Scores within ±0.08 are neutral. Select a market to inspect both horizons.</p>
   </section>
 }
@@ -271,7 +255,7 @@ function AnalysisView({ snapshot, selected, setSelected }: { snapshot: Dashboard
   const upcoming = snapshot.events.filter((event) => event.impact === 'high' && relevant.includes(event.currency) && Date.parse(event.occurredAt) > Date.now() && Date.parse(event.occurredAt) - Date.now() <= 48 * 3600000).sort((a,b) => a.occurredAt.localeCompare(b.occurredAt))
   return <div className="stack"><section className="page-head"><div><p className="eyebrow">FUNDAMENTAL ANALYSIS</p><h1>{active ?? 'No analysis available'}</h1></div><HorizonToggle value={horizon} onChange={setHorizon} /><InstrumentSelect value={active ?? ''} onChange={setSelected} options={options} /></section>
     {upcoming.length > 0 && <div className="warning-note"><strong>Next high-impact release:</strong> {upcoming[0].currency} · {upcoming[0].name} · {formatTime(upcoming[0].occurredAt)}. This can change the current reading.</div>}
-    {pair && bias && <><AnalystBriefing pair={pair} horizon={horizon} /><Scorecard pair={pair} reading={bias} snapshot={snapshot} /></>}
+    {pair && bias && <><AnalystBriefing pair={pair} horizon={horizon} /><FundamentalReport pair={pair} horizon={horizon} snapshot={snapshot} analysis={analysis} /><Scorecard pair={pair} reading={bias} snapshot={snapshot} /></>}
     {analysis ? <section className="analysis-grid"><aside className="panel"><span>{horizon === 'shortTerm' ? 'Short-term' : 'Long-term'} score</span><div className="giant-score">{formatScore(analysis.score)}</div><BiasPill label={analysis.bias} /><p className="muted">{Math.round((bias?.coverage ?? 0) * 100)}% evidence breadth · {bias?.evidenceQuality ?? 'limited'}</p>{bias?.componentConflict && <p className="warning-note">Macro, positioning or direct fundamentals disagree.</p>}<div className="factor-list">{bias?.factors?.map((factor) => <div key={factor.name}><span>{factor.name}</span><strong className={factor.score < 0 ? 'negative-text' : 'positive-text'}>{formatScore(factor.score)}</strong></div>)}</div><p className="footnote">Heuristic alignment, not a calibrated forecast. Long term describes slower fundamental evidence, not a promised holding period.</p></aside><div className="panel prose">{analysis.sections.map((section) => <section key={`${section.title}-${section.body}`}><h2>{section.title}</h2><p>{section.body}</p></section>)}</div></section> : <Empty message="Analysis is unavailable for this horizon until validated evidence is present." />}
     {active && <ScoreJournal snapshot={snapshot} instrument={active} horizon={horizon} />}
   </div>
@@ -323,7 +307,7 @@ function EventTable({ events }: { events: DashboardSnapshot['events'] }) {
 }
 
 function NewsList({ snapshot, limit = 12 }: { snapshot: DashboardSnapshot; limit?: number }) {
-  return snapshot.news.length ? <div className="news-list">{snapshot.news.slice(0, limit).map((item) => <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"><time>{formatTime(item.publishedAt)}</time><strong>{item.headline}</strong>{item.summary && <p>{item.summary}</p>}<span className="news-open">Read original article ↗</span></a>)}</div> : <Empty message="No public news metadata is available." />
+  return snapshot.news.length ? <div className="news-list">{snapshot.news.slice(0, limit).map((item) => <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"><time>{formatTime(item.publishedAt)}</time><strong>{item.headline}</strong>{item.summary && <p>{item.summary}</p>}<span className="news-open">Read original article</span></a>)}</div> : <Empty message="No public news metadata is available." />
 }
 
 function PriceBoard({ snapshot }: { snapshot: DashboardSnapshot }) {

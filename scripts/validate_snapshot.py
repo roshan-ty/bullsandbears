@@ -140,9 +140,21 @@ def validate(payload: dict[str, Any]) -> None:
             for metric in horizon['metrics']:
                 require(all(finite(metric.get(k)) for k in ('score', 'change', 'current', 'previous')), 'Invalid direct metric.')
                 require(valid_time(metric.get('asOf')), 'Invalid direct metric timestamp.')
+    events_by_id = {event['id']: event for event in payload['events']}
     for row in payload['analysis']:
         for key, view in row.get('horizonViews', {}).items():
             require(view is None or (view.get('instrument') == row['instrument'] and view.get('horizon') == key), 'Analysis horizon mismatch.')
+        for view in [row, *row.get('horizonViews', {}).values()]:
+            if not view or 'lessonEvidence' not in view:
+                continue
+            unique(view['lessonEvidence'], 'eventId', 'analysis lessons')
+            maximum, half_life = (30, 10) if view['horizon'] == 'shortTerm' else (180, 60)
+            for item in view['lessonEvidence']:
+                require(item.get('eventId') in events_by_id, 'Analysis lesson references missing event.')
+                require(events_by_id[item['eventId']].get('signal') is not None, 'Unscored release cannot be lesson evidence.')
+                require(finite(item.get('ageDays')) and 0 <= item['ageDays'] <= maximum, 'Lesson outside horizon.')
+                require(finite(item.get('decay')) and abs(item['decay'] - 2 ** (-item['ageDays'] / half_life)) < 1e-10, 'Incorrect lesson decay.')
+                require(finite(item.get('mappedContribution')), 'Invalid mapped lesson vote.')
     for row in payload['news']:
         url = urlparse(str(row.get('url', '')))
         require(url.scheme in {'http', 'https'} and bool(url.netloc), 'Invalid news link.')

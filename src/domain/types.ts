@@ -155,6 +155,7 @@ export interface MarketPrice {
 }
 
 export interface AnalysisRecord {
+  lessonEvidence?: Array<{ eventId: string; ageDays: number; decay: number; mappedContribution: number; assetSensitivity: number | null; regionWeight: number | null; affectedLegs: string[]; factor: string }>
   instrument: string
   generatedAt: string
   bias: BiasLabel

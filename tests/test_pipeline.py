@@ -2,7 +2,7 @@ import unittest
 
 from scripts.analysis_engine import build_analysis, build_setups
 from scripts.indicator_registry import classify_indicator, normalize_calendar_event
-from scripts.pipeline import calculate_biases, merge_calendar, score_event, mean_cot_score
+from scripts.pipeline import calculate_biases, merge_calendar, score_event, mean_cot_score, market_symbol
 
 
 class IndicatorRegistryTests(unittest.TestCase):
@@ -18,6 +18,10 @@ class IndicatorRegistryTests(unittest.TestCase):
 
 
 class PipelineTests(unittest.TestCase):
+    def test_goldman_index_is_not_gold(self):
+        self.assertIsNone(market_symbol('GOLDMAN SACHS COMMODITY INDEX - CHICAGO MERCANTILE EXCHANGE'))
+        self.assertEqual(market_symbol('GOLD - COMMODITY EXCHANGE INC.'), 'XAUUSD')
+        self.assertEqual(market_symbol('MICRO GOLD - COMMODITY EXCHANGE INC.'), 'XAUUSD')
     def test_score_event_uses_previous_when_forecast_missing(self):
         event = normalize_calendar_event({
             "id": "1", "name": "Unemployment Rate", "currency": "USD",
@@ -71,6 +75,12 @@ class PipelineTests(unittest.TestCase):
         from datetime import datetime, timezone
         row = {'instrument': 'USD', 'normalizedScore': 0.8, 'reportDate': '2026-01-01'}
         self.assertIsNone(mean_cot_score([row], 'USD', datetime(2026, 10, 23, tzinfo=timezone.utc)))
+
+    def test_tiny_cot_market_cannot_dominate_liquid_contract(self):
+        from datetime import datetime, timezone
+        rows = [{'instrument': 'XAUUSD', 'normalizedScore': score, 'openInterest': oi, 'reportDate': '2026-10-20'}
+                for score, oi in [(-1, 1), (0.5, 100000)]]
+        self.assertGreater(mean_cot_score(rows, 'XAUUSD', datetime(2026, 10, 24, tzinfo=timezone.utc)), 0.49)
 
     def test_inventory_does_not_score_usd(self):
         event = score_event({'name': 'Crude Oil Inventories', 'currency': 'USD', 'actual': -2, 'previous': 1})

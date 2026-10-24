@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -95,6 +96,7 @@ CFTC_MARKETS = {
     "CRUDE OIL": "OIL", "BRENT": "BRENT", "BITCOIN": "BTCUSD", "ETHER": "ETHUSD",
     "S&P 500": "US500", "NASDAQ-100": "US100", "DOW JONES": "US30",
     "PLATINUM": "XPTUSD", "PALLADIUM": "XPDUSD",
+    "USD INDEX": "USD", "NZ DOLLAR": "NZD", "MEXICAN PESO": "MXN", "BRAZILIAN REAL": "BRL", "DJIA": "US30",
 }
 
 
@@ -166,7 +168,10 @@ def fetch_fred() -> list[dict[str, Any]]:
 
 def market_symbol(name: str) -> str | None:
     upper = name.upper()
-    matches = [(needle, symbol) for needle, symbol in CFTC_MARKETS.items() if needle in upper]
+    if 'PAX GOLD' in upper or 'REAL ESTATE' in upper:
+        return None
+    matches = [(needle, symbol) for needle, symbol in CFTC_MARKETS.items()
+               if re.search(r'(?<![A-Z])' + re.escape(needle) + r'(?![A-Z])', upper)]
     if not matches:
         return None
     return max(matches, key=lambda item: len(item[0]))[1]
@@ -184,6 +189,7 @@ def append_position(output: list[dict[str, Any]], row: dict[str, Any], instrumen
     spread = first_number(row, *spread_keys) if spread_keys else None
     output.append({
         "marketId": str(row.get("cftc_contract_market_code") or row.get("id") or instrument),
+        "marketName": str(row.get('market_and_exchange_names') or row.get('contract_market_name') or instrument),
         "instrument": instrument,
         "reportDate": str(row.get("report_date_as_yyyy_mm_dd", ""))[:10],
         "category": category,
@@ -216,7 +222,7 @@ def fetch_cftc() -> list[dict[str, Any]]:
                 append_position(historical_positions, row, instrument, "Non-reportable", ("nonrept_positions_long", "nonrept_positions_long_all"), ("nonrept_positions_short", "nonrept_positions_short_all"))
             else:
                 append_position(historical_positions, row, instrument, "Producer/Merchant", ("prod_merc_positions_long", "prod_merc_positions_long_all"), ("prod_merc_positions_short", "prod_merc_positions_short_all"))
-                append_position(historical_positions, row, instrument, "Swap Dealer", ("swap_positions_long", "swap_positions_long_all"), ("swap_positions_short", "swap_positions_short_all"), ("swap_positions_spread", "swap_positions_spread_all"))
+                append_position(historical_positions, row, instrument, "Swap Dealer", ("swap_positions_long", "swap_positions_long_all"), ("swap_positions_short", "swap_positions_short_all", "swap__positions_short_all"), ("swap_positions_spread", "swap_positions_spread_all", "swap__positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Managed Money", ("m_money_positions_long", "m_money_positions_long_all"), ("m_money_positions_short", "m_money_positions_short_all"), ("m_money_positions_spread", "m_money_positions_spread_all"))
                 append_position(historical_positions, row, instrument, "Other Reportable", ("other_rept_positions_long", "other_rept_positions_long_all"), ("other_rept_positions_short", "other_rept_positions_short_all"))
                 append_position(historical_positions, row, instrument, "Non-reportable", ("nonrept_positions_long", "nonrept_positions_long_all"), ("nonrept_positions_short", "nonrept_positions_short_all"))
@@ -298,11 +304,14 @@ def recency_factor(event: dict[str, Any], now: datetime, half_life_days: float =
 
 def mean_cot_score(cot: list[dict[str, Any]], instrument: str, now: datetime | None = None) -> float | None:
     now = now or datetime.now(timezone.utc)
-    values = [float(item["normalizedScore"]) for item in cot
+    eligible = [item for item in cot
               if item.get("instrument") == instrument and item.get("normalizedScore") is not None
               and (date := parse_event_time(item.get('reportDate'))) is not None
               and 0 <= (now - date).total_seconds() <= 21 * 86400]
-    return sum(values) / len(values) if values else None
+    # A nearly inactive one-contract market must not outweigh a liquid contract.
+    weighted = [(float(item['normalizedScore']), float(item.get('openInterest') or 0)) for item in eligible]
+    denominator = sum(weight for _, weight in weighted if weight > 0)
+    return sum(value * weight for value, weight in weighted if weight > 0) / denominator if denominator else None
 
 
 def horizon_bias(events: list[dict[str, Any]], cot_value: float | None, now: datetime, config: dict[str, float]) -> dict[str, Any]:
@@ -433,7 +442,9 @@ def run_core() -> None:
     setups = build_setups(pairs, analyses, generated_at)
     archive_file = STAGING / 'cot-history.json'
     downloaded_history = json.loads(archive_file.read_text(encoding='utf-8')) if archive_file.exists() else []
-    cot_history = archive_positions([*downloaded_history, *cot], previous.get('cotHistory', []), now)
+    verified_archive = [row for row in previous.get('cotHistory', [])
+                        if row.get('marketName') and market_symbol(row['marketName']) == row.get('instrument')]
+    cot_history = archive_positions([*downloaded_history, *cot], verified_archive, now)
     atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "coreUpdatedAt": generated_at, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
 
 

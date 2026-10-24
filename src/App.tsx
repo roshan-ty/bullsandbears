@@ -87,7 +87,7 @@ function App() {
             {tab === 'Home' && <Home snapshot={snapshot} />}
             {tab === 'Data' && <DataView snapshot={snapshot} selected={selected} setSelected={setSelected} events={selectedEvents} />}
             {tab === 'Bias' && <BiasView snapshot={snapshot} />}
-            {tab === 'CFTC' && <div className="stack"><section className="panel"><PositionChart rows={snapshot.cot} /></section><CftcView snapshot={snapshot} /></div>}
+            {tab === 'CFTC' && <div className="stack"><section className="panel"><PositionChart rows={snapshot.cot} history={snapshot.cotHistory} /></section><CftcView snapshot={snapshot} /></div>}
             {tab === 'Historical Data' && <HistoryExplorer points={snapshot.history} />}
             {tab === 'Analysis' && <AnalysisView snapshot={snapshot} selected={selected} setSelected={setSelected} />}
             {tab === 'Top Setups' && <SetupsView snapshot={snapshot} />}

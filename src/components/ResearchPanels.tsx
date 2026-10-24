@@ -35,14 +35,17 @@ export function StrengthChart({ snapshot }: { snapshot: DashboardSnapshot }) {
   }} />
 }
 
-export function PositionChart({ rows }: { rows: DashboardSnapshot['cot'] }) {
+export function PositionChart({ rows, history = [] }: { rows: DashboardSnapshot['cot']; history?: DashboardSnapshot['cot'] }) {
   const symbols = [...new Set(rows.map((row) => row.instrument))].sort()
   const [selected, setSelected] = useState('')
   const active = symbols.includes(selected) ? selected : symbols[0]
   if (!active) return <Empty message="No positioning observations are available." />
   const filtered = rows.filter((row) => row.instrument === active)
+  const historical = history.filter((row) => row.instrument === active)
+  const dates = [...new Set(historical.map((row) => row.reportDate))].sort()
+  const categories = [...new Set(historical.map((row) => `${row.marketId} · ${row.category}`))]
   return <section className="stack"><div className="page-head"><h2>Long and short exposure</h2><select aria-label="Positioning instrument" value={active} onChange={(event) => setSelected(event.target.value)}>{symbols.map((symbol) => <option key={symbol}>{symbol}</option>)}</select></div>
-    <p className="muted">Contracts by reported category. Non-reportable positions are not a direct measure of retail traders. These are current report snapshots, not historical curves.</p>
+    <p className="muted">Contracts by reported category. Non-reportable positions are not a direct measure of retail traders.</p>
     <ReactECharts style={{ height: 360 }} option={{ tooltip: { trigger: 'axis' }, legend: { textStyle: { color: '#8993a3' } }, grid: { left: 70, right: 30, bottom: 100 },
       xAxis: { type: 'category', data: filtered.map((row) => `${row.category} · ${row.marketId}`), axisLabel: { color: '#8993a3', rotate: 25 } },
       yAxis: { type: 'value', axisLabel: { color: '#8993a3' } }, series: [
@@ -50,5 +53,16 @@ export function PositionChart({ rows }: { rows: DashboardSnapshot['cot'] }) {
         { name: 'Short', type: 'bar', itemStyle: { color: '#ff626e' }, data: filtered.map((row) => row.short) },
       ],
     }} />
+    <h2>Net positioning history</h2>
+    {dates.length < 2 ? <Empty message="At least two archived reporting dates are needed for positioning curves. Current positions are shown above." /> : <ReactECharts style={{ height: 380 }} option={{
+      tooltip: { trigger: 'axis' }, legend: { type: 'scroll', textStyle: { color: '#8993a3' } },
+      grid: { left: 75, right: 25, top: 60, bottom: 60 },
+      xAxis: { type: 'category', data: dates, axisLabel: { color: '#8993a3' } },
+      yAxis: { type: 'value', axisLabel: { color: '#8993a3' } },
+      dataZoom: [{ type: 'inside' }, { type: 'slider', bottom: 0 }],
+      series: categories.map((category) => ({ name: category, type: 'line', connectNulls: false,
+        data: dates.map((date) => historical.find((row) => `${row.marketId} · ${row.category}` === category && row.reportDate === date)?.net ?? null),
+      })),
+    }} />}
   </section>
 }

@@ -19,7 +19,7 @@ Open **Crypto** for direct network, supply and chain-liquidity evidence with sep
 
 The **Analyst Briefing** summarizes the working thesis, opposing evidence, horizon disagreement, freshness and reassessment triggers. News cards open the original article in a new tab. A compact, fixed TradersYard partner strip stays visible across views with code **RSHN**. Promotions do not affect scores or rankings.
 
-The responsive workspace uses self-hosted Inter typography, graphite and ivory themes, theme-aware chart labels, keyboard focus indicators and a skip link. Phones use a workspace picker; larger screens use a persistent sidebar. Tables scroll within their panels, and bottom padding keeps the final content reachable above the partner strip, including device safe areas.
+The responsive workspace uses self-hosted Inter typography, graphite and ivory themes, theme-aware chart labels, keyboard focus indicators and a skip link. Phones use a horizontally scrollable tab bar; larger screens use a persistent sidebar. Tables scroll within their panels, and bottom padding keeps the final content reachable above the partner strip, including device safe areas.
 
 ## Understanding the information
 

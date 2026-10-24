@@ -118,7 +118,7 @@ function App() {
     <div className="app-shell">
       <a className="skip-link" href="#workspace">Skip to research</a>
       <header className="topbar">
-        <div className="brand-lockup"><span className="brand-monogram" aria-hidden="true">B<span>/</span>B</span><div><div className="brand">Bulls &amp; Bears</div><span className="brand-subtitle">FUNDAMENTAL RESEARCH</span></div></div>
+        <h1 className="brand">Bulls &amp; Bears Screener</h1>
         <div className="status-line"><span>Fundamentals <strong>{formatTime(snapshot?.coreUpdatedAt ?? snapshot?.generatedAt ?? null)}</strong></span><span>News <strong>{formatTime(snapshot?.newsUpdatedAt ?? null)}</strong></span></div>
         <button className="theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} aria-label="Toggle color theme">
           {theme === 'dark' ? 'Light mode' : 'Dark mode'}
@@ -130,7 +130,6 @@ function App() {
         {tabs.map((item) => <button key={item} aria-current={tab === item ? 'page' : undefined} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}><NavIcon name={item} /><span>{item}</span></button>)}
         <div className="nav-note">Independent evidence.<br />Conditional conviction.</div>
       </nav>
-      <div className="mobile-navigation"><label htmlFor="mobile-workspace">WORKSPACE</label><select id="mobile-workspace" aria-label="Workspace view" value={tab} onChange={(event) => setTab(event.target.value as Tab)}>{tabs.map((item) => <option key={item}>{item}</option>)}</select></div>
 
       <main id="workspace" ref={workspace} tabIndex={-1}>
         {snapshot?.coreUpdatedAt && Date.now() - Date.parse(snapshot.coreUpdatedAt) > 12 * 3600000 && <div className="error-banner" role="status">The core snapshot is more than 12 hours old. These readings may no longer reflect current evidence.</div>}
@@ -156,8 +155,8 @@ function App() {
       <footer className="partner-footer" aria-label="Partnered prop firm">
         <a className="partner-banner" href="https://shop.tradersyard.com/ref/1486" target="_blank" rel="sponsored noopener noreferrer">
           <div className="partner-identity"><span>PARTNER OFFER</span><strong>TradersYard</strong></div>
-          <span className="partner-message">Explore your next trading account.</span>
-          <div className="partner-offer"><span className="partner-code"><span>DISCOUNT CODE</span><strong>RSHN</strong></span><span className="partner-cta">View accounts <span aria-hidden="true">↗</span></span></div>
+          <span className="partner-message"><strong>Ready for your next trading challenge?</strong> Explore TradersYard accounts. Use code RSHN at checkout for available savings.</span>
+          <div className="partner-offer"><span className="partner-code"><span>DISCOUNT CODE</span><strong>RSHN</strong></span><span className="partner-cta">Explore accounts <span aria-hidden="true">↗</span></span></div>
         </a>
       </footer>
     </div>

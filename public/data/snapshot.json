@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T23:53:32Z",
+  "generatedAt": "2026-10-24T04:25:05Z",
   "currencies": [
     {
       "symbol": "USD",
@@ -149761,6 +149761,136 @@
   ],
   "news": [
     {
+      "id": "79d6de7fa80b0fc5f1c2df34",
+      "publishedAt": "2026-10-24T03:51:58Z",
+      "headline": "Argentina identifies dozens of victims killed in its ‘Dirty War’",
+      "summary": "Forensic anthropologists have identified the remains of at least 38 victims of Argentina’s last military dictatorship.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/24/argentina-identifies-dozens-of-victims-killed-in-its-dirty",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "aee4205b8f0ffbbd664c1fa0",
+      "publishedAt": "2026-10-24T03:51:25Z",
+      "headline": "Arrest made after fire at Hitler's Eagle's Nest retreat",
+      "summary": "Around 200 emergency personnel are deployed to fight the blaze at the Nazi dictator's Alpine residence in Germany.",
+      "url": "https://bbc.co.uk/news/articles/cr93zwjw1k4qo",
+      "instruments": [
+        "EUR"
+      ]
+    },
+    {
+      "id": "e18ad74859ff469d83c4fec3",
+      "publishedAt": "2026-10-24T03:50:32Z",
+      "headline": "Marco Rubio urges Cubans to collaborate with CIA to topple gov’t",
+      "summary": "Secretary of State Marco Rubio has urged Cubans to secretly work with the CIA to topple their government.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/24/10-24-rubi0-cuba-cia",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "ee059c8c93454b50f9587c90",
+      "publishedAt": "2026-10-24T03:47:14Z",
+      "headline": "Israel raids towns, detains dozens of Palestinians in occupied West Bank",
+      "summary": "Israeli military raid targets at least 15 towns in the northern West Bank, including Nablus and Jenin.",
+      "url": "https://aljazeera.com/news/2026/10/24/israel-raids-towns-detains-dozens-of-palestinians-in-occupied-west-bank",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "5704d71a841632f093becb7e",
+      "publishedAt": "2026-10-24T03:38:20Z",
+      "headline": "Pentagon designates Confucius Institutes a national security threat",
+      "summary": "Pete Hegseth says the Pentagon dismantled 80 ‘propaganda cells’ operating under new names at 30 universities.",
+      "url": "https://aljazeera.com/news/2026/10/24/pentagon-designates-confucius-institutes-a-national-security-threat",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "86833f8c229d8390757f7a21",
+      "publishedAt": "2026-10-24T02:53:24Z",
+      "headline": "Century-old mosque near Indian PM’s residence under gov’t threat",
+      "summary": "India’s Muslims fear the demolition of a historic mosque near PM's house after the imam claimed he got eviction notice.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/24/century-old-mosque-near-indian-pms-residence-under-govt-threat",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "0a2fda5357f8afc81d17d8fa",
+      "publishedAt": "2026-10-24T01:21:18Z",
+      "headline": "Argentinian judge drops fraud investigation into Milei over crypto scandal",
+      "summary": "President Javier Milei’s role in cryptocurrency launch does not translate into a fraudulent scheme, judge says.",
+      "url": "https://aljazeera.com/news/2026/10/24/argentinian-judge-drops-fraud-investigation-into-milei-over-crypto-scandal",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "43261d01af6b2677203f3638",
+      "publishedAt": "2026-10-24T00:50:05Z",
+      "headline": "Syrians protest Israel’s incursions near occupied Golan Heights",
+      "summary": "Syrians are protesting Israel’s occupation of parts of the country’s south, near the occupied Golan Heights.",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/24/10-24-reported-heidi-pett-syria",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "d15afeff97723e2e55fa9936",
+      "publishedAt": "2026-10-24T00:36:47Z",
+      "headline": "White House lifts tariffs on some Canadian goods as midterm elections loom",
+      "summary": "From 30 October, tariffs will be eased on some products, including certain machinery, and placed on others, such as carpets.",
+      "url": "https://bbc.co.uk/news/articles/c60qk573yzz8o",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "bea6baeca607922eb74a6cd5",
+      "publishedAt": "2026-10-24T00:27:21Z",
+      "headline": "WHO announces start of Ebola vaccine clinical trial in DR Congo",
+      "summary": "A clinical trial begins to test the safety, efficacy and immunogenicity of multiple vaccines.",
+      "url": "https://aljazeera.com/news/2026/10/24/who-announces-start-of-ebola-vaccine-clinical-trial-in-dr-congo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "e8c3a9008bbf058f3e1a92e7",
+      "publishedAt": "2026-10-24T00:09:12Z",
+      "headline": "How does the UK state pension compare with other countries?",
+      "summary": "Do British pensioners have it better or worse than those in other countries?",
+      "url": "https://bbc.co.uk/news/articles/c3gr84w85glyo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "f3c2f34e4a19b25fbc66ca78",
+      "publishedAt": "2026-10-24T00:05:45Z",
+      "headline": "UK to invest £100m in 'world first' AI Biosecurity Lab",
+      "summary": "The chancellor will unveil AI spending aimed at shoring up the UK's defences in Wednesday's Budget.",
+      "url": "https://bbc.co.uk/news/articles/cqdjv8xllvyyo",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
+      "id": "3af8f2c3016efcceb07133de",
+      "publishedAt": "2026-10-24T00:00:00Z",
+      "headline": "Iran war live: Saudi downs Houthi ballistic missile targeting Riyadh",
+      "summary": "Saudi-led coalition says air defences downed a Houthi ballistic missile targeting Riyadh.",
+      "url": "https://aljazeera.com/news/liveblog/2026/10/24/iran-war-live-israel-launches-targeted-hebron-operation-after-attack",
+      "instruments": [
+        "GLOBAL"
+      ]
+    },
+    {
       "id": "3c02de0ec59b84d75c4af13d",
       "publishedAt": "2026-10-23T23:50:45Z",
       "headline": "Before you crank up the thermostat, try these tips to keep your house warmer for longer",
@@ -149783,19 +149913,9 @@
     {
       "id": "2df8d03a02be5db8ddfad0b5",
       "publishedAt": "2026-10-23T23:10:54Z",
-      "headline": "Typhoon Champi hits Taiwan, killing one and injuring 350",
+      "headline": "Typhoon Champi hits Taiwan, killing one and injuring hundreds",
       "summary": "Authorities warn of 'destructive winds' and urge residents to shelter as the storm passes the island's northeast.",
       "url": "https://aljazeera.com/news/2026/10/23/typhoon-champi-hits-taiwan-killing-one-and-injuring-350",
-      "instruments": [
-        "GLOBAL"
-      ]
-    },
-    {
-      "id": "d15afeff97723e2e55fa9936",
-      "publishedAt": "2026-10-23T22:54:57Z",
-      "headline": "White House lifts tariffs on some Canadian goods as midterm elections loom",
-      "summary": "From 30 October, tariffs will be eased on some products, including certain machinery, and placed on others, such as carpets.",
-      "url": "https://bbc.co.uk/news/articles/c60qk573yzz8o",
       "instruments": [
         "GLOBAL"
       ]
@@ -149954,7 +150074,7 @@
       "id": "3120849d26d103751f5fc1f6",
       "publishedAt": "2026-10-23T19:42:08Z",
       "headline": "Deadly shooting near Paris is a 'racist terrorist attack', Macron says",
-      "summary": "One person is killed and five wounded in a series of attacks and the suspected gunman has been apprehended.",
+      "summary": "One person is killed and five wounded in a series of attacks. The suspected gunman has been apprehended.",
       "url": "https://bbc.co.uk/news/articles/c6ev38dj1g8zo",
       "instruments": [
         "GLOBAL"
@@ -153131,11 +153251,11 @@
     {
       "feed": "news",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-23T23:53:32Z",
-      "lastSuccessAt": "2026-10-23T23:53:32Z",
+      "lastAttemptAt": "2026-10-24T04:25:05Z",
+      "lastSuccessAt": "2026-10-24T04:25:05Z",
       "staleAfterHours": 1,
-      "itemCount": 252,
-      "message": "Refreshed 100 public news records."
+      "itemCount": 264,
+      "message": "Refreshed 99 public news records."
     },
     {
       "feed": "calendar",

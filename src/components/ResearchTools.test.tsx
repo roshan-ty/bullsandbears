@@ -13,7 +13,7 @@ it('shows missing heatmap factors distinctly and includes a zero forecast as con
     currencies:[{symbol:'USD',score:.2,label:'bullish',eventScore:.2,cotScore:0,eventCount:1,updatedAt:null,shortTerm:horizon,longTerm:horizon}],
     events:[{id:'x',currency:'USD',name:'GDP release',occurredAt:now,actual:1,previous:2,forecast:0,unit:'%',indicatorId:'gdp',impact:'high',direction:'higher_is_bullish',weight:1,comparison:2,comparisonKind:'previous',surprise:-1,signal:-1,contribution:-1,bias:'bearish'}]}} />)
   expect(screen.getByText('No eligible evidence')).toBeTruthy()
-  expect(screen.getByText('+1.000 %')).toBeTruthy()
+  expect(screen.getByText('+1.000 pp')).toBeTruthy()
   expect(screen.getByText(/official bias continues to compare actual with previous/)).toBeTruthy()
 })
 it('shows score contributions and missing inputs without creating votes', () => {

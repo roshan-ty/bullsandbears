@@ -32,9 +32,9 @@ def event_sentence(event: dict[str, Any]) -> str:
     )
 
 
-def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list[dict[str, Any]], generated_at: str) -> dict[str, Any] | None:
+def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list[dict[str, Any]], generated_at: str, crypto=None, selected_horizon=None) -> dict[str, Any] | None:
     horizons = [("shortTerm", pair.get("shortTerm") or {"score": pair.get("score", 0), "label": pair.get("label", "unavailable")}), ("longTerm", pair.get("longTerm") or {"score": pair.get("score", 0), "label": pair.get("label", "unavailable")})]
-    available = [(name, value) for name, value in horizons if value.get("label") != "unavailable"]
+    available = [(name, value) for name, value in horizons if value.get("label") != "unavailable" and (selected_horizon is None or name == selected_horizon)]
     if not available:
         return None
     horizon, active = max(available, key=lambda item: abs(float(item[1].get("score", 0))))
@@ -60,6 +60,7 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
     score = float(active.get("score", 0))
     is_forex = len(base) == 3 and len(quote) == 3 and 'macroCurrencies' not in pair
     relative = (
+        f"{pair['symbol']} is within the neutral score band." if active["label"] == "neutral" else
         f"{base} is stronger than {quote}." if is_forex and score > 0 else
         f"{quote} is stronger than {base}." if is_forex and score < 0 else
         f"{pair['symbol']} has positive mapped fundamental alignment." if score > 0 else
@@ -75,17 +76,24 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
             effect *= float(pair.get('macroWeights', {}).get(event.get('currency'), 1))
         direction = 'supports' if effect > 0 else 'weighs on' if effect < 0 else 'is neutral for'
         driver_sections.append({'title': event['name'], 'body': event_sentence(event) + f" This {direction} {pair['symbol']}."})
-    return {
+    direct = next((row.get(horizon, {}) for row in (crypto or []) if row['instrument'] == pair['symbol']), {})
+    direct_sections = [{'title': metric['name'], 'body': f"{metric['windowDays']}-day window comparison: {metric['change']:+.2f} {metric['changeUnit']}. Data through {metric['asOf']}; directional component {metric['score']:+.2f}."} for metric in direct.get('metrics', [])]
+    result = {
         "instrument": pair["symbol"], "generatedAt": generated_at, "bias": active["label"], "score": score, "horizon": horizon,
         "sections": [
-            *([{'title': 'Model scope', 'body': model_note(pair['symbol'], bool(positioning))}] if pair.get('modelVersion') else []),
+            *([{'title': 'Model scope', 'body': pair.get('rationale', [model_note(pair['symbol'], bool(positioning))])[0]}] if pair.get('modelVersion') else []),
             {"title": "Relative fundamental balance", "body": f"{relative} Active {horizon} score is {score:+.2f}. Short-term and long-term readings are calculated independently."},
             {"title": "Primary economic drivers", "body": driver_body},
             *driver_sections,
+            *direct_sections,
             {"title": "Positioning", "body": position_body},
-            {"title": "Interpretation", "body": "The directional reading uses released actual-versus-previous changes and mapped positioning only. Market prices, yields and headlines are displayed as confirmation and are excluded from the official bias score."},
+            {"title": "Interpretation", "body": "The directional reading balances released actual-versus-previous changes by independent economic theme and includes mapped positioning. Crypto additionally uses available network, issuance and chain-liquidity evidence. Historical macro series provide context and are not treated as dated release surprises. Market prices, yields and headlines are displayed as confirmation and are excluded from the official bias score."},
         ],
     }
+    if selected_horizon is None:
+        result['horizonViews'] = {key: view for key in ('shortTerm', 'longTerm')
+            if (view := build_analysis(pair, events, cot, generated_at, crypto, key)) is not None}
+    return result
 
 
 def build_setups(pairs: list[dict[str, Any]], analyses: list[dict[str, Any]], generated_at: str) -> list[dict[str, Any]]:
@@ -98,7 +106,7 @@ def build_setups(pairs: list[dict[str, Any]], analyses: list[dict[str, Any]], ge
         active = pair.get(analysis['horizon'], {})
         short, long = pair.get('shortTerm', {}), pair.get('longTerm', {})
         conflict = short.get('label') in {'bullish', 'bearish'} and long.get('label') in {'bullish', 'bearish'} and short['label'] != long['label']
-        if abs(float(analysis.get('score', 0))) >= 0.30 and active.get('coverage', 0) >= 0.60 and active.get('eventCount', 0) >= 3 and not conflict:
+        if abs(float(analysis.get('score', 0))) >= 0.30 and active.get('coverage', 0) >= 0.60 and active.get('eventCount', 0) >= 3 and not conflict and not active.get('componentConflict') and active.get('agreement', 1) >= .35:
             candidates.append((pair, analysis))
     candidates.sort(key=lambda item: abs(float(item[1]["score"])), reverse=True)
     return [

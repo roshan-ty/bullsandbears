@@ -164,6 +164,21 @@ def instruments_for(text: str) -> list[str]:
     return tags or ["GLOBAL"]
 
 
+def relevant_news(item):
+    """Conservative metadata filter for finance and geopolitical developments."""
+    title = str(item.get('headline', '')).lower()
+    text = title + ' ' + str(item.get('summary') or '').lower()
+    path = urllib.parse.urlsplit(str(item.get('url', ''))).path.lower()
+    if re.search(r'/(sports?|entertainment|lifestyle|travel|culture)/', path):
+        return False
+    if re.search(r'\b(nba|nfl|premier league|world cup|cricket|football|basketball|celebrity)\b', title):
+        return False
+    official = urllib.parse.urlsplit(str(item.get('sourceUrl', item.get('url', '')))).hostname or ''
+    if any(official == host or official.endswith('.' + host) for host in ('federalreserve.gov', 'ecb.europa.eu', 'bankofengland.co.uk', 'bankofcanada.ca', 'rba.gov.au', 'bls.gov', 'bea.gov')):
+        return True
+    return bool(re.search(r'\b(inflation|econom(?:y|ic|ies)|interest rates?|central bank|monetary|fiscal|budget|deficit|debt|treasury|bonds?|yields?|stocks?|equities|earnings|recession|gdp|payrolls?|unemployment|trade|tariffs?|sanctions?|exports?|imports?|currenc(?:y|ies)|dollar|sterling|yen|yuan|forex|bitcoin|ethereum|crypto|stablecoins?|oil|crude|opec|gold|bullion|copper|silver|energy|gas|supply chain|shipping|war|ceasefire|missiles?|military|elections?|president|government|parliament|geopolitic\w*)\b', text))
+
+
 def iso_time(value: str) -> str | None:
     if not value:
         return None
@@ -240,7 +255,7 @@ def fetch_public_news(extra_feeds: tuple[str, ...] = (), health: list[dict[str, 
     seen_titles: set[str] = set()
     for item in sorted(collected, key=lambda row: row["publishedAt"], reverse=True):
         title_key = re.sub(r"\W+", " ", item["headline"].lower()).strip()
-        if item["id"] in deduplicated or title_key in seen_titles:
+        if not relevant_news(item) or item["id"] in deduplicated or title_key in seen_titles:
             continue
         deduplicated[item["id"]] = item
         seen_titles.add(title_key)

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { loadSnapshot } from './data'
+import { loadArchive, loadSnapshot } from './data'
 
 describe('loadSnapshot', () => {
   it('accepts the complete published snapshot contract', async () => {
@@ -50,4 +50,15 @@ describe('loadSnapshot', () => {
     await expect(loadSnapshot()).rejects.toThrow('supported schema')
     vi.unstubAllGlobals()
   })
+})
+
+it('rejects external archive paths and retries a failed content-addressed archive', async () => {
+  await expect(loadArchive('https://example.com/data.json')).rejects.toThrow('Invalid research archive')
+  const fetcher = vi.fn().mockResolvedValueOnce({ ok: false, status: 503 }).mockResolvedValue({ ok: true, json: async () => ({ history: [], cotHistory: [], cryptoHistory: [] }) })
+  vi.stubGlobal('fetch', fetcher)
+  await expect(loadArchive('archive-123456abcdef.json')).rejects.toThrow('503')
+  await expect(loadArchive('archive-123456abcdef.json')).resolves.toMatchObject({ history: [] })
+  await loadArchive('archive-123456abcdef.json')
+  expect(fetcher).toHaveBeenCalledTimes(2)
+  vi.unstubAllGlobals()
 })

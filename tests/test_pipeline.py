@@ -82,7 +82,9 @@ class PipelineTests(unittest.TestCase):
                   'occurredAt': '2026-10-22T00:00:00Z', 'actual': 3, 'previous': 2})
                   for currency, count in [('EUR', 3), ('USD', 5)] for i in range(count)]
         _, pairs = calculate_biases(events, [], '2026-10-23T00:00:00Z')
-        self.assertEqual(next(row for row in pairs if row['symbol'] == 'EURUSD')['label'], 'bearish')
+        pair = next(row for row in pairs if row['symbol'] == 'EURUSD')
+        self.assertLess(pair['score'], 0)
+        self.assertEqual(pair['label'], 'neutral')  # repeated inflation evidence stays inside the decision band
 
     def test_stale_cot_is_not_current_bias(self):
         from datetime import datetime, timezone

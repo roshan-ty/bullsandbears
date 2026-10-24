@@ -98,6 +98,23 @@ def validate(payload: dict[str, Any]) -> None:
         require(row.get('normalizedScore') is None or (finite(row['normalizedScore']) and -1 <= row['normalizedScore'] <= 1), 'Invalid normalized positioning score.')
     for row in payload['history']:
         require(finite(row.get('value')) and valid_time(row.get('date')), 'Invalid historical observation.')
+    crypto_rows = payload.get('cryptoHistory', [])
+    identities = [(r.get('instrument'), r.get('metric'), r.get('date')) for r in crypto_rows]
+    require(len(identities) == len(set(identities)), 'Duplicate crypto observation.')
+    for row in crypto_rows:
+        require(finite(row.get('value')) and row['value'] >= 0 and valid_time(row.get('date')), 'Invalid crypto observation.')
+    unique(payload.get('cryptoFundamentals', []), 'instrument', 'crypto fundamentals')
+    for row in payload.get('cryptoFundamentals', []):
+        for key in ('shortTerm', 'longTerm'):
+            horizon = row[key]
+            require(finite(horizon.get('score')) and -1 <= horizon['score'] <= 1, 'Invalid direct score.')
+            require(finite(horizon.get('coverage')) and 0 <= horizon['coverage'] <= 1, 'Invalid direct coverage.')
+            for metric in horizon['metrics']:
+                require(all(finite(metric.get(k)) for k in ('score', 'change', 'current', 'previous')), 'Invalid direct metric.')
+                require(valid_time(metric.get('asOf')), 'Invalid direct metric timestamp.')
+    for row in payload['analysis']:
+        for key, view in row.get('horizonViews', {}).items():
+            require(view is None or (view.get('instrument') == row['instrument'] and view.get('horizon') == key), 'Analysis horizon mismatch.')
     for row in payload['news']:
         url = urlparse(str(row.get('url', '')))
         require(url.scheme in {'http', 'https'} and bool(url.netloc), 'Invalid news link.')

@@ -36,3 +36,10 @@ export function splitForexPair(symbol: string): { base: string; quote: string } 
   if (!currencies.includes(quote as (typeof currencies)[number])) return null
   return { base, quote }
 }
+
+export function assetClass(symbol: string): string {
+  if (splitForexPair(symbol)) return 'Forex'
+  if (['AVAXUSD', 'BTCUSD', 'ETHUSD', 'LTCUSD', 'SOLUSD', 'SUIUSD', 'XLMUSD', 'XRPUSD'].includes(symbol)) return 'Crypto'
+  if (['BRENT', 'COPPER', 'OIL', 'XAGUSD', 'XAUUSD', 'XPDUSD', 'XPTUSD'].includes(symbol)) return 'Commodities'
+  return 'Indices'
+}

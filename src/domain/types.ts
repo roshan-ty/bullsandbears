@@ -65,6 +65,13 @@ export interface HorizonBias {
   updatedAt: string | null
   eventScore?: number
   cotScore?: number
+  factorCount?: number
+  factors?: Array<{ name: string; score: number; count: number }>
+  agreement?: number
+  directScore?: number | null
+  directGroupCount?: number
+  componentConflict?: boolean
+  evidenceQuality?: string
 }
 
 export interface PairBias {
@@ -92,7 +99,29 @@ export interface NewsItem {
   instruments: string[]
 }
 
+export interface CryptoPoint {
+  instrument: string
+  metric: string
+  name: string
+  group: string
+  date: string
+  value: number
+  unit: string
+}
+
+export interface CryptoHorizon {
+  score: number
+  coverage: number
+  groupCount: number
+  available: boolean
+  agreement: number
+  metrics: Array<{ metric: string; name: string; group: string; score: number; change: number; changeUnit: string; current: number; previous: number; observations: number; asOf: string; windowDays: number }>
+}
+
 export interface HistoricalPoint {
+  period?: string
+  frequency?: string
+  releaseDateKnown?: boolean
   seriesId: string
   instrument: string
   name: string
@@ -119,6 +148,7 @@ export interface AnalysisRecord {
   bias: BiasLabel
   score: number
   horizon: 'shortTerm' | 'longTerm'
+  horizonViews?: Partial<Record<'shortTerm' | 'longTerm', AnalysisRecord>>
   sections: Array<{ title: string; body: string }>
 }
 
@@ -145,6 +175,8 @@ export interface FeedHealth {
 }
 
 export interface DashboardSnapshot {
+  archiveUrl?: string
+  archiveCounts?: { history: number; cotHistory: number; cryptoHistory: number }
   schemaVersion: number
   generatedAt: string | null
   coreUpdatedAt?: string | null
@@ -153,6 +185,9 @@ export interface DashboardSnapshot {
   pairs: PairBias[]
   events: ScoredEvent[]
   cot: CotPosition[]
+  researchUpdatedAt?: string | null
+  cryptoHistory?: CryptoPoint[]
+  cryptoFundamentals?: Array<{ instrument: string; shortTerm: CryptoHorizon; longTerm: CryptoHorizon }>
   cotHistory?: CotPosition[]
   history: HistoricalPoint[]
   prices: MarketPrice[]

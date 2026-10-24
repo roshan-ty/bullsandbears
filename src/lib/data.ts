@@ -32,7 +32,7 @@ function isSnapshot(value: unknown): value is DashboardSnapshot {
 }
 
 export async function loadSnapshot(signal?: AbortSignal): Promise<DashboardSnapshot> {
-  const response = await fetch(`${import.meta.env.BASE_URL}data/snapshot.json`, { cache: 'no-store', signal })
+  const response = await fetch(`${import.meta.env.BASE_URL}data/snapshot.json`, { cache: 'no-cache', signal })
   if (!response.ok) throw new Error(`Data request failed with status ${response.status}.`)
   const payload: unknown = await response.json()
   if (!isSnapshot(payload)) throw new Error('The published dataset does not match the supported schema.')
@@ -48,4 +48,21 @@ export async function loadSnapshot(signal?: AbortSignal): Promise<DashboardSnaps
       displayStatus: !feed.lastSuccessAt || Date.now() - new Date(feed.lastSuccessAt).getTime() > feed.staleAfterHours * 3_600_000 ? 'stale' : feed.status,
     })),
   }
+}
+
+const archives = new Map<string, Promise<Pick<DashboardSnapshot, 'history' | 'cotHistory' | 'cryptoHistory'>>>()
+export function loadArchive(filename: string) {
+  if (!/^archive-[a-f0-9]{12}\.json$/.test(filename)) return Promise.reject(new Error('Invalid research archive name.'))
+  let pending = archives.get(filename)
+  if (!pending) {
+    pending = fetch(`${import.meta.env.BASE_URL}data/${filename}`).then(async (response) => {
+      if (!response.ok) throw new Error(`Research archive request failed: ${response.status}.`)
+      const data = await response.json()
+      if (!['history', 'cotHistory', 'cryptoHistory'].every((key) => Array.isArray(data[key]))) throw new Error('Invalid research archive.')
+      return data as Pick<DashboardSnapshot, 'history' | 'cotHistory' | 'cryptoHistory'>
+    }).catch((error: unknown) => { archives.delete(filename); throw error })
+    archives.clear() // retain only the active content-addressed archive
+    archives.set(filename, pending)
+  }
+  return pending
 }

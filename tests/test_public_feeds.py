@@ -28,3 +28,10 @@ class PublicFeedTests(unittest.TestCase):
         self.assertGreater(len(health), 1)
         self.assertTrue(all(row['status'] == 'degraded' for row in health))
         self.assertTrue(all(row['lastSuccessAt'] is None for row in health))
+class NewsRelevanceTests(unittest.TestCase):
+    def test_rejects_sports_even_when_a_currency_word_occurs(self):
+        from scripts.public_feeds import relevant_news
+        self.assertFalse(relevant_news({'headline':'Chicago Bulls earn a million dollar win in NBA', 'url':'https://example.com/sports/bulls'}))
+        self.assertFalse(relevant_news({'headline':'A family discovers its history', 'url':'https://example.com/story'}))
+        self.assertTrue(relevant_news({'headline':'Oil prices rise on sanctions and shipping risk', 'url':'https://example.com/story'}))
+        self.assertTrue(relevant_news({'headline':'New statistical release', 'url':'https://www.bls.gov/news.release/test.htm'}))

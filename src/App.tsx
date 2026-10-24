@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { Empty } from './components/Chart'
 import { HistoryExplorer, PositionChart, StrengthChart } from './components/ResearchPanels'
 import { reportFamilies } from './domain/reportFamilies'
-import { currencies, instruments, normalizeInstrument } from './domain/instruments'
+import { assetClass, splitForexPair, normalizeInstrument } from './domain/instruments'
 import type { BiasLabel, DashboardSnapshot } from './domain/types'
-import { loadSnapshot } from './lib/data'
+import { loadArchive, loadSnapshot } from './lib/data'
 import { formatTime, readTheme, saveTheme } from './lib/presentation'
 
-const tabs = ['Home', 'Data', 'Bias', 'CFTC', 'Historical Data', 'Analysis', 'Top Setups', 'Economic Calendar', 'News'] as const
+const tabs = ['Home', 'Data', 'Bias', 'CFTC', 'Historical Data', 'Crypto', 'Analysis', 'Top Setups', 'Economic Calendar', 'News'] as const
 type Tab = (typeof tabs)[number]
 
 const formatScore = (value: number) => `${value >= 0 ? '+' : ''}${value !== 0 && Math.abs(value) < 0.005 ? value.toPrecision(2) : value.toFixed(2)}`
@@ -34,7 +34,7 @@ function FeedHealth({ snapshot }: { snapshot: DashboardSnapshot }) {
 function CoverageDetails({ snapshot }: { snapshot: DashboardSnapshot }) {
   const available = snapshot.currencies.filter((row) => row.shortTerm.label !== 'unavailable').length
   return <details className="coverage-details"><summary>Evidence coverage · {available}/{snapshot.currencies.length} currencies have current inputs</summary>
-    <p className="muted">Coverage measures available model inputs, not accuracy. A currency can have a directional reading from only one release. Crypto without direct positioning is limited to a shared macro backdrop and excluded from top setups.</p>
+    <p className="muted">Coverage measures available model inputs, not accuracy. A currency can have a directional reading from only one release. Independent factor breadth, freshness and conflicting inputs determine evidence quality. Sparse evidence is not a confident forecast.</p>
     <div className="table-wrap"><table><thead><tr><th>Currency</th><th>Short-term releases</th><th>Long-term releases</th><th>Coverage S/L</th><th>Latest actual</th></tr></thead><tbody>{snapshot.currencies.map((row) => {
       const latest = snapshot.events.filter((event) => event.currency === row.symbol && event.actual !== null && Date.parse(event.occurredAt) <= Date.now()).sort((a, b) => b.occurredAt.localeCompare(a.occurredAt))[0]
       return <tr key={row.symbol}><td>{row.symbol}</td><td>{row.shortTerm.eventCount}</td><td>{row.longTerm.eventCount}</td><td>{Math.round(row.shortTerm.coverage * 100)}% / {Math.round(row.longTerm.coverage * 100)}%</td><td>{latest ? formatTime(latest.occurredAt) : 'Unavailable'}</td></tr>
@@ -48,6 +48,8 @@ function App() {
   const [selected, setSelected] = useState<string>('EURUSD')
   const [snapshot, setSnapshot] = useState<DashboardSnapshot | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [archiveError, setArchiveError] = useState<string | null>(null)
+  const [archiveRetry, setArchiveRetry] = useState(0)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -64,6 +66,19 @@ function App() {
     const timer = window.setInterval(() => void refresh(), 300_000)
     return () => { controller.abort(); window.clearInterval(timer) }
   }, [])
+
+  const archiveUrl = snapshot?.archiveUrl
+  const needsArchive = ['Data', 'CFTC', 'Historical Data', 'Crypto'].includes(tab)
+  useEffect(() => {
+    if (!archiveUrl || !needsArchive) return
+    let active = true
+    loadArchive(archiveUrl).then((data) => {
+      if (!active) return
+      setArchiveError(null)
+      setSnapshot((current) => current?.archiveUrl === archiveUrl ? { ...current, ...data, archiveUrl: undefined } : current)
+    }).catch((reason: unknown) => { if (active) setArchiveError(reason instanceof Error ? reason.message : 'Unable to load research archive.') })
+    return () => { active = false }
+  }, [archiveUrl, needsArchive, archiveRetry])
 
   const selectedCurrency = selected.length === 3 ? selected : selected.slice(0, 3)
   const selectedEvents = useMemo(() => {
@@ -91,18 +106,22 @@ function App() {
       </header>
 
       <nav className="tabs" aria-label="Primary navigation">
-        {tabs.map((item) => <button key={item} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}>{item}</button>)}
+        {tabs.map((item) => <button key={item} aria-current={tab === item ? 'page' : undefined} className={tab === item ? 'active' : ''} onClick={() => setTab(item)}>{item}</button>)}
       </nav>
 
       <main>
+        {snapshot?.coreUpdatedAt && Date.now() - Date.parse(snapshot.coreUpdatedAt) > 12 * 3600000 && <div className="error-banner" role="status">The core snapshot is more than 12 hours old. These readings may no longer reflect current evidence.</div>}
         {error && <div className="error-banner">{error}</div>}
+        {needsArchive && archiveError && <div className="error-banner">{archiveError} <button onClick={() => setArchiveRetry((value) => value + 1)}>Retry research data</button></div>}
+        {needsArchive && archiveUrl && !archiveError && <p role="status" className="muted">Loading research histories…</p>}
         {!snapshot ? <div className="loading">Loading validated market data…</div> : (
           <>
-            {tab === 'Home' && <Home snapshot={snapshot} />}
+            {tab === 'Home' && <Home snapshot={snapshot} onInspect={(symbol) => { setSelected(symbol); setTab('Analysis') }} />}
             {tab === 'Data' && <DataView snapshot={snapshot} selected={selected} setSelected={setSelected} events={selectedEvents} />}
-            {tab === 'Bias' && <BiasView snapshot={snapshot} />}
+            {tab === 'Bias' && <BiasView snapshot={snapshot} onInspect={(symbol) => { setSelected(symbol); setTab('Analysis') }} />}
             {tab === 'CFTC' && <CftcView snapshot={snapshot} />}
-            {tab === 'Historical Data' && <HistoryExplorer points={[...snapshot.history, ...calendarHistory(snapshot.events)]} />}
+            {tab === 'Historical Data' && <HistoryExplorer points={[...snapshot.history, ...calendarHistory(snapshot.events), ...cryptoHistory(snapshot)]} />}
+            {tab === 'Crypto' && <CryptoView snapshot={snapshot} />}
             {tab === 'Analysis' && <AnalysisView snapshot={snapshot} selected={selected} setSelected={setSelected} />}
             {tab === 'Top Setups' && <SetupsView snapshot={snapshot} />}
             {tab === 'Economic Calendar' && <CalendarView snapshot={snapshot} />}
@@ -114,26 +133,24 @@ function App() {
   )
 }
 
-function Home({ snapshot }: { snapshot: DashboardSnapshot }) {
+function Home({ snapshot, onInspect }: { snapshot: DashboardSnapshot; onInspect: (symbol: string) => void }) {
+  const covered = snapshot.pairs.filter((row) => row.shortTerm.coverage >= .5).length
+  const divergent = snapshot.pairs.filter((row) => row.shortTerm.score * row.longTerm.score < -.0064).length
   return <div className="stack">
-    <section className="hero-grid">
-      <div><p className="eyebrow">MACRO OVERVIEW</p><h1>Fundamental strength across currencies and markets.</h1><p className="muted">Explore economic releases, positioning and relative strength across your markets.</p></div>
-      <div className="metric"><span>Tracked events</span><strong>{snapshot.events.length}</strong><small>validated releases</small></div>
-      <div className="metric"><span>Position records</span><strong>{snapshot.cot.length}</strong><small>published reports</small></div>
-    </section>
-    <section className="panel"><div className="panel-head"><div><p className="eyebrow">MARKET PRICES</p><h2>Latest available close</h2></div></div><PriceBoard snapshot={snapshot} /></section>
-    <section className="panel"><div className="panel-head"><div><p className="eyebrow">CURRENCY BIAS</p><h2>Current strength</h2></div></div>
-      {!snapshot.events.some((event) => event.actual !== null) && <div className="error-banner" role="status">Calendar actual values are missing. Available scores use positioning only; economic-release coverage is incomplete.</div>}
-      <StrengthChart snapshot={snapshot} />
-      <FeedHealth snapshot={snapshot} /><CoverageDetails snapshot={snapshot} />
-      {snapshot.currencies.length ? <div className="bias-grid">{[...snapshot.currencies, ...snapshot.pairs.filter((item) => ['XAUUSD', 'XAGUSD', 'OIL', 'BRENT', 'COPPER'].includes(item.symbol))].map((item) => <article className="bias-card" key={item.symbol}><div><strong>{item.symbol}</strong><BiasPill label={item.shortTerm.label} /></div><HorizonCells item={item} /></article>)}</div> : <Empty message="No validated currency scores have been published yet." />}
-    </section>
-    <section className="two-column"><div className="panel"><p className="eyebrow">LATEST RELEASES</p><EventTable events={snapshot.events.filter((event) => event.actual !== null).slice(0, 8)} /></div><div className="panel"><p className="eyebrow">MARKET NEWS</p><NewsList snapshot={snapshot} /></div></section>
+    <section className="page-head"><div><p className="eyebrow">RESEARCH TERMINAL / OVERVIEW</p><h1>Follow the evidence.</h1><p className="muted">Macro conditions, positioning and network fundamentals in one workspace.</p></div><span className="live-label">{snapshot.pairs.length} markets tracked</span></section>
+    <section className="summary-strip"><div><span>Broader evidence</span><strong>{covered}<small> / {snapshot.pairs.length} markets</small></strong></div><div><span>Horizon divergence</span><strong>{divergent}</strong></div><div><span>Historical observations</span><strong>{((snapshot.archiveCounts?.history ?? snapshot.history.length) + (snapshot.archiveCounts?.cryptoHistory ?? snapshot.cryptoHistory?.length ?? 0)).toLocaleString()}</strong></div><div><span>Crypto coverage</span><strong>{snapshot.cryptoFundamentals?.filter((row) => row.shortTerm.available).length ?? 0}<small> assets with direct data</small></strong></div></section>
+    <BiasView snapshot={snapshot} onInspect={onInspect} compact />
+    <section className="two-column"><div className="panel"><p className="eyebrow">CURRENCY FACTORS</p><h2>Relative strength</h2><StrengthChart snapshot={snapshot} /></div><div className="panel"><p className="eyebrow">RESEARCH STATUS</p><h2>Know the limits of each reading</h2><p className="muted">Scores measure directional alignment, not the probability of a profitable trade. Short and long horizons use different decay and weighting; price, execution and event risk still matter.</p><CoverageDetails snapshot={snapshot} /><details><summary>Collection status</summary><FeedHealth snapshot={snapshot} /></details><h2>Latest headlines</h2><NewsList snapshot={snapshot} limit={5} /></div></section>
+    <details className="panel"><summary>Market prices · latest available close</summary><PriceBoard snapshot={snapshot} /></details>
   </div>
 }
 
-function InstrumentSelect({ value, onChange }: { value: string; onChange: (value: string) => void }) {
-  return <select aria-label="Selected instrument" value={value} onChange={(event) => onChange(event.target.value)}><optgroup label="Currencies">{currencies.map((item) => <option key={item}>{item}</option>)}</optgroup><optgroup label="Markets">{instruments.map((item) => <option key={item}>{item}</option>)}</optgroup></select>
+function InstrumentSelect({ value, onChange, options }: { value: string; onChange: (value: string) => void; options: string[] }) {
+  return <select aria-label="Selected instrument" value={value} onChange={(event) => onChange(event.target.value)}>{options.map((item) => <option key={item}>{item}</option>)}</select>
+}
+
+function cryptoHistory(snapshot: DashboardSnapshot): DashboardSnapshot['history'] {
+  return (snapshot.cryptoHistory ?? []).map((point) => ({ ...point, seriesId: `crypto:${point.instrument}:${point.metric}`, frequency: 'daily', releaseDateKnown: false }))
 }
 
 function calendarHistory(events: DashboardSnapshot['events']): DashboardSnapshot['history'] {
@@ -151,43 +168,87 @@ function DataView({ snapshot, selected, setSelected, events }: { snapshot: Dashb
   const price = snapshot.prices.find((item) => item.instrument === selected)
   const related = new Set([selected, currency, ...(instrumentBias?.macroCurrencies ?? [selected.slice(3)])])
   const news = snapshot.news.filter((item) => item.instruments.some((symbol) => related.has(symbol)))
-  const positions = snapshot.cot.filter((item) => related.has(item.instrument))
-  const history = [...snapshot.history.filter((item) => related.has(item.instrument)), ...calendarHistory(events)]
-  return <div className="stack"><section className="page-head"><div><p className="eyebrow">INSTRUMENT DATA</p><h1>{selected}</h1></div><InstrumentSelect value={selected} onChange={setSelected} /></section>
-    <section className="summary-strip"><div><span>{price?.priceKind === 'Futures benchmark' ? 'Futures benchmark close' : 'Latest price'}</span><strong>{price ? formatNumber(price.price) : '—'}</strong>{price?.priceUnit && <small>{price.priceUnit}</small>}<small className={price?.changePercent !== null && price?.changePercent !== undefined && price.changePercent < 0 ? 'negative-text' : 'positive-text'}>{price?.changePercent !== null && price?.changePercent !== undefined ? `${price.changePercent >= 0 ? '+' : ''}${price.changePercent.toFixed(2)}%` : 'Unavailable'}</small></div><div><span>Short-term bias</span><strong>{bias && bias.shortTerm.label !== 'unavailable' ? formatScore(bias.shortTerm.score) : '—'}</strong>{bias && <BiasPill label={bias.shortTerm.label} />}</div><div><span>Long-term bias</span><strong>{bias && bias.longTerm.label !== 'unavailable' ? formatScore(bias.longTerm.score) : '—'}</strong>{bias && <BiasPill label={bias.longTerm.label} />}</div><div><span>Position records</span><strong>{snapshot.cot.filter((item) => item.instrument === selected || item.instrument === currency).length}</strong></div></section>
+  const positionSymbols = new Set(splitForexPair(selected) ? [selected.slice(0, 3), selected.slice(3)] : [selected])
+  const positions = snapshot.cot.filter((item) => positionSymbols.has(item.instrument))
+  const history = [...snapshot.history.filter((item) => related.has(item.instrument)), ...calendarHistory(events), ...cryptoHistory(snapshot).filter((item) => item.instrument === selected)]
+  return <div className="stack"><section className="page-head"><div><p className="eyebrow">INSTRUMENT DATA</p><h1>{selected}</h1></div><InstrumentSelect value={selected} onChange={setSelected} options={[...snapshot.currencies.map((item) => item.symbol), ...snapshot.pairs.map((item) => item.symbol)]} /></section>
+    <section className="summary-strip"><div><span>{price?.priceKind === 'Futures benchmark' ? 'Futures benchmark close' : 'Latest price'}</span><strong>{price ? formatNumber(price.price) : '—'}</strong>{price?.priceUnit && <small>{price.priceUnit}</small>}<small className={price?.changePercent !== null && price?.changePercent !== undefined && price.changePercent < 0 ? 'negative-text' : 'positive-text'}>{price?.changePercent !== null && price?.changePercent !== undefined ? `${price.changePercent >= 0 ? '+' : ''}${price.changePercent.toFixed(2)}%` : 'Unavailable'}</small></div><div><span>Short-term bias</span><strong>{bias && bias.shortTerm.label !== 'unavailable' ? formatScore(bias.shortTerm.score) : '—'}</strong>{bias && <BiasPill label={bias.shortTerm.label} />}</div><div><span>Long-term bias</span><strong>{bias && bias.longTerm.label !== 'unavailable' ? formatScore(bias.longTerm.score) : '—'}</strong>{bias && <BiasPill label={bias.longTerm.label} />}</div><div><span>Position records</span><strong>{positions.length}</strong></div></section>
     {instrumentBias?.modelVersion && <p className="muted">{instrumentBias.rationale[0]}</p>}
     <section className="two-column wide-left"><div className="panel"><p className="eyebrow">ECONOMIC DRIVERS</p><EventTable events={events} /></div><div className="panel"><p className="eyebrow">RELEVANT NEWS</p>{news.length ? <NewsList snapshot={{ ...snapshot, news }} /> : <Empty message="No relevant public news metadata is available." />}</div></section>
-    <section className="panel"><PositionChart rows={positions} history={snapshot.cotHistory?.filter((item) => related.has(item.instrument))} /></section>
+    <section className="panel"><PositionChart rows={positions} history={snapshot.cotHistory?.filter((item) => positionSymbols.has(item.instrument))} /></section>
     <HistoryExplorer points={history} />
   </div>
 }
 
-function BiasView({ snapshot }: { snapshot: DashboardSnapshot }) {
+function BiasView({ snapshot, onInspect, compact = false }: { snapshot: DashboardSnapshot; onInspect: (symbol: string) => void; compact?: boolean }) {
   const [query, setQuery] = useState('')
   const [direction, setDirection] = useState('all')
   const [order, setOrder] = useState('strength')
-  const pairs = snapshot.pairs.filter((pair) => pair.symbol.includes(normalizeInstrument(query)) && (direction === 'all' || pair.shortTerm.label === direction))
-    .sort((a, b) => order === 'symbol' ? a.symbol.localeCompare(b.symbol) : Math.abs(b.shortTerm.score) - Math.abs(a.shortTerm.score))
-  snapshot = { ...snapshot, pairs }
-  return <section className="panel"><div className="panel-head"><div><p className="eyebrow">PAIR BIAS</p><h1>Relative fundamental strength</h1></div></div><div className="filter-bar"><input aria-label="Search pairs" placeholder="Search pair or alias" value={query} onChange={(event) => setQuery(event.target.value)} /><select aria-label="Bias direction" value={direction} onChange={(event) => setDirection(event.target.value)}>{['all', 'bullish', 'bearish', 'neutral', 'unavailable'].map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Sort pairs" value={order} onChange={(event) => setOrder(event.target.value)}><option value="strength">Strongest alignment</option><option value="symbol">Instrument A–Z</option></select><span>{pairs.length} instruments</span></div>{snapshot.pairs.length ? <div className="table-wrap"><table><thead><tr><th>Instrument</th><th>Base</th><th>Quote</th><th>Short score</th><th>Short bias</th><th>Long score</th><th>Long bias</th><th>Coverage S/L</th><th>Updated</th></tr></thead><tbody>{pairs.map((pair) => <tr key={pair.symbol}><td className="symbol">{pair.symbol}{pair.modelScope && <small className="model-scope">{pair.modelScope === 'macro-only' ? 'Macro only' : 'Macro + positioning'}</small>}</td><td>{pair.base}</td><td>{pair.quote}</td><td>{pair.shortTerm.label === 'unavailable' ? '—' : formatScore(pair.shortTerm.score)}</td><td><BiasPill label={pair.shortTerm.label} /></td><td>{pair.longTerm.label === 'unavailable' ? '—' : formatScore(pair.longTerm.score)}</td><td><BiasPill label={pair.longTerm.label} /></td><td>{Math.round(pair.shortTerm.coverage * 100)}% / {Math.round(pair.longTerm.coverage * 100)}%</td><td>{formatTime(pair.shortTerm.updatedAt ?? pair.longTerm.updatedAt)}</td></tr>)}</tbody></table></div> : <Empty message="Pair bias will appear after both component currencies have validated scores." />}</section>
+  const [group, setGroup] = useState('all')
+  const [quality, setQuality] = useState('all')
+  const [horizon, setHorizon] = useState<'shortTerm' | 'longTerm'>('shortTerm')
+  const pairs = snapshot.pairs.filter((pair) => pair.symbol.includes(normalizeInstrument(query))
+    && (direction === 'all' || pair[horizon].label === direction) && (group === 'all' || assetClass(pair.symbol) === group)
+    && (quality === 'all' || (quality === 'divergent' ? pair.shortTerm.score * pair.longTerm.score < -.0064 : pair[horizon].coverage >= .5 && pair[horizon].evidenceQuality !== 'limited')))
+    .sort((a, b) => order === 'symbol' ? a.symbol.localeCompare(b.symbol) : order === 'coverage' ? b[horizon].coverage - a[horizon].coverage : Math.abs(b[horizon].score) - Math.abs(a[horizon].score))
+  const visible = compact ? pairs.slice(0, 12) : pairs
+  return <section className="panel"><div className="panel-head"><div><p className="eyebrow">FUNDAMENTAL SCREENER</p><h2>Find alignment. Inspect the evidence.</h2></div><HorizonToggle value={horizon} onChange={setHorizon} /></div>
+    <div className="filter-bar"><input aria-label="Search pairs" placeholder="Search market or alias…" value={query} onChange={(event) => setQuery(event.target.value)} /><select aria-label="Asset class" value={group} onChange={(event) => setGroup(event.target.value)}><option value="all">All asset classes</option>{['Forex', 'Commodities', 'Indices', 'Crypto'].map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Bias direction" value={direction} onChange={(event) => setDirection(event.target.value)}>{['all', 'bullish', 'bearish', 'neutral', 'unavailable'].map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Evidence filter" value={quality} onChange={(event) => setQuality(event.target.value)}><option value="all">All evidence levels</option><option value="covered">Moderate / broad evidence</option><option value="divergent">Horizon divergence</option></select><select aria-label="Sort pairs" value={order} onChange={(event) => setOrder(event.target.value)}><option value="strength">Strongest alignment</option><option value="coverage">Most evidence</option><option value="symbol">Instrument A–Z</option></select><span>{compact ? `${visible.length} of ` : ''}{pairs.length} instruments</span></div>
+    {visible.length ? <div className="table-wrap"><table><thead><tr><th>Instrument / model</th><th>Short term</th><th>Long term</th><th>Selected score</th><th>Evidence breadth</th><th>Reading</th><th>Explore</th></tr></thead><tbody>{visible.map((pair) => <tr key={pair.symbol}><td className="symbol">{pair.symbol}<small className="model-scope">{assetClass(pair.symbol)} · {pair.modelScope === 'network-and-macro' ? 'Network + macro' : pair.modelScope === 'macro-only' ? 'Macro only' : 'Macro + positioning'}</small></td><td><BiasPill label={pair.shortTerm.label} /><small className="cell-note">{formatScore(pair.shortTerm.score)}</small></td><td><BiasPill label={pair.longTerm.label} /><small className="cell-note">{formatScore(pair.longTerm.score)}</small></td><td><div className="score-meter"><i style={{ width: `${Math.abs(pair[horizon].score) * 100}%`, background: pair[horizon].score >= 0 ? 'var(--positive)' : 'var(--negative)' }} /></div>{formatScore(pair[horizon].score)}</td><td><meter min="0" max="1" value={pair[horizon].coverage} aria-label={`${pair.symbol} evidence coverage`} /><small className="cell-note">{Math.round(pair[horizon].coverage * 100)}% · {pair[horizon].evidenceQuality ?? 'limited'}</small></td><td>{pair[horizon].componentConflict ? 'Conflicting inputs' : pair.shortTerm.score * pair.longTerm.score < -.0064 ? 'Horizons diverge' : pair[horizon].label === 'unavailable' ? 'Insufficient data' : 'Directional model'}</td><td><button className="text-button" onClick={() => onInspect(pair.symbol)}>Analyze →</button></td></tr>)}</tbody></table></div> : <Empty message="No instruments match these filters." />}
+    <p className="footnote">Coverage is input breadth, not accuracy. Scores within ±0.08 are neutral. Select a market to inspect both horizons.</p>
+  </section>
+}
+
+function HorizonToggle({ value, onChange }: { value: 'shortTerm' | 'longTerm'; onChange: (value: 'shortTerm' | 'longTerm') => void }) {
+  return <div className="segmented" aria-label="Analysis horizon">{(['shortTerm', 'longTerm'] as const).map((key) => <button key={key} aria-pressed={value === key} onClick={() => onChange(key)}>{key === 'shortTerm' ? 'Short term' : 'Long term'}</button>)}</div>
 }
 
 function CftcView({ snapshot }: { snapshot: DashboardSnapshot }) {
   const [family, setFamily] = useState('tff')
   const [query, setQuery] = useState('')
-  const familyRows = snapshot.cot.filter((row) => (row.reportFamily ?? 'tff') === family)
-  const rows = familyRows.filter((row) => `${row.instrument} ${row.marketName ?? ''} ${row.category}`.toLowerCase().includes(query.toLowerCase()))
+  const [chosenMarket, setMarket] = useState('')
+  const [chosenContract, setContract] = useState('all')
+  const families = [...new Set(snapshot.cot.map((row) => row.reportFamily ?? 'tff'))]
+  const activeFamily = families.includes(family) ? family : families[0]
+  const familyRows = snapshot.cot.filter((row) => (row.reportFamily ?? 'tff') === activeFamily)
+  const markets = [...new Set(familyRows.map((row) => row.instrument))].sort()
+  const market = markets.includes(chosenMarket) ? chosenMarket : markets[0]
+  const marketRows = familyRows.filter((row) => row.instrument === market)
+  const contracts = [...new Set(marketRows.map((row) => row.marketId))]
+  const contract = contracts.includes(chosenContract) ? chosenContract : 'all'
+  const selectedRows = marketRows.filter((row) => contract === 'all' || row.marketId === contract)
+  const rows = selectedRows.filter((row) => `${row.instrument} ${row.marketName ?? ''} ${row.category}`.toLowerCase().includes(query.toLowerCase()))
   return <div className="stack"><section className="panel stack"><p className="eyebrow">POSITIONING</p><h1>Commitments and weekly change</h1>
-    <div className="filter-bar"><select aria-label="Report family" value={family} onChange={(event) => setFamily(event.target.value)}>{Object.entries(reportFamilies).map(([key, name]) => <option key={key} value={key}>{name}</option>)}</select><input aria-label="Search positioning" placeholder="Market or category" value={query} onChange={(event) => setQuery(event.target.value)} /><span>{rows.length} records</span></div>
+    <div className="filter-bar"><select aria-label="Report family" value={activeFamily ?? ''} onChange={(event) => setFamily(event.target.value)}>{families.map((key) => <option key={key} value={key}>{reportFamilies[key] ?? key}</option>)}</select><select aria-label="CFTC market" value={market ?? ''} onChange={(event) => { setMarket(event.target.value); setContract('all') }}>{markets.map((symbol) => <option key={symbol}>{symbol}</option>)}</select><select aria-label="CFTC contract" value={contract} onChange={(event) => setContract(event.target.value)}><option value="all">All contracts</option>{contracts.map((id) => <option key={id}>{id}</option>)}</select><input aria-label="Search positioning" placeholder="Category in selected market" value={query} onChange={(event) => setQuery(event.target.value)} /><span>{rows.length} records</span></div>
     <p className="muted">One futures-only family and the largest open-interest contract per instrument contribute to bias. Combined and supplemental reports provide context. Weekly change is shown only for consecutive report weeks.</p>
-    <PositionChart rows={familyRows} history={snapshot.cotHistory} />
+    <PositionChart rows={selectedRows} history={snapshot.cotHistory?.filter((row) => row.instrument === market && (row.reportFamily ?? 'tff') === activeFamily && (contract === 'all' || row.marketId === contract))} />
     {rows.length ? <div className="table-wrap"><table><thead><tr><th>Market</th><th>Contract</th><th>Category</th><th>Long</th><th>Short</th><th>Net</th><th>Spread</th><th>Open interest</th><th>Weekly Δ</th><th>Report date</th><th>Bias input</th></tr></thead><tbody>{rows.map((row) => <tr key={`${row.reportFamily}-${row.marketId}-${row.category}`}><td className="symbol">{row.instrument}</td><td title={row.marketName}>{row.marketId}</td><td>{row.category}</td><td>{row.long.toLocaleString()}</td><td>{row.short.toLocaleString()}</td><td>{row.net.toLocaleString()}</td><td>{row.spread?.toLocaleString() ?? '—'}</td><td>{row.openInterest?.toLocaleString() ?? '—'}</td><td>{row.weeklyNetChange?.toLocaleString() ?? '—'}</td><td>{row.reportDate}</td><td>{row.normalizedScore === null ? 'Context' : 'Selected'}</td></tr>)}</tbody></table></div> : <Empty message="No matching positioning records are available for this report family." />}
   </section></div>
 }
 
 function AnalysisView({ snapshot, selected, setSelected }: { snapshot: DashboardSnapshot; selected: string; setSelected: (value: string) => void }) {
-  const analysis = snapshot.analysis.find((item) => item.instrument === selected)
-  return <div className="stack"><section className="page-head"><div><p className="eyebrow">FUNDAMENTAL ANALYSIS</p><h1>{selected}</h1></div><InstrumentSelect value={selected} onChange={setSelected} /></section>{analysis ? <section className="analysis-grid"><aside className="panel"><span>{analysis.horizon === 'shortTerm' ? 'Short-term' : 'Long-term'} score</span><div className="giant-score">{formatScore(analysis.score)}</div><BiasPill label={analysis.bias} /></aside><div className="panel prose">{analysis.sections.map((section) => <section key={`${section.title}-${section.body}`}><h2>{section.title}</h2><p>{section.body}</p></section>)}</div></section> : <Empty message="Analysis is withheld until enough validated economic and positioning data is available." />}</div>
+  const [horizon, setHorizon] = useState<'shortTerm' | 'longTerm'>('shortTerm')
+  const options = snapshot.analysis.map((item) => item.instrument).sort()
+  const active = options.includes(selected) ? selected : options[0]
+  const record = snapshot.analysis.find((item) => item.instrument === active)
+  const analysis = record?.horizonViews?.[horizon] ?? (record?.horizon === horizon ? record : undefined)
+  const bias = snapshot.pairs.find((item) => item.symbol === active)?.[horizon]
+  return <div className="stack"><section className="page-head"><div><p className="eyebrow">FUNDAMENTAL ANALYSIS</p><h1>{active ?? 'No analysis available'}</h1></div><HorizonToggle value={horizon} onChange={setHorizon} /><InstrumentSelect value={active ?? ''} onChange={setSelected} options={options} /></section>{analysis ? <section className="analysis-grid"><aside className="panel"><span>{horizon === 'shortTerm' ? 'Short-term' : 'Long-term'} score</span><div className="giant-score">{formatScore(analysis.score)}</div><BiasPill label={analysis.bias} /><p className="muted">{Math.round((bias?.coverage ?? 0) * 100)}% evidence breadth · {bias?.evidenceQuality ?? 'limited'}</p>{bias?.componentConflict && <p className="warning-note">Macro, positioning or direct fundamentals disagree.</p>}<div className="factor-list">{bias?.factors?.map((factor) => <div key={factor.name}><span>{factor.name}</span><strong className={factor.score < 0 ? 'negative-text' : 'positive-text'}>{formatScore(factor.score)}</strong></div>)}</div><p className="footnote">Heuristic alignment, not a calibrated forecast. Long term describes slower fundamental evidence, not a promised holding period.</p></aside><div className="panel prose">{analysis.sections.map((section) => <section key={`${section.title}-${section.body}`}><h2>{section.title}</h2><p>{section.body}</p></section>)}</div></section> : <Empty message="Analysis is unavailable for this horizon until validated evidence is present." />}</div>
+}
+
+function CryptoView({ snapshot }: { snapshot: DashboardSnapshot }) {
+  const records = snapshot.cryptoFundamentals ?? []
+  const [selected, setSelected] = useState('BTCUSD')
+  const [horizon, setHorizon] = useState<'shortTerm' | 'longTerm'>('shortTerm')
+  const record = records.find((row) => row.instrument === selected) ?? records[0]
+  const direct = record?.[horizon]
+  const pair = snapshot.pairs.find((row) => row.symbol === record?.instrument)
+  return <div className="stack"><section className="page-head"><div><p className="eyebrow">DIGITAL ASSET RESEARCH</p><h1>Beyond the macro backdrop.</h1></div><HorizonToggle value={horizon} onChange={setHorizon} /><InstrumentSelect value={record?.instrument ?? ''} onChange={setSelected} options={records.map((row) => row.instrument).sort()} /></section>
+    <p className="muted">Compare complete daily observations: the latest {horizon === 'shortTerm' ? '7' : '30'} days against the preceding window. Network metrics share one vote; supply and chain liquidity are separate factors. Missing and stale metrics are excluded.</p>
+    {pair && <HorizonCells item={pair} />}
+    {direct?.available ? <section className="panel"><div className="panel-head"><h2>{record.instrument} · direct fundamentals</h2><span>{direct.groupCount} / 3 factor groups</span></div><div className="table-wrap"><table><thead><tr><th>Metric</th><th>Factor</th><th>Window change</th><th>Directional score</th><th>Observations</th><th>As of UTC</th></tr></thead><tbody>{direct.metrics.map((metric) => <tr key={metric.metric}><td>{metric.name}</td><td>{metric.group}</td><td title={metric.changeUnit}>{formatScore(metric.change)}{metric.metric === 'SplyCur' ? ' pp annualized' : '%'}</td><td className={metric.score < 0 ? 'negative-text' : 'positive-text'}>{formatScore(metric.score)}</td><td>{metric.observations} / {metric.windowDays * 2}</td><td>{metric.asOf}</td></tr>)}</tbody></table></div><p className="footnote">More transactions or fees can reflect congestion or automated activity. Stablecoin supply measures liquidity available on a chain, not guaranteed demand for its token. Issuance changes measure supply pressure; unlock schedules and token-holder value capture are not fully covered.</p></section> : <Empty message="No sufficiently complete, recent direct-fundamental windows are available." />}
+    <HistoryExplorer key={record?.instrument} points={cryptoHistory(snapshot).filter((row) => row.instrument === record?.instrument)} />
+  </div>
 }
 
 function SetupsView({ snapshot }: { snapshot: DashboardSnapshot }) {

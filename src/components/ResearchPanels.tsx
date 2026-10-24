@@ -6,7 +6,10 @@ import { Empty, HistoryChart } from './Chart'
 import { reportFamilies } from '../domain/reportFamilies'
 
 export function HistoryExplorer({ points }: { points: DashboardSnapshot['history'] }) {
-  const series = [...new Map(points.map((point) => [point.seriesId, point])).values()]
+  const [instrument, setInstrument] = useState('')
+  const symbols = [...new Set(points.map((point) => point.instrument))].sort()
+  const activeSymbol = symbols.includes(instrument) ? instrument : symbols[0]
+  const series = [...new Map(points.filter((point) => point.instrument === activeSymbol).map((point) => [point.seriesId, point])).values()]
   const [chosen, setChosen] = useState('')
   const [range, setRange] = useState('365')
   const active = series.find((item) => item.seriesId === chosen) ?? series[0]
@@ -17,12 +20,14 @@ export function HistoryExplorer({ points }: { points: DashboardSnapshot['history
   const visible = range === 'all' ? all : all.filter((point) => Date.parse(point.date) >= cutoff)
   return <section className="panel stack">
     <div className="page-head"><div><p className="eyebrow">HISTORICAL DATA</p><h2>{active.name}</h2></div>
+      <select aria-label="History instrument" value={activeSymbol} onChange={(event) => setInstrument(event.target.value)}>{symbols.map((symbol) => <option key={symbol}>{symbol}</option>)}</select>
       <select aria-label="Historical series" value={active.seriesId} onChange={(event) => setChosen(event.target.value)}>{series.map((item) => <option key={item.seriesId} value={item.seriesId}>{item.instrument} · {item.name}</option>)}</select>
       <select aria-label="History range" value={range} onChange={(event) => setRange(event.target.value)}><option value="90">3 months</option><option value="365">1 year</option><option value="1825">5 years</option><option value="all">All observations</option></select>
     </div>
-    <div className="summary-strip"><div><span>Latest observation</span><strong>{latest.value.toLocaleString()}</strong><small>{latest.unit}</small></div><div><span>Observation date</span><strong>{latest.date}</strong></div><div><span>Visible observations</span><strong>{visible.length}</strong></div></div>
+    <div className="summary-strip"><div><span>Latest observation</span><strong>{latest.value.toLocaleString()}</strong><small>{latest.unit}</small></div><div><span>Observation date</span><strong>{latest.period ?? latest.date}</strong></div><div><span>Visible observations</span><strong>{visible.length}</strong></div></div>
+    <p className="muted">{active.seriesId.startsWith('crypto:') ? 'Complete UTC-day observations. Eligible recent windows feed the direct crypto model; historical observations can be revised.' : active.releaseDateKnown === false ? `Revised ${active.frequency ?? "historical"} observations, indexed by reference period. These dates are not publication dates; this history is context and is excluded from release-based scoring.` : "Observed values for the selected series. Gaps represent missing observations."}</p>
     <HistoryChart points={visible} />
-    <details><summary>View latest 50 observations</summary><div className="table-wrap"><table><thead><tr><th>Date</th><th>Value</th><th>Unit</th></tr></thead><tbody>{[...visible].reverse().slice(0, 50).map((point) => <tr key={point.date}><td>{point.date}</td><td>{point.value.toLocaleString()}</td><td>{point.unit}</td></tr>)}</tbody></table></div></details>
+    <details><summary>View latest 50 observations</summary><div className="table-wrap"><table><thead><tr><th>Date</th><th>Value</th><th>Unit</th></tr></thead><tbody>{[...visible].reverse().slice(0, 50).map((point) => <tr key={point.date}><td>{point.period ?? point.date}</td><td>{point.value.toLocaleString()}</td><td>{point.unit}</td></tr>)}</tbody></table></div></details>
   </section>
 }
 
@@ -51,7 +56,7 @@ export function PositionChart({ rows, history = [] }: { rows: DashboardSnapshot[
   const netByDate = new Map(historical.map((row) => [`${row.marketId} · ${row.category}|${row.reportDate}`, row.net]))
   const dates = [...new Set(historical.map((row) => row.reportDate))].sort()
   const categories = [...new Set(historical.map((row) => `${row.marketId} · ${row.category}`))]
-  return <section className="stack"><div className="page-head"><h2>Long and short exposure</h2>{families.length > 1 && <select aria-label="Chart report family" value={family} onChange={(event) => setChosenFamily(event.target.value)}>{families.map((key) => <option key={key} value={key}>{reportFamilies[key] ?? key}</option>)}</select>}<select aria-label="Positioning instrument" value={active} onChange={(event) => setSelected(event.target.value)}>{symbols.map((symbol) => <option key={symbol}>{symbol}</option>)}</select></div>
+  return <section className="stack"><div className="page-head"><h2>Long and short exposure</h2>{families.length > 1 && <select aria-label="Chart report family" value={family} onChange={(event) => setChosenFamily(event.target.value)}>{families.map((key) => <option key={key} value={key}>{reportFamilies[key] ?? key}</option>)}</select>}{symbols.length > 1 && <select aria-label="Positioning instrument" value={active} onChange={(event) => setSelected(event.target.value)}>{symbols.map((symbol) => <option key={symbol}>{symbol}</option>)}</select>}</div>
     <p className="muted">Contracts by reported category. Non-reportable positions are not a direct measure of retail traders.</p>
     <ReactECharts style={{ height: 360 }} option={{ tooltip: { trigger: 'axis' }, legend: { textStyle: { color: '#8993a3' } }, grid: { left: 70, right: 30, bottom: 100 },
       xAxis: { type: 'category', data: filtered.map((row) => `${row.category} · ${row.marketId}`), axisLabel: { color: '#8993a3', rotate: 25 } },

@@ -20,3 +20,13 @@ it('keeps positioning unavailable rather than generating chart data', () => {
   render(<PositionChart rows={[]} />)
   expect(screen.queryByTestId('chart')).toBeNull()
 })
+it('only lists series belonging to the chosen historical instrument', () => {
+  render(<HistoryExplorer points={[
+    { seriesId: 'no', instrument: 'NOK', name: 'Norway inflation', date: '2026-08-01', value: 3, unit: '%', frequency: 'monthly', releaseDateKnown: false },
+    { seriesId: 'sg', instrument: 'SGD', name: 'Singapore inflation', date: '2026-07-01', value: 2, unit: '%', frequency: 'monthly', releaseDateKnown: false },
+  ]} />)
+  fireEvent.change(screen.getByLabelText('History instrument'), { target: { value: 'SGD' } })
+  const selector = screen.getByLabelText('Historical series') as HTMLSelectElement
+  expect([...selector.options].map((option) => option.value)).toEqual(['sg'])
+  expect(screen.getByText(/These dates are not publication dates/)).toBeTruthy()
+})

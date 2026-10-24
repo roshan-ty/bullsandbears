@@ -18,22 +18,26 @@ from typing import Any
 try:
     from scripts.report_archives import fetch_annual_report
     from scripts.global_calendar import fetch_global_calendar
+    from scripts.research_data import collect_research
+    from scripts.evidence import balance_events, crypto_fundamentals, blend_crypto
     from scripts.asset_models import asset_events, macro_weights as asset_macro_weights, model_note, CRYPTO
     from scripts.runtime import load_env, safe_error
     from scripts.analysis_engine import build_analysis, build_setups
     from scripts.indicator_registry import normalize_calendar_event
     from scripts.market_data import fetch_market_prices
-    from scripts.public_feeds import fetch_public_calendar, fetch_public_news
+    from scripts.public_feeds import fetch_public_calendar, fetch_public_news, relevant_news
     from scripts.quality import calendar_health, archive_positions, observation_health
 except ModuleNotFoundError:
     from report_archives import fetch_annual_report
     from global_calendar import fetch_global_calendar
+    from research_data import collect_research
+    from evidence import balance_events, crypto_fundamentals, blend_crypto
     from asset_models import asset_events, macro_weights as asset_macro_weights, model_note, CRYPTO
     from runtime import load_env, safe_error
     from analysis_engine import build_analysis, build_setups
     from indicator_registry import normalize_calendar_event
     from market_data import fetch_market_prices
-    from public_feeds import fetch_public_calendar, fetch_public_news
+    from public_feeds import fetch_public_calendar, fetch_public_news, relevant_news
     from quality import calendar_health, archive_positions, observation_health
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -361,7 +365,7 @@ def score_event(event: dict[str, Any]) -> dict[str, Any]:
 
 
 def label(score: float) -> str:
-    return "bullish" if score > 1e-9 else "bearish" if score < -1e-9 else "neutral"
+    return "bullish" if score > 0.08 else "bearish" if score < -0.08 else "neutral"
 
 
 def parse_event_time(value: Any) -> datetime | None:
@@ -407,17 +411,20 @@ def horizon_bias(events: list[dict[str, Any]], cot_value: float | None, now: dat
     eligible = [(item, decay) for item, decay in eligible if decay > 0]
     # A fixed scale preserves the difference between three and five bullish
     # points; dividing by each currency's own count would make both +1.
-    event_score = tanh(sum(float(item['contribution']) * decay for item, decay in eligible) / 8.0)
+    event_score, factors, agreement = balance_events(eligible)
     has_events, has_cot = bool(eligible), cot_value is not None
     if has_events and has_cot:
         score = event_score * config["eventWeight"] + float(cot_value) * config["cotWeight"]
     else:
         score = event_score if has_events else float(cot_value or 0.0)
-    coverage = min(1.0, len(eligible) / 4) * config["eventWeight"] + (config["cotWeight"] if has_cot else 0.0)
+    coverage = min(1.0, len(factors) / 4) * config["eventWeight"] + (config["cotWeight"] if has_cot else 0.0)
     available = has_events or has_cot
+    conflict = has_events and has_cot and abs(event_score) > .08 and abs(cot_value) > .08 and event_score * cot_value < 0
     return {
         "score": max(-1.0, min(1.0, score)), "label": label(score) if available else "unavailable",
         "eventScore": event_score, "cotScore": float(cot_value or 0.0), "eventCount": len(eligible),
+        "componentConflict": conflict, "factorCount": len(factors), "factors": factors, "agreement": round(agreement, 4), "hasPositioning": has_cot,
+        "evidenceQuality": "limited" if coverage < .5 or agreement < .35 or conflict else "moderate" if coverage < .8 else "broad",
         "coverage": round(min(1.0, coverage), 4), "updatedAt": now.isoformat().replace("+00:00", "Z") if available else None,
     }
 
@@ -425,7 +432,13 @@ def horizon_bias(events: list[dict[str, Any]], cot_value: float | None, now: dat
 def pair_horizon(base: dict[str, Any], quote: dict[str, Any], generated_at: str) -> dict[str, Any]:
     available = base["label"] != "unavailable" and quote["label"] != "unavailable"
     score = (float(base["score"]) - float(quote["score"])) / 2 if available else 0.0
-    return {"score": score, "label": label(score) if available else "unavailable", "coverage": min(float(base["coverage"]), float(quote["coverage"])) if available else 0.0, "eventCount": int(base["eventCount"]) + int(quote["eventCount"]), "updatedAt": generated_at if available else None}
+    coverage = min(float(base['coverage']), float(quote['coverage'])) if available else 0.0
+    agreement = min(base.get('agreement', 0), quote.get('agreement', 0))
+    return {'score': score, 'label': label(score) if available else 'unavailable', 'coverage': coverage,
+            'eventCount': int(base['eventCount']) + int(quote['eventCount']), 'updatedAt': generated_at if available else None,
+            'factorCount': min(base.get('factorCount', 0), quote.get('factorCount', 0)), 'agreement': agreement,
+            'componentConflict': base.get('componentConflict', False) or quote.get('componentConflict', False),
+            'evidenceQuality': 'limited' if coverage < .5 or agreement < .35 else 'moderate' if coverage < .8 else 'broad'}
 
 
 def merge_calendar(current: list[dict[str, Any]], previous: list[dict[str, Any]], now: datetime) -> list[dict[str, Any]]:
@@ -442,7 +455,7 @@ def merge_calendar(current: list[dict[str, Any]], previous: list[dict[str, Any]]
     return [item for item in merged.values() if (occurred := parse_event_time(item.get("occurredAt"))) is not None and occurred.timestamp() >= cutoff]
 
 
-def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], generated_at: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], generated_at: str, crypto: list[dict] | None = None) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
     currency_rows: list[dict[str, Any]] = []
     for symbol in CURRENCIES:
@@ -458,18 +471,26 @@ def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], ge
         short = pair_horizon(base["shortTerm"], quote["shortTerm"], generated_at)
         long = pair_horizon(base["longTerm"], quote["longTerm"], generated_at)
         pairs.append({"symbol": symbol, "base": base["symbol"], "quote": quote["symbol"], "score": short["score"], "label": short["label"], "updatedAt": short["updatedAt"], "shortTerm": short, "longTerm": long, "rationale": [f"Short term: {base['symbol']} {base['shortTerm']['label']} ({base['shortTerm']['score']:.2f}) vs {quote['symbol']} {quote['shortTerm']['label']} ({quote['shortTerm']['score']:.2f}).", f"Long term: {base['symbol']} {base['longTerm']['label']} ({base['longTerm']['score']:.2f}) vs {quote['symbol']} {quote['longTerm']['label']} ({quote['longTerm']['score']:.2f})."] if short["label"] != "unavailable" or long["label"] != "unavailable" else ["Required currency bias data is not yet available."]})
+    crypto_by_symbol = {row["instrument"]: row for row in (crypto or [])}
     for instrument, defaults in NON_FX_MODELS.items():
         weights = asset_macro_weights(instrument, defaults)
         cot_value = mean_cot_score(cot, instrument, now)
         relevant = asset_events(instrument, events, weights)
         horizons = {key: horizon_bias(relevant, cot_value, now, config) for key, config in HORIZONS.items()}
         scope = 'macro-and-positioning' if cot_value is not None else 'macro-only'
-        # Shared macro evidence does not establish token-specific conviction.
         if instrument in CRYPTO:
-            for horizon in horizons.values():
-                horizon['coverage'] = min(horizon['coverage'], 0.75 if cot_value is not None else 0.35)
+            direct = crypto_by_symbol.get(instrument, {})
+            for key, config in HORIZONS.items():
+                horizons[key] = blend_crypto(horizons[key], direct.get(key), config)
+                if horizons[key]['eventCount'] or cot_value is not None or direct.get(key, {}).get('available'):
+                    horizons[key]['label'] = label(horizons[key]['score'])
+                    horizons[key]['updatedAt'] = generated_at
+            if any(direct.get(key, {}).get('available') for key in HORIZONS):
+                scope = 'network-and-macro'
         short, long = horizons['shortTerm'], horizons['longTerm']
         note = model_note(instrument, cot_value is not None)
+        if scope == 'network-and-macro':
+            note = 'Network activity, issuance pressure and chain stablecoin liquidity are evaluated separately from the macro backdrop. Metrics are grouped to avoid repeated votes; missing or stale groups reduce coverage. These are directional rules, not validated return forecasts.'
         rationale = [note, f"Short term: {short['eventCount']} eligible releases; long term: {long['eventCount']}."]
         if cot_value is not None:
             rationale.append(f"Direct positioning score {cot_value:+.2f}; overlapping report families excluded.")
@@ -477,7 +498,7 @@ def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], ge
             'score': short['score'], 'label': short['label'], 'updatedAt': short['updatedAt'],
             'shortTerm': short, 'longTerm': long, 'rationale': rationale,
             'macroCurrencies': list(weights), 'macroWeights': weights,
-            'modelScope': scope, 'modelVersion': 'calendar-sensitivity-v2'})
+            'modelScope': scope, 'modelVersion': 'balanced-evidence-v3'})
     return currency_rows, pairs
 
 
@@ -528,8 +549,22 @@ def run_core() -> None:
             if item['lastSuccessAt'] is None:
                 item['lastSuccessAt'] = health.get(item['feed'], {}).get('lastSuccessAt')
             health[item['feed']] = item
+    research_time = parse_event_time(previous.get('researchUpdatedAt'))
+    research_history, crypto_history = [], previous.get('cryptoHistory', [])
+    research_updated = previous.get('researchUpdatedAt')
+    if os.environ.get('REFRESH_RESEARCH') == 'true' or research_time is None or (now - research_time).total_seconds() >= 24 * 3600:
+        research_history, crypto_history, research_health = collect_research(previous, now)
+        for item in research_health:
+            if item['lastSuccessAt'] is None:
+                item['lastSuccessAt'] = health.get(item['feed'], {}).get('lastSuccessAt')
+            health[item['feed']] = item
+        research_updated = generated_at
+    history_lookup = {(row['seriesId'], row['date']): row for row in history}
+    history_lookup.update({(row['seriesId'], row['date']): row for row in research_history})
+    history = list(history_lookup.values())
+    crypto = crypto_fundamentals(crypto_history, now)
     scored = sorted((score_event(item) for item in calendar), key=lambda item: str(item.get("occurredAt", "")), reverse=True)
-    currencies, pairs = calculate_biases(scored, cot, generated_at)
+    currencies, pairs = calculate_biases(scored, cot, generated_at, crypto)
     try:
         fresh_prices = fetch_market_prices(PAIRS)
         updated_prices = {row['instrument'] for row in fresh_prices}
@@ -539,14 +574,14 @@ def run_core() -> None:
         prices = previous.get("prices", [])
     for feed, rows, date_key, age in [('positioning', cot, 'reportDate', 21), ('history', history, 'date', 7), ('prices', prices, 'asOf', 5)]:
         health[feed] = observation_health(feed, rows, date_key, generated_at, age)
-    analyses = [analysis for pair in pairs if (analysis := build_analysis(pair, scored, cot, generated_at)) is not None]
+    analyses = [analysis for pair in pairs if (analysis := build_analysis(pair, scored, cot, generated_at, crypto=crypto)) is not None]
     setups = build_setups(pairs, analyses, generated_at)
     archive_file = STAGING / 'cot-history.json'
     downloaded_history = json.loads(archive_file.read_text(encoding='utf-8')) if archive_file.exists() else []
     verified_archive = [row for row in previous.get('cotHistory', [])
                         if row.get('reportFamily') and row.get('marketName') and (market_symbol(row['marketName']) == row.get('instrument') or row['reportFamily'] == 'supplemental')]
     cot_history = archive_positions([*downloaded_history, *cot], verified_archive, now)
-    atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "coreUpdatedAt": generated_at, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
+    atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "coreUpdatedAt": generated_at, "researchUpdatedAt": research_updated, "cryptoHistory": crypto_history, "cryptoFundamentals": crypto, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
 
 
 def run_news() -> None:
@@ -571,11 +606,11 @@ def run_news() -> None:
         atomic_json(PUBLIC_SNAPSHOT, {**previous, "generatedAt": generated_at, "feedHealth": list(health.values())})
         return
     required = {"id", "publishedAt", "headline", "url", "instruments"}
-    valid_fresh = [item for item in fresh_news if isinstance(item, dict) and required.issubset(item)]
-    valid = [item for item in [*valid_fresh, *previous.get("news", [])] if isinstance(item, dict) and required.issubset(item)]
+    valid_fresh = [item for item in fresh_news if isinstance(item, dict) and required.issubset(item) and relevant_news(item)]
+    valid = [item for item in [*valid_fresh, *previous.get("news", [])] if isinstance(item, dict) and required.issubset(item) and relevant_news(item)]
     if not valid:
         health["news"] = {"feed": "news", "status": "unavailable", "lastAttemptAt": generated_at, "lastSuccessAt": health.get("news", {}).get("lastSuccessAt"), "staleAfterHours": 1, "itemCount": 0, "message": "No valid public news records were returned; no headlines were fabricated."}
-        atomic_json(PUBLIC_SNAPSHOT, {**previous, "generatedAt": generated_at, "feedHealth": list(health.values())})
+        atomic_json(PUBLIC_SNAPSHOT, {**previous, "news": [], "generatedAt": generated_at, "feedHealth": list(health.values())})
         return
     deduplicated: dict[str, dict[str, Any]] = {}
     titles: set[str] = set()

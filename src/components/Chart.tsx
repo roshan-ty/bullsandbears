@@ -17,7 +17,7 @@ export function HistoryChart({ points }: { points: HistoricalPoint[] }) {
         animation: false,
         grid: { left: 48, right: 20, top: 24, bottom: 42 },
         tooltip: { trigger: 'axis', backgroundColor: '#101216', borderColor: '#2a2e36', textStyle: { color: '#f3f4f6' } },
-        xAxis: { type: 'category', data: ordered.map((point) => point.date), axisLine: { lineStyle: { color: '#393e48' } }, axisLabel: { color: '#8f96a3' } },
+        xAxis: { type: 'category', data: ordered.map((point) => point.period ?? point.date), axisLine: { lineStyle: { color: '#393e48' } }, axisLabel: { color: '#8f96a3' } },
         yAxis: { type: 'value', scale: true, splitLine: { lineStyle: { color: '#20242b' } }, axisLabel: { color: '#8f96a3' } },
         dataZoom: [{ type: 'inside' }],
         series: [{ type: 'line', data: ordered.map((point) => point.value), showSymbol: false, smooth: false, lineStyle: { width: 2, color: '#4e9fe8' }, areaStyle: { color: 'rgba(78,159,232,.06)' } }],

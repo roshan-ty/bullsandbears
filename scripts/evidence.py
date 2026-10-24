@@ -4,10 +4,10 @@ from datetime import datetime, timedelta, timezone
 from math import log, tanh, isfinite
 from statistics import mean
 
-GROUPS = {'policy-rate': 'policy', 'inflation': 'inflation', 'core-inflation': 'inflation', 'wages': 'inflation',
-          'employment-change': 'labour', 'unemployment-rate': 'labour', 'jobless-claims': 'labour',
-          'trade-balance': 'external', 'imports': 'external', 'exports': 'external', 'foreign-reserves': 'external',
-          'oil-inventories': 'inventories'}
+try:
+    from .fundamental_rules import GROUPS, component
+except ImportError:
+    from fundamental_rules import GROUPS, component
 
 
 def balance_events(weighted):
@@ -100,6 +100,8 @@ def blend_crypto(horizon, direct, config):
     active = [s for s, _, available in components if available and abs(s) > 0.08]
     conflict = bool(active and min(active) < 0 < max(active))
     agreement = min(horizon.get('agreement', 1) if has_macro else 1, direct.get('agreement', 1) if has_direct else 1)
-    return {**horizon, 'agreement': agreement, 'score': score, 'coverage': round(coverage, 4), 'directScore': direct['score'] if has_direct else None,
+    cards = [component(key, name, value, raw_weight / weight if weight else 0, available, rule)
+             for (value, raw_weight, available), key, name, rule in zip(components, ['macro','positioning','network'], ['Macro backdrop','Direct futures positioning','Network, issuance and liquidity'], ['policy','positioning','network'])]
+    return {**horizon, 'components': cards, 'agreement': agreement, 'score': score, 'coverage': round(coverage, 4), 'directScore': direct['score'] if has_direct else None,
             'directGroupCount': direct['groupCount'] if has_direct else 0, 'componentConflict': conflict,
             'evidenceQuality': 'limited' if coverage < .5 or conflict or agreement < .35 else 'moderate' if coverage < .8 else 'broad'}

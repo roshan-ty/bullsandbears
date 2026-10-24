@@ -15,6 +15,8 @@ Bulls & Bears is an educational market-research dashboard for exploring economic
 
 Open **Crypto** for direct network, supply and chain-liquidity evidence with separate 7/30-day windows. CFTC, analysis and history selectors contain only records available in those views. Use the instrument selector where available, switch between light and dark themes, and scroll wide tables horizontally on smaller screens. Click a news headline to read the linked article.
 
+**Macro Map** compares independent economic themes and shows forecast surprises separately. In **Bias**, save instruments with Watch and filter My watchlist. **Analysis** includes a reconciled scorecard, conditional economic rulebook, completed-day moving averages and volatility, and a model-versioned daily score journal. The journal starts with real published observations; it does not invent earlier scores or demonstrate predictive accuracy. Price context never changes the fundamental bias. CFTC adds exact four-week changes and 13-week percentile context within the selected report and contract.
+
 ## Understanding the information
 
 - **Bullish, bearish, and neutral** describe model assessments, not guaranteed outcomes.
@@ -75,7 +77,7 @@ Production builds split large historical arrays into a content-addressed archive
 
 Source names are omitted from dashboard labels. **A public GitHub repository exposes its collector code and endpoints, and a static site's data can be downloaded.** `.gitignore` protects untracked credentials, not source-code confidentiality. Keeping collector implementation private requires a private repository/runner arrangement and suitable Pages plan; it cannot be achieved by hiding labels in HTML.
 
-Research and verification notes: [docs/research.md](docs/research.md).
+Research and verification notes: [docs/research.md](docs/research.md). Public feature reconstruction, REA evidence and the Scrapling integration: [docs/edgefinder-reconstruction.md](docs/edgefinder-reconstruction.md).
 
 ## Educational use
 

@@ -18,6 +18,7 @@ from typing import Any
 try:
     from scripts.report_archives import fetch_annual_report
     from scripts.global_calendar import fetch_global_calendar
+    from scripts.fundamental_rules import RULES, component, record_scores
     from scripts.research_data import collect_research
     from scripts.evidence import balance_events, crypto_fundamentals, blend_crypto
     from scripts.asset_models import asset_events, macro_weights as asset_macro_weights, model_note, CRYPTO
@@ -30,6 +31,7 @@ try:
 except ModuleNotFoundError:
     from report_archives import fetch_annual_report
     from global_calendar import fetch_global_calendar
+    from fundamental_rules import RULES, component, record_scores
     from research_data import collect_research
     from evidence import balance_events, crypto_fundamentals, blend_crypto
     from asset_models import asset_events, macro_weights as asset_macro_weights, model_note, CRYPTO
@@ -420,7 +422,10 @@ def horizon_bias(events: list[dict[str, Any]], cot_value: float | None, now: dat
     coverage = min(1.0, len(factors) / 4) * config["eventWeight"] + (config["cotWeight"] if has_cot else 0.0)
     available = has_events or has_cot
     conflict = has_events and has_cot and abs(event_score) > .08 and abs(cot_value) > .08 and event_score * cot_value < 0
+    cards = [component('macro', 'Released economic factors', event_score, config['eventWeight'] if has_cot else 1, has_events, 'growth'),
+             component('positioning', 'Direct futures positioning', float(cot_value or 0), config['cotWeight'] if has_events else 1, has_cot)]
     return {
+        "components": cards,
         "score": max(-1.0, min(1.0, score)), "label": label(score) if available else "unavailable",
         "eventScore": event_score, "cotScore": float(cot_value or 0.0), "eventCount": len(eligible),
         "componentConflict": conflict, "factorCount": len(factors), "factors": factors, "agreement": round(agreement, 4), "hasPositioning": has_cot,
@@ -434,7 +439,8 @@ def pair_horizon(base: dict[str, Any], quote: dict[str, Any], generated_at: str)
     score = (float(base["score"]) - float(quote["score"])) / 2 if available else 0.0
     coverage = min(float(base['coverage']), float(quote['coverage'])) if available else 0.0
     agreement = min(base.get('agreement', 0), quote.get('agreement', 0))
-    return {'score': score, 'label': label(score) if available else 'unavailable', 'coverage': coverage,
+    cards = [{**row, 'key': leg + '-' + row['key'], 'name': leg.title() + ' · ' + row['name'], 'weight': row['weight'] * sign / 2, 'contribution': row['contribution'] * sign / 2} for leg, reading, sign in [('base', base, 1), ('quote', quote, -1)] for row in reading.get('components', [])] if available else []
+    return {'components': cards, 'score': score, 'label': label(score) if available else 'unavailable', 'coverage': coverage,
             'eventCount': int(base['eventCount']) + int(quote['eventCount']), 'updatedAt': generated_at if available else None,
             'factorCount': min(base.get('factorCount', 0), quote.get('factorCount', 0)), 'agreement': agreement,
             'componentConflict': base.get('componentConflict', False) or quote.get('componentConflict', False),
@@ -581,7 +587,9 @@ def run_core() -> None:
     verified_archive = [row for row in previous.get('cotHistory', [])
                         if row.get('reportFamily') and row.get('marketName') and (market_symbol(row['marketName']) == row.get('instrument') or row['reportFamily'] == 'supplemental')]
     cot_history = archive_positions([*downloaded_history, *cot], verified_archive, now)
-    atomic_json(PUBLIC_SNAPSHOT, {**previous, "schemaVersion": 1, "generatedAt": generated_at, "coreUpdatedAt": generated_at, "researchUpdatedAt": research_updated, "cryptoHistory": crypto_history, "cryptoFundamentals": crypto, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
+    recorded_at = utc_now()
+    journal = record_scores(previous.get("scoreHistory", []), pairs, prices, recorded_at)
+    atomic_json(PUBLIC_SNAPSHOT, {**previous, "scoreHistory": journal, "methodology": RULES, "schemaVersion": 1, "generatedAt": recorded_at, "coreUpdatedAt": recorded_at, "researchUpdatedAt": research_updated, "cryptoHistory": crypto_history, "cryptoFundamentals": crypto, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
 
 
 def run_news() -> None:

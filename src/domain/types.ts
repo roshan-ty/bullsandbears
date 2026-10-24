@@ -57,7 +57,18 @@ export interface CurrencyBias {
   longTerm: HorizonBias
 }
 
+export interface ScoreComponent {
+  key: string
+  name: string
+  score: number | null
+  weight: number
+  contribution: number
+  available: boolean
+  ruleId: string
+}
+
 export interface HorizonBias {
+  components?: ScoreComponent[]
   score: number
   label: BiasLabel
   coverage: number
@@ -131,6 +142,7 @@ export interface HistoricalPoint {
 }
 
 export interface MarketPrice {
+  context?: { asOf: string; close: number; observations: number; averages: Record<string, number | null>; trend: string; realizedVolatility20: number | null; annualizationDays: number; return20: number | null; scope: string } | null
   priceKind?: string
   priceUnit?: string | null
   instrument: string
@@ -174,9 +186,30 @@ export interface FeedHealth {
   displayStatus?: 'healthy' | 'degraded' | 'unavailable' | 'stale'
 }
 
+export interface FundamentalRule {
+  id: string
+  name: string
+  indicators: string[]
+  mechanism: string
+  mapping: string
+  limit: string
+}
+export interface ScoreObservation {
+  instrument: string
+  horizon: 'shortTerm' | 'longTerm'
+  recordedAt: string
+  modelVersion: string
+  score: number
+  label: BiasLabel
+  coverage: number
+  referencePrice: number | null
+  priceAsOf: string | null
+}
 export interface DashboardSnapshot {
+  methodology?: FundamentalRule[]
+  scoreHistory?: ScoreObservation[]
   archiveUrl?: string
-  archiveCounts?: { history: number; cotHistory: number; cryptoHistory: number }
+  archiveCounts?: { history: number; cotHistory: number; cryptoHistory: number; scoreHistory?: number }
   schemaVersion: number
   generatedAt: string | null
   coreUpdatedAt?: string | null

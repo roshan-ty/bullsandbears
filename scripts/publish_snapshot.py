@@ -2,10 +2,11 @@
 import argparse
 import json
 import subprocess
+from datetime import datetime, timedelta
 from pathlib import Path
 
 NEWS_FIELDS = {'news', 'newsUpdatedAt'}
-CORE_FIELDS = {'currencies', 'pairs', 'events', 'cot', 'cotHistory', 'history', 'prices', 'analysis', 'setups', 'coreUpdatedAt', 'researchUpdatedAt', 'cryptoHistory', 'cryptoFundamentals'}
+CORE_FIELDS = {'scoreHistory', 'methodology', 'currencies', 'pairs', 'events', 'cot', 'cotHistory', 'history', 'prices', 'analysis', 'setups', 'coreUpdatedAt', 'researchUpdatedAt', 'cryptoHistory', 'cryptoFundamentals'}
 
 
 def merge_snapshot(latest, collected, mode):
@@ -16,6 +17,17 @@ def merge_snapshot(latest, collected, mode):
         news_feed = row['feed'] == 'news' or row['feed'].startswith('http')
         if news_feed == (mode == 'news'):
             health[row['feed']] = row
+    if mode == 'core' and ('scoreHistory' in latest or 'scoreHistory' in collected):
+        def key(row):
+            return (row['instrument'], row['horizon'], row['recordedAt'][:10], row['modelVersion'])
+        journal = {key(row): row for row in collected.get('scoreHistory', [])}
+        # A record already published on the branch wins any same-day race.
+        journal.update({key(row): row for row in latest.get('scoreHistory', [])})
+        stamp = max(filter(None, [latest.get('generatedAt'), collected.get('generatedAt')]), default=None)
+        if stamp:
+            cutoff = (datetime.fromisoformat(stamp.replace('Z', '+00:00')) - timedelta(days=1095)).date().isoformat()
+            journal = {identity: row for identity, row in journal.items() if cutoff <= row['recordedAt'][:10] <= stamp[:10]}
+        merged['scoreHistory'] = sorted(journal.values(), key=lambda row: (row['recordedAt'], row['instrument'], row['horizon']))
     merged['feedHealth'] = list(health.values())
     merged['generatedAt'] = max(filter(None, [latest.get('generatedAt'), collected.get('generatedAt')]), default=None)
     return merged

@@ -49,6 +49,12 @@ TAG_RULES = {
 
 
 def request_bytes(url: str, accept: str) -> bytes:
+    if accept == 'text/html':
+        try:
+            from .scraping import fetch_html
+        except ImportError:
+            from scraping import fetch_html
+        return fetch_html(url)
     request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT, 'Accept': accept})
     with urllib.request.urlopen(request, timeout=25) as response:
         body = response.read(8_000_001)
@@ -126,7 +132,7 @@ def parse_calendar_page(document: str) -> list[dict[str, Any]]:
             if len(currency) != 3 or not title or not row.get('dateline'):
                 continue
             occurred = datetime.fromtimestamp(int(row['dateline']), timezone.utc).isoformat().replace('+00:00', 'Z')
-            previous = row.get('revision') or row.get('previous')
+            previous = row.get('revision') if number(row.get('revision')) is not None else row.get('previous')
             output.append({
                 'id': stable_id(currency, title, occurred), 'occurredAt': occurred,
                 'currency': currency, 'name': title, 'impact': row.get('impactName', 'low'),

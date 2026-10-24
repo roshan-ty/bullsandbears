@@ -7,6 +7,13 @@ from scripts.public_feeds import canonical_url, fetch_public_news, number
 
 
 class PublicFeedTests(unittest.TestCase):
+    def test_zero_revision_replaces_original_previous_value(self):
+        from scripts.public_feeds import parse_calendar_page
+        document = 'window.calendarComponentStates[0] = {days: [{"events":[{"currency":"USD","name":"GDP","dateline":1792756800,"actual":1,"revision":0,"previous":2}]}]}'
+        row = parse_calendar_page(document)[0]
+        self.assertEqual(row['previous'], 0)
+        self.assertEqual(row['originalPrevious'], 2)
+
     def test_nonfinite_numbers_are_missing(self):
         for value in ('NaN', 'Infinity', '-Infinity'):
             self.assertIsNone(number(value))

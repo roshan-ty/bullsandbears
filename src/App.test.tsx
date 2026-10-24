@@ -80,3 +80,21 @@ it('limits analysis selection to available narratives and switches horizons', as
   expect(screen.getByText('Long window.')).toBeTruthy()
   expect(screen.queryByText('Short window.')).toBeNull()
 })
+
+it('saves a personal watchlist and filters without adding unsupported markets', async () => {
+  localStorage.clear()
+  const horizon = { score: .3, label: 'bullish', coverage: .7, eventCount: 4, updatedAt: null }
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    schemaVersion:1, generatedAt:null, currencies:[],events:[],history:[],prices:[],news:[],analysis:[],setups:[],feedHealth:[],cot:[],
+    pairs:['EURUSD','GBPUSD'].map((symbol) => ({symbol,base:symbol.slice(0,3),quote:'USD',shortTerm:horizon,longTerm:horizon})),
+  }) }))
+  render(<App />)
+  await screen.findByText('No public news metadata is available.')
+  fireEvent.click(screen.getByRole('button',{name:'Bias'}))
+  fireEvent.click(screen.getByRole('button',{name:'Add EURUSD to watchlist'}))
+  fireEvent.change(screen.getByLabelText('Evidence filter'),{target:{value:'watchlist'}})
+  expect(screen.getByText('EURUSD')).toBeTruthy()
+  expect(screen.queryByText('GBPUSD')).toBeNull()
+  expect(JSON.parse(localStorage.getItem('bb-watchlist')!)).toEqual(['EURUSD'])
+  localStorage.clear()
+})

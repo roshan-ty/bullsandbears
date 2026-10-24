@@ -32,3 +32,8 @@ Crypto component weights are macro/direct/positioning 45/40/15 short term and 25
 These changes improve evidence handling, specificity and transparency. Predictive improvement has not been established. An honest return-accuracy study needs archived as-known releases/revisions, executable prices, costs and out-of-sample evaluation. Revised historical macro series are never used to manufacture such a backtest. Shared regional inputs can still produce identical readings for indices; sector earnings, valuations and constituent exposures remain unmeasured.
 
 Verified UI paths include report-family/market/contract filtering, independent horizon narratives, available-instrument-only historical series, direct crypto metrics, and production lazy archive loading. The build leaves the auditable source snapshot intact and splits only the deployed files.
+
+
+## Public feature reconstruction
+
+See [the REA and Scrapling audit](edgefinder-reconstruction.md) for public EdgeFinder feature mapping, evidence limits, conditional economic rules and the prospective score journal.

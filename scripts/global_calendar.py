@@ -6,9 +6,11 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone, timedelta
 
 try:
+    from .scraping import script_texts
     from .public_feeds import request_bytes, number, stable_id
     from .indicator_registry import classify_indicator
 except ImportError:
+    from scraping import script_texts
     from public_feeds import request_bytes, number, stable_id
     from indicator_registry import classify_indicator
 
@@ -20,11 +22,13 @@ def page_objects(document):
     # React's streamed payload is JSON data. Never eval JavaScript or resolve
     # arbitrary references/URLs supplied by the document.
     chunks = []
-    for match in re.finditer(r'self\.__next_f\.push\((.*?)\)</script>', document, re.S):
-        try:
-            chunks.extend(value for value in json.loads(match[1]) if isinstance(value, str))
-        except (ValueError, TypeError):
-            continue
+    for script in script_texts(document):
+        for match in re.finditer(r'self\.__next_f\.push\(', script):
+            try:
+                payload, _ = json.JSONDecoder().raw_decode(script[match.end():])
+                chunks.extend(value for value in payload if isinstance(value, str))
+            except (ValueError, TypeError):
+                continue
     stream = ''.join(chunks)
     rows = []
     for match in re.finditer(r'\{"eventId":', stream):

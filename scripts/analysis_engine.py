@@ -4,8 +4,10 @@ from __future__ import annotations
 from typing import Any
 from datetime import datetime, timezone
 try:
+    from .fundamental_rules import RULES, GROUPS
     from .asset_models import asset_events, model_note
 except ImportError:
+    from fundamental_rules import RULES, GROUPS
     from asset_models import asset_events, model_note
 
 
@@ -76,6 +78,8 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
             effect *= float(pair.get('macroWeights', {}).get(event.get('currency'), 1))
         direction = 'supports' if effect > 0 else 'weighs on' if effect < 0 else 'is neutral for'
         driver_sections.append({'title': event['name'], 'body': event_sentence(event) + f" This {direction} {pair['symbol']}."})
+    themes = {GROUPS.get(event.get('indicatorId'), 'growth') for event in drivers}
+    rule_sections = [{'title': 'Economic channel · ' + rule['name'], 'body': rule['mechanism'] + ' Model assumption: ' + rule['mapping'] + ' Conditions: ' + rule['limit']} for rule in RULES if rule['id'] in themes]
     direct = next((row.get(horizon, {}) for row in (crypto or []) if row['instrument'] == pair['symbol']), {})
     direct_sections = [{'title': metric['name'], 'body': f"{metric['windowDays']}-day window comparison: {metric['change']:+.2f} {metric['changeUnit']}. Data through {metric['asOf']}; directional component {metric['score']:+.2f}."} for metric in direct.get('metrics', [])]
     result = {
@@ -86,6 +90,7 @@ def build_analysis(pair: dict[str, Any], events: list[dict[str, Any]], cot: list
             {"title": "Primary economic drivers", "body": driver_body},
             *driver_sections,
             *direct_sections,
+            *rule_sections,
             {"title": "Positioning", "body": position_body},
             {"title": "Interpretation", "body": "The directional reading balances released actual-versus-previous changes by independent economic theme and includes mapped positioning. Crypto additionally uses available network, issuance and chain-liquidity evidence. Historical macro series provide context and are not treated as dated release surprises. Market prices, yields and headlines are displayed as confirmation and are excluded from the official bias score."},
         ],

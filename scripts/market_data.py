@@ -1,7 +1,9 @@
 """Research-market-price adapter. Replace with a licensed feed for public commercial use."""
 from __future__ import annotations
 
-from datetime import timezone
+from datetime import datetime, timezone
+from math import isfinite, log, sqrt
+from statistics import stdev
 from typing import Any
 
 
@@ -25,7 +27,7 @@ def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
 
     mapping = {**TICKERS, **{symbol: forex_ticker(symbol) for symbol in forex_pairs}}
     frame = yf.download(
-        list(mapping.values()), period="5d", interval="1d", auto_adjust=False,
+        list(mapping.values()), period="1y", interval="1d", auto_adjust=False,
         progress=False, threads=4, group_by="column", timeout=15,
     )
     if frame.empty:
@@ -46,7 +48,9 @@ def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
                 timestamp = timestamp.tz_localize(timezone.utc)
             else:
                 timestamp = timestamp.tz_convert(timezone.utc)
+            context = price_context([(date.isoformat()[:10], float(value)) for date, value in close.items()], instrument, datetime.now(timezone.utc))
             output.append({
+                'context': context,
                 "instrument": instrument, "price": price, "previousClose": previous,
                 "change": change, "changePercent": change_percent,
                 "asOf": timestamp.isoformat().replace("+00:00", "Z"), "currency": 'USD' if ticker.endswith('=F') else None,
@@ -56,3 +60,24 @@ def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
         except (KeyError, TypeError, ValueError, IndexError):
             continue
     return sorted(output, key=lambda item: item["instrument"])
+
+
+def price_context(observations, instrument, now):
+    """Daily price confirmation only; excluded from the fundamental bias score."""
+    days = sorted({date: value for date, value in observations if date < now.date().isoformat()
+                   and isinstance(value, (int,float)) and isfinite(value) and value > 0}.items())
+    if not days: return None
+    values = [value for _, value in days]
+    averages = {str(n): sum(values[-n:]) / n if len(values) >= n else None for n in (20,50,100,200)}
+    ready = all(value is not None for value in averages.values())
+    above = sum(values[-1] > value for value in averages.values() if value is not None)
+    below = sum(values[-1] < value for value in averages.values() if value is not None)
+    crypto = instrument in {'AVAXUSD','BTCUSD','ETHUSD','LTCUSD','SOLUSD','SUIUSD','XLMUSD','XRPUSD'}
+    annual_days = 365 if crypto else 252
+    returns = [log(values[i]/values[i-1]) for i in range(len(values)-20,len(values))] if len(values)>=21 else []
+    return {'asOf':days[-1][0], 'close':values[-1], 'observations':len(values), 'averages':averages,
+            'trend':'aligned up' if ready and above == 4 else 'aligned down' if ready and below == 4 else 'mixed' if ready else 'unavailable',
+            'realizedVolatility20':stdev(returns)*sqrt(annual_days)*100 if returns else None,
+            'annualizationDays':annual_days,
+            'return20':(values[-1]/values[-21]-1)*100 if len(values)>=21 else None,
+            'scope':'Price context only; excluded from bias. Futures benchmarks may contain roll effects.'}

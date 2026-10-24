@@ -10,7 +10,7 @@ const bytes = readFileSync(`dist/data/${published.archiveUrl}`)
 const digest = createHash('sha256').update(bytes).digest('hex').slice(0, 12)
 assert.equal(published.archiveUrl, `archive-${digest}.json`)
 const archive = JSON.parse(bytes.toString('utf8'))
-for (const key of ['history', 'cotHistory', 'cryptoHistory']) {
+for (const key of ['history', 'cotHistory', 'cryptoHistory', 'scoreHistory']) {
   assert.ok(isDeepStrictEqual(archive[key], source[key] ?? []), `${key} changed during packaging`)
   assert.deepEqual(published[key], [], `${key} must load on demand`)
   assert.equal(published.archiveCounts[key], archive[key].length)

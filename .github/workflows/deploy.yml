@@ -45,6 +45,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Python dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
       - name: Validate published data
         run: python scripts/validate_snapshot.py
 

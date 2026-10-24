@@ -63,6 +63,34 @@ def validate(payload: dict[str, Any]) -> None:
             require(isinstance(horizon.get("coverage"), (int, float)) and 0 <= horizon["coverage"] <= 1, f"Invalid {horizon_name} coverage for {row.get('symbol')}.")
             require(isinstance(horizon.get("eventCount"), int) and horizon["eventCount"] >= 0, f"Invalid {horizon_name} event count for {row.get('symbol')}.")
             require(valid_time(horizon.get("updatedAt"), optional=True), f"Invalid {horizon_name} timestamp for {row.get('symbol')}.")
+    for reading in [row[h] for row in payload['currencies'] + payload['pairs'] for h in ('shortTerm','longTerm')]:
+        if 'components' not in reading: continue
+        cards = reading['components']
+        require(abs(sum(row['contribution'] for row in cards)-reading['score']) < 1e-8, 'Score components do not reconcile.')
+        for card in cards:
+            require(finite(card.get('weight')) and finite(card.get('contribution')), 'Invalid score component.')
+            require(card.get('score') is None or finite(card['score']), 'Invalid component input.')
+            require(card.get('available') or card['contribution'] == 0, 'Missing evidence cannot contribute.')
+    identities = [(r['instrument'],r['horizon'],r['recordedAt'][:10],r['modelVersion']) for r in payload.get('scoreHistory', [])]
+    require(len(identities) == len(set(identities)), 'Duplicate daily score journal record.')
+    for row in payload.get('scoreHistory', []):
+        require(valid_time(row.get('recordedAt')) and row.get('horizon') in {'shortTerm','longTerm'}, 'Invalid score journal identity.')
+        require(finite(row.get('score')) and -1 <= row['score'] <= 1 and row.get('label') in LABELS, 'Invalid score journal reading.')
+        require(finite(row.get('coverage')) and 0 <= row['coverage'] <= 1, 'Invalid journal coverage.')
+        require(row.get('referencePrice') is None or (finite(row['referencePrice']) and row['referencePrice'] > 0), 'Invalid journal price.')
+        require(valid_time(row.get('priceAsOf'), optional=True), 'Invalid journal price timestamp.')
+        require((row.get('referencePrice') is None) == (row.get('priceAsOf') is None), 'Journal price and timestamp must be paired.')
+        if row.get('priceAsOf'):
+            recorded = datetime.fromisoformat(row['recordedAt'].replace('Z', '+00:00'))
+            price_time = datetime.fromisoformat(row['priceAsOf'].replace('Z', '+00:00'))
+            require(recorded.tzinfo is not None and price_time.tzinfo is not None, 'Journal timestamps must include a timezone.')
+            require(0 <= (recorded - price_time).total_seconds() <= 5 * 86400, 'Journal price is future-dated or too old.')
+    for price in payload['prices']:
+        context = price.get('context')
+        if not context: continue
+        require(valid_time(context.get('asOf')) and context['trend'] in {'aligned up','aligned down','mixed','unavailable'}, 'Invalid price context.')
+        require(all(v is None or (finite(v) and v > 0) for v in context['averages'].values()), 'Invalid moving average.')
+        require(context['realizedVolatility20'] is None or (finite(context['realizedVolatility20']) and context['realizedVolatility20'] >= 0), 'Invalid volatility.')
     for event in payload["events"]:
         require(event.get("bias") in LABELS, f"Invalid event bias for {event.get('id')}.")
         require(valid_time(event.get("occurredAt")), f"Invalid occurredAt for {event.get('id')}.")

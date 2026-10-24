@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     closeBundle() {
       const path = 'dist/data/snapshot.json'
       const snapshot = JSON.parse(readFileSync(path, 'utf8'))
-      const archive = { history: snapshot.history, cotHistory: snapshot.cotHistory ?? [], cryptoHistory: snapshot.cryptoHistory ?? [] }
+      const archive = { scoreHistory: snapshot.scoreHistory ?? [], history: snapshot.history, cotHistory: snapshot.cotHistory ?? [], cryptoHistory: snapshot.cryptoHistory ?? [] }
       const data = JSON.stringify(archive)
       const filename = `archive-${createHash('sha256').update(data).digest('hex').slice(0, 12)}.json`
       writeFileSync(`dist/data/${filename}`, data)

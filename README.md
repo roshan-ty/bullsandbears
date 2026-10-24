@@ -21,7 +21,7 @@ The **Analyst Briefing** summarizes the working thesis, opposing evidence, horiz
 
 **Fundamental analysis, explained** adds expandable lessons for every eligible latest release in the selected horizon, including unchanged readings. Each lesson follows the definition, actual/previous values, economic mechanism, instrument transmission, indicator/impact weights, time decay, theme balancing, forecast context, counterarguments and reassessment conditions. Forex lessons distinguish base, quote and shared exposures; asset lessons use the collector’s actual sensitivity mapping. Separate CFTC and crypto lessons explain net/open-interest, holdings versus changes, activity versus adoption, issuance pressure and chain liquidity. Excluded observations and missing evidence are explicitly identified. Institutional links provide educational background, not fabricated original-release provenance. Existing scores are unchanged.
 
-The responsive workspace uses self-hosted Inter typography, graphite and ivory themes, theme-aware chart labels, keyboard focus indicators and a skip link. Phones use a horizontally scrollable tab bar; larger screens use a persistent sidebar. Tables scroll within their panels, and bottom padding keeps the final content reachable above the partner strip, including device safe areas.
+The responsive workspace uses self-hosted Inter typography, true-black and crisp light themes, theme-aware chart labels, keyboard focus indicators and a skip link. A persistent horizontal tab rail spans the full-width workspace and scrolls when needed on smaller screens. Tables scroll within their panels, and bottom padding keeps the final content reachable above the partner strip, including device safe areas.
 
 ## Understanding the information
 

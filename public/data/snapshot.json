@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T23:45:13Z",
+  "generatedAt": "2026-10-25T01:51:42Z",
   "currencies": [
     {
       "symbol": "USD",
@@ -564607,6 +564607,30 @@
   ],
   "news": [
     {
+      "id": "521d50c1df84a1b4879e1699",
+      "publishedAt": "2026-10-25T00:34:43Z",
+      "headline": "Obama slams Trump’s ‘cruelty and corruption’ at Ohio rally for Democrats",
+      "summary": "Former US president says Trump 'chose to make a series of bad decisions', highlighting the US-Israel war on Iran.",
+      "url": "https://aljazeera.com/news/2026/10/25/obama-slams-trumps-cruelty-and-corruption-at-ohio-rally-for-democrats?traffic_source=rss",
+      "instruments": [
+        "GLOBAL"
+      ],
+      "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
+    },
+    {
+      "id": "51e8f9f93da5839bdac5d3ed",
+      "publishedAt": "2026-10-25T00:00:00Z",
+      "headline": "Iran war live: Trump hints at possible Sunday Iran attack or deal reached",
+      "summary": "Trump says US is considering a possible attack on Iran as soon as Sunday, or it could reach a major deal with Tehran.",
+      "url": "https://aljazeera.com/news/liveblog/2026/10/25/iran-war-live-trump-hints-at-possible-sunday-iran-attack-or-deal-reached?traffic_source=rss",
+      "instruments": [
+        "GLOBAL"
+      ],
+      "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
+    },
+    {
       "id": "02ae8317b545f143753fc34e",
       "publishedAt": "2026-10-24T23:15:18Z",
       "headline": "Rosebank: Life on the oil field at the centre of a political storm",
@@ -564616,7 +564640,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "2f4a4bf62c6f419a02ce7ca7",
@@ -564628,7 +564652,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "bcc8fc2d4f3dec058270225d",
@@ -564640,7 +564664,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "b36a31ae4fd64fda6f33d3b1",
@@ -564652,7 +564676,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "098d963e341bbcbc9d12edc1",
@@ -564664,7 +564688,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "7d54f77466777deac9af8df9",
@@ -564676,7 +564700,7 @@
         "ETHUSD"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "4eb8fbf0da0011e37bcd9bc0",
@@ -564688,7 +564712,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "6d1277653bae8fbd673bf1c2",
@@ -564700,7 +564724,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "0cec8f6258839dbf5c730ff8",
@@ -564712,7 +564736,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "35d42f7afdd3df025bffdfc2",
@@ -564724,7 +564748,7 @@
         "EUR"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "5ac0619cf6c066bb29c1334f",
@@ -564736,7 +564760,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "5a4d4ac54f8f53c88bc60458",
@@ -564748,7 +564772,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "2bfade9e904c07518c4cb148",
@@ -564760,7 +564784,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "c409aa067b7844557facf757",
@@ -564772,7 +564796,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "e27e8bc4fc5679cdd6d58f76",
@@ -564892,7 +564916,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.aljazeera.com/xml/rss/all.xml",
-      "retrievedAt": "2026-10-24T23:45:27.883175Z"
+      "retrievedAt": "2026-10-25T01:51:53.928287Z"
     },
     {
       "id": "9ac4887b6ff15f47e81bac4a",
@@ -564976,7 +565000,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "6b8d9e7403e136818f10274f",
@@ -565084,7 +565108,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "7fdf7588e08e98b0c6da29cb",
@@ -565108,7 +565132,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "f35feb6e880c999999cfa9b2",
@@ -565120,7 +565144,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "3530b07ee4a19abff1ca0c33",
@@ -565192,7 +565216,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "0334f924abbf7ff91a32cd75",
@@ -565204,7 +565228,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "3af8f2c3016efcceb07133de",
@@ -565226,7 +565250,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "77149c28060cd74c2014570c",
@@ -565238,7 +565262,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "86183f037f8a074ca6bb8895",
@@ -565250,7 +565274,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "d760bccf7ac545ec3b133c73",
@@ -565314,7 +565338,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "2819393ca4ccabeb98e3a0f7",
@@ -565366,7 +565390,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "0ab1040befbc71f7bb087fa6",
@@ -565518,7 +565542,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "d61d339d9dd935d2ed53dd82",
@@ -565530,7 +565554,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "5020dc9146f2896bd979b102",
@@ -565612,7 +565636,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/world/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.112840Z"
+      "retrievedAt": "2026-10-25T01:51:54.270605Z"
     },
     {
       "id": "01214d406cc91a30346c28ab",
@@ -565634,7 +565658,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "8177cbc145dea4e3c34d8892",
@@ -565646,7 +565670,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "5237fdfc115368185ce0d8d4",
@@ -565658,7 +565682,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "239d66c590f6b6ebfeda99f3",
@@ -565690,7 +565714,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "e822ff0d3377830168e0cc0d",
@@ -565722,7 +565746,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "b32433eb31348ad5d982d336",
@@ -565734,7 +565758,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "dc4327ec4cc4b8e1bd555006",
@@ -565756,7 +565780,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "484d2e69269492390b3755b9",
@@ -565769,7 +565793,7 @@
         "GBP"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "5b070a642c20ac72d1edb16f",
@@ -565781,7 +565805,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "8017efdbdb882caba11c659f",
@@ -565793,7 +565817,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "847f2cc29a853e52b13938fa",
@@ -565817,7 +565841,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "d3c6763dda67a6e1c01c05a8",
@@ -565829,7 +565853,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "37d6d64b9383420a3ec1ec13",
@@ -565841,7 +565865,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "e20bfa1bd5ca283304d1d146",
@@ -565863,7 +565887,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "df3a6bee7859db246efde950",
@@ -565875,7 +565899,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "d1fc54d641b62737202281b3",
@@ -565897,7 +565921,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bls.gov/feed/bls_latest.rss",
-      "retrievedAt": "2026-10-24T23:45:29.818870Z"
+      "retrievedAt": "2026-10-25T01:51:58.537400Z"
     },
     {
       "id": "7764d669676c6edd5dfe0750",
@@ -565909,7 +565933,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "9b3ab1b5f58b920de40ac1c1",
@@ -565921,7 +565945,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "2ccb0aedaa89a8636c50bb93",
@@ -565933,7 +565957,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "7c9a9682896d310e3c6aa0a7",
@@ -565945,7 +565969,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "c69a4c5e9d8000b93214aba8",
@@ -565957,7 +565981,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "393f5aea00b1e0e08816a677",
@@ -565969,7 +565993,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "e88f5f80c794d0388a50e5fa",
@@ -565981,7 +566005,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "5bb8d641d996c67be1010c82",
@@ -565993,7 +566017,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "79944a6436379b5fb6ca197f",
@@ -566005,7 +566029,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "b54bc104b614d1f0a86753a0",
@@ -566017,7 +566041,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "a377e0afe5616996c1a30925",
@@ -566029,7 +566053,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "b92b588bf772198b75676d19",
@@ -566041,7 +566065,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "7827b097474ed5f7c346f039",
@@ -566053,7 +566077,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "68ef4dfd457b0ca51572720d",
@@ -566065,7 +566089,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "db720b22eb98f2fb4075236a",
@@ -566077,7 +566101,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "63834ef6c0dedca132eda66a",
@@ -566089,7 +566113,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "a220997376ce2cb5ed820e6c",
@@ -566101,7 +566125,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "e2aa772dfd1e41f1cbcb8436",
@@ -566113,7 +566137,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "06448193ed1e8368616929e7",
@@ -566125,7 +566149,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "9f85a09c791ca1ea14d4d8c1",
@@ -566137,7 +566161,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "1df6375ceb70696440aa0836",
@@ -566149,7 +566173,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "8c62dd37d933e3ffe9f03263",
@@ -566161,7 +566185,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "311058a4989ce7d3be5a89b4",
@@ -566174,7 +566198,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "1d44acffb55d9058114ae9f5",
@@ -566186,7 +566210,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "dc12949fdf083cde454c1cb1",
@@ -566198,7 +566222,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "dd6e46f682db0dc8cb279d79",
@@ -566210,7 +566234,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "6d4fc44a02f8f5ef8e67e7ad",
@@ -566222,7 +566246,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "6e73c5ce0a93df52de7cde32",
@@ -566234,7 +566258,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "69cbf31d95d15a81dd8af69f",
@@ -566246,7 +566270,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "753e471b9bab27e72bcda3b3",
@@ -566258,7 +566282,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "6ef5bc1332bf3faeacb312d3",
@@ -566270,7 +566294,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "3f70fb317a06b1a1e13c240a",
@@ -566282,7 +566306,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "3584a051eb95488caedc4fc6",
@@ -566294,7 +566318,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "1eb55ec51914cd846d62228a",
@@ -566306,7 +566330,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "da16bc71e522f355280a4959",
@@ -566318,7 +566342,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/press.html",
-      "retrievedAt": "2026-10-24T23:45:28.200994Z"
+      "retrievedAt": "2026-10-25T01:51:54.590091Z"
     },
     {
       "id": "d8ebf4999a8060a24ccb6b92",
@@ -566330,7 +566354,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "d8c42797f11677e9ad58a157",
@@ -566342,7 +566366,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "be9e6255853098cd9db86736",
@@ -566354,7 +566378,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "a265efe36eefebf1e8109761",
@@ -566366,7 +566390,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "c13b71aba028021b82b85d11",
@@ -566378,7 +566402,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "c6953a2e654d9e7ef59b34fa",
@@ -566390,7 +566414,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "c8229199c6e7dce85132b02f",
@@ -566402,7 +566426,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "90e07316f9869a3fb78cd604",
@@ -566414,7 +566438,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "7d9a884cc3311ac2f2cb5105",
@@ -566426,7 +566450,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "daa9aff372a15d08b1b06001",
@@ -566438,7 +566462,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "55e5ec883198d479544359e2",
@@ -566450,7 +566474,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "015881750343ec0823f406d3",
@@ -566462,7 +566486,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "6ef75ed3a77296fc168a2f4e",
@@ -566474,7 +566498,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "7d90630114917529593b17eb",
@@ -566486,7 +566510,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "37b964c8cf34f8ee54bd2dbb",
@@ -566498,7 +566522,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "f1b897903f63ad4bbf5729c0",
@@ -566510,7 +566534,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "2c32914ae0940a2635c04286",
@@ -566522,7 +566546,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "138ce952e3dfc1985769e1c3",
@@ -566534,7 +566558,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "3f37a2b91b382dd07fb00d27",
@@ -566546,7 +566570,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "eaf774e3b7cb926a82fe1661",
@@ -566558,7 +566582,7 @@
         "EUR"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "82790a9ce41c9d144f929481",
@@ -566570,7 +566594,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "bd37c8f5d62e183579a543f3",
@@ -566582,7 +566606,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "af9b58854c7f2044e91a0cdf",
@@ -566594,7 +566618,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "4c8e274408c91599e55e891e",
@@ -566606,7 +566630,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "975a52c3cfa673a69bfe1855",
@@ -566618,7 +566642,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "fb89defb8202047600c59e28",
@@ -566630,7 +566654,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "2973de12d3f7c6fb11bc3b60",
@@ -566642,7 +566666,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "b6b0ceae7c835c48e5f10782",
@@ -566654,7 +566678,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "cf8b56eac5871fcbb6e6e3ca",
@@ -566666,7 +566690,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "f470e239782b1fc428f2e92e",
@@ -566678,7 +566702,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "81dac94e44c4f09caa880c8e",
@@ -566690,7 +566714,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "d346e1c7eef0bdff9f6c1262",
@@ -566702,7 +566726,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "a2d86767f3974cfb62db2c49",
@@ -566715,7 +566739,7 @@
         "CHF"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "32af602fc2cb1a60d7a866b6",
@@ -566727,7 +566751,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "5b3753cd2b41e758ff4aecf4",
@@ -566739,7 +566763,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "4a7d8fb5c30ac56295783aa6",
@@ -566751,7 +566775,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/speeches.xml",
-      "retrievedAt": "2026-10-24T23:45:28.170464Z"
+      "retrievedAt": "2026-10-25T01:51:54.463861Z"
     },
     {
       "id": "dac21d097d2dff84baa817de",
@@ -566763,7 +566787,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "64ef4820453305eb4f17a60d",
@@ -566775,7 +566799,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "90ef61577dd4db1b3e66c1c6",
@@ -566787,31 +566811,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
-    },
-    {
-      "id": "451dc5a1c5c6e280b1fdcbfb",
-      "publishedAt": "2026-09-17T11:00:00Z",
-      "headline": "Bank rate maintained at 3.75% - September 2026 Monetary Policy Summary and Minutes",
-      "summary": "The Bank of England’s Monetary Policy Committee is responsible for making decisions about Bank Rate.",
-      "url": "https://bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/september-2026",
-      "instruments": [
-        "GBP"
-      ],
-      "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
-    },
-    {
-      "id": "dc3f23055e4b330e38e5af66",
-      "publishedAt": "2026-09-17T11:00:00Z",
-      "headline": "Asset Purchase Facility: Gilt Sales – Market Notice 17 September 2026",
-      "summary": "This Market Notice outlines the Bank Executive’s approach to implementing the Monetary Policy Committee’s (MPC) decision to unwind the gilts held for monetary policy purposes in the Asset Purchase Facility (APF). As part of this, Bank APF auctions will be paused while the Bank reviews a model of selling gilts to the Government.",
-      "url": "https://bankofengland.co.uk/markets/market-notices/2026/asset-purchase-facility-gilt-sales-market-notice-17-september-2026",
-      "instruments": [
-        "GLOBAL"
-      ],
-      "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "8b1f82c48771746a54c335b3",
@@ -566823,7 +566823,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "cb6f6207b9cfc194b351dc73",
@@ -566835,7 +566835,31 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
+    },
+    {
+      "id": "dc3f23055e4b330e38e5af66",
+      "publishedAt": "2026-09-17T11:00:00Z",
+      "headline": "Asset Purchase Facility: Gilt Sales – Market Notice 17 September 2026",
+      "summary": "This Market Notice outlines the Bank Executive’s approach to implementing the Monetary Policy Committee’s (MPC) decision to unwind the gilts held for monetary policy purposes in the Asset Purchase Facility (APF). As part of this, Bank APF auctions will be paused while the Bank reviews a model of selling gilts to the Government.",
+      "url": "https://bankofengland.co.uk/markets/market-notices/2026/asset-purchase-facility-gilt-sales-market-notice-17-september-2026",
+      "instruments": [
+        "GLOBAL"
+      ],
+      "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
+    },
+    {
+      "id": "451dc5a1c5c6e280b1fdcbfb",
+      "publishedAt": "2026-09-17T11:00:00Z",
+      "headline": "Bank rate maintained at 3.75% - September 2026 Monetary Policy Summary and Minutes",
+      "summary": "The Bank of England’s Monetary Policy Committee is responsible for making decisions about Bank Rate.",
+      "url": "https://bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/september-2026",
+      "instruments": [
+        "GBP"
+      ],
+      "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "c92a32bca4d492ba86ef331d",
@@ -566847,7 +566871,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "1e05c87ed793edd5a7d45100",
@@ -566859,7 +566883,7 @@
         "USD"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "89c41c7d7fbc1fa66f9874fc",
@@ -566871,7 +566895,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "09cc0f0d030e755b2db74aa9",
@@ -566883,7 +566907,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "aecd247e6e22043afc0d2a92",
@@ -566895,7 +566919,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "ce60af8d8d99248e8025e02a",
@@ -566907,7 +566931,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "55f148f81fb87bb84086e38d",
@@ -566919,7 +566943,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.federalreserve.gov/feeds/press_all.xml",
-      "retrievedAt": "2026-10-24T23:45:28.133844Z"
+      "retrievedAt": "2026-10-25T01:51:54.384750Z"
     },
     {
       "id": "984870f9344e118bd344a9ee",
@@ -566931,7 +566955,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "71d9a02c3a665a62949e83f5",
@@ -566943,7 +566967,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "005cd61f7ae6c9a06fe4e384",
@@ -566955,7 +566979,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "3d5edca5f69f70b516c2f9af",
@@ -566967,7 +566991,7 @@
         "EUR"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "4554ec1b0cf1fee662f87ac4",
@@ -566979,7 +567003,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "f8702dcd0ca2d908721e95ef",
@@ -566991,7 +567015,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "46e2dc300f1f4ea3aefea76b",
@@ -567003,7 +567027,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "3cf3fba2597592da9130513c",
@@ -567015,7 +567039,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "4e01c537b8b9b9767ae92f81",
@@ -567027,7 +567051,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "9b4f067385b25a5467972e3d",
@@ -567039,7 +567063,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/rss/blog.html",
-      "retrievedAt": "2026-10-24T23:45:28.707867Z"
+      "retrievedAt": "2026-10-25T01:51:55.419971Z"
     },
     {
       "id": "130ce384bc95edc1d8a65bcc",
@@ -567051,7 +567075,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "9e6d16bd2ba90677039968e0",
@@ -567063,7 +567087,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "cb58f2c1082463af86fed201",
@@ -567075,7 +567099,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "42e204d452b479aec0c3d78c",
@@ -567087,7 +567111,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "f48662a012e38a98308b1434",
@@ -567099,7 +567123,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "6b06039761c9e1fb10387497",
@@ -567111,7 +567135,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "ceda6e59bdd2787d6e506bbf",
@@ -567123,7 +567147,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://feeds.bbci.co.uk/news/business/rss.xml",
-      "retrievedAt": "2026-10-24T23:45:28.081161Z"
+      "retrievedAt": "2026-10-25T01:51:54.112500Z"
     },
     {
       "id": "2268f7040c949c8dd0b996ee",
@@ -567135,7 +567159,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "ac632fcb909818745f108d23",
@@ -567147,7 +567171,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "89ca117208a99e4449e3a054",
@@ -567159,7 +567183,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "5ea4db075765d984740aa120",
@@ -567171,7 +567195,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "93f826dbbbbeb702a0e4b373",
@@ -567184,7 +567208,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "7a8e83dfdd7a15be19cffce7",
@@ -567196,7 +567220,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "d46f881d3ef9f3ec33fc13c2",
@@ -567208,7 +567232,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "b93262cdbb8dcb2f070e23fa",
@@ -567220,7 +567244,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "23c2e4169e06ff0c6eaaf9a3",
@@ -567232,7 +567256,7 @@
         "GLOBAL"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "71152bdcbeff911ed11d8651",
@@ -567244,7 +567268,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     },
     {
       "id": "60e547599a858a73009eb516",
@@ -567256,7 +567280,7 @@
         "GBP"
       ],
       "sourceUrl": "https://www.bankofengland.co.uk/rss/news",
-      "retrievedAt": "2026-10-24T23:45:29.054333Z"
+      "retrievedAt": "2026-10-25T01:51:56.214558Z"
     }
   ],
   "analysis": [
@@ -640569,10 +640593,10 @@
     {
       "feed": "news",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:13Z",
-      "lastSuccessAt": "2026-10-24T23:45:13Z",
+      "lastAttemptAt": "2026-10-25T01:51:42Z",
+      "lastSuccessAt": "2026-10-25T01:51:42Z",
       "staleAfterHours": 1,
-      "itemCount": 227,
+      "itemCount": 229,
       "message": "Refreshed 160 public news records."
     },
     {
@@ -640587,7 +640611,7 @@
     {
       "feed": "https://api.gdeltproject.org/api/v2/doc/doc",
       "status": "degraded",
-      "lastAttemptAt": "2026-10-24T23:45:13.465031Z",
+      "lastAttemptAt": "2026-10-25T01:51:42.333701Z",
       "lastSuccessAt": "2026-10-24T16:46:42.218031Z",
       "staleAfterHours": 24,
       "itemCount": 0,
@@ -640596,8 +640620,8 @@
     {
       "feed": "https://www.aljazeera.com/xml/rss/all.xml",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:27.883175Z",
-      "lastSuccessAt": "2026-10-24T23:45:27.883175Z",
+      "lastAttemptAt": "2026-10-25T01:51:53.928287Z",
+      "lastSuccessAt": "2026-10-25T01:51:53.928287Z",
       "staleAfterHours": 24,
       "itemCount": 25,
       "message": "Retrieved 25 metadata records; publication dates are preserved."
@@ -640605,8 +640629,8 @@
     {
       "feed": "https://feeds.bbci.co.uk/news/business/rss.xml",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:28.081161Z",
-      "lastSuccessAt": "2026-10-24T23:45:28.081161Z",
+      "lastAttemptAt": "2026-10-25T01:51:54.112500Z",
+      "lastSuccessAt": "2026-10-25T01:51:54.112500Z",
       "staleAfterHours": 24,
       "itemCount": 55,
       "message": "Retrieved 55 metadata records; publication dates are preserved."
@@ -640614,8 +640638,8 @@
     {
       "feed": "https://feeds.bbci.co.uk/news/world/rss.xml",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:28.112840Z",
-      "lastSuccessAt": "2026-10-24T23:45:28.112840Z",
+      "lastAttemptAt": "2026-10-25T01:51:54.270605Z",
+      "lastSuccessAt": "2026-10-25T01:51:54.270605Z",
       "staleAfterHours": 24,
       "itemCount": 31,
       "message": "Retrieved 31 metadata records; publication dates are preserved."
@@ -640623,8 +640647,8 @@
     {
       "feed": "https://www.federalreserve.gov/feeds/press_all.xml",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:28.133844Z",
-      "lastSuccessAt": "2026-10-24T23:45:28.133844Z",
+      "lastAttemptAt": "2026-10-25T01:51:54.384750Z",
+      "lastSuccessAt": "2026-10-25T01:51:54.384750Z",
       "staleAfterHours": 24,
       "itemCount": 20,
       "message": "Retrieved 20 metadata records; publication dates are preserved."
@@ -640632,8 +640656,8 @@
     {
       "feed": "https://www.federalreserve.gov/feeds/speeches.xml",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:28.170464Z",
-      "lastSuccessAt": "2026-10-24T23:45:28.170464Z",
+      "lastAttemptAt": "2026-10-25T01:51:54.463861Z",
+      "lastSuccessAt": "2026-10-25T01:51:54.463861Z",
       "staleAfterHours": 24,
       "itemCount": 15,
       "message": "Retrieved 15 metadata records; publication dates are preserved."
@@ -640641,8 +640665,8 @@
     {
       "feed": "https://www.ecb.europa.eu/rss/press.html",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:28.200994Z",
-      "lastSuccessAt": "2026-10-24T23:45:28.200994Z",
+      "lastAttemptAt": "2026-10-25T01:51:54.590091Z",
+      "lastSuccessAt": "2026-10-25T01:51:54.590091Z",
       "staleAfterHours": 24,
       "itemCount": 15,
       "message": "Retrieved 15 metadata records; publication dates are preserved."
@@ -640650,8 +640674,8 @@
     {
       "feed": "https://www.ecb.europa.eu/rss/blog.html",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:28.707867Z",
-      "lastSuccessAt": "2026-10-24T23:45:28.707867Z",
+      "lastAttemptAt": "2026-10-25T01:51:55.419971Z",
+      "lastSuccessAt": "2026-10-25T01:51:55.419971Z",
       "staleAfterHours": 24,
       "itemCount": 15,
       "message": "Retrieved 15 metadata records; publication dates are preserved."
@@ -640659,8 +640683,8 @@
     {
       "feed": "https://www.bankofengland.co.uk/rss/news",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:29.054333Z",
-      "lastSuccessAt": "2026-10-24T23:45:29.054333Z",
+      "lastAttemptAt": "2026-10-25T01:51:56.214558Z",
+      "lastSuccessAt": "2026-10-25T01:51:56.214558Z",
       "staleAfterHours": 24,
       "itemCount": 50,
       "message": "Retrieved 50 metadata records; publication dates are preserved."
@@ -640668,7 +640692,7 @@
     {
       "feed": "https://www.bankofcanada.ca/feed/",
       "status": "degraded",
-      "lastAttemptAt": "2026-10-24T23:45:29.177068Z",
+      "lastAttemptAt": "2026-10-25T01:51:56.984698Z",
       "lastSuccessAt": null,
       "staleAfterHours": 24,
       "itemCount": 0,
@@ -640677,7 +640701,7 @@
     {
       "feed": "https://www.rba.gov.au/rss/rss-cb-media-releases.xml",
       "status": "degraded",
-      "lastAttemptAt": "2026-10-24T23:45:29.244332Z",
+      "lastAttemptAt": "2026-10-25T01:51:57.132279Z",
       "lastSuccessAt": null,
       "staleAfterHours": 24,
       "itemCount": 0,
@@ -640686,8 +640710,8 @@
     {
       "feed": "https://www.bls.gov/feed/bls_latest.rss",
       "status": "healthy",
-      "lastAttemptAt": "2026-10-24T23:45:29.818870Z",
-      "lastSuccessAt": "2026-10-24T23:45:29.818870Z",
+      "lastAttemptAt": "2026-10-25T01:51:58.537400Z",
+      "lastSuccessAt": "2026-10-25T01:51:58.537400Z",
       "staleAfterHours": 24,
       "itemCount": 1,
       "message": "Retrieved 1 metadata records; publication dates are preserved."
@@ -640695,7 +640719,7 @@
     {
       "feed": "https://www.bea.gov/news/rss.xml",
       "status": "degraded",
-      "lastAttemptAt": "2026-10-24T23:45:29.953741Z",
+      "lastAttemptAt": "2026-10-25T01:51:58.703053Z",
       "lastSuccessAt": null,
       "staleAfterHours": 24,
       "itemCount": 0,
@@ -817347,7 +817371,7 @@
       "normalizedScore": null
     }
   ],
-  "newsUpdatedAt": "2026-10-24T23:45:13Z",
+  "newsUpdatedAt": "2026-10-25T01:51:42Z",
   "coreUpdatedAt": "2026-10-24T20:48:46Z",
   "cryptoFundamentals": [
     {

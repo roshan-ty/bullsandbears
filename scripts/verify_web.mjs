@@ -7,4 +7,5 @@ assert.match(readFileSync('dist/index.html', 'utf8'), /\/bullsandbears\/assets\/
 assert.ok(existsSync('dist/404.html') && existsSync('dist/.nojekyll'))
 assert.ok(!readdirSync('dist').includes('desktop'))
 assert.ok(!readdirSync('dist/assets').some(name => name.endsWith('.map')))
+for (const name of ['charts', 'macro', 'positioning', 'retail']) assert.ok(existsSync(`dist/screenshots/desktop-${name}.png`), `Missing desktop preview: ${name}`)
 console.log(`Verified free Pages artifact: ${snapshot.pairs.length} markets, no premium datasets.`)

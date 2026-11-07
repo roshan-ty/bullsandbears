@@ -2,7 +2,19 @@ export type BiasLabel = 'bullish' | 'bearish' | 'neutral' | 'unavailable'
 export type Impact = 'low' | 'medium' | 'high'
 export type DirectionRule = 'higher_is_bullish' | 'lower_is_bullish' | 'text_policy' | 'custom'
 
+export type VerificationStatus = 'confirmed' | 'single-source' | 'conflict' | 'pending'
+export interface EventVerification {
+  status: VerificationStatus
+  checkedAt: string
+  sourceCount: number
+  fields: Record<'actual' | 'forecast' | 'previous', VerificationStatus>
+  conflictingFields: Array<'actual' | 'forecast' | 'previous'>
+  previousRevisionPending?: boolean
+  note?: string
+}
+
 export interface EconomicEvent {
+  verification?: EventVerification
   source?: string
   sourceUrl?: string
   retrievedAt?: string
@@ -11,6 +23,7 @@ export interface EconomicEvent {
   forecastText?: string | null
   previousText?: string | null
   originalPrevious?: number | null
+  originalPreviousText?: string | null
   timeLabel?: string | null
   id: string
   occurredAt: string

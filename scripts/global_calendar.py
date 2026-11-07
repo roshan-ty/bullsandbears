@@ -15,6 +15,7 @@ except ImportError:
     from indicator_registry import classify_indicator
 
 SUPPLEMENTAL_CURRENCIES = {'HKD', 'HUF', 'NOK', 'PLN', 'SEK', 'SGD', 'TRY', 'ZAR', 'BRL', 'CZK', 'DKK', 'MXN'}
+ALL_CURRENCIES = SUPPLEMENTAL_CURRENCIES | {'USD', 'EUR', 'GBP', 'JPY', 'CHF', 'AUD', 'NZD', 'CAD', 'CNY'}
 BASE = 'https://www.fxblue.com/calendar'
 
 
@@ -54,19 +55,32 @@ def normalize(row, currencies=SUPPLEMENTAL_CURRENCIES):
     potency = row.get('potency')
     if potency not in (None, 'ZERO', 'K', 'M', 'B', 'T'):
         return None
+    if row.get('unit') == '%' and potency not in (None, 'ZERO'):
+        return None  # percent observations must not also carry a count multiplier
     multiplier = {'K': 1e3, 'M': 1e6, 'B': 1e9, 'T': 1e12}.get(potency, 1)
-    values = {key: number(row.get(key)) for key in ('actual', 'previous', 'forecast')}
+    def scaled(value):
+        numeric = number(value)
+        # A number carrying its own suffix is already scaled by number().
+        # Reject a contradictory second scale instead of multiplying twice.
+        suffix = str(value).strip()[-1:].upper() if value is not None else ''
+        if suffix in {'K', 'M', 'B', 'T'}:
+            return numeric if potency in (None, 'ZERO', suffix) else None
+        return numeric * multiplier if numeric is not None else None
+    values = {key: scaled(row.get(key)) for key in ('actual', 'previous', 'forecast')}
     if number(row.get('revisited')) is not None:
-        values['previous'] = number(row['revisited'])
+        values['previous'] = scaled(row['revisited'])
     occurred = date.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
     return {'id': stable_id('global', row['eventDateDetailId']), 'occurredAt': occurred,
             'currency': currency, 'country': row.get('country'), 'name': row['name'].strip(),
             'seriesKey': 'global:' + row['eventId'], 'sourceEventId': row['eventId'],
             'sourceDetailId': row['eventDateDetailId'], 'sourceUrl': detail_url(row),
             'unit': row.get('unit'), 'impact': str(row.get('importance', 'low')).lower(),
+            'originalPrevious': scaled(row.get('previous')), 'previousRevised': number(row.get('revisited')) is not None,
+            'sourcePeriod': row.get('period'), 'referencePeriod': row.get('referencePeriod'),
+            'sourceValues': {key: row.get(key) for key in ('actual', 'previous', 'forecast', 'revisited', 'unit', 'potency')},
             'source': 'FX Blue', 'retrievedAt': datetime.now(timezone.utc).isoformat(),
             'hasNumericRelease': not (row.get('isSpeech') or row.get('isReport')),
-            **{key: value * multiplier if value is not None else None for key, value in values.items()}}
+            **values}
 
 
 def detail_url(row):
@@ -98,6 +112,8 @@ def fetch_global_calendar(previous=(), now=None, backfill=True, currencies=SUPPL
     # the discovery mechanism; no private endpoint or credentials are used.
     selected = {}
     for row in sorted(raw, key=lambda row: classify_indicator(row['name']).weight, reverse=True):
+        if row['currency'] not in SUPPLEMENTAL_CURRENCIES:
+            continue  # major-currency rows verify primary releases, never add duplicate votes
         rule = classify_indicator(row['name'])
         if rule.direction not in ('higher_is_bullish', 'lower_is_bullish'):
             continue

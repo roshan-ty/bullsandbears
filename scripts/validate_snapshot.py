@@ -107,6 +107,16 @@ def validate(payload: dict[str, Any]) -> None:
         require(all(v is None or (finite(v) and v > 0) for v in context['averages'].values()), 'Invalid moving average.')
         require(context['realizedVolatility20'] is None or (finite(context['realizedVolatility20']) and context['realizedVolatility20'] >= 0), 'Invalid volatility.')
     for event in payload["events"]:
+        verification = event.get('verification')
+        if verification is not None:
+            states = {'confirmed', 'single-source', 'conflict', 'pending'}
+            require(verification.get('status') in states and valid_time(verification.get('checkedAt')), 'Invalid release verification.')
+            fields = verification.get('fields', {})
+            require(set(fields) == {'actual', 'forecast', 'previous'} and all(status in states for status in fields.values()), 'Invalid field verification.')
+            require(verification.get('sourceCount') in (1, 2), 'Invalid verification source count.')
+            require(set(verification.get('conflictingFields', [])) == {key for key, status in fields.items() if status == 'conflict'}, 'Verification conflicts do not reconcile.')
+            if any(fields[key] == 'conflict' for key in ('actual', 'previous')):
+                require(event.get('signal') is None and event.get('contribution') == 0 and event.get('bias') == 'unavailable', 'Conflicting release inputs cannot receive a bias vote.')
         require(event.get("bias") in LABELS, f"Invalid event bias for {event.get('id')}.")
         require(valid_time(event.get("occurredAt")), f"Invalid occurredAt for {event.get('id')}.")
         for key in ('actual', 'previous', 'forecast'):

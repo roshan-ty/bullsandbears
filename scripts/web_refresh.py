@@ -14,7 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'data' / 'state.json.gz'
 PUBLIC = ROOT / 'public' / 'data' / 'snapshot.json'
 HIDDEN = {'source', 'sourceUrl', 'sourceEventId', 'provider', 'providerUrl', 'reference',
-          'ticker', 'url', 'bars', 'context', 'cotEvidence', 'positioningEvidence'}
+          'ticker', 'url', 'bars', 'context', 'cotEvidence', 'positioningEvidence',
+          'sourceValues', 'sourceSeriesId', 'sourceDetailId', 'sourcePeriod'}
 PROVIDERS = re.compile(r'Yahoo(?: Finance)?|Forex Factory|Fair Economy|CoinMetrics|Coin Metrics|CoinGecko|Coinbase|Binance|Myfxbook|Deribit|DefiLlama|DeFi Llama|GDELT|World Bank|FRED|OECD|BIS|CFTC|Bank of Canada|ECB', re.I)
 
 

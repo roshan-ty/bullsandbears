@@ -356,7 +356,8 @@ def score_event(event: dict[str, Any]) -> dict[str, Any]:
     direction = event.get("direction", "higher_is_bullish")
     signal = None
     surprise = None if actual is None or comparison is None else actual - comparison
-    if direction in ("higher_is_bullish", "lower_is_bullish") and surprise is not None:
+    disputed = any(event.get('verification', {}).get('fields', {}).get(field) == 'conflict' for field in ('actual', 'previous'))
+    if not disputed and direction in ("higher_is_bullish", "lower_is_bullish") and surprise is not None:
         signal = 0 if surprise == 0 else (1 if surprise > 0 else -1)
         if direction == "lower_is_bullish":
             signal *= -1
@@ -449,14 +450,46 @@ def pair_horizon(base: dict[str, Any], quote: dict[str, Any], generated_at: str)
 
 def merge_calendar(current: list[dict[str, Any]], previous: list[dict[str, Any]], now: datetime) -> list[dict[str, Any]]:
     merged = {}
-    for item in [*previous, *current]:
+    identities = {(str(row.get('currency', '')).upper(), str(row.get('name', '')).strip(), row.get('occurredAt'), 'Forex Factory'): ('Forex Factory', row['sourceEventId'])
+                  for row in [*previous, *current] if str(row.get('source', '')).startswith('Forex Factory') and row.get('sourceEventId')}
+    # Older snapshots can contain both a tentative and confirmed release time.
+    # When collapsing their stable source ID, the newest retrieval wins rather
+    # than whichever timestamp happens to appear last in the display ordering.
+    ordered_previous = sorted(previous, key=lambda row: str(row.get('retrievedAt') or ''))
+    for item in [*ordered_previous, *current]:
         if not item.get('id'):
             continue
-        # Different feeds and currency casing can assign different IDs to the
-        # same release. Preserve one observation and its last non-null actual.
-        key = (str(item['currency']).upper(), str(item['name']).strip(), item.get('occurredAt')) if item.get('currency') and item.get('name') else item['id']
+        # Do not splice unrelated publishers' actuals, revisions and display
+        # strings together. A schedule and its primary release share one family.
+        source = str(item.get('source', ''))
+        family = 'Forex Factory' if source.startswith('Forex Factory') else source
+        basic = (str(item.get('currency', '')).upper(), str(item.get('name', '')).strip(), item.get('occurredAt'), family)
+        identity = (family, item.get('sourceEventId')) if family == 'Forex Factory' and item.get('sourceEventId') else identities.get(basic, basic)
+        key = identity if item.get('currency') and item.get('name') else item['id']
         prior = merged.get(key, {})
-        merged[key] = {**item, **prior, **{field: value for field, value in item.items() if value is not None}}
+        row = {**item, **prior, **{field: value for field, value in item.items() if value is not None}}
+        for field in ('actual', 'forecast', 'previous'):
+            if item.get(field) is not None:
+                # A new numerical reading owns its corresponding display text.
+                # If this source supplies no text, the UI formats the number.
+                row[field + 'Text'] = item.get(field + 'Text')
+                if field == 'previous':
+                    # Revision metadata belongs to this specific previous value,
+                    # not an older report that happened to have the same ID.
+                    row['originalPrevious'] = item.get('originalPrevious')
+                    row['originalPreviousText'] = item.get('originalPreviousText')
+                    row['previousRevised'] = item.get('previousRevised') is True
+            elif item.get(field + 'Text'):
+                # A nonnumeric source correction (range, pending or withdrawal)
+                # must clear a stale numeric value instead of keeping its vote.
+                row[field] = None
+                row[field + 'Text'] = item[field + 'Text']
+                if field == 'previous':
+                    row['originalPrevious'] = None
+                    row['originalPreviousText'] = None
+                    row['previousRevised'] = False
+        row.pop('verification', None)
+        merged[key] = row
     cutoff = now.timestamp() - 180 * 86400
     return [item for item in merged.values() if (occurred := parse_event_time(item.get("occurredAt"))) is not None and occurred.timestamp() >= cutoff]
 
@@ -509,14 +542,20 @@ def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], ge
 
 
 def collect_calendar(previous, health, generated_at, fast=False):
+    from scripts.global_calendar import ALL_CURRENCIES, SUPPLEMENTAL_CURRENCIES
+    from scripts.calendar_verification import update_checks, enrich_revisions, verify
     now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
     try:
         public_calendar = []
-        for feed, collector in [('calendar-major', lambda: fetch_public_calendar(('this',) if fast else ('last', 'this', 'next'))),
-                                ('calendar-global', lambda: fetch_global_calendar(previous.get('events', []), now, backfill=not fast))]:
+        for feed, collector in [('calendar-major', lambda: fetch_public_calendar(('last', 'this') if fast else ('last', 'this', 'next'))),
+                                ('calendar-global', lambda: fetch_global_calendar(previous.get('events', []), now, backfill=not fast, currencies=ALL_CURRENCIES))]:
             try:
                 fresh = collector()
-                public_calendar.extend(fresh)
+                if feed == 'calendar-global':
+                    previous['calendarChecks'] = update_checks(fresh, previous.get('calendarChecks', []), now)
+                    public_calendar.extend(row for row in fresh if row.get('currency') in SUPPLEMENTAL_CURRENCIES)
+                else:
+                    public_calendar.extend(fresh)
                 health[feed] = {**calendar_health(fresh, generated_at), 'feed': feed}
             except Exception as error:
                 prior = health.get(feed, {})
@@ -528,13 +567,17 @@ def collect_calendar(previous, health, generated_at, fast=False):
             print(f"Supplemental calendar ingestion failed: {safe_error(error)}", file=sys.stderr)
             configured_calendar = []
         calendar = merge_calendar([*configured_calendar, *public_calendar], previous.get("events", []), now)
+        checks = enrich_revisions(calendar, previous.get('calendarChecks', []), now)
+        previous['calendarChecks'] = checks
         health["calendar"] = calendar_health([*configured_calendar, *public_calendar], generated_at)
     except Exception as error:
         print(f"Calendar ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
         calendar = previous.get("events", [])
         prior = health.get("calendar", {})
         health["calendar"] = {**prior, "feed": "calendar", "status": "degraded", "lastAttemptAt": generated_at, "lastSuccessAt": prior.get("lastSuccessAt"), "staleAfterHours": 12, "itemCount": len(calendar), "message": safe_error(error)}
-    return calendar
+    # Retrieval timestamps are taken after the refresh starts. Compare them to
+    # the completion clock, not the earlier calculation timestamp.
+    return verify(calendar, previous.get('calendarChecks', []), datetime.now(timezone.utc))
 
 
 def run_core() -> None:

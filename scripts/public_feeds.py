@@ -158,8 +158,12 @@ def parse_calendar_page(document: str) -> list[dict[str, Any]]:
             output.append({
                 'id': stable_id(currency, title, occurred), 'occurredAt': occurred,
                 'currency': currency, 'name': title, 'impact': row.get('impactName', 'low'),
+                'country': {'SZ': 'CH', 'CH': 'CN', 'JN': 'JP', 'GE': 'DE', 'EZ': 'EMU', 'SP': 'ES'}.get(str(row.get('country', '')), row.get('country')),
+                'sourceSeriesId': str(row.get('ebaseId', '')),
                 'actual': number(row.get('actual')), 'forecast': number(row.get('forecast')),
                 'previous': number(previous), 'originalPrevious': number(row.get('previous')),
+                'originalPreviousText': clean_text(row.get('previous')) or None,
+                'previousRevised': number(row.get('revision')) is not None,
                 'source': 'Forex Factory', 'sourceEventId': str(row.get('id', '')),
                 'sourceUrl': 'https://www.forexfactory.com' + row['url'] if str(row.get('url', '')).startswith('/calendar') else 'https://www.forexfactory.com/calendar',
                 'retrievedAt': datetime.now(timezone.utc).isoformat(),
@@ -188,7 +192,7 @@ def fetch_public_calendar(windows=('last', 'this', 'next')) -> list[dict[str, An
 
 
 def clean_text(value: Any) -> str:
-    text = html.unescape(re.sub(r"<[^>]+>", " ", str(value or "")))
+    text = html.unescape(re.sub(r"<[^>]+>", " ", str(value if value is not None else "")))
     return " ".join(text.split())
 
 

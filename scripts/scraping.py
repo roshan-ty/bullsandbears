@@ -6,7 +6,7 @@ from scrapling import Selector
 from scrapling.fetchers import Fetcher
 import time
 
-ALLOWED_HOSTS = {'www.forexfactory.com','www.fxblue.com','www.a1trading.com'}
+ALLOWED_HOSTS = {'www.forexfactory.com','www.fxblue.com','www.a1trading.com','www.myfxbook.com'}
 MAX_HTML_BYTES = 8_000_000
 
 

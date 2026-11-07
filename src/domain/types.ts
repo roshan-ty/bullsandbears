@@ -3,6 +3,15 @@ export type Impact = 'low' | 'medium' | 'high'
 export type DirectionRule = 'higher_is_bullish' | 'lower_is_bullish' | 'text_policy' | 'custom'
 
 export interface EconomicEvent {
+  source?: string
+  sourceUrl?: string
+  retrievedAt?: string
+  hasNumericRelease?: boolean
+  actualText?: string | null
+  forecastText?: string | null
+  previousText?: string | null
+  originalPrevious?: number | null
+  timeLabel?: string | null
   id: string
   occurredAt: string
   currency: string
@@ -142,6 +151,11 @@ export interface HistoricalPoint {
 }
 
 export interface MarketPrice {
+  bars?: PriceBar[]
+  ticker?: string
+  source?: string
+  sourceUrl?: string
+  retrievedAt?: string
   context?: { asOf: string; close: number; observations: number; averages: Record<string, number | null>; trend: string; realizedVolatility20: number | null; annualizationDays: number; return20: number | null; scope: string } | null
   priceKind?: string
   priceUnit?: string | null
@@ -152,6 +166,16 @@ export interface MarketPrice {
   changePercent: number | null
   asOf: string
   currency: string | null
+}
+
+export interface PriceBar { time: string; open: number; high: number; low: number; close: number; volume: number | null; partial?: boolean }
+export interface PriceChartData {
+  instrument: string; interval: string; ticker?: string; source?: string; sourceUrl?: string; feedLabel?: string
+  priceKind: string; priceUnit: string; delayNotice: string; asOf: string; retrievedAt: string; bars: PriceBar[]
+}
+export interface PriceChartResponse {
+  instrument: string; interval: string; channel?: string; data: PriceChartData | null; updating: boolean; message: string
+  stream?: { state: 'connecting' | 'reconnecting' | 'streaming' | 'waiting' | 'stale' | 'unavailable'; updates: number; lastPrice?: number | null; lastTickAt: string | null; lastReceivedAt: string | null; reference?: { price: number; asOf: string; unit: string } | null }
 }
 
 export interface AnalysisRecord {
@@ -207,10 +231,14 @@ export interface ScoreObservation {
   priceAsOf: string | null
 }
 export interface DashboardSnapshot {
+  positioningUpdatedAt?: string
+  positioning?: PositioningObservation[]
+  positioningHistory?: PositioningObservation[]
+  calendarUpdatedAt?: string | null
   methodology?: FundamentalRule[]
   scoreHistory?: ScoreObservation[]
   archiveUrl?: string
-  archiveCounts?: { history: number; cotHistory: number; cryptoHistory: number; scoreHistory?: number }
+  archiveCounts?: { history: number; cotHistory: number; cryptoHistory: number; scoreHistory?: number; positioningHistory?: number }
   schemaVersion: number
   generatedAt: string | null
   coreUpdatedAt?: string | null
@@ -229,4 +257,26 @@ export interface DashboardSnapshot {
   analysis: AnalysisRecord[]
   setups: TradeSetup[]
   feedHealth: FeedHealth[]
+}
+
+export interface PositioningObservation {
+  kind: 'retail' | 'options' | 'cot'
+  instrument: string
+  recordedAt: string
+  expiresAt: string
+  score: number | null
+  sample: string
+  longPercent?: number
+  shortPercent?: number
+  longVolume?: number
+  shortVolume?: number
+  longPositions?: number
+  shortPositions?: number
+  tradeCount?: number
+  supportiveVolume?: number
+  opposingVolume?: number
+  windowStart?: string
+  windowEnd?: string
+  truncated?: boolean
+  reportDate?: string
 }

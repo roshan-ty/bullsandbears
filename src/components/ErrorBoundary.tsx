@@ -1,3 +1,4 @@
+import { BrandLogo } from './BrandLogo'
 import { Component, type ReactNode } from 'react'
 
 export class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
@@ -9,7 +10,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { failed: 
 
   render() {
     if (this.state.failed) return <main role="alert">
-      <h1>Bulls &amp; Bears could not display this view</h1>
+      <BrandLogo className="activation-logo" /><h1>This view could not be displayed</h1>
       <p>No replacement market data has been generated. Reload to retry the published application.</p>
       <button onClick={() => window.location.reload()}>Reload application</button>
     </main>

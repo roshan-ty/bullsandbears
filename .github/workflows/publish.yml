@@ -1,0 +1,72 @@
+name: Publish free screener
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['public/data/**', 'data/**', 'README.md']
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: Data to refresh
+        type: choice
+        options: [core, calendar, none]
+        default: core
+  schedule:
+    - cron: '17 0,6,12,18 * * *'
+    - cron: '23,53 * * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: free-screener-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: npm ci
+      - run: python -m pip install --disable-pip-version-check -r requirements.txt
+      - name: Test application and data boundaries
+        run: |
+          npm run lint
+          npm test
+          python -m unittest discover -s tests
+      - name: Refresh market data
+        if: github.event_name != 'push' && inputs.refresh != 'none'
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          REFRESH_MODE: ${{ inputs.refresh || (github.event.schedule == '17 0,6,12,18 * * *' && 'core' || 'calendar') }}
+        run: python -m scripts.web_refresh "$REFRESH_MODE"
+      - name: Build and verify web edition
+        run: npm run build
+      - name: Save validated market state
+        run: |
+          git add public/data/snapshot.json data/state.json.gz
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "data: refresh validated market snapshot"
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Publish site
+        id: deployment
+        uses: actions/deploy-pages@v4

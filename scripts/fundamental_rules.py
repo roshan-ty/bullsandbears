@@ -50,25 +50,36 @@ def component(key, name, score, weight, available=True, rule=None):
             'contribution':score * weight if available else 0, 'available':available, 'ruleId':rule or key}
 
 
-def record_scores(previous, pairs, prices, stamp):
-    """First observation per UTC day/model/horizon is immutable. No retroactive history."""
+def record_scores(previous, pairs, prices, stamp, labels_only=False):
+    """Preserve published observations; record daily anchors and genuine changes."""
     from datetime import datetime, timezone, timedelta
     now = datetime.fromisoformat(stamp.replace('Z','+00:00'))
     cutoff = (now - timedelta(days=1095)).date().isoformat()
-    records = {(r['instrument'],r['horizon'],r['recordedAt'][:10],r['modelVersion']):r for r in previous
+    records = {(r['instrument'],r['horizon'],r['recordedAt'],r['modelVersion']):r for r in previous
                if cutoff <= r['recordedAt'][:10] <= stamp[:10]}
+    latest = {}
+    for row in sorted(records.values(), key=lambda r:datetime.fromisoformat(r['recordedAt'].replace('Z','+00:00'))):
+        latest[(row['instrument'],row['horizon'])] = row
     quotes = {r['instrument']:r for r in prices}
     for pair in pairs:
         for horizon in ('shortTerm','longTerm'):
             reading = pair[horizon]
-            key = (pair['symbol'],horizon,stamp[:10],pair.get('modelVersion', MODEL_VERSION))
+            model = pair.get('modelVersion', MODEL_VERSION)
+            key = (pair['symbol'],horizon,stamp,model)
+            old = latest.get((pair['symbol'],horizon))
             if key in records: continue
+            # A late-finishing collection must not insert a state before a newer publication.
+            if old and datetime.fromisoformat(old['recordedAt'].replace('Z','+00:00')) > now: continue
+            fields = ('label',) if labels_only else ('score','label','coverage')
+            if old and old['recordedAt'][:10] == stamp[:10] and old['modelVersion'] == model:
+                if all(old.get(field) == reading.get(field) for field in fields) and (old['coverage'] > 0) == (reading['coverage'] > 0):
+                    continue
             quote = quotes.get(pair['symbol'])
             if quote:
                 date = datetime.fromisoformat(quote['asOf'].replace('Z','+00:00'))
                 if date.tzinfo is None: date = date.replace(tzinfo=timezone.utc)
                 if not 0 <= (now-date).total_seconds() <= 5*86400: quote = None
-            records[key] = {'instrument':pair['symbol'],'horizon':horizon,'recordedAt':stamp,'modelVersion':key[3],
+            records[key] = {'instrument':pair['symbol'],'horizon':horizon,'recordedAt':stamp,'modelVersion':model,
                             'score':reading['score'],'label':reading['label'],'coverage':reading['coverage'],
                             'referencePrice':quote['price'] if quote else None,'priceAsOf':quote['asOf'] if quote else None}
-    return sorted(records.values(),key=lambda r:(r['recordedAt'],r['instrument'],r['horizon']))
+    return sorted(records.values(),key=lambda r:(datetime.fromisoformat(r['recordedAt'].replace('Z','+00:00')),r['instrument'],r['horizon']))

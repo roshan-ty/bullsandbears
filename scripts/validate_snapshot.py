@@ -43,6 +43,13 @@ def finite(value: Any) -> bool:
 def validate(payload: dict[str, Any]) -> None:
     require(payload.get("schemaVersion") == 1, "Unsupported schemaVersion.")
     require(valid_time(payload.get("generatedAt"), optional=True), "generatedAt is invalid.")
+    try:
+        from scripts.positioning_signals import validate_points
+    except ModuleNotFoundError:
+        from positioning_signals import validate_points
+    for name in ('positioning', 'positioningHistory'):
+        require(isinstance(payload.get(name, []), list), 'Invalid positioning array')
+        validate_points(payload.get(name, []))
     for key in ARRAY_KEYS:
         require(isinstance(payload.get(key), list), f"{key} must be an array.")
     unique(payload["events"], "id", "events")
@@ -71,8 +78,8 @@ def validate(payload: dict[str, Any]) -> None:
             require(finite(card.get('weight')) and finite(card.get('contribution')), 'Invalid score component.')
             require(card.get('score') is None or finite(card['score']), 'Invalid component input.')
             require(card.get('available') or card['contribution'] == 0, 'Missing evidence cannot contribute.')
-    identities = [(r['instrument'],r['horizon'],r['recordedAt'][:10],r['modelVersion']) for r in payload.get('scoreHistory', [])]
-    require(len(identities) == len(set(identities)), 'Duplicate daily score journal record.')
+    identities = [(r['instrument'],r['horizon'],r['recordedAt'],r['modelVersion']) for r in payload.get('scoreHistory', [])]
+    require(len(identities) == len(set(identities)), 'Duplicate score journal record.')
     for row in payload.get('scoreHistory', []):
         require(valid_time(row.get('recordedAt')) and row.get('horizon') in {'shortTerm','longTerm'}, 'Invalid score journal identity.')
         require(finite(row.get('score')) and -1 <= row['score'] <= 1 and row.get('label') in LABELS, 'Invalid score journal reading.')
@@ -86,6 +93,14 @@ def validate(payload: dict[str, Any]) -> None:
             require(recorded.tzinfo is not None and price_time.tzinfo is not None, 'Journal timestamps must include a timezone.')
             require(0 <= (recorded - price_time).total_seconds() <= 5 * 86400, 'Journal price is future-dated or too old.')
     for price in payload['prices']:
+        bars = price.get('bars', [])
+        require(isinstance(bars, list) and len(bars) <= 2500, 'Invalid candle collection.')
+        require([bar['time'] for bar in bars] == sorted(set(bar['time'] for bar in bars)), 'Candles must have unique ascending times.')
+        for bar in bars:
+            require(valid_time(bar.get('time')), 'Invalid candle timestamp.')
+            require(all(finite(bar.get(key)) and bar[key] > 0 for key in ('open', 'high', 'low', 'close')), 'Invalid candle price.')
+            require(bar['low'] <= min(bar['open'], bar['close']) <= max(bar['open'], bar['close']) <= bar['high'], 'Candle range does not reconcile.')
+            require(bar.get('volume') is None or (finite(bar['volume']) and bar['volume'] > 0), 'Invalid candle volume.')
         context = price.get('context')
         if not context: continue
         require(valid_time(context.get('asOf')) and context['trend'] in {'aligned up','aligned down','mixed','unavailable'}, 'Invalid price context.')

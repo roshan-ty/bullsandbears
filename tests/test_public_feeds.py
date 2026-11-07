@@ -7,6 +7,14 @@ from scripts.public_feeds import canonical_url, fetch_public_news, number
 
 
 class PublicFeedTests(unittest.TestCase):
+    def test_rss_one_preserves_bank_of_canada_dates_and_original_links(self):
+        from scripts.public_feeds import fetch_rss
+        xml = b'''<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/"><item><title>Policy decision</title><link>https://www.bankofcanada.ca/decision/</link><dc:date>2026-10-20T12:00:00Z</dc:date><description>Published policy statement.</description></item></rdf:RDF>'''
+        with patch('scripts.public_feeds.request_bytes', return_value=xml):
+            row = fetch_rss('https://www.bankofcanada.ca/feed/')[0]
+        self.assertEqual(row['publishedAt'], '2026-10-20T12:00:00Z')
+        self.assertEqual(row['url'], 'https://bankofcanada.ca/decision')
+
     def test_zero_revision_replaces_original_previous_value(self):
         from scripts.public_feeds import parse_calendar_page
         document = 'window.calendarComponentStates[0] = {days: [{"events":[{"currency":"USD","name":"GDP","dateline":1792756800,"actual":1,"revision":0,"previous":2}]}]}'

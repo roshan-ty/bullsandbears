@@ -1,4 +1,4 @@
-"""Research-market-price adapter. Replace with a licensed feed for public commercial use."""
+"""Source-dated market prices and daily candles for the local research application."""
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -24,11 +24,12 @@ def forex_ticker(symbol: str) -> str:
 
 def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
     import yfinance as yf
+    from scripts.price_charts import frame_bars, chart_metadata
 
     mapping = {**TICKERS, **{symbol: forex_ticker(symbol) for symbol in forex_pairs}}
     frame = yf.download(
         list(mapping.values()), period="1y", interval="1d", auto_adjust=False,
-        progress=False, threads=4, group_by="column", timeout=15,
+        progress=False, threads=False, group_by="column", timeout=15,
     )
     if frame.empty:
         return []
@@ -50,12 +51,13 @@ def fetch_market_prices(forex_pairs: list[str]) -> list[dict[str, Any]]:
                 timestamp = timestamp.tz_convert(timezone.utc)
             context = price_context([(date.isoformat()[:10], float(value)) for date, value in close.items()], instrument, datetime.now(timezone.utc))
             output.append({
+                **chart_metadata(instrument, ticker),
+                'bars': frame_bars(frame.xs(ticker, axis=1, level=1)),
+                'retrievedAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
                 'context': context,
                 "instrument": instrument, "price": price, "previousClose": previous,
                 "change": change, "changePercent": change_percent,
                 "asOf": timestamp.isoformat().replace("+00:00", "Z"), "currency": 'USD' if ticker.endswith('=F') else None,
-                'priceKind': 'Futures benchmark' if ticker.endswith('=F') else 'Market close',
-                'priceUnit': 'USD / lb' if instrument == 'COPPER' else 'USD / barrel' if instrument in {'OIL', 'BRENT'} else 'USD / troy oz' if ticker.endswith('=F') else None,
             })
         except (KeyError, TypeError, ValueError, IndexError):
             continue

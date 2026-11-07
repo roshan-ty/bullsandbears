@@ -508,27 +508,12 @@ def calculate_biases(events: list[dict[str, Any]], cot: list[dict[str, Any]], ge
     return currency_rows, pairs
 
 
-def run_core() -> None:
-    previous = existing_snapshot()
-    try:
-        fresh_history = fetch_fred()
-        refreshed = {item['seriesId'] for item in fresh_history}
-        history = [item for item in previous.get('history', []) if item['seriesId'] not in refreshed] + fresh_history
-    except Exception as error:
-        print(f"History ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
-        history = previous.get("history", [])
-    try:
-        cot = fetch_cftc() or previous.get("cot", [])
-    except Exception as error:
-        print(f"Positioning ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
-        cot = previous.get("cot", [])
-    generated_at = utc_now()
+def collect_calendar(previous, health, generated_at, fast=False):
     now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
-    health = {item.get("feed"): item for item in previous.get("feedHealth", []) if isinstance(item, dict) and item.get("feed")}
     try:
         public_calendar = []
-        for feed, collector in [('calendar-major', fetch_public_calendar),
-                                ('calendar-global', lambda: fetch_global_calendar(previous.get('events', []), now))]:
+        for feed, collector in [('calendar-major', lambda: fetch_public_calendar(('this',) if fast else ('last', 'this', 'next'))),
+                                ('calendar-global', lambda: fetch_global_calendar(previous.get('events', []), now, backfill=not fast))]:
             try:
                 fresh = collector()
                 public_calendar.extend(fresh)
@@ -549,6 +534,27 @@ def run_core() -> None:
         calendar = previous.get("events", [])
         prior = health.get("calendar", {})
         health["calendar"] = {**prior, "feed": "calendar", "status": "degraded", "lastAttemptAt": generated_at, "lastSuccessAt": prior.get("lastSuccessAt"), "staleAfterHours": 12, "itemCount": len(calendar), "message": safe_error(error)}
+    return calendar
+
+
+def run_core() -> None:
+    previous = existing_snapshot()
+    try:
+        fresh_history = fetch_fred()
+        refreshed = {item['seriesId'] for item in fresh_history}
+        history = [item for item in previous.get('history', []) if item['seriesId'] not in refreshed] + fresh_history
+    except Exception as error:
+        print(f"History ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
+        history = previous.get("history", [])
+    try:
+        cot = fetch_cftc() or previous.get("cot", [])
+    except Exception as error:
+        print(f"Positioning ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
+        cot = previous.get("cot", [])
+    generated_at = utc_now()
+    now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+    health = {item.get("feed"): item for item in previous.get("feedHealth", []) if isinstance(item, dict) and item.get("feed")}
+    calendar = collect_calendar(previous, health, generated_at)
     health_file = STAGING / 'cot-health.json'
     if health_file.exists():
         for item in json.loads(health_file.read_text(encoding='utf-8')):
@@ -578,6 +584,8 @@ def run_core() -> None:
     except Exception as error:
         print(f"Market-price ingestion failed; retaining last valid data: {safe_error(error)}", file=sys.stderr)
         prices = previous.get("prices", [])
+    from scripts.official_data import supplement
+    prices, history = supplement(previous, prices, history, health, PAIRS, now)
     for feed, rows, date_key, age in [('positioning', cot, 'reportDate', 21), ('history', history, 'date', 7), ('prices', prices, 'asOf', 5)]:
         health[feed] = observation_health(feed, rows, date_key, generated_at, age)
     analyses = [analysis for pair in pairs if (analysis := build_analysis(pair, scored, cot, generated_at, crypto=crypto)) is not None]
@@ -589,13 +597,27 @@ def run_core() -> None:
     cot_history = archive_positions([*downloaded_history, *cot], verified_archive, now)
     recorded_at = utc_now()
     journal = record_scores(previous.get("scoreHistory", []), pairs, prices, recorded_at)
-    atomic_json(PUBLIC_SNAPSHOT, {**previous, "scoreHistory": journal, "methodology": RULES, "schemaVersion": 1, "generatedAt": recorded_at, "coreUpdatedAt": recorded_at, "researchUpdatedAt": research_updated, "cryptoHistory": crypto_history, "cryptoFundamentals": crypto, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
+    atomic_json(PUBLIC_SNAPSHOT, {**previous, "scoreHistory": journal, "methodology": RULES, "schemaVersion": 1, "generatedAt": recorded_at, "coreUpdatedAt": recorded_at, "calendarUpdatedAt": health.get("calendar", {}).get("lastSuccessAt"), "researchUpdatedAt": research_updated, "cryptoHistory": crypto_history, "cryptoFundamentals": crypto, "currencies": currencies, "pairs": pairs, "events": scored, "cot": cot, "cotHistory": cot_history, "history": history, "prices": prices, "analysis": analyses, "setups": setups, "feedHealth": list(health.values())})
+
+
+def run_calendar():
+    previous = existing_snapshot()
+    generated_at = utc_now()
+    health = {row['feed']: row for row in previous.get('feedHealth', [])}
+    events = sorted((score_event(row) for row in collect_calendar(previous, health, generated_at, fast=True)), key=lambda row: row['occurredAt'], reverse=True)
+    currencies, pairs = calculate_biases(events, previous.get('cot', []), generated_at, previous.get('cryptoFundamentals', []))
+    analyses = [result for pair in pairs if (result := build_analysis(pair, events, previous.get('cot', []), generated_at, crypto=previous.get('cryptoFundamentals', []))) is not None]
+    success = any(row.get('lastSuccessAt') == generated_at for name, row in health.items() if name in ('calendar-major', 'calendar-global'))
+    atomic_json(PUBLIC_SNAPSHOT, {**previous, 'generatedAt': generated_at, 'events': events, 'currencies': currencies,
+        'pairs': pairs, 'analysis': analyses, 'setups': build_setups(pairs, analyses, generated_at),
+        'calendarUpdatedAt': generated_at if success else previous.get('calendarUpdatedAt'), 'feedHealth': list(health.values())})
 
 
 def run_news() -> None:
     previous = existing_snapshot()
     generated_at = utc_now()
     health = {item.get("feed"): item for item in previous.get("feedHealth", []) if isinstance(item, dict) and item.get("feed")}
+    health.pop('https://www.bea.gov/news/rss.xml', None)  # Replaced by BEA's published apps.bea.gov feed.
     try:
         source_health: list[dict[str, Any]] = []
         fresh_news = fetch_public_news(health=source_health)

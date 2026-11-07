@@ -28,12 +28,28 @@ class ScorecardTests(unittest.TestCase):
         h=next(r for r in pairs if r['symbol']=='BTCUSD')['shortTerm']
         self.assertAlmostEqual(h['score'],.4)
         self.assertEqual([r['weight'] for r in h['components']],[0,0,1])
-    def test_journal_never_rewrites_a_published_day(self):
+    def test_journal_preserves_published_readings_and_records_intraday_changes(self):
         _,pairs=calculate_biases([event(),event('EUR')],[],STAMP)
         first=record_scores([],pairs,[],STAMP)
         pairs[0]['shortTerm']['score']=.99
-        self.assertEqual(first,record_scores(first,pairs,[],'2026-10-24T18:00:00Z'))
+        changed=record_scores(first,pairs,[],'2026-10-24T18:00:00Z')
+        self.assertEqual(changed[:len(first)],first)
+        self.assertEqual(len(changed),len(first)+1)
+        self.assertEqual(record_scores(changed,pairs,[],'2026-10-24T19:00:00Z'),changed)
+        self.assertEqual(record_scores(first,pairs,[],STAMP),first)
         self.assertEqual(len(record_scores(first,pairs,[],'2026-10-25T12:00:00Z')),2*len(first))
+    def test_calendar_journal_records_turns_but_not_minute_by_minute_score_decay(self):
+        _,pairs=calculate_biases([event(),event('EUR')],[],STAMP)
+        pair=next(r for r in pairs if r['symbol']=='EURUSD')
+        first=record_scores([],[pair],[],STAMP)
+        pair['shortTerm']['score']=.8
+        self.assertEqual(record_scores(first,[pair],[],'2026-10-24T12:01:00Z',labels_only=True),first)
+        pair['shortTerm']['label']='bearish' if pair['shortTerm']['label']=='bullish' else 'bullish'
+        updated=record_scores(first,[pair],[],'2026-10-24T12:02:00Z',labels_only=True)
+        self.assertEqual(len(updated),len(first)+1)
+        self.assertEqual(updated[:len(first)],first)
+        self.assertEqual(record_scores(updated,[pair],[],'2026-10-24T12:01:00Z',labels_only=True),updated)
+
     def test_journal_excludes_future_price_and_separates_versions(self):
         _,pairs=calculate_biases([event(),event('EUR')],[],STAMP)
         pair=next(r for r in pairs if r['symbol']=='EURUSD')
@@ -90,3 +106,9 @@ class JournalPublicationTests(unittest.TestCase):
         latest = {'scoreHistory':[row], 'feedHealth':[]}
         collected = {'scoreHistory':[{**row,'score':.9}], 'feedHealth':[]}
         self.assertEqual(merge_snapshot(latest,collected,'core')['scoreHistory'],[row])
+
+    def test_merge_preserves_distinct_intraday_observations(self):
+        from scripts.publish_snapshot import merge_snapshot
+        row={'instrument':'EURUSD','horizon':'shortTerm','recordedAt':STAMP,'modelVersion':'v3','score':.2}
+        later={**row,'recordedAt':'2026-10-24T18:00:00Z','score':-.5}
+        self.assertEqual(merge_snapshot({'scoreHistory':[row]}, {'scoreHistory':[later]}, 'core')['scoreHistory'],[row,later])

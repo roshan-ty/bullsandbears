@@ -17,7 +17,7 @@ it('distinguishes a quote-currency improvement from a forecast miss and explains
   expect(screen.getByText(/USD is the quote currency.*bearish marginal direction/)).toBeTruthy()
   expect(screen.getByText(/Actual minus forecast is -1 percentage points/)).toBeTruthy()
   expect(screen.getByText(/pre-aggregation vote, not an additive share/)).toBeTruthy()
-  expect(screen.getByText(/not the source link for this individual observation/)).toBeTruthy()
+  expect(screen.queryByText(/Read the institutional background/)).toBeNull()
 })
 it('does not invent a single pair direction for an event mapped to both legs', () => {
   const text = explainTransmission({...pair,symbol:'AUDNZD',base:'AUD',quote:'NZD'},event,{...evidence,affectedLegs:['AUD','NZD']})

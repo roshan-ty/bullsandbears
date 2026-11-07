@@ -2,11 +2,11 @@ import ReactEChartsCore from 'echarts-for-react/lib/core'
 import { useEffect, useState } from 'react'
 import type { EChartsReactProps } from 'echarts-for-react'
 import * as echarts from 'echarts/core'
-import { BarChart, LineChart } from 'echarts/charts'
-import { DataZoomComponent, GridComponent, LegendComponent, TooltipComponent } from 'echarts/components'
+import { BarChart, LineChart, CandlestickChart, ScatterChart } from 'echarts/charts'
+import { DataZoomComponent, GridComponent, LegendComponent, TooltipComponent, MarkLineComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 
-echarts.use([BarChart, LineChart, DataZoomComponent, GridComponent, LegendComponent, TooltipComponent, CanvasRenderer])
+echarts.use([BarChart, LineChart, CandlestickChart, ScatterChart, DataZoomComponent, GridComponent, LegendComponent, TooltipComponent, MarkLineComponent, CanvasRenderer])
 
 export default function ChartRenderer(props: Omit<EChartsReactProps, 'echarts'>) {
   const readPalette = () => {
@@ -22,13 +22,13 @@ export default function ChartRenderer(props: Omit<EChartsReactProps, 'echarts'>)
   const styleAxes = (value: Record<string, unknown> | Record<string, unknown>[] | undefined): unknown => {
     if (!value) return value
     if (Array.isArray(value)) return value.map((axis) => styleAxes(axis))
-    return { ...value, axisLabel: { ...value.axisLabel as object, color: palette.muted, fontFamily: 'Inter Variable' },
+    return { ...value, nameTextStyle: { color: palette.muted, ...value.nameTextStyle as object }, axisLabel: { color: palette.muted, fontFamily: 'Satoshi, Inter Variable, sans-serif', ...value.axisLabel as object },
       axisLine: { ...value.axisLine as object, lineStyle: { color: palette.line } },
-      splitLine: { ...value.splitLine as object, lineStyle: { color: palette.line, opacity: .6 } } }
+      splitLine: { ...value.splitLine as object, lineStyle: { color: palette.line, opacity: .6, ...(value.splitLine as { lineStyle?: object })?.lineStyle } } }
   }
-  const option = { ...props.option, textStyle: { ...props.option?.textStyle, fontFamily: 'Inter Variable', color: palette.soft },
+  const option = { ...props.option, textStyle: { ...props.option?.textStyle, fontFamily: 'Satoshi, Inter Variable, sans-serif', color: palette.soft },
     xAxis: styleAxes(props.option?.xAxis), yAxis: styleAxes(props.option?.yAxis),
-    tooltip: { ...props.option?.tooltip, confine: true, backgroundColor: palette.panel, borderColor: palette.line, textStyle: { color: palette.soft, fontFamily: 'Inter Variable', fontSize: 12 } },
-    ...(props.option?.legend ? { legend: { ...props.option.legend, textStyle: { ...props.option.legend.textStyle, color: palette.muted, fontFamily: 'Inter Variable' } } } : {}) }
+    tooltip: { ...props.option?.tooltip, confine: true, backgroundColor: palette.panel, borderColor: palette.line, textStyle: { color: palette.soft, fontFamily: 'Satoshi, Inter Variable, sans-serif', fontSize: 12 } },
+    ...(props.option?.legend ? { legend: { ...props.option.legend, textStyle: { ...props.option.legend.textStyle, color: palette.muted, fontFamily: 'Satoshi, Inter Variable, sans-serif' } } } : {}) }
   return <ReactEChartsCore {...props} option={option} echarts={echarts} />
 }

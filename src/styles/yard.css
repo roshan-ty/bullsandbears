@@ -1,0 +1,100 @@
+/* Shared trading workspace, informed by the requested TradersYard reference. */
+@font-face { font-family:Satoshi; src:url('../../public/fonts/satoshi-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:Satoshi; src:url('../../public/fonts/satoshi-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:Satoshi; src:url('../../public/fonts/satoshi-700.woff2') format('woff2'); font-weight:600 900; font-style:normal; font-display:swap; }
+:root {
+  font-family:Satoshi,"Inter Variable",system-ui,sans-serif;
+  --bg:#08090d; --panel:#111319; --panel-2:#191c25; --raised:#232738;
+  --head-bg:#0c0e14; --line:#303442; --line-soft:#242832;
+  --text:#f7f8fc; --soft:#d2d5e2; --muted:#a0a6ba;
+  --accent:#a1aaff; --brand-blue:#4250eb; --brand-ink:#fff; --accent-tint:#202648;
+  --positive:#6cd9b2; --negative:#ff99aa; --neutral:#b2b7c9; --gold:#e3c38c;
+  --hover:#1c2133; --shadow:0 8px 28px #00000018;
+  --gutter:clamp(16px,3vw,52px); --header:80px; --nav-height:60px;
+}
+:root[data-theme="light"] {
+  --bg:#f4f5fa; --panel:#fff; --panel-2:#f5f6fc; --raised:#e8ebfc;
+  --head-bg:#fff; --line:#daddE9; --line-soft:#e9ebf2;
+  --text:#101118; --soft:#363a4c; --muted:#62687e;
+  --accent:#4250eb; --accent-tint:#e3e5fc; --positive:#087552; --negative:#b52d49;
+  --neutral:#62687e; --gold:#855b14; --hover:#f0f2ff; --shadow:0 8px 28px #18235705;
+}
+body { letter-spacing:0; }
+h1 { font-size:clamp(29px,3vw,42px); font-weight:700; letter-spacing:-.045em; line-height:1.16; }
+h2 { font-weight:700; letter-spacing:-.025em; }
+.topbar { gap:20px; background:var(--head-bg); }
+.brand-logo { width:52px; height:52px; }
+.activation-logo { width:94px; height:94px; }
+.status-line { gap:30px; }
+.status-line>span { font-size:9px; letter-spacing:.1em; }
+.status-line strong { font-size:12px; color:var(--soft); font-weight:500; }
+.theme-toggle { border-radius:12px; padding:11px 16px; min-height:40px; font-size:12px; }
+.desktop-update .theme-toggle { background:var(--brand-blue); color:var(--brand-ink); border-color:var(--brand-blue); }
+.desktop-update .theme-toggle:disabled { opacity:1; background:var(--panel-2); border-color:var(--line); color:var(--muted); }
+.tabs { gap:4px; padding-block:8px; background:var(--head-bg); }
+.tabs button { min-height:39px; height:39px; font-size:12px; font-weight:500; padding:10px 14px; border-radius:11px; }
+.tabs button.active { color:var(--accent); background:var(--accent-tint); }
+.tabs button.active::after { display:none; }
+main { padding-top:30px; }
+.stack { gap:24px; }
+.page-head { padding:4px 0 10px; }
+.page-head h1 { margin-bottom:5px; }
+.live-label { border:1px solid var(--line); background:var(--panel); border-radius:999px; padding:9px 14px; }
+.panel { border-radius:18px; padding:26px; }
+.summary-strip { border:0; overflow:visible; gap:14px; background:transparent; box-shadow:none; }
+.summary-strip>div { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; gap:12px; box-shadow:var(--shadow); }
+.summary-strip>div:last-child { border-right:1px solid var(--line); }
+.summary-strip>div::before { display:none; }
+.summary-strip>div:first-child { background:var(--accent-tint); border-color:color-mix(in srgb,var(--accent) 30%,var(--line)); }
+.summary-strip strong { font-size:36px; font-weight:700; letter-spacing:-.045em; }
+.summary-strip span { font-size:10px; letter-spacing:.07em; }
+.filter-bar { padding:12px 0; gap:10px; }
+select,.filter-bar input,.journal-toolbar input,.journal-account-tools input,.journal-form input,.journal-form textarea,.journal-form select { border-radius:10px; min-height:40px; font-size:13px; }
+.segmented { padding:4px; border-radius:11px; gap:3px; }
+.segmented button { border-radius:8px; font-size:12px; }
+.segmented button[aria-pressed=true] { background:var(--brand-blue); color:#fff; }
+.text-button { border-radius:9px; font-size:12px; }
+.table-wrap { border-radius:12px; }
+th { font-size:10px; letter-spacing:.045em; padding:14px 16px; }
+td { padding:16px; font-size:13px; }
+.symbol { font-size:14px; font-weight:700; }
+.pill { padding:5px 8px; border-radius:6px; font-size:10px; letter-spacing:.025em; }
+.horizon,.bias-card,.setup,.price-card,.rule-grid article { border-radius:14px; }
+.horizon strong,.giant-score { font-weight:700; }
+.analyst-briefing { background:var(--panel); border-top:3px solid var(--brand-blue); }
+.news-list strong { font-size:16px; font-weight:700; }
+.news-list a { border-radius:10px; }
+.activation-shell { background:radial-gradient(ellipse at 50% 10%,var(--accent-tint),transparent 65%),var(--bg); }
+.activation-panel { border-radius:24px; padding:42px; box-shadow:0 24px 80px #00000018; }
+.activation-panel h2 { font-size:28px; }
+.activation-panel input { min-height:48px; border-radius:12px; }
+.activation-panel form button,.journal-workspace button.journal-primary,.journal-dialog button.journal-primary { background:var(--brand-blue); border-color:var(--brand-blue); color:#fff; border-radius:12px; }
+.activation-panel form button { min-height:46px; font-weight:700; }
+.journal-metrics { border-radius:16px; }
+.journal-metrics strong { font-size:32px; font-weight:700; }
+.journal-workspace button,.journal-dialog button { border-radius:9px; font-size:12px; }
+.journal-dialog { border-radius:20px; }
+.journal-account-list article { border-radius:12px; padding:20px; }
+.journal-current-account { border-radius:12px; }
+.journal-calendar-grid button { border-radius:10px; }
+.trading-workspace { padding:0; border-radius:16px; }
+.trading-title { padding:18px 22px; }
+.trading-title h1 { font-size:22px; }
+.trading-workspace button { border-radius:7px; }
+.chart-toolbar { padding:10px 16px; }
+.trading-quote h2 { font-weight:700; }
+.price-readout strong { font-weight:700; font-size:32px; }
+.positioning-history { border-radius:14px; }
+.research-current strong { font-weight:700; }
+.trading-expanded { border-radius:0; }
+@media(max-width:1100px) { .topbar { gap:14px; }.status-line { gap:16px; } }
+@media(max-width:760px) {
+  :root,:root:has(.desktop-update) { --gutter:14px; --header:68px; --nav-height:54px; }
+  .topbar { gap:10px; }.brand-logo { width:42px;height:42px; }.activation-logo { width:84px;height:84px; }
+  .tabs button { font-size:12px; padding:8px 11px; min-height:36px; height:36px; }
+  main { padding-top:20px; }.stack { gap:16px; }.panel { padding:18px; border-radius:14px; }.trading-workspace { padding:0; }
+  .summary-strip { gap:10px; }.summary-strip>div { padding:18px; border-radius:12px; }.summary-strip strong { font-size:30px; }
+  .activation-panel { padding:28px; }.activation-panel h2 { font-size:24px; }
+  .theme-toggle { padding:9px 11px; font-size:11px; }.journal-account-list article { padding:14px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }

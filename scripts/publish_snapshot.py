@@ -5,29 +5,34 @@ import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
 
+POSITIONING_FIELDS = {'positioning', 'positioningHistory', 'positioningUpdatedAt'}
 NEWS_FIELDS = {'news', 'newsUpdatedAt'}
+CALENDAR_FIELDS = {'events', 'currencies', 'pairs', 'analysis', 'setups', 'calendarUpdatedAt'}
 CORE_FIELDS = {'scoreHistory', 'methodology', 'currencies', 'pairs', 'events', 'cot', 'cotHistory', 'history', 'prices', 'analysis', 'setups', 'coreUpdatedAt', 'researchUpdatedAt', 'cryptoHistory', 'cryptoFundamentals'}
 
 
 def merge_snapshot(latest, collected, mode):
-    owned = NEWS_FIELDS if mode == 'news' else CORE_FIELDS
+    owned = POSITIONING_FIELDS if mode == 'positioning' else NEWS_FIELDS if mode == 'news' else CALENDAR_FIELDS if mode == 'calendar' else CORE_FIELDS | {'calendarUpdatedAt'}
     merged = {**latest, **{key: collected[key] for key in owned if key in collected}}
     health = {row['feed']: row for row in latest.get('feedHealth', [])}
+    health.pop('https://www.bea.gov/news/rss.xml', None)
     for row in collected.get('feedHealth', []):
         news_feed = row['feed'] == 'news' or row['feed'].startswith('http')
-        if news_feed == (mode == 'news'):
+        calendar_feed = row['feed'].startswith('calendar')
+        positioning_feed = '-positioning' in row['feed']
+        if (mode == 'positioning' and positioning_feed) or (not positioning_feed and mode != 'positioning' and ((mode == 'calendar' and calendar_feed) or (mode != 'calendar' and news_feed == (mode == 'news')))):
             health[row['feed']] = row
     if mode == 'core' and ('scoreHistory' in latest or 'scoreHistory' in collected):
         def key(row):
-            return (row['instrument'], row['horizon'], row['recordedAt'][:10], row['modelVersion'])
+            return (row['instrument'], row['horizon'], row['recordedAt'], row['modelVersion'])
         journal = {key(row): row for row in collected.get('scoreHistory', [])}
-        # A record already published on the branch wins any same-day race.
+        # A record already published on the branch wins any same-timestamp race.
         journal.update({key(row): row for row in latest.get('scoreHistory', [])})
         stamp = max(filter(None, [latest.get('generatedAt'), collected.get('generatedAt')]), default=None)
         if stamp:
             cutoff = (datetime.fromisoformat(stamp.replace('Z', '+00:00')) - timedelta(days=1095)).date().isoformat()
             journal = {identity: row for identity, row in journal.items() if cutoff <= row['recordedAt'][:10] <= stamp[:10]}
-        merged['scoreHistory'] = sorted(journal.values(), key=lambda row: (row['recordedAt'], row['instrument'], row['horizon']))
+        merged['scoreHistory'] = sorted(journal.values(), key=lambda row: (datetime.fromisoformat(row['recordedAt'].replace('Z', '+00:00')), row['instrument'], row['horizon']))
     merged['feedHealth'] = list(health.values())
     merged['generatedAt'] = max(filter(None, [latest.get('generatedAt'), collected.get('generatedAt')]), default=None)
     return merged

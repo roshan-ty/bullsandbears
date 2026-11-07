@@ -4,10 +4,13 @@ from datetime import datetime, timezone
 
 def calendar_health(events, attempted):
     released = sum(item.get('actual') is not None for item in events)
-    return {'feed': 'calendar', 'status': 'healthy' if released else 'degraded',
+    pending = sum(item.get('actual') is None and not item.get('actualText') and item.get('hasNumericRelease') is not False
+                  and str(item.get('occurredAt', '')) <= attempted for item in events)
+    forecasts = sum(item.get('forecast') is not None or bool(item.get('forecastText')) for item in events)
+    return {'feed': 'calendar', 'status': 'healthy' if released or events and not pending else 'degraded',
             'lastAttemptAt': attempted, 'lastSuccessAt': attempted if events else None,
             'staleAfterHours': 12, 'itemCount': len(events),
-            'message': f'{len(events)} events; {released} have reported actuals.'}
+            'message': f'{len(events)} events; {released} numeric actuals; {forecasts} forecasts; {pending} past scheduled releases await values. Missing values are never inferred.'}
 
 
 def archive_positions(current, previous, now):

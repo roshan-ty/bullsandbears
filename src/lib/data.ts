@@ -1,4 +1,5 @@
 import type { BiasLabel, DashboardSnapshot, HorizonBias } from '../domain/types'
+import { researchView } from './privacy'
 
 const emptySnapshot: DashboardSnapshot = {
   schemaVersion: 1,
@@ -36,7 +37,7 @@ export async function loadSnapshot(signal?: AbortSignal): Promise<DashboardSnaps
   if (!response.ok) throw new Error(`Data request failed with status ${response.status}.`)
   const payload: unknown = await response.json()
   if (!isSnapshot(payload)) throw new Error('The published dataset does not match the supported schema.')
-  const snapshot = { ...emptySnapshot, ...payload }
+  const snapshot = researchView({ ...emptySnapshot, ...payload })
   return {
     ...snapshot,
     currencies: snapshot.currencies.map((item) => ({ ...item, shortTerm: item.shortTerm ?? legacyHorizon(item as unknown as Record<string, unknown>), longTerm: item.longTerm ?? legacyHorizon(item as unknown as Record<string, unknown>) })),
@@ -50,7 +51,7 @@ export async function loadSnapshot(signal?: AbortSignal): Promise<DashboardSnaps
   }
 }
 
-const archives = new Map<string, Promise<Pick<DashboardSnapshot, 'history' | 'cotHistory' | 'cryptoHistory' | 'scoreHistory'>>>()
+const archives = new Map<string, Promise<Pick<DashboardSnapshot, 'history' | 'cotHistory' | 'cryptoHistory' | 'scoreHistory' | 'positioningHistory'>>>()
 export function loadArchive(filename: string) {
   if (!/^archive-[a-f0-9]{12}\.json$/.test(filename)) return Promise.reject(new Error('Invalid research archive name.'))
   let pending = archives.get(filename)
@@ -59,7 +60,7 @@ export function loadArchive(filename: string) {
       if (!response.ok) throw new Error(`Research archive request failed: ${response.status}.`)
       const data = await response.json()
       if (!['history', 'cotHistory', 'cryptoHistory'].every((key) => Array.isArray(data[key]))) throw new Error('Invalid research archive.')
-      return data as Pick<DashboardSnapshot, 'history' | 'cotHistory' | 'cryptoHistory' | 'scoreHistory'>
+      return researchView(data) as Pick<DashboardSnapshot, 'history' | 'cotHistory' | 'cryptoHistory' | 'scoreHistory' | 'positioningHistory'>
     }).catch((error: unknown) => { archives.delete(filename); throw error })
     archives.clear() // retain only the active content-addressed archive
     archives.set(filename, pending)

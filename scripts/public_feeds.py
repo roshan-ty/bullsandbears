@@ -7,6 +7,10 @@ import json
 import math
 import logging
 import re
+import ssl
+import certifi
+from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -30,7 +34,7 @@ DEFAULT_RSS_FEEDS = (
     "https://www.bankofcanada.ca/feed/",
     "https://www.rba.gov.au/rss/rss-cb-media-releases.xml",
     "https://www.bls.gov/feed/bls_latest.rss",
-    "https://www.bea.gov/news/rss.xml",
+    "https://apps.bea.gov/rss/rss.xml",
 )
 
 TAG_RULES = {
@@ -48,6 +52,13 @@ TAG_RULES = {
 }
 
 
+@lru_cache(maxsize=1)
+def trusted_context():
+    context = ssl.create_default_context()
+    context.load_verify_locations(certifi.where())
+    return context
+
+
 def request_bytes(url: str, accept: str) -> bytes:
     if accept == 'text/html':
         try:
@@ -55,8 +66,13 @@ def request_bytes(url: str, accept: str) -> bytes:
         except ImportError:
             from scraping import fetch_html
         return fetch_html(url)
-    request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT, 'Accept': accept})
-    with urllib.request.urlopen(request, timeout=25) as response:
+    # RBA's RSS endpoint accepts urllib's standard identifying agent.
+    # Other publishers require a descriptive client agent. TLS stays verified.
+    headers = {'Accept': accept}
+    if urllib.parse.urlsplit(url).hostname != 'www.rba.gov.au':
+        headers['User-Agent'] = USER_AGENT
+    request = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(request, timeout=25, context=trusted_context()) as response:
         body = response.read(8_000_001)
     if len(body) > 8_000_000:
         raise ValueError("Source response exceeds 8 MB limit")
@@ -111,6 +127,9 @@ def fetch_calendar_schedule() -> list[dict[str, Any]]:
             "name": title, "impact": str(row.get("impact") or "Low").lower(),
             "actual": number(row.get("actual")), "forecast": number(row.get("forecast")),
             "previous": number(row.get("previous")), "unit": "%" if "%" in "".join(str(row.get(key) or "") for key in ("actual", "forecast", "previous")) else None,
+            'sourceUrl': FOREX_CALENDAR_URL, 'source': 'Forex Factory schedule',
+            'retrievedAt': datetime.now(timezone.utc).isoformat(),
+            **{key + 'Text': clean_text(row.get(key)) or None for key in ('actual', 'forecast', 'previous')},
         })
     return output
 
@@ -131,22 +150,31 @@ def parse_calendar_page(document: str) -> list[dict[str, Any]]:
             currency, title = str(row.get('currency', '')).upper(), clean_text(row.get('name'))
             if len(currency) != 3 or not title or not row.get('dateline'):
                 continue
-            occurred = datetime.fromtimestamp(int(row['dateline']), timezone.utc).isoformat().replace('+00:00', 'Z')
+            try:
+                occurred = datetime.fromtimestamp(int(row['dateline']), timezone.utc).isoformat().replace('+00:00', 'Z')
+            except (TypeError, ValueError, OverflowError, OSError):
+                continue
             previous = row.get('revision') if number(row.get('revision')) is not None else row.get('previous')
             output.append({
                 'id': stable_id(currency, title, occurred), 'occurredAt': occurred,
                 'currency': currency, 'name': title, 'impact': row.get('impactName', 'low'),
                 'actual': number(row.get('actual')), 'forecast': number(row.get('forecast')),
                 'previous': number(previous), 'originalPrevious': number(row.get('previous')),
+                'source': 'Forex Factory', 'sourceEventId': str(row.get('id', '')),
+                'sourceUrl': 'https://www.forexfactory.com' + row['url'] if str(row.get('url', '')).startswith('/calendar') else 'https://www.forexfactory.com/calendar',
+                'retrievedAt': datetime.now(timezone.utc).isoformat(),
+                'hasNumericRelease': row.get('hasDataValues') is not False,
+                'timeLabel': clean_text(row.get('timeLabel')) if row.get('timeMasked') else None,
+                **{key + 'Text': clean_text(value) or None for key, value in [('actual', row.get('actual')), ('forecast', row.get('forecast')), ('previous', previous)]},
                 'unit': '%' if '%' in ''.join(str(row.get(key) or '') for key in ('actual', 'forecast', 'previous')) else None,
             })
     return output
 
 
-def fetch_public_calendar() -> list[dict[str, Any]]:
+def fetch_public_calendar(windows=('last', 'this', 'next')) -> list[dict[str, Any]]:
     collected = []
     # One normal request per week window. Never bypass a denied/challenged page.
-    for week in ('last', 'this', 'next'):
+    for week in windows:
         try:
             page = request_bytes(f'https://www.forexfactory.com/calendar?week={week}', 'text/html').decode('utf-8')
             collected.extend(parse_calendar_page(page))
@@ -221,15 +249,15 @@ def fetch_gdelt_news() -> list[dict[str, Any]]:
 def fetch_rss(url: str) -> list[dict[str, Any]]:
     root = ET.fromstring(request_bytes(url, "application/rss+xml, application/atom+xml, application/xml, text/xml"))
     output: list[dict[str, Any]] = []
-    nodes = root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
+    nodes = root.findall(".//item") or root.findall(".//{http://purl.org/rss/1.0/}item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
     for node in nodes:
-        title = clean_text(node.findtext("title") or node.findtext("{http://www.w3.org/2005/Atom}title"))
-        link = node.findtext("link") or ""
+        title = clean_text(node.findtext("title") or node.findtext("{http://purl.org/rss/1.0/}title") or node.findtext("{http://www.w3.org/2005/Atom}title"))
+        link = node.findtext("link") or node.findtext("{http://purl.org/rss/1.0/}link") or ""
         if not link:
             link_node = node.find("{http://www.w3.org/2005/Atom}link")
             link = link_node.attrib.get("href", "") if link_node is not None else ""
-        published = iso_time(node.findtext("pubDate") or node.findtext("{http://www.w3.org/2005/Atom}published") or node.findtext("{http://www.w3.org/2005/Atom}updated") or "")
-        summary = clean_text(node.findtext("description") or node.findtext("{http://www.w3.org/2005/Atom}summary")) or None
+        published = iso_time(node.findtext("pubDate") or node.findtext("{http://purl.org/dc/elements/1.1/}date") or node.findtext("{http://www.w3.org/2005/Atom}published") or node.findtext("{http://www.w3.org/2005/Atom}updated") or "")
+        summary = clean_text(node.findtext("description") or node.findtext("{http://purl.org/rss/1.0/}description") or node.findtext("{http://www.w3.org/2005/Atom}summary")) or None
         if title and published and link.startswith(("http://", "https://")):
             canonical = canonical_url(link)
             output.append({"id": stable_id(canonical), "publishedAt": published, "headline": title, "summary": summary[:360] if summary else None, "url": canonical, "instruments": instruments_for(f"{title} {summary or ''}")})
@@ -238,7 +266,7 @@ def fetch_rss(url: str) -> list[dict[str, Any]]:
 
 def fetch_public_news(extra_feeds: tuple[str, ...] = (), health: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     collected: list[dict[str, Any]] = []
-    for url in (GDELT_URL, *DEFAULT_RSS_FEEDS, *extra_feeds):
+    def collect_source(url):
         attempted = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
         rows: list[dict[str, Any]] = []
         message = 'No valid dated metadata returned.'
@@ -247,16 +275,21 @@ def fetch_public_news(extra_feeds: tuple[str, ...] = (), health: list[dict[str, 
             for row in rows:
                 row['sourceUrl'] = url
                 row['retrievedAt'] = attempted
-            collected.extend(rows)
             if rows:
                 message = f'Retrieved {len(rows)} metadata records; publication dates are preserved.'
         except Exception as error:
-            message = f'Collection failed: {type(error).__name__}'
+            code = getattr(error, 'code', None)
+            message = f'Collection failed: {type(error).__name__}' + (f' (HTTP {code})' if code else '')
             logging.warning('%s: %s', url, message)
-        if health is not None:
-            health.append({'feed': url, 'status': 'healthy' if rows else 'degraded',
-                           'lastAttemptAt': attempted, 'lastSuccessAt': attempted if rows else None,
-                           'staleAfterHours': 24, 'itemCount': len(rows), 'message': message})
+        status = {'feed': url, 'status': 'healthy' if rows else 'degraded',
+                  'lastAttemptAt': attempted, 'lastSuccessAt': attempted if rows else None,
+                  'staleAfterHours': 24, 'itemCount': len(rows), 'message': message}
+        return rows, status
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for rows, status in pool.map(collect_source, (GDELT_URL, *DEFAULT_RSS_FEEDS, *extra_feeds)):
+            collected.extend(rows)
+            if health is not None:
+                health.append(status)
     deduplicated: dict[str, dict[str, Any]] = {}
     seen_titles: set[str] = set()
     for item in sorted(collected, key=lambda row: row["publishedAt"], reverse=True):

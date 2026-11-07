@@ -41,9 +41,9 @@ def page_objects(document):
     return list({row['eventDateDetailId']: row for row in rows}.values())
 
 
-def normalize(row):
+def normalize(row, currencies=SUPPLEMENTAL_CURRENCIES):
     currency = str(row.get('currency', '')).upper()
-    if currency not in SUPPLEMENTAL_CURRENCIES or not row.get('name'):
+    if currency not in currencies or not row.get('name'):
         return None
     try:
         date = datetime.fromisoformat(str(row['eventDateTime']).removeprefix('$D').replace('Z', '+00:00'))
@@ -64,6 +64,8 @@ def normalize(row):
             'seriesKey': 'global:' + row['eventId'], 'sourceEventId': row['eventId'],
             'sourceDetailId': row['eventDateDetailId'], 'sourceUrl': detail_url(row),
             'unit': row.get('unit'), 'impact': str(row.get('importance', 'low')).lower(),
+            'source': 'FX Blue', 'retrievedAt': datetime.now(timezone.utc).isoformat(),
+            'hasNumericRelease': not (row.get('isSpeech') or row.get('isReport')),
             **{key: value * multiplier if value is not None else None for key, value in values.items()}}
 
 
@@ -83,12 +85,14 @@ def fetch_details(row):
         return []
 
 
-def fetch_global_calendar(previous=(), now=None):
+def fetch_global_calendar(previous=(), now=None, backfill=True, currencies=SUPPLEMENTAL_CURRENCIES):
     now = now or datetime.now(timezone.utc)
     raw = page_objects(request_bytes(BASE, 'text/html').decode('utf-8'))
     if not raw:
         raise ValueError('Global calendar page has no release records')
-    raw = [row for row in raw if row.get('currency') in SUPPLEMENTAL_CURRENCIES]
+    raw = [row for row in raw if row.get('currency') in currencies]
+    if not backfill:
+        return [item for row in raw if (item := normalize(row, currencies))]
     known = {row.get('sourceDetailId'): row for row in previous if row.get('sourceDetailId')}
     # Explore a bounded set of known indicator pages. The public page links are
     # the discovery mechanism; no private endpoint or credentials are used.
@@ -143,7 +147,7 @@ def fetch_global_calendar(previous=(), now=None):
             raw.extend(details)
     result = {}
     for row in [*historical, *raw]:
-        item = normalize(row)
+        item = normalize(row, currencies)
         if item:
             prior = result.get(item['id'], {})
             result[item['id']] = {**item, **prior, **{k: v for k, v in item.items() if v is not None}}

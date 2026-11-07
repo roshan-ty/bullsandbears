@@ -61,6 +61,26 @@ class OfficialReferenceTests(unittest.TestCase):
         self.assertEqual(result[0]['price'], 1.2)
         self.assertEqual(result[0]['priceKind'], 'Daily reference rate')
 
+    def test_stale_reference_response_cannot_claim_fresh_collection_health(self):
+        body = b'<Cube time="2026-09-01"><Cube currency="USD" rate="1.2"/></Cube>'
+        health = {}
+        with patch('scripts.official_data.read_public', side_effect=[TimeoutError(), body]):
+            result, _ = supplement({}, [], [], health, ['EURUSD'], NOW)
+        self.assertEqual(result[0]['referenceDate'], '2026-09-01')
+        self.assertEqual(health['official-reference']['status'], 'degraded')
+        self.assertEqual(health['official-reference']['lastSuccessAt'], '2026-09-01T00:00:00+00:00')
+        self.assertEqual(health['official-reference']['lastAttemptAt'], NOW.isoformat())
+
+    def test_policy_health_uses_source_date_not_download_time(self):
+        policy = {'seriesDetail': {'V39079': {'label': 'Target for the overnight rate'}},
+                  'observations': [{'d': '2026-10-01', 'V39079': {'v': '2.5'}}]}
+        health = {}
+        with patch('scripts.official_data.read_public', side_effect=[json.dumps(policy).encode(), TimeoutError()]):
+            _, rows = supplement({}, [], [], health, [], NOW)
+        self.assertEqual(rows[0]['value'], 2.5)
+        self.assertEqual(health['official-policy']['status'], 'degraded')
+        self.assertEqual(health['official-policy']['lastSuccessAt'], '2026-10-01T00:00:00+00:00')
+
 
 class PublicationTests(unittest.TestCase):
     def fixture(self):

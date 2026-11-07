@@ -6,7 +6,7 @@ import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 ECB_URL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
 BOC_URL = 'https://www.bankofcanada.ca/valet/observations/V39079/json?recent=750'
@@ -125,9 +125,12 @@ def supplement(previous, prices, history, health, instruments, now):
                     # are absent or older. Never replace a same-day market quote.
                     if not old or str(old.get('asOf', ''))[:10] < row['referenceDate']:
                         price_map[row['instrument']] = row
-            health[name] = {'feed': name, 'status': 'healthy', 'itemCount': len(rows),
-                'lastAttemptAt': now.isoformat(), 'lastSuccessAt': now.isoformat(),
-                'staleAfterHours': 96, 'message': 'Reference observations collected.'}
+            latest = max(row.get('referenceDate', row.get('date')) for row in rows)
+            observed = datetime.combine(date.fromisoformat(latest), datetime.min.time(), tzinfo=timezone.utc)
+            fresh = 0 <= (now - observed).total_seconds() <= 96 * 3600
+            health[name] = {'feed': name, 'status': 'healthy' if fresh else 'degraded', 'itemCount': len(rows),
+                'lastAttemptAt': now.isoformat(), 'lastSuccessAt': observed.isoformat(),
+                'staleAfterHours': 96, 'message': 'Reference observations collected.' if fresh else 'Source observations are stale; observation dates are preserved.'}
         except Exception as error:
             health[name] = {**prior, 'feed': name, 'status': 'degraded', 'itemCount': 0,
                 'lastAttemptAt': now.isoformat(), 'lastSuccessAt': prior.get('lastSuccessAt'),
